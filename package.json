@@ -6,6 +6,9 @@
   "types": "index.tsx",
   "scripts": {
     "install:deps": "npm install lucide-react sonner clsx tailwind-merge",
+    "build": "cd studio && npm install && npm run build",
+    "start": "cd studio && npm run start",
+    "dev": "cd studio && npm run dev",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
