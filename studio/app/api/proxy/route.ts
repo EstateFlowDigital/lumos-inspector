@@ -225,9 +225,72 @@ export async function GET(request: NextRequest) {
     return new NextResponse(html, { headers })
   } catch (error) {
     console.error("Proxy error:", error)
+
+    // Provide more detailed error information
+    let errorMessage = "Proxy error"
+    let errorDetails = {}
+
+    if (error instanceof Error) {
+      errorMessage = error.message
+      errorDetails = {
+        name: error.name,
+        message: error.message,
+        cause: error.cause ? String(error.cause) : undefined,
+        stack: error.stack?.split("\n").slice(0, 3).join("\n"),
+      }
+
+      // Check for specific error types
+      if (error.name === "AbortError") {
+        errorMessage = "Request timed out after 30 seconds"
+      } else if (error.message.includes("ENOTFOUND")) {
+        errorMessage = "DNS lookup failed - could not resolve hostname"
+      } else if (error.message.includes("ECONNREFUSED")) {
+        errorMessage = "Connection refused - server may be down"
+      } else if (error.message.includes("CERT")) {
+        errorMessage = "SSL certificate error"
+      }
+    }
+
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Proxy error" },
+      {
+        error: errorMessage,
+        details: errorDetails,
+        targetUrl: targetUrl,
+      },
       { status: 500 }
     )
+  }
+}
+
+// Also add a POST handler that can be used for debugging
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const targetUrl = body.url
+
+    if (!targetUrl) {
+      return NextResponse.json({ error: "URL is required" }, { status: 400 })
+    }
+
+    // Simple fetch test without all the HTML processing
+    const response = await fetch(targetUrl, {
+      method: "HEAD",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; LumosStudio/1.0)",
+      },
+    })
+
+    return NextResponse.json({
+      success: true,
+      status: response.status,
+      statusText: response.statusText,
+      headers: Object.fromEntries(response.headers.entries()),
+    })
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error",
+      errorName: error instanceof Error ? error.name : undefined,
+    })
   }
 }
