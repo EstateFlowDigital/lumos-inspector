@@ -22,6 +22,8 @@ export interface LumosSocketEvents {
   onStyleApplied?: (change: StyleChange) => void
   onConnected?: () => void
   onDisconnected?: () => void
+  onError?: (error: Error) => void
+  onReconnecting?: (attempt: number) => void
 }
 
 class LumosSocket {
@@ -73,6 +75,23 @@ class LumosSocket {
     this.socket.on("disconnect", () => {
       console.log("[Lumos Studio] Disconnected from server")
       this.events.onDisconnected?.()
+    })
+
+    // Error handling
+    this.socket.on("connect_error", (error) => {
+      console.error("[Lumos Studio] Connection error:", error.message)
+      this.events.onError?.(error)
+    })
+
+    // Reconnection handling
+    this.socket.io.on("reconnect_attempt", (attempt) => {
+      console.log("[Lumos Studio] Reconnecting... attempt", attempt)
+      this.events.onReconnecting?.(attempt)
+    })
+
+    this.socket.io.on("reconnect", () => {
+      console.log("[Lumos Studio] Reconnected, rejoining session")
+      this.socket?.emit("join-session", { sessionId, role: "studio" })
     })
 
     return this

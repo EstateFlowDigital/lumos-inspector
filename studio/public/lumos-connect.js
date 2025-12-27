@@ -273,12 +273,26 @@
       const oldValue = el.style[property] || getComputedStyle(el)[property];
       el.style[property] = value;
 
-      sendToStudio('LUMOS_STYLE_CHANGE', {
-        selector,
-        property,
-        oldValue,
-        newValue: value,
-      });
+      // FIX: Emit 'style-applied' directly via socket (not through sendToStudio which converts names incorrectly)
+      // For WebSocket mode, emit directly with correct event name
+      if (socket && socket.connected) {
+        socket.emit('style-applied', {
+          selector,
+          property,
+          oldValue,
+          newValue: value,
+          success: true
+        });
+      }
+      // For iframe mode, use sendToStudio with the original event type
+      if (isInIframe) {
+        sendToStudio('LUMOS_STYLE_CHANGE', {
+          selector,
+          property,
+          oldValue,
+          newValue: value,
+        });
+      }
 
       // Update selected element styles if it's the same element
       if (selectedElement && generateSelector(selectedElement) === selector) {
@@ -464,6 +478,21 @@
       socket.on('disconnect', function() {
         console.log('[Lumos] Disconnected from Studio');
         updateBadgeState();
+      });
+
+      // Reconnection handling - rejoin session after reconnect
+      socket.io.on('reconnect', function() {
+        console.log('[Lumos] Reconnected to Studio, rejoining session');
+        socket.emit('join-session', { sessionId, role: 'target' });
+        updateBadgeState();
+      });
+
+      socket.io.on('reconnect_attempt', function(attempt) {
+        console.log('[Lumos] Reconnection attempt', attempt);
+      });
+
+      socket.on('connect_error', function(error) {
+        console.error('[Lumos] Connection error:', error.message);
       });
     };
     document.body.appendChild(socketScript);
