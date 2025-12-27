@@ -3598,6 +3598,268 @@
       transform: translateX(18px);
       background: white;
     }
+
+    /* Typography Editor */
+    .lumos-typography-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-typo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #1f1f23;
+    }
+    .lumos-typo-row:last-child {
+      border-bottom: none;
+    }
+    .lumos-typo-row label {
+      width: 100px;
+      font-size: 11px;
+      color: #a1a1aa;
+    }
+    .lumos-typo-row input[type="range"] {
+      flex: 1;
+      accent-color: #8b5cf6;
+    }
+    .lumos-typo-row .lumos-typo-value {
+      width: 50px;
+      font-size: 11px;
+      color: #fafafa;
+      text-align: right;
+    }
+
+    /* Grid Builder */
+    .lumos-grid-builder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 450px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-grid-preview {
+      display: grid;
+      gap: 4px;
+      padding: 16px;
+      background: #18181b;
+      border-radius: 8px;
+      min-height: 120px;
+    }
+    .lumos-grid-preview-cell {
+      background: #3b82f6;
+      border-radius: 4px;
+      min-height: 30px;
+      opacity: 0.6;
+    }
+    .lumos-grid-controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .lumos-grid-control {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .lumos-grid-control label {
+      font-size: 10px;
+      color: #71717a;
+      text-transform: uppercase;
+    }
+    .lumos-grid-control input {
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #fafafa;
+      font-size: 12px;
+    }
+
+    /* 3D/Perspective Controls */
+    .lumos-3d-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-3d-preview {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      margin: 0 auto 16px;
+      border-radius: 8px;
+      transition: transform 0.3s, perspective 0.3s;
+    }
+    .lumos-3d-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    .lumos-3d-row label {
+      width: 100px;
+      font-size: 11px;
+      color: #a1a1aa;
+    }
+    .lumos-3d-row input[type="range"] {
+      flex: 1;
+      accent-color: #8b5cf6;
+    }
+    .lumos-3d-row span {
+      width: 60px;
+      font-size: 11px;
+      color: #fafafa;
+      text-align: right;
+    }
+
+    /* Scroll Snap Controls */
+    .lumos-scroll-snap-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-snap-section {
+      margin-bottom: 16px;
+    }
+    .lumos-snap-section-label {
+      font-size: 10px;
+      color: #71717a;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .lumos-snap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .lumos-snap-btn {
+      padding: 10px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-snap-btn:hover {
+      background: #27272a;
+    }
+    .lumos-snap-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    /* Writing Mode Controls */
+    .lumos-writing-mode-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-writing-preview {
+      padding: 16px;
+      background: #18181b;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fafafa;
+      font-size: 14px;
+    }
+
+    /* Word Break Controls */
+    .lumos-word-break-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-word-break-preview {
+      padding: 12px;
+      background: #18181b;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #a1a1aa;
+      word-break: break-all;
+    }
+
+    /* Resize Control */
+    .lumos-resize-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-resize-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .lumos-resize-btn {
+      padding: 16px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      color: #a1a1aa;
+      font-size: 11px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-resize-btn:hover {
+      background: #27272a;
+    }
+    .lumos-resize-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-resize-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -3691,6 +3953,14 @@
     blendMode: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="9" cy="9" r="6"/><circle cx="15" cy="15" r="6"/></svg>',
     pointerIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>',
     textSelect: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 3a2 2 0 0 0-2 2"/><path d="M19 3a2 2 0 0 1 2 2"/><path d="M21 19a2 2 0 0 1-2 2"/><path d="M5 21a2 2 0 0 1-2-2"/><path d="M9 3h1"/><path d="M9 21h1"/><path d="M14 3h1"/><path d="M14 21h1"/><path d="M3 9v1"/><path d="M21 9v1"/><path d="M3 14v1"/><path d="M21 14v1"/></svg>',
+    letterSpacing: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 8h10M17 12V8M7 12V8"/><line x1="3" y1="20" x2="7" y2="20"/><line x1="17" y1="20" x2="21" y2="20"/><polyline points="5,18 5,22"/><polyline points="19,18 19,22"/></svg>',
+    lineHeight: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="12" x2="3" y2="12"/><line x1="21" y1="18" x2="3" y2="18"/><path d="M4 2v20M20 2v20"/></svg>',
+    gridTemplate: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>',
+    cube3d: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    scrollSnap: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>',
+    writingMode: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 19V5M5 12h14"/><path d="M5 5h14M5 19h14"/></svg>',
+    wordBreak: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M10 4v16"/><path d="M14 4v16"/><path d="M3 8h4M17 8h4M3 16h4M17 16h4"/></svg>',
+    resizeIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-6-6m6 6v-4.8m0 4.8h-4.8"/><path d="M3 16.2V21m0 0h4.8M3 21l6-6"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -9533,6 +9803,605 @@
   }
 
   // ============================================
+  // TYPOGRAPHY EDITOR (Letter/Word Spacing, Line Height)
+  // ============================================
+  function openTypographyEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-typography-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-typography-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.letterSpacing}</span>
+          <span style="font-weight:600;color:#fafafa">Typography</span>
+        </div>
+        <button class="lumos-close-typo" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-typo-row">
+          <label>Letter Spacing</label>
+          <input type="range" min="-5" max="20" step="0.5" value="${parseFloat(cs.letterSpacing) || 0}" data-prop="letterSpacing" data-unit="px" />
+          <span class="lumos-typo-value">${parseFloat(cs.letterSpacing) || 0}px</span>
+        </div>
+        <div class="lumos-typo-row">
+          <label>Word Spacing</label>
+          <input type="range" min="-5" max="30" step="1" value="${parseFloat(cs.wordSpacing) || 0}" data-prop="wordSpacing" data-unit="px" />
+          <span class="lumos-typo-value">${parseFloat(cs.wordSpacing) || 0}px</span>
+        </div>
+        <div class="lumos-typo-row">
+          <label>Line Height</label>
+          <input type="range" min="0.5" max="3" step="0.1" value="${parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) || 1.5}" data-prop="lineHeight" data-unit="" />
+          <span class="lumos-typo-value">${(parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) || 1.5).toFixed(1)}</span>
+        </div>
+        <div class="lumos-typo-row">
+          <label>Text Indent</label>
+          <input type="range" min="0" max="100" step="5" value="${parseFloat(cs.textIndent) || 0}" data-prop="textIndent" data-unit="px" />
+          <span class="lumos-typo-value">${parseFloat(cs.textIndent) || 0}px</span>
+        </div>
+        <div class="lumos-typo-row">
+          <label>Tab Size</label>
+          <input type="range" min="1" max="8" step="1" value="${parseInt(cs.tabSize) || 4}" data-prop="tabSize" data-unit="" />
+          <span class="lumos-typo-value">${parseInt(cs.tabSize) || 4}</span>
+        </div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid #27272a">
+          <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">White Space</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+            ${['normal', 'nowrap', 'pre', 'pre-wrap', 'pre-line', 'break-spaces'].map(ws => `
+              <button class="lumos-ws-btn" data-value="${ws}" style="padding:8px;background:${cs.whiteSpace === ws ? '#8b5cf6' : '#18181b'};border:1px solid ${cs.whiteSpace === ws ? '#8b5cf6' : '#27272a'};border-radius:6px;color:${cs.whiteSpace === ws ? 'white' : '#a1a1aa'};font-size:9px;cursor:pointer">${ws}</button>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('input[type="range"]').forEach(input => {
+      input.oninput = () => {
+        const prop = input.dataset.prop;
+        const unit = input.dataset.unit;
+        const value = input.value + unit;
+        input.nextElementSibling.textContent = value || input.value;
+        applyStyle(selectedElement, prop, value || input.value);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-ws-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-ws-btn').forEach(b => {
+          b.style.background = '#18181b';
+          b.style.borderColor = '#27272a';
+          b.style.color = '#a1a1aa';
+        });
+        btn.style.background = '#8b5cf6';
+        btn.style.borderColor = '#8b5cf6';
+        btn.style.color = 'white';
+        applyStyle(selectedElement, 'whiteSpace', btn.dataset.value);
+      };
+    });
+
+    panel.querySelector('.lumos-close-typo').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // GRID TEMPLATE BUILDER
+  // ============================================
+  function openGridBuilder() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-grid-builder')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-grid-builder lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.gridTemplate}</span>
+          <span style="font-weight:600;color:#fafafa">Grid Builder</span>
+        </div>
+        <button class="lumos-close-grid-builder" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-grid-preview" id="lumos-grid-preview"></div>
+        <div class="lumos-grid-controls">
+          <div class="lumos-grid-control">
+            <label>Columns</label>
+            <input type="number" min="1" max="12" value="3" class="lumos-grid-cols" />
+          </div>
+          <div class="lumos-grid-control">
+            <label>Rows</label>
+            <input type="number" min="1" max="12" value="2" class="lumos-grid-rows" />
+          </div>
+          <div class="lumos-grid-control">
+            <label>Column Gap</label>
+            <input type="text" value="16px" class="lumos-grid-col-gap" />
+          </div>
+          <div class="lumos-grid-control">
+            <label>Row Gap</label>
+            <input type="text" value="16px" class="lumos-grid-row-gap" />
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Column Template</div>
+          <input type="text" value="repeat(3, 1fr)" class="lumos-grid-template-cols" style="width:100%;padding:8px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa;font-size:12px;font-family:monospace" />
+        </div>
+        <div style="margin-top:12px">
+          <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Row Template</div>
+          <input type="text" value="repeat(2, 1fr)" class="lumos-grid-template-rows" style="width:100%;padding:8px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa;font-size:12px;font-family:monospace" />
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <button class="lumos-apply-grid" style="flex:1;padding:10px;background:#8b5cf6;border:none;border-radius:6px;color:white;cursor:pointer;font-size:12px">Apply Grid</button>
+          <button class="lumos-make-grid" style="padding:10px 16px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer;font-size:12px">Make Grid</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('#lumos-grid-preview');
+
+    function updatePreview() {
+      const cols = parseInt(panel.querySelector('.lumos-grid-cols').value) || 3;
+      const rows = parseInt(panel.querySelector('.lumos-grid-rows').value) || 2;
+      preview.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+      preview.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+      preview.innerHTML = Array(cols * rows).fill('<div class="lumos-grid-preview-cell"></div>').join('');
+      panel.querySelector('.lumos-grid-template-cols').value = `repeat(${cols}, 1fr)`;
+      panel.querySelector('.lumos-grid-template-rows').value = `repeat(${rows}, 1fr)`;
+    }
+
+    updatePreview();
+
+    panel.querySelector('.lumos-grid-cols').onchange = updatePreview;
+    panel.querySelector('.lumos-grid-rows').onchange = updatePreview;
+
+    panel.querySelector('.lumos-make-grid').onclick = () => {
+      applyStyle(selectedElement, 'display', 'grid');
+      showToast('Display set to grid', 'success');
+    };
+
+    panel.querySelector('.lumos-apply-grid').onclick = () => {
+      const templateCols = panel.querySelector('.lumos-grid-template-cols').value;
+      const templateRows = panel.querySelector('.lumos-grid-template-rows').value;
+      const colGap = panel.querySelector('.lumos-grid-col-gap').value;
+      const rowGap = panel.querySelector('.lumos-grid-row-gap').value;
+
+      applyStyle(selectedElement, 'display', 'grid');
+      applyStyle(selectedElement, 'gridTemplateColumns', templateCols);
+      applyStyle(selectedElement, 'gridTemplateRows', templateRows);
+      applyStyle(selectedElement, 'columnGap', colGap);
+      applyStyle(selectedElement, 'rowGap', rowGap);
+      showToast('Grid applied', 'success');
+    };
+
+    panel.querySelector('.lumos-close-grid-builder').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // 3D/PERSPECTIVE EDITOR
+  // ============================================
+  function open3DEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-3d-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-3d-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.cube3d}</span>
+          <span style="font-weight:600;color:#fafafa">3D Transform</span>
+        </div>
+        <button class="lumos-close-3d" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-3d-preview"></div>
+        <div class="lumos-3d-row">
+          <label>Perspective</label>
+          <input type="range" min="100" max="2000" value="1000" data-prop="perspective" />
+          <span>1000px</span>
+        </div>
+        <div class="lumos-3d-row">
+          <label>Rotate X</label>
+          <input type="range" min="-180" max="180" value="0" data-prop="rotateX" />
+          <span>0°</span>
+        </div>
+        <div class="lumos-3d-row">
+          <label>Rotate Y</label>
+          <input type="range" min="-180" max="180" value="0" data-prop="rotateY" />
+          <span>0°</span>
+        </div>
+        <div class="lumos-3d-row">
+          <label>Rotate Z</label>
+          <input type="range" min="-180" max="180" value="0" data-prop="rotateZ" />
+          <span>0°</span>
+        </div>
+        <div class="lumos-3d-row">
+          <label>Translate Z</label>
+          <input type="range" min="-200" max="200" value="0" data-prop="translateZ" />
+          <span>0px</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px">
+          <button class="lumos-3d-style" data-value="flat" style="padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#a1a1aa;cursor:pointer;font-size:11px">Flat</button>
+          <button class="lumos-3d-style" data-value="preserve-3d" style="padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#a1a1aa;cursor:pointer;font-size:11px">Preserve 3D</button>
+        </div>
+        <button class="lumos-reset-3d" style="width:100%;padding:10px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer;font-size:12px;margin-top:12px">Reset</button>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-3d-preview');
+
+    function update3D() {
+      const perspective = panel.querySelector('[data-prop="perspective"]').value;
+      const rotateX = panel.querySelector('[data-prop="rotateX"]').value;
+      const rotateY = panel.querySelector('[data-prop="rotateY"]').value;
+      const rotateZ = panel.querySelector('[data-prop="rotateZ"]').value;
+      const translateZ = panel.querySelector('[data-prop="translateZ"]').value;
+
+      const transform = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateZ(${translateZ}px)`;
+
+      preview.style.transform = transform;
+      applyStyle(selectedElement, 'transform', transform);
+    }
+
+    panel.querySelectorAll('input[type="range"]').forEach(input => {
+      input.oninput = () => {
+        const prop = input.dataset.prop;
+        const unit = prop === 'perspective' || prop === 'translateZ' ? 'px' : '°';
+        input.nextElementSibling.textContent = input.value + unit;
+        update3D();
+      };
+    });
+
+    panel.querySelectorAll('.lumos-3d-style').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle(selectedElement, 'transformStyle', btn.dataset.value);
+        showToast(`Transform style: ${btn.dataset.value}`, 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-reset-3d').onclick = () => {
+      panel.querySelectorAll('input[type="range"]').forEach(input => {
+        if (input.dataset.prop === 'perspective') input.value = 1000;
+        else input.value = 0;
+        input.nextElementSibling.textContent = input.value + (input.dataset.prop === 'perspective' || input.dataset.prop === 'translateZ' ? 'px' : '°');
+      });
+      update3D();
+    };
+
+    panel.querySelector('.lumos-close-3d').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // SCROLL SNAP CONTROLS
+  // ============================================
+  function openScrollSnapEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-scroll-snap-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-scroll-snap-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.scrollSnap}</span>
+          <span style="font-weight:600;color:#fafafa">Scroll Snap</span>
+        </div>
+        <button class="lumos-close-snap" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-snap-section">
+          <div class="lumos-snap-section-label">Container Type</div>
+          <div class="lumos-snap-grid">
+            ${['none', 'x mandatory', 'y mandatory', 'x proximity', 'y proximity', 'both mandatory'].map(type => `
+              <button class="lumos-snap-btn" data-type="${type}">${type}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div class="lumos-snap-section">
+          <div class="lumos-snap-section-label">Child Alignment</div>
+          <div class="lumos-snap-grid">
+            ${['none', 'start', 'center', 'end'].map(align => `
+              <button class="lumos-snap-btn lumos-snap-align" data-align="${align}">${align}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div class="lumos-snap-section" style="margin-bottom:0">
+          <div class="lumos-snap-section-label">Scroll Behavior</div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
+            <button class="lumos-snap-btn lumos-scroll-behavior" data-behavior="auto">Auto</button>
+            <button class="lumos-snap-btn lumos-scroll-behavior" data-behavior="smooth">Smooth</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-snap-btn:not(.lumos-snap-align):not(.lumos-scroll-behavior)').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-snap-btn:not(.lumos-snap-align):not(.lumos-scroll-behavior)').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'scrollSnapType', btn.dataset.type);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-snap-align').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-snap-align').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'scrollSnapAlign', btn.dataset.align);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-scroll-behavior').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-scroll-behavior').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'scrollBehavior', btn.dataset.behavior);
+      };
+    });
+
+    panel.querySelector('.lumos-close-snap').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // WRITING MODE EDITOR
+  // ============================================
+  function openWritingModeEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-writing-mode-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-writing-mode-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.writingMode}</span>
+          <span style="font-weight:600;color:#fafafa">Writing Mode</span>
+        </div>
+        <button class="lumos-close-writing" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-writing-preview">Sample Text 示例文本</div>
+        <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Writing Mode</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:16px">
+          ${['horizontal-tb', 'vertical-rl', 'vertical-lr', 'sideways-rl'].map(mode => `
+            <button class="lumos-writing-btn" data-mode="${mode}" style="padding:10px;background:${cs.writingMode === mode ? '#8b5cf6' : '#18181b'};border:1px solid ${cs.writingMode === mode ? '#8b5cf6' : '#27272a'};border-radius:6px;color:${cs.writingMode === mode ? 'white' : '#a1a1aa'};font-size:10px;cursor:pointer">${mode}</button>
+          `).join('')}
+        </div>
+        <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Direction</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:16px">
+          <button class="lumos-dir-btn" data-dir="ltr" style="padding:10px;background:${cs.direction === 'ltr' ? '#8b5cf6' : '#18181b'};border:1px solid ${cs.direction === 'ltr' ? '#8b5cf6' : '#27272a'};border-radius:6px;color:${cs.direction === 'ltr' ? 'white' : '#a1a1aa'};font-size:11px;cursor:pointer">LTR →</button>
+          <button class="lumos-dir-btn" data-dir="rtl" style="padding:10px;background:${cs.direction === 'rtl' ? '#8b5cf6' : '#18181b'};border:1px solid ${cs.direction === 'rtl' ? '#8b5cf6' : '#27272a'};border-radius:6px;color:${cs.direction === 'rtl' ? 'white' : '#a1a1aa'};font-size:11px;cursor:pointer">← RTL</button>
+        </div>
+        <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Text Orientation</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+          ${['mixed', 'upright', 'sideways'].map(orient => `
+            <button class="lumos-orient-btn" data-orient="${orient}" style="padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#a1a1aa;font-size:10px;cursor:pointer">${orient}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-writing-preview');
+
+    panel.querySelectorAll('.lumos-writing-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-writing-btn').forEach(b => {
+          b.style.background = '#18181b';
+          b.style.borderColor = '#27272a';
+          b.style.color = '#a1a1aa';
+        });
+        btn.style.background = '#8b5cf6';
+        btn.style.borderColor = '#8b5cf6';
+        btn.style.color = 'white';
+        preview.style.writingMode = btn.dataset.mode;
+        applyStyle(selectedElement, 'writingMode', btn.dataset.mode);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-dir-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-dir-btn').forEach(b => {
+          b.style.background = '#18181b';
+          b.style.borderColor = '#27272a';
+          b.style.color = '#a1a1aa';
+        });
+        btn.style.background = '#8b5cf6';
+        btn.style.borderColor = '#8b5cf6';
+        btn.style.color = 'white';
+        preview.style.direction = btn.dataset.dir;
+        applyStyle(selectedElement, 'direction', btn.dataset.dir);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-orient-btn').forEach(btn => {
+      btn.onclick = () => {
+        preview.style.textOrientation = btn.dataset.orient;
+        applyStyle(selectedElement, 'textOrientation', btn.dataset.orient);
+        showToast(`Text orientation: ${btn.dataset.orient}`, 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-close-writing').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // WORD BREAK EDITOR
+  // ============================================
+  function openWordBreakEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-word-break-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-word-break-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.wordBreak}</span>
+          <span style="font-weight:600;color:#fafafa">Word Break</span>
+        </div>
+        <button class="lumos-close-wordbreak" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-word-break-preview">ThisIsAVeryLongWordThatShouldBreakSomewhere</div>
+        <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Word Break</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:16px">
+          ${['normal', 'break-all', 'keep-all', 'break-word'].map(wb => `
+            <button class="lumos-wb-btn" data-value="${wb}" style="padding:10px;background:${cs.wordBreak === wb ? '#8b5cf6' : '#18181b'};border:1px solid ${cs.wordBreak === wb ? '#8b5cf6' : '#27272a'};border-radius:6px;color:${cs.wordBreak === wb ? 'white' : '#a1a1aa'};font-size:10px;cursor:pointer">${wb}</button>
+          `).join('')}
+        </div>
+        <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Overflow Wrap</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px">
+          ${['normal', 'break-word', 'anywhere'].map(ow => `
+            <button class="lumos-ow-btn" data-value="${ow}" style="padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#a1a1aa;font-size:10px;cursor:pointer">${ow}</button>
+          `).join('')}
+        </div>
+        <div style="font-size:10px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Hyphens</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+          ${['none', 'manual', 'auto'].map(h => `
+            <button class="lumos-hyphens-btn" data-value="${h}" style="padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#a1a1aa;font-size:10px;cursor:pointer">${h}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-word-break-preview');
+
+    panel.querySelectorAll('.lumos-wb-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-wb-btn').forEach(b => {
+          b.style.background = '#18181b';
+          b.style.borderColor = '#27272a';
+          b.style.color = '#a1a1aa';
+        });
+        btn.style.background = '#8b5cf6';
+        btn.style.borderColor = '#8b5cf6';
+        btn.style.color = 'white';
+        preview.style.wordBreak = btn.dataset.value;
+        applyStyle(selectedElement, 'wordBreak', btn.dataset.value);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-ow-btn').forEach(btn => {
+      btn.onclick = () => {
+        preview.style.overflowWrap = btn.dataset.value;
+        applyStyle(selectedElement, 'overflowWrap', btn.dataset.value);
+        showToast(`Overflow wrap: ${btn.dataset.value}`, 'success');
+      };
+    });
+
+    panel.querySelectorAll('.lumos-hyphens-btn').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle(selectedElement, 'hyphens', btn.dataset.value);
+        showToast(`Hyphens: ${btn.dataset.value}`, 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-close-wordbreak').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // RESIZE CONTROL
+  // ============================================
+  function openResizeEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-resize-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const options = [
+      { value: 'none', icon: '⊘', label: 'None' },
+      { value: 'both', icon: '⤡', label: 'Both' },
+      { value: 'horizontal', icon: '↔', label: 'Horizontal' },
+      { value: 'vertical', icon: '↕', label: 'Vertical' }
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-resize-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.resizeIcon}</span>
+          <span style="font-weight:600;color:#fafafa">Resize</span>
+        </div>
+        <button class="lumos-close-resize" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-resize-grid">
+          ${options.map(o => `
+            <button class="lumos-resize-btn ${cs.resize === o.value ? 'active' : ''}" data-resize="${o.value}">
+              <div class="lumos-resize-icon">${o.icon}</div>
+              ${o.label}
+            </button>
+          `).join('')}
+        </div>
+        <p style="margin-top:12px;font-size:10px;color:#71717a;text-align:center">Note: Requires overflow to be set to auto, scroll, or hidden.</p>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-resize-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-resize-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'resize', btn.dataset.resize);
+        // Also ensure overflow is set
+        if (btn.dataset.resize !== 'none') {
+          const currentOverflow = getComputedStyle(selectedElement).overflow;
+          if (currentOverflow === 'visible') {
+            applyStyle(selectedElement, 'overflow', 'auto');
+          }
+        }
+      };
+    });
+
+    panel.querySelector('.lumos-close-resize').onclick = () => panel.remove();
+  }
+
+  // ============================================
   // ADD NEW COMMANDS TO PALETTE
   // ============================================
   commands.push(
@@ -9571,7 +10440,14 @@
     { id: 'object-fit', label: 'Object Fit', icon: 'cropIcon', action: openObjectFitEditor },
     { id: 'clip-path', label: 'Clip Path Shapes', icon: 'scissors', action: openClipPathEditor },
     { id: 'blend-mode', label: 'Blend Mode', icon: 'blendMode', action: openBlendModePicker },
-    { id: 'quick-controls', label: 'Quick Controls', icon: 'settings', action: openQuickControls }
+    { id: 'quick-controls', label: 'Quick Controls', icon: 'settings', action: openQuickControls },
+    { id: 'typography', label: 'Typography Editor', icon: 'letterSpacing', action: openTypographyEditor },
+    { id: 'grid-builder', label: 'Grid Builder', icon: 'gridTemplate', action: openGridBuilder },
+    { id: '3d-editor', label: '3D Transform', icon: 'cube3d', action: open3DEditor },
+    { id: 'scroll-snap', label: 'Scroll Snap', icon: 'scrollSnap', action: openScrollSnapEditor },
+    { id: 'writing-mode', label: 'Writing Mode', icon: 'writingMode', action: openWritingModeEditor },
+    { id: 'word-break', label: 'Word Break', icon: 'wordBreak', action: openWordBreakEditor },
+    { id: 'resize', label: 'Resize Control', icon: 'resizeIcon', action: openResizeEditor }
   );
 
   // Focus mode keyboard shortcut
