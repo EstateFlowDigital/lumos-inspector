@@ -30,6 +30,36 @@
   let currentStyleTab = 'layout';
   let currentPseudoState = 'none';
   let navigatorOpen = true;
+  let currentBreakpoint = 'base';
+  let copiedStyles = null;
+  let recentColors = [];
+  let measureMode = false;
+  let measureStart = null;
+
+  // Breakpoints for responsive editing
+  const breakpoints = {
+    base: { label: 'Base', minWidth: 0, icon: 'layers' },
+    sm: { label: '640px', minWidth: 640, icon: 'phone' },
+    md: { label: '768px', minWidth: 768, icon: 'tablet' },
+    lg: { label: '1024px', minWidth: 1024, icon: 'monitor' },
+    xl: { label: '1280px', minWidth: 1280, icon: 'monitor' },
+  };
+
+  // Popular Google Fonts
+  const googleFonts = [
+    'Inter', 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Poppins',
+    'Nunito', 'Playfair Display', 'Merriweather', 'Source Sans Pro',
+    'Raleway', 'Ubuntu', 'Oswald', 'Rubik', 'Work Sans', 'DM Sans',
+    'Space Grotesk', 'Outfit', 'Plus Jakarta Sans', 'Manrope'
+  ];
+
+  // Load Google Fonts
+  function loadGoogleFont(fontName) {
+    const link = document.createElement('link');
+    link.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, '+')}:wght@400;500;600;700&display=swap`;
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }
 
   // LocalStorage key for persistence
   const STORAGE_KEY = `lumos-changes-${sessionId || 'default'}`;
@@ -1038,6 +1068,376 @@
     .lumos-ui ::-webkit-scrollbar-thumb:hover {
       background: #3f3f46;
     }
+
+    /* Breakpoint Bar */
+    .lumos-breakpoint-bar {
+      display: flex;
+      padding: 6px 12px;
+      gap: 4px;
+      border-bottom: 1px solid #27272a;
+      background: #09090b;
+    }
+    .lumos-breakpoint-btn {
+      padding: 4px 8px;
+      border: 1px solid #27272a;
+      background: transparent;
+      color: #71717a;
+      font-size: 9px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .lumos-breakpoint-btn:hover {
+      border-color: #3f3f46;
+      color: #a1a1aa;
+    }
+    .lumos-breakpoint-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-breakpoint-btn svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* Selector Helper */
+    .lumos-selector-row {
+      padding: 8px 12px;
+      background: #0f0f10;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lumos-selector-text {
+      flex: 1;
+      font-size: 10px;
+      font-family: ui-monospace, monospace;
+      color: #8b5cf6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .lumos-selector-copy {
+      padding: 3px 6px;
+      background: #27272a;
+      border: none;
+      border-radius: 3px;
+      color: #a1a1aa;
+      font-size: 9px;
+      cursor: pointer;
+    }
+    .lumos-selector-copy:hover {
+      background: #3f3f46;
+      color: #fafafa;
+    }
+
+    /* Color Palette */
+    .lumos-recent-colors {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .lumos-recent-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid #27272a;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .lumos-recent-color:hover {
+      transform: scale(1.1);
+      border-color: #8b5cf6;
+    }
+
+    /* Computed Styles */
+    .lumos-computed-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .lumos-computed-item {
+      display: flex;
+      padding: 4px 8px;
+      font-size: 10px;
+      border-bottom: 1px solid #1a1a1d;
+    }
+    .lumos-computed-item:hover {
+      background: #18181b;
+    }
+    .lumos-computed-prop {
+      flex: 1;
+      color: #71717a;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-computed-val {
+      color: #a78bfa;
+      font-family: ui-monospace, monospace;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Copy/Paste Buttons */
+    .lumos-copy-paste-row {
+      display: flex;
+      gap: 4px;
+      padding: 8px 12px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-copy-paste-btn {
+      flex: 1;
+      padding: 6px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #a1a1aa;
+      font-size: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .lumos-copy-paste-btn:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-copy-paste-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .lumos-copy-paste-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Measurement Tool */
+    .lumos-measure-line {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999998;
+    }
+    .lumos-measure-h {
+      height: 2px;
+      background: #f59e0b;
+    }
+    .lumos-measure-v {
+      width: 2px;
+      background: #f59e0b;
+    }
+    .lumos-measure-label {
+      position: fixed;
+      background: #f59e0b;
+      color: black;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      z-index: 999998;
+      pointer-events: none;
+    }
+    .lumos-measure-point {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #f59e0b;
+      border-radius: 50%;
+      z-index: 999998;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Export Modal */
+    .lumos-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lumos-modal {
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      width: 500px;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .lumos-modal-header {
+      padding: 16px;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lumos-modal-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fafafa;
+    }
+    .lumos-modal-close {
+      background: none;
+      border: none;
+      color: #71717a;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .lumos-modal-close:hover {
+      color: #fafafa;
+    }
+    .lumos-modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .lumos-modal-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .lumos-modal-tab {
+      padding: 6px 12px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #71717a;
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .lumos-modal-tab.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-modal-code {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: #a1a1aa;
+      max-height: 300px;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+    .lumos-modal-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #27272a;
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    /* Animation Editor */
+    .lumos-animation-timeline {
+      background: #18181b;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+    .lumos-keyframe-track {
+      position: relative;
+      height: 24px;
+      background: #27272a;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .lumos-keyframe-point {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: #8b5cf6;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .lumos-keyframe-point:hover {
+      background: #a78bfa;
+    }
+    .lumos-animation-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .lumos-animation-input {
+      flex: 1;
+    }
+
+    /* Accessibility Checker */
+    .lumos-a11y-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .lumos-a11y-item {
+      padding: 8px;
+      background: #18181b;
+      border-radius: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .lumos-a11y-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .lumos-a11y-icon.pass {
+      color: #22c55e;
+    }
+    .lumos-a11y-icon.warn {
+      color: #f59e0b;
+    }
+    .lumos-a11y-icon.fail {
+      color: #ef4444;
+    }
+    .lumos-a11y-content {
+      flex: 1;
+    }
+    .lumos-a11y-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: #fafafa;
+      margin-bottom: 2px;
+    }
+    .lumos-a11y-desc {
+      font-size: 10px;
+      color: #71717a;
+    }
+
+    /* Font Preview */
+    .lumos-font-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .lumos-font-option:hover {
+      background: #27272a;
+    }
+    .lumos-font-preview {
+      font-size: 14px;
+      color: #fafafa;
+    }
+    .lumos-font-name {
+      font-size: 10px;
+      color: #71717a;
+      margin-top: 2px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -1061,6 +1461,18 @@
     github: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>',
     check: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>',
     box: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+    paste: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>',
+    ruler: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>',
+    code: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>',
+    eye: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    accessibility: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="4" r="2"/><path d="M4 20l3-10"/><path d="M20 20l-3-10"/><path d="m12 12-3-2h6l-3 2v3l3 4"/></svg>',
+    play: '<svg viewBox="0 0 24 24" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>',
+    palette: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>',
+    type: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="4,7 4,4 20,4 20,7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>',
+    alertCircle: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+    checkCircle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>',
+    alertTriangle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    bookmark: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -1520,6 +1932,9 @@
     const styleTabs = container.querySelector('.lumos-style-tabs');
     const styleContents = container.querySelectorAll('.lumos-style-content');
     const classSection = container.querySelector('.lumos-class-section');
+    const selectorRow = container.querySelector('.lumos-selector-row');
+    const copyPasteRow = container.querySelector('.lumos-copy-paste-row');
+    const mainTabs = container.querySelector('.lumos-main-tabs');
 
     if (selectedElement) {
       const styles = getElementStyles(selectedElement);
@@ -1533,6 +1948,9 @@
       pseudoRow.style.display = 'flex';
       styleTabs.style.display = 'flex';
       if (classSection) classSection.style.display = 'block';
+      if (selectorRow) selectorRow.style.display = 'flex';
+      if (copyPasteRow) copyPasteRow.style.display = 'flex';
+      if (mainTabs) mainTabs.style.display = 'flex';
       styleContents.forEach(c => {
         if (c.classList.contains('active')) c.style.display = 'block';
         else c.style.display = 'none';
@@ -1546,6 +1964,12 @@
         ${className ? `<div class="lumos-element-classes">.${className.split(' ').filter(c=>c).join(' .')}</div>` : ''}
         <div class="lumos-element-size">${Math.round(rect.width)} x ${Math.round(rect.height)}</div>
       `;
+
+      // Update selector row
+      const selectorText = container.querySelector('.lumos-selector-text');
+      if (selectorText) {
+        selectorText.textContent = generateSelector(selectedElement);
+      }
 
       // Update box model size label
       const boxSizeLabel = container.querySelector('.lumos-box-size-label');
@@ -1561,6 +1985,11 @@
       pseudoRow.style.display = 'none';
       styleTabs.style.display = 'none';
       if (classSection) classSection.style.display = 'none';
+      if (selectorRow) selectorRow.style.display = 'none';
+      if (copyPasteRow) copyPasteRow.style.display = 'none';
+      if (mainTabs) mainTabs.style.display = 'none';
+      container.querySelector('.lumos-computed-panel').style.display = 'none';
+      container.querySelector('.lumos-a11y-panel').style.display = 'none';
       styleContents.forEach(c => c.style.display = 'none');
     }
 
@@ -1738,6 +2167,20 @@
           <button class="lumos-toolbar-btn lumos-undo-btn" title="Undo" disabled>${icons.undo}</button>
           <button class="lumos-toolbar-btn lumos-redo-btn" title="Redo" disabled>${icons.redo}</button>
         </div>
+        <div class="lumos-toolbar-divider"></div>
+        <div class="lumos-toolbar-group">
+          <button class="lumos-toolbar-btn lumos-measure-btn" title="Measure">${icons.ruler}</button>
+          <button class="lumos-toolbar-btn lumos-export-btn" title="Export">${icons.code}</button>
+        </div>
+      </div>
+
+      <!-- Breakpoint Bar -->
+      <div class="lumos-breakpoint-bar">
+        <button class="lumos-breakpoint-btn active" data-bp="base">${icons.layers} Base</button>
+        <button class="lumos-breakpoint-btn" data-bp="sm">${icons.phone} SM</button>
+        <button class="lumos-breakpoint-btn" data-bp="md">${icons.tablet} MD</button>
+        <button class="lumos-breakpoint-btn" data-bp="lg">${icons.monitor} LG</button>
+        <button class="lumos-breakpoint-btn" data-bp="xl">${icons.monitor} XL</button>
       </div>
 
       <div class="lumos-inspect-toggle">
@@ -1746,6 +2189,41 @@
       </div>
 
       <div class="lumos-element-info" style="display:none"></div>
+
+      <!-- Selector Helper -->
+      <div class="lumos-selector-row" style="display:none">
+        <span class="lumos-selector-text"></span>
+        <button class="lumos-selector-copy">${icons.copy} Copy</button>
+      </div>
+
+      <!-- Copy/Paste Styles -->
+      <div class="lumos-copy-paste-row" style="display:none">
+        <button class="lumos-copy-paste-btn lumos-copy-styles-btn">${icons.copy} Copy Styles</button>
+        <button class="lumos-copy-paste-btn lumos-paste-styles-btn" disabled>${icons.paste} Paste Styles</button>
+      </div>
+
+      <!-- Main Tabs -->
+      <div class="lumos-main-tabs" style="display:none">
+        <button class="lumos-tab active" data-main-tab="styles">Styles</button>
+        <button class="lumos-tab" data-main-tab="computed">Computed</button>
+        <button class="lumos-tab" data-main-tab="a11y">A11y</button>
+      </div>
+
+      <!-- Computed Styles Panel -->
+      <div class="lumos-computed-panel" style="display:none">
+        <div class="lumos-section">
+          <div class="lumos-section-header">All Computed Styles</div>
+          <div class="lumos-computed-list"></div>
+        </div>
+      </div>
+
+      <!-- Accessibility Panel -->
+      <div class="lumos-a11y-panel" style="display:none">
+        <div class="lumos-section">
+          <div class="lumos-section-header">Accessibility Check</div>
+          <div class="lumos-a11y-list"></div>
+        </div>
+      </div>
 
       <!-- Class Management -->
       <div class="lumos-class-section" style="display:none">
@@ -2817,7 +3295,410 @@
     input.onkeydown = e => e.key === 'Enter' && handler();
   });
 
+  // Breakpoint handlers
+  container.querySelectorAll('.lumos-breakpoint-btn').forEach(btn => {
+    btn.onclick = () => {
+      currentBreakpoint = btn.dataset.bp;
+      container.querySelectorAll('.lumos-breakpoint-btn').forEach(b => {
+        b.classList.toggle('active', b === btn);
+      });
+      showToast(`Editing @ ${breakpoints[currentBreakpoint].label}`);
+    };
+  });
+
+  // Main tabs handler
+  let currentMainTab = 'styles';
+  container.querySelectorAll('[data-main-tab]').forEach(btn => {
+    btn.onclick = () => {
+      currentMainTab = btn.dataset.mainTab;
+      container.querySelectorAll('[data-main-tab]').forEach(b => {
+        b.classList.toggle('active', b === btn);
+      });
+      updateMainTabs();
+    };
+  });
+
+  function updateMainTabs() {
+    const stylesContent = container.querySelector('.lumos-styles-wrapper');
+    const computedPanel = container.querySelector('.lumos-computed-panel');
+    const a11yPanel = container.querySelector('.lumos-a11y-panel');
+
+    if (stylesContent) stylesContent.style.display = currentMainTab === 'styles' ? 'block' : 'none';
+    if (computedPanel) computedPanel.style.display = currentMainTab === 'computed' ? 'block' : 'none';
+    if (a11yPanel) a11yPanel.style.display = currentMainTab === 'a11y' ? 'block' : 'none';
+
+    if (currentMainTab === 'computed') updateComputedStyles();
+    if (currentMainTab === 'a11y') runAccessibilityCheck();
+  }
+
+  // Computed styles panel
+  function updateComputedStyles() {
+    if (!selectedElement) return;
+    const cs = getComputedStyle(selectedElement);
+    const list = container.querySelector('.lumos-computed-list');
+    if (!list) return;
+
+    const props = Array.from(cs).sort();
+    list.innerHTML = props.map(prop => {
+      const val = cs.getPropertyValue(prop);
+      return `<div class="lumos-computed-item">
+        <span class="lumos-computed-prop">${prop}</span>
+        <span class="lumos-computed-val" title="${val}">${val}</span>
+      </div>`;
+    }).join('');
+  }
+
+  // Accessibility checker
+  function runAccessibilityCheck() {
+    if (!selectedElement) return;
+    const list = container.querySelector('.lumos-a11y-list');
+    if (!list) return;
+
+    const checks = [];
+    const cs = getComputedStyle(selectedElement);
+
+    // Check 1: Color contrast (simplified)
+    const bgColor = cs.backgroundColor;
+    const textColor = cs.color;
+    const contrastRatio = getContrastRatio(textColor, bgColor);
+    if (contrastRatio < 4.5) {
+      checks.push({
+        status: contrastRatio < 3 ? 'fail' : 'warn',
+        title: 'Color Contrast',
+        desc: `Ratio ${contrastRatio.toFixed(2)}:1 (min 4.5:1 for normal text)`
+      });
+    } else {
+      checks.push({ status: 'pass', title: 'Color Contrast', desc: `Ratio ${contrastRatio.toFixed(2)}:1 - Good!` });
+    }
+
+    // Check 2: Alt text for images
+    if (selectedElement.tagName === 'IMG') {
+      if (!selectedElement.alt) {
+        checks.push({ status: 'fail', title: 'Alt Text', desc: 'Image missing alt attribute' });
+      } else if (selectedElement.alt.length < 5) {
+        checks.push({ status: 'warn', title: 'Alt Text', desc: 'Alt text may be too short' });
+      } else {
+        checks.push({ status: 'pass', title: 'Alt Text', desc: 'Image has alt text' });
+      }
+    }
+
+    // Check 3: Button/Link text
+    if (selectedElement.tagName === 'BUTTON' || selectedElement.tagName === 'A') {
+      const text = selectedElement.textContent?.trim();
+      if (!text && !selectedElement.getAttribute('aria-label')) {
+        checks.push({ status: 'fail', title: 'Accessible Name', desc: 'Missing text or aria-label' });
+      } else {
+        checks.push({ status: 'pass', title: 'Accessible Name', desc: 'Has accessible text' });
+      }
+    }
+
+    // Check 4: Font size
+    const fontSize = parseFloat(cs.fontSize);
+    if (fontSize < 12) {
+      checks.push({ status: 'warn', title: 'Font Size', desc: `${fontSize}px may be too small` });
+    } else {
+      checks.push({ status: 'pass', title: 'Font Size', desc: `${fontSize}px - Readable` });
+    }
+
+    // Check 5: Focus indicator for interactive elements
+    if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(selectedElement.tagName)) {
+      const outline = cs.outline;
+      if (outline === 'none' || outline.includes('0px')) {
+        checks.push({ status: 'warn', title: 'Focus Indicator', desc: 'May not have visible focus state' });
+      }
+    }
+
+    list.innerHTML = checks.map(c => `
+      <div class="lumos-a11y-item">
+        <span class="lumos-a11y-icon ${c.status}">${c.status === 'pass' ? icons.checkCircle : c.status === 'warn' ? icons.alertTriangle : icons.alertCircle}</span>
+        <div class="lumos-a11y-content">
+          <div class="lumos-a11y-title">${c.title}</div>
+          <div class="lumos-a11y-desc">${c.desc}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Contrast ratio helper
+  function getContrastRatio(fg, bg) {
+    const getLum = (rgb) => {
+      const match = rgb.match(/\d+/g);
+      if (!match) return 0;
+      const [r, g, b] = match.map(v => {
+        v = parseInt(v) / 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    const l1 = getLum(fg);
+    const l2 = getLum(bg);
+    const lighter = Math.max(l1, l2);
+    const darker = Math.min(l1, l2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  // Copy/Paste styles
+  container.querySelector('.lumos-copy-styles-btn')?.addEventListener('click', () => {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+    copiedStyles = getElementStyles(selectedElement);
+    container.querySelector('.lumos-paste-styles-btn').disabled = false;
+    showToast('Styles copied!', 'success');
+  });
+
+  container.querySelector('.lumos-paste-styles-btn')?.addEventListener('click', () => {
+    if (!selectedElement || !copiedStyles) return;
+    Object.entries(copiedStyles).forEach(([prop, val]) => {
+      if (val && val !== 'none' && val !== 'auto' && val !== 'normal') {
+        const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+        applyStyleChange(cssProp, val);
+      }
+    });
+    showToast('Styles pasted!', 'success');
+  });
+
+  // Selector copy
+  container.querySelector('.lumos-selector-copy')?.addEventListener('click', () => {
+    if (!selectedElement) return;
+    const selector = generateSelector(selectedElement);
+    navigator.clipboard.writeText(selector);
+    showToast('Selector copied!', 'success');
+  });
+
+  // Measure tool
+  container.querySelector('.lumos-measure-btn')?.addEventListener('click', () => {
+    measureMode = !measureMode;
+    container.querySelector('.lumos-measure-btn').classList.toggle('active', measureMode);
+    if (measureMode) {
+      showToast('Click two points to measure');
+      document.body.style.cursor = 'crosshair';
+    } else {
+      document.body.style.cursor = '';
+      clearMeasurement();
+    }
+  });
+
+  function clearMeasurement() {
+    document.querySelectorAll('.lumos-measure-line, .lumos-measure-label, .lumos-measure-point').forEach(el => el.remove());
+    measureStart = null;
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!measureMode) return;
+    if (e.target.closest('.lumos-ui')) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!measureStart) {
+      measureStart = { x: e.clientX, y: e.clientY };
+      const point = document.createElement('div');
+      point.className = 'lumos-measure-point lumos-ui';
+      point.style.left = e.clientX + 'px';
+      point.style.top = e.clientY + 'px';
+      document.body.appendChild(point);
+    } else {
+      const dx = e.clientX - measureStart.x;
+      const dy = e.clientY - measureStart.y;
+      const dist = Math.round(Math.sqrt(dx * dx + dy * dy));
+
+      // Draw line
+      const line = document.createElement('div');
+      line.className = 'lumos-measure-line lumos-ui';
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      line.style.cssText = `
+        left: ${measureStart.x}px;
+        top: ${measureStart.y}px;
+        width: ${dist}px;
+        height: 2px;
+        background: #f59e0b;
+        transform-origin: 0 50%;
+        transform: rotate(${angle}deg);
+      `;
+      document.body.appendChild(line);
+
+      // Draw end point
+      const point = document.createElement('div');
+      point.className = 'lumos-measure-point lumos-ui';
+      point.style.left = e.clientX + 'px';
+      point.style.top = e.clientY + 'px';
+      document.body.appendChild(point);
+
+      // Show label
+      const label = document.createElement('div');
+      label.className = 'lumos-measure-label lumos-ui';
+      label.textContent = `${dist}px`;
+      label.style.left = (measureStart.x + e.clientX) / 2 + 'px';
+      label.style.top = (measureStart.y + e.clientY) / 2 - 20 + 'px';
+      document.body.appendChild(label);
+
+      measureStart = null;
+      showToast(`Distance: ${dist}px`);
+    }
+  }, true);
+
+  // Export modal
+  container.querySelector('.lumos-export-btn')?.addEventListener('click', openExportModal);
+
+  function openExportModal() {
+    if (changes.length === 0) return showToast('No changes to export', 'error');
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">Export Styles</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body">
+          <div class="lumos-modal-tabs">
+            <button class="lumos-modal-tab active" data-format="css">CSS</button>
+            <button class="lumos-modal-tab" data-format="scss">SCSS</button>
+            <button class="lumos-modal-tab" data-format="tailwind">Tailwind</button>
+            <button class="lumos-modal-tab" data-format="cssInJs">CSS-in-JS</button>
+          </div>
+          <pre class="lumos-modal-code"></pre>
+        </div>
+        <div class="lumos-modal-footer">
+          <button class="lumos-btn lumos-btn-secondary lumos-modal-download">${icons.download} Download</button>
+          <button class="lumos-btn lumos-btn-primary lumos-modal-copy">${icons.copy} Copy</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    let currentFormat = 'css';
+    const codeEl = overlay.querySelector('.lumos-modal-code');
+
+    function updateExportCode() {
+      codeEl.textContent = generateExportCode(currentFormat);
+    }
+
+    overlay.querySelectorAll('.lumos-modal-tab').forEach(tab => {
+      tab.onclick = () => {
+        currentFormat = tab.dataset.format;
+        overlay.querySelectorAll('.lumos-modal-tab').forEach(t => t.classList.toggle('active', t === tab));
+        updateExportCode();
+      };
+    });
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelector('.lumos-modal-copy').onclick = () => {
+      navigator.clipboard.writeText(codeEl.textContent);
+      showToast('Copied to clipboard!', 'success');
+    };
+
+    overlay.querySelector('.lumos-modal-download').onclick = () => {
+      const ext = currentFormat === 'scss' ? 'scss' : currentFormat === 'tailwind' ? 'txt' : currentFormat === 'cssInJs' ? 'js' : 'css';
+      const blob = new Blob([codeEl.textContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `lumos-styles.${ext}`;
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    updateExportCode();
+  }
+
+  function generateExportCode(format) {
+    const grouped = {};
+    changes.forEach(c => {
+      if (!grouped[c.selector]) grouped[c.selector] = {};
+      grouped[c.selector][c.property] = c.newValue;
+    });
+
+    if (format === 'css') {
+      let mediaPrefix = '';
+      if (currentBreakpoint !== 'base') {
+        mediaPrefix = `@media (min-width: ${breakpoints[currentBreakpoint].minWidth}px) {\n`;
+      }
+      let css = Object.entries(grouped).map(([sel, props]) => {
+        const rules = Object.entries(props).map(([p, v]) => `  ${p}: ${v};`).join('\n');
+        return `${sel} {\n${rules}\n}`;
+      }).join('\n\n');
+      if (mediaPrefix) css = mediaPrefix + css.split('\n').map(l => '  ' + l).join('\n') + '\n}';
+      return css;
+    }
+
+    if (format === 'scss') {
+      return Object.entries(grouped).map(([sel, props]) => {
+        const rules = Object.entries(props).map(([p, v]) => `  ${p}: ${v};`).join('\n');
+        return `${sel} {\n${rules}\n}`;
+      }).join('\n\n');
+    }
+
+    if (format === 'tailwind') {
+      const cssToTw = {
+        'display': { 'flex': 'flex', 'block': 'block', 'inline': 'inline', 'grid': 'grid', 'none': 'hidden' },
+        'position': { 'relative': 'relative', 'absolute': 'absolute', 'fixed': 'fixed' },
+        'text-align': { 'left': 'text-left', 'center': 'text-center', 'right': 'text-right' },
+      };
+      let result = '/* Approximate Tailwind classes */\n\n';
+      Object.entries(grouped).forEach(([sel, props]) => {
+        const classes = [];
+        Object.entries(props).forEach(([p, v]) => {
+          if (cssToTw[p]?.[v]) classes.push(cssToTw[p][v]);
+          else classes.push(`[${p}:${v}]`);
+        });
+        result += `${sel}:\n  ${classes.join(' ')}\n\n`;
+      });
+      return result;
+    }
+
+    if (format === 'cssInJs') {
+      return Object.entries(grouped).map(([sel, props]) => {
+        const jsProps = Object.entries(props).map(([p, v]) => {
+          const camel = p.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+          return `  ${camel}: '${v}'`;
+        }).join(',\n');
+        return `// ${sel}\nconst styles = {\n${jsProps}\n};`;
+      }).join('\n\n');
+    }
+
+    return '';
+  }
+
+  // Track recent colors
+  function addRecentColor(color) {
+    if (!color || color === 'transparent') return;
+    recentColors = [color, ...recentColors.filter(c => c !== color)].slice(0, 10);
+    updateRecentColors();
+  }
+
+  function updateRecentColors() {
+    const container = document.querySelector('.lumos-recent-colors');
+    if (!container || recentColors.length === 0) return;
+    container.innerHTML = recentColors.map(c => `
+      <div class="lumos-recent-color" style="background:${c}" data-color="${c}" title="${c}"></div>
+    `).join('');
+    container.querySelectorAll('.lumos-recent-color').forEach(el => {
+      el.onclick = () => {
+        const color = el.dataset.color;
+        const activeColorInput = document.activeElement?.closest('.lumos-color-field')?.querySelector('input[type="color"]');
+        if (activeColorInput && selectedElement) {
+          activeColorInput.value = color;
+          applyStyleChange(activeColorInput.dataset.prop, color);
+        }
+      };
+    });
+  }
+
+  // Track color changes
+  const originalApplyStyleChange = applyStyleChange;
+  applyStyleChange = function(prop, value) {
+    originalApplyStyleChange(prop, value);
+    if (prop.includes('color') || prop === 'background') {
+      addRecentColor(value);
+    }
+  };
+
   // Initialize
   setTimeout(loadPersistedChanges, 500);
+  googleFonts.slice(0, 5).forEach(loadGoogleFont); // Preload popular fonts
   console.log('[Lumos] Inspector ready. Click the purple button to start.');
 })();
