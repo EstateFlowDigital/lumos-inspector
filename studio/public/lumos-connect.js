@@ -2404,6 +2404,346 @@
       background: #27272a;
       margin: 0 4px;
     }
+
+    /* Box Shadow Editor */
+    .lumos-shadow-editor {
+      padding: 12px;
+    }
+    .lumos-shadow-preview {
+      height: 100px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .lumos-shadow-preview-box {
+      width: 60px;
+      height: 60px;
+      background: #3f3f46;
+      border-radius: 8px;
+    }
+    .lumos-shadow-layers {
+      max-height: 150px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+    .lumos-shadow-layer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .lumos-shadow-layer-color {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid #3f3f46;
+      cursor: pointer;
+    }
+    .lumos-shadow-layer-inputs {
+      display: flex;
+      gap: 4px;
+      flex: 1;
+    }
+    .lumos-shadow-layer-input {
+      width: 40px;
+      padding: 4px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 10px;
+      text-align: center;
+    }
+    .lumos-shadow-layer-remove {
+      padding: 4px 8px;
+      background: transparent;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* Filter Editor */
+    .lumos-filter-editor {
+      padding: 12px;
+    }
+    .lumos-filter-preview {
+      height: 80px;
+      background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #f59e0b 100%);
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .lumos-filter-slider {
+      margin-bottom: 12px;
+    }
+    .lumos-filter-slider-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .lumos-filter-slider-label {
+      font-size: 11px;
+      color: #a1a1aa;
+    }
+    .lumos-filter-slider-value {
+      font-size: 11px;
+      color: #8b5cf6;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-filter-range {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      background: #27272a;
+      border-radius: 2px;
+      outline: none;
+    }
+    .lumos-filter-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #8b5cf6;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* Focus Mode */
+    .lumos-focus-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 999995;
+      pointer-events: none;
+    }
+    .lumos-focus-highlight {
+      position: fixed;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.8);
+      z-index: 999996;
+      pointer-events: none;
+    }
+
+    /* Style Comparison */
+    .lumos-compare-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 12px;
+    }
+    .lumos-compare-side {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .lumos-compare-title {
+      font-size: 11px;
+      color: #71717a;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .lumos-compare-selector {
+      font-size: 12px;
+      color: #8b5cf6;
+      margin-bottom: 8px;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-compare-diff {
+      font-size: 11px;
+    }
+    .lumos-compare-same {
+      color: #71717a;
+    }
+    .lumos-compare-different {
+      color: #f59e0b;
+    }
+
+    /* Z-Index Manager */
+    .lumos-zindex-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .lumos-zindex-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #27272a;
+      cursor: pointer;
+    }
+    .lumos-zindex-item:hover {
+      background: #18181b;
+    }
+    .lumos-zindex-item.selected {
+      background: #8b5cf620;
+    }
+    .lumos-zindex-value {
+      width: 50px;
+      padding: 4px 8px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #8b5cf6;
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      text-align: center;
+    }
+    .lumos-zindex-selector {
+      flex: 1;
+      font-size: 11px;
+      color: #a1a1aa;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .lumos-zindex-bar {
+      width: 60px;
+      height: 4px;
+      background: #27272a;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .lumos-zindex-bar-fill {
+      height: 100%;
+      background: #8b5cf6;
+    }
+
+    /* CSS Audit */
+    .lumos-audit-section {
+      margin-bottom: 16px;
+    }
+    .lumos-audit-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #18181b;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .lumos-audit-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .lumos-audit-icon.pass { color: #22c55e; }
+    .lumos-audit-icon.warn { color: #f59e0b; }
+    .lumos-audit-icon.fail { color: #ef4444; }
+    .lumos-audit-title {
+      flex: 1;
+      font-size: 12px;
+      color: #fafafa;
+    }
+    .lumos-audit-count {
+      font-size: 11px;
+      color: #71717a;
+    }
+    .lumos-audit-items {
+      padding-left: 12px;
+    }
+    .lumos-audit-item {
+      padding: 6px 8px;
+      font-size: 11px;
+      color: #a1a1aa;
+      border-left: 2px solid #27272a;
+      margin-bottom: 4px;
+    }
+    .lumos-audit-item code {
+      background: #27272a;
+      padding: 1px 4px;
+      border-radius: 2px;
+      font-family: ui-monospace, monospace;
+    }
+
+    /* Dark Mode Toggle */
+    .lumos-darkmode-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .lumos-darkmode-toggle:hover {
+      background: #27272a;
+    }
+
+    /* Text Shadow Editor */
+    .lumos-text-shadow-preview {
+      padding: 20px;
+      background: #18181b;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .lumos-text-shadow-preview-text {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fafafa;
+    }
+
+    /* Responsive Preview */
+    .lumos-responsive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 12px;
+    }
+    .lumos-responsive-frame {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .lumos-responsive-frame-header {
+      padding: 8px;
+      border-bottom: 1px solid #27272a;
+      font-size: 10px;
+      color: #71717a;
+      text-align: center;
+    }
+    .lumos-responsive-frame-content {
+      height: 150px;
+      overflow: hidden;
+    }
+
+    /* Smart Suggestions */
+    .lumos-suggestions {
+      position: absolute;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000003;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .lumos-suggestion-item {
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #a1a1aa;
+      cursor: pointer;
+    }
+    .lumos-suggestion-item:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-suggestion-item-prop {
+      color: #8b5cf6;
+    }
+    .lumos-suggestion-item-desc {
+      color: #71717a;
+      font-size: 10px;
+      margin-top: 2px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -2466,6 +2806,17 @@
     columns: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>',
     rows: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/></svg>',
     spacing: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    shadow: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 12H12V21" opacity="0.3"/></svg>',
+    sliders: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>',
+    focus: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>',
+    gitCompare: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>',
+    layersIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12,2 2,7 12,12 22,7"/><polyline points="2,17 12,22 22,17"/><polyline points="2,12 12,17 22,12"/></svg>',
+    fileSearch: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v3"/><polyline points="14,2 14,8 20,8"/><circle cx="5" cy="14" r="3"/><path d="m7 16.5 1.5 1.5"/></svg>',
+    moon: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    sun: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    textCursor: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 6H7a4 4 0 0 0-4 4v1h2v-1a2 2 0 0 1 2-2h4v12H9v2h6v-2h-2V8h4a2 2 0 0 1 2 2v1h2v-1a4 4 0 0 0-4-4z"/></svg>',
+    smartphone: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
+    lightbulb: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -6173,6 +6524,678 @@
   }
 
   // ============================================
+  // BOX SHADOW EDITOR
+  // ============================================
+  let shadowLayers = [
+    { x: 0, y: 4, blur: 6, spread: -1, color: 'rgba(0,0,0,0.1)', inset: false },
+    { x: 0, y: 2, blur: 4, spread: -2, color: 'rgba(0,0,0,0.1)', inset: false }
+  ];
+
+  function openBoxShadowEditor() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.id = 'lumos-shadow-editor';
+
+    function render() {
+      const shadowValue = shadowLayers.map(l =>
+        `${l.inset ? 'inset ' : ''}${l.x}px ${l.y}px ${l.blur}px ${l.spread}px ${l.color}`
+      ).join(', ');
+
+      overlay.innerHTML = `
+        <div class="lumos-modal" style="width:500px">
+          <div class="lumos-modal-header">
+            <span class="lumos-modal-title">${icons.shadow} Box Shadow Editor</span>
+            <button class="lumos-modal-close">${icons.close}</button>
+          </div>
+          <div class="lumos-modal-body">
+            <div class="lumos-shadow-editor">
+              <div class="lumos-shadow-preview">
+                <div class="lumos-shadow-preview-box" style="box-shadow: ${shadowValue}"></div>
+              </div>
+
+              <div class="lumos-shadow-layers">
+                ${shadowLayers.map((layer, i) => `
+                  <div class="lumos-shadow-layer" data-index="${i}">
+                    <input type="color" class="lumos-shadow-layer-color" value="${rgbToHex(layer.color) || '#000000'}" data-field="color">
+                    <div class="lumos-shadow-layer-inputs">
+                      <input class="lumos-shadow-layer-input" value="${layer.x}" data-field="x" title="X offset">
+                      <input class="lumos-shadow-layer-input" value="${layer.y}" data-field="y" title="Y offset">
+                      <input class="lumos-shadow-layer-input" value="${layer.blur}" data-field="blur" title="Blur">
+                      <input class="lumos-shadow-layer-input" value="${layer.spread}" data-field="spread" title="Spread">
+                    </div>
+                    <label style="font-size:10px;color:#71717a">
+                      <input type="checkbox" ${layer.inset ? 'checked' : ''} data-field="inset"> Inset
+                    </label>
+                    ${shadowLayers.length > 1 ? `<button class="lumos-shadow-layer-remove" data-remove="${i}">×</button>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+
+              <button class="lumos-btn lumos-btn-secondary" style="width:100%;margin-bottom:12px" id="lumos-add-shadow">+ Add Layer</button>
+
+              <div class="lumos-section">
+                <div class="lumos-section-header">Presets</div>
+                <div class="lumos-layout-quick">
+                  <button class="lumos-layout-quick-btn" data-preset="sm">Small</button>
+                  <button class="lumos-layout-quick-btn" data-preset="md">Medium</button>
+                  <button class="lumos-layout-quick-btn" data-preset="lg">Large</button>
+                  <button class="lumos-layout-quick-btn" data-preset="xl">X-Large</button>
+                  <button class="lumos-layout-quick-btn" data-preset="glow">Glow</button>
+                  <button class="lumos-layout-quick-btn" data-preset="none">None</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lumos-modal-footer">
+            <button class="lumos-btn lumos-btn-secondary" onclick="this.closest('.lumos-modal-overlay').remove()">Cancel</button>
+            <button class="lumos-btn lumos-btn-primary" id="lumos-apply-shadow">Apply Shadow</button>
+          </div>
+        </div>
+      `;
+
+      // Event handlers
+      overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+      overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+      overlay.querySelectorAll('.lumos-shadow-layer input').forEach(input => {
+        input.onchange = () => {
+          const idx = parseInt(input.closest('.lumos-shadow-layer').dataset.index);
+          const field = input.dataset.field;
+          if (field === 'inset') {
+            shadowLayers[idx].inset = input.checked;
+          } else if (field === 'color') {
+            shadowLayers[idx].color = input.value;
+          } else {
+            shadowLayers[idx][field] = parseInt(input.value) || 0;
+          }
+          render();
+        };
+      });
+
+      overlay.querySelectorAll('[data-remove]').forEach(btn => {
+        btn.onclick = () => {
+          shadowLayers.splice(parseInt(btn.dataset.remove), 1);
+          render();
+        };
+      });
+
+      overlay.querySelector('#lumos-add-shadow').onclick = () => {
+        shadowLayers.push({ x: 0, y: 4, blur: 8, spread: 0, color: 'rgba(0,0,0,0.15)', inset: false });
+        render();
+      };
+
+      overlay.querySelectorAll('[data-preset]').forEach(btn => {
+        btn.onclick = () => {
+          const p = btn.dataset.preset;
+          switch(p) {
+            case 'sm': shadowLayers = [{ x: 0, y: 1, blur: 2, spread: 0, color: 'rgba(0,0,0,0.05)', inset: false }]; break;
+            case 'md': shadowLayers = [{ x: 0, y: 4, blur: 6, spread: -1, color: 'rgba(0,0,0,0.1)', inset: false }]; break;
+            case 'lg': shadowLayers = [{ x: 0, y: 10, blur: 15, spread: -3, color: 'rgba(0,0,0,0.1)', inset: false }]; break;
+            case 'xl': shadowLayers = [{ x: 0, y: 20, blur: 25, spread: -5, color: 'rgba(0,0,0,0.1)', inset: false }]; break;
+            case 'glow': shadowLayers = [{ x: 0, y: 0, blur: 20, spread: 0, color: 'rgba(139,92,246,0.5)', inset: false }]; break;
+            case 'none': shadowLayers = [{ x: 0, y: 0, blur: 0, spread: 0, color: 'rgba(0,0,0,0)', inset: false }]; break;
+          }
+          render();
+        };
+      });
+
+      overlay.querySelector('#lumos-apply-shadow').onclick = () => {
+        const val = shadowLayers.map(l =>
+          `${l.inset ? 'inset ' : ''}${l.x}px ${l.y}px ${l.blur}px ${l.spread}px ${l.color}`
+        ).join(', ');
+        applyStyleChange('box-shadow', val);
+        showToast('Shadow applied!', 'success');
+        overlay.remove();
+      };
+    }
+
+    document.body.appendChild(overlay);
+    render();
+  }
+
+  // ============================================
+  // FILTER EDITOR
+  // ============================================
+  function openFilterEditor() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    const filters = {
+      blur: { value: 0, unit: 'px', max: 20 },
+      brightness: { value: 100, unit: '%', max: 200 },
+      contrast: { value: 100, unit: '%', max: 200 },
+      saturate: { value: 100, unit: '%', max: 200 },
+      grayscale: { value: 0, unit: '%', max: 100 },
+      sepia: { value: 0, unit: '%', max: 100 },
+      hueRotate: { value: 0, unit: 'deg', max: 360 },
+      invert: { value: 0, unit: '%', max: 100 },
+      opacity: { value: 100, unit: '%', max: 100 }
+    };
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+
+    function getFilterString() {
+      const parts = [];
+      if (filters.blur.value > 0) parts.push(`blur(${filters.blur.value}px)`);
+      if (filters.brightness.value !== 100) parts.push(`brightness(${filters.brightness.value}%)`);
+      if (filters.contrast.value !== 100) parts.push(`contrast(${filters.contrast.value}%)`);
+      if (filters.saturate.value !== 100) parts.push(`saturate(${filters.saturate.value}%)`);
+      if (filters.grayscale.value > 0) parts.push(`grayscale(${filters.grayscale.value}%)`);
+      if (filters.sepia.value > 0) parts.push(`sepia(${filters.sepia.value}%)`);
+      if (filters.hueRotate.value > 0) parts.push(`hue-rotate(${filters.hueRotate.value}deg)`);
+      if (filters.invert.value > 0) parts.push(`invert(${filters.invert.value}%)`);
+      if (filters.opacity.value < 100) parts.push(`opacity(${filters.opacity.value}%)`);
+      return parts.length > 0 ? parts.join(' ') : 'none';
+    }
+
+    function render() {
+      const filterStr = getFilterString();
+      overlay.innerHTML = `
+        <div class="lumos-modal" style="width:450px">
+          <div class="lumos-modal-header">
+            <span class="lumos-modal-title">${icons.sliders} Filter Editor</span>
+            <button class="lumos-modal-close">${icons.close}</button>
+          </div>
+          <div class="lumos-modal-body">
+            <div class="lumos-filter-editor">
+              <div class="lumos-filter-preview" style="filter: ${filterStr}"></div>
+
+              ${Object.entries(filters).map(([name, f]) => `
+                <div class="lumos-filter-slider">
+                  <div class="lumos-filter-slider-header">
+                    <span class="lumos-filter-slider-label">${name.replace(/([A-Z])/g, ' $1')}</span>
+                    <span class="lumos-filter-slider-value">${f.value}${f.unit}</span>
+                  </div>
+                  <input type="range" class="lumos-filter-range" data-filter="${name}" value="${f.value}" min="0" max="${f.max}">
+                </div>
+              `).join('')}
+
+              <div class="lumos-layout-quick" style="margin-top:12px">
+                <button class="lumos-layout-quick-btn" data-preset="reset">Reset</button>
+                <button class="lumos-layout-quick-btn" data-preset="vintage">Vintage</button>
+                <button class="lumos-layout-quick-btn" data-preset="noir">Noir</button>
+                <button class="lumos-layout-quick-btn" data-preset="vibrant">Vibrant</button>
+              </div>
+            </div>
+          </div>
+          <div class="lumos-modal-footer">
+            <button class="lumos-btn lumos-btn-secondary" onclick="this.closest('.lumos-modal-overlay').remove()">Cancel</button>
+            <button class="lumos-btn lumos-btn-primary" id="lumos-apply-filter">Apply Filter</button>
+          </div>
+        </div>
+      `;
+
+      overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+      overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+      overlay.querySelectorAll('.lumos-filter-range').forEach(input => {
+        input.oninput = () => {
+          filters[input.dataset.filter].value = parseInt(input.value);
+          render();
+        };
+      });
+
+      overlay.querySelectorAll('[data-preset]').forEach(btn => {
+        btn.onclick = () => {
+          const p = btn.dataset.preset;
+          if (p === 'reset') {
+            Object.keys(filters).forEach(k => filters[k].value = k === 'brightness' || k === 'contrast' || k === 'saturate' || k === 'opacity' ? 100 : 0);
+          } else if (p === 'vintage') {
+            filters.sepia.value = 40; filters.contrast.value = 110; filters.brightness.value = 90;
+          } else if (p === 'noir') {
+            filters.grayscale.value = 100; filters.contrast.value = 120;
+          } else if (p === 'vibrant') {
+            filters.saturate.value = 150; filters.contrast.value = 110;
+          }
+          render();
+        };
+      });
+
+      overlay.querySelector('#lumos-apply-filter').onclick = () => {
+        applyStyleChange('filter', getFilterString());
+        showToast('Filter applied!', 'success');
+        overlay.remove();
+      };
+    }
+
+    document.body.appendChild(overlay);
+    render();
+  }
+
+  // ============================================
+  // FOCUS MODE
+  // ============================================
+  let focusModeEnabled = false;
+
+  function toggleFocusMode() {
+    focusModeEnabled = !focusModeEnabled;
+    updateFocusMode();
+    showToast(focusModeEnabled ? 'Focus mode enabled' : 'Focus mode disabled');
+  }
+
+  function updateFocusMode() {
+    document.querySelector('.lumos-focus-highlight')?.remove();
+
+    if (!focusModeEnabled || !selectedElement) return;
+
+    const rect = selectedElement.getBoundingClientRect();
+    const highlight = document.createElement('div');
+    highlight.className = 'lumos-focus-highlight lumos-ui';
+    highlight.style.cssText = `
+      left: ${rect.left}px;
+      top: ${rect.top}px;
+      width: ${rect.width}px;
+      height: ${rect.height}px;
+    `;
+    document.body.appendChild(highlight);
+  }
+
+  // ============================================
+  // STYLE COMPARISON
+  // ============================================
+  let compareElement = null;
+
+  function startStyleComparison() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+    compareElement = selectedElement;
+    showToast('Now select another element to compare');
+  }
+
+  function openStyleComparison() {
+    if (!selectedElement || !compareElement || selectedElement === compareElement) {
+      return showToast('Select two different elements to compare', 'error');
+    }
+
+    const styles1 = getElementStyles(compareElement);
+    const styles2 = getElementStyles(selectedElement);
+
+    const allProps = new Set([...Object.keys(styles1), ...Object.keys(styles2)]);
+    const diffs = [];
+    const same = [];
+
+    allProps.forEach(prop => {
+      if (styles1[prop] !== styles2[prop]) {
+        diffs.push({ prop, val1: styles1[prop], val2: styles2[prop] });
+      } else {
+        same.push({ prop, value: styles1[prop] });
+      }
+    });
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:700px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.gitCompare} Style Comparison</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="max-height:500px;overflow:auto">
+          <div class="lumos-compare-panel">
+            <div class="lumos-compare-side">
+              <div class="lumos-compare-title">Element A</div>
+              <div class="lumos-compare-selector">${generateSelector(compareElement)}</div>
+            </div>
+            <div class="lumos-compare-side">
+              <div class="lumos-compare-title">Element B</div>
+              <div class="lumos-compare-selector">${generateSelector(selectedElement)}</div>
+            </div>
+          </div>
+
+          <div style="padding:12px">
+            <h4 style="color:#f59e0b;margin-bottom:8px">${diffs.length} Differences</h4>
+            ${diffs.slice(0, 20).map(d => `
+              <div class="lumos-compare-diff lumos-compare-different" style="margin-bottom:4px">
+                <strong>${d.prop}:</strong> ${d.val1 || '(none)'} → ${d.val2 || '(none)'}
+              </div>
+            `).join('')}
+            ${diffs.length > 20 ? `<div style="color:#71717a;font-size:11px">...and ${diffs.length - 20} more</div>` : ''}
+
+            <h4 style="color:#22c55e;margin:12px 0 8px">${same.length} Same</h4>
+            <div style="color:#71717a;font-size:11px">${same.length} properties have identical values</div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  }
+
+  // ============================================
+  // Z-INDEX / LAYER MANAGER
+  // ============================================
+  function openZIndexManager() {
+    const elements = [];
+    document.querySelectorAll('*:not(.lumos-ui)').forEach(el => {
+      const z = getComputedStyle(el).zIndex;
+      if (z !== 'auto' && parseInt(z) !== 0) {
+        elements.push({ el, zIndex: parseInt(z), selector: generateSelector(el) });
+      }
+    });
+
+    elements.sort((a, b) => b.zIndex - a.zIndex);
+    const maxZ = Math.max(...elements.map(e => e.zIndex), 1);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:500px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.layersIcon} Z-Index Manager</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="padding:0;max-height:500px;overflow:auto">
+          ${elements.length === 0 ? '<div style="padding:24px;text-align:center;color:#71717a">No elements with z-index found</div>' : `
+            <div class="lumos-zindex-list">
+              ${elements.map((e, i) => `
+                <div class="lumos-zindex-item ${e.el === selectedElement ? 'selected' : ''}" data-index="${i}">
+                  <input class="lumos-zindex-value" value="${e.zIndex}" data-selector="${e.selector}">
+                  <span class="lumos-zindex-selector">${e.selector}</span>
+                  <div class="lumos-zindex-bar">
+                    <div class="lumos-zindex-bar-fill" style="width:${(e.zIndex / maxZ) * 100}%"></div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `}
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelectorAll('.lumos-zindex-item').forEach(item => {
+      item.onclick = (e) => {
+        if (e.target.tagName === 'INPUT') return;
+        const el = elements[parseInt(item.dataset.index)].el;
+        if (selectedElement) selectedElement.classList.remove('lumos-selected-outline');
+        selectedElement = el;
+        selectedElement.classList.add('lumos-selected-outline');
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        overlay.remove();
+        updateUI();
+      };
+    });
+
+    overlay.querySelectorAll('.lumos-zindex-value').forEach(input => {
+      input.onchange = () => {
+        const el = document.querySelector(input.dataset.selector);
+        if (el) {
+          el.style.zIndex = input.value;
+          showToast(`z-index set to ${input.value}`);
+        }
+      };
+    });
+  }
+
+  // ============================================
+  // CSS AUDIT
+  // ============================================
+  function runCSSAudit() {
+    const issues = {
+      unusedClasses: [],
+      duplicateStyles: [],
+      importantOveruse: [],
+      inlineStyles: [],
+      deepNesting: []
+    };
+
+    // Check inline styles
+    document.querySelectorAll('[style]:not(.lumos-ui)').forEach(el => {
+      issues.inlineStyles.push(generateSelector(el));
+    });
+
+    // Check !important in stylesheets
+    try {
+      for (const sheet of document.styleSheets) {
+        try {
+          for (const rule of sheet.cssRules || []) {
+            if (rule.cssText?.includes('!important')) {
+              issues.importantOveruse.push(rule.selectorText);
+            }
+          }
+        } catch (e) {}
+      }
+    } catch (e) {}
+
+    // Check deep nesting
+    document.querySelectorAll('*:not(.lumos-ui)').forEach(el => {
+      let depth = 0;
+      let current = el;
+      while (current.parentElement && current !== document.body) {
+        depth++;
+        current = current.parentElement;
+      }
+      if (depth > 10) {
+        issues.deepNesting.push({ selector: generateSelector(el), depth });
+      }
+    });
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:550px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.fileSearch} CSS Audit</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="max-height:500px;overflow:auto">
+          <div class="lumos-audit-section">
+            <div class="lumos-audit-header">
+              <span class="lumos-audit-icon ${issues.inlineStyles.length > 10 ? 'warn' : 'pass'}">${issues.inlineStyles.length > 10 ? icons.alertTriangle : icons.checkCircle}</span>
+              <span class="lumos-audit-title">Inline Styles</span>
+              <span class="lumos-audit-count">${issues.inlineStyles.length}</span>
+            </div>
+            ${issues.inlineStyles.length > 0 ? `
+              <div class="lumos-audit-items">
+                ${issues.inlineStyles.slice(0, 5).map(s => `<div class="lumos-audit-item"><code>${s}</code></div>`).join('')}
+                ${issues.inlineStyles.length > 5 ? `<div class="lumos-audit-item">...and ${issues.inlineStyles.length - 5} more</div>` : ''}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="lumos-audit-section">
+            <div class="lumos-audit-header">
+              <span class="lumos-audit-icon ${issues.importantOveruse.length > 5 ? 'warn' : 'pass'}">${issues.importantOveruse.length > 5 ? icons.alertTriangle : icons.checkCircle}</span>
+              <span class="lumos-audit-title">!important Usage</span>
+              <span class="lumos-audit-count">${issues.importantOveruse.length}</span>
+            </div>
+            ${issues.importantOveruse.length > 0 ? `
+              <div class="lumos-audit-items">
+                ${issues.importantOveruse.slice(0, 5).map(s => `<div class="lumos-audit-item"><code>${s}</code></div>`).join('')}
+                ${issues.importantOveruse.length > 5 ? `<div class="lumos-audit-item">...and ${issues.importantOveruse.length - 5} more</div>` : ''}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="lumos-audit-section">
+            <div class="lumos-audit-header">
+              <span class="lumos-audit-icon ${issues.deepNesting.length > 0 ? 'warn' : 'pass'}">${issues.deepNesting.length > 0 ? icons.alertTriangle : icons.checkCircle}</span>
+              <span class="lumos-audit-title">Deep Nesting (>10 levels)</span>
+              <span class="lumos-audit-count">${issues.deepNesting.length}</span>
+            </div>
+            ${issues.deepNesting.length > 0 ? `
+              <div class="lumos-audit-items">
+                ${issues.deepNesting.slice(0, 5).map(n => `<div class="lumos-audit-item"><code>${n.selector}</code> (${n.depth} levels)</div>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  }
+
+  // ============================================
+  // DARK MODE TOGGLE
+  // ============================================
+  let darkModeForced = false;
+
+  function toggleDarkModePreview() {
+    darkModeForced = !darkModeForced;
+
+    if (darkModeForced) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+      showToast('Dark mode preview enabled');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = '';
+      showToast('Dark mode preview disabled');
+    }
+  }
+
+  // ============================================
+  // TEXT SHADOW EDITOR
+  // ============================================
+  function openTextShadowEditor() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    let shadow = { x: 2, y: 2, blur: 4, color: 'rgba(0,0,0,0.3)' };
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+
+    function render() {
+      const shadowVal = `${shadow.x}px ${shadow.y}px ${shadow.blur}px ${shadow.color}`;
+      overlay.innerHTML = `
+        <div class="lumos-modal" style="width:400px">
+          <div class="lumos-modal-header">
+            <span class="lumos-modal-title">${icons.textCursor} Text Shadow Editor</span>
+            <button class="lumos-modal-close">${icons.close}</button>
+          </div>
+          <div class="lumos-modal-body">
+            <div class="lumos-text-shadow-preview">
+              <span class="lumos-text-shadow-preview-text" style="text-shadow: ${shadowVal}">Sample Text</span>
+            </div>
+
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">X Offset</label>
+                <input class="lumos-input" type="number" value="${shadow.x}" data-field="x">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Y Offset</label>
+                <input class="lumos-input" type="number" value="${shadow.y}" data-field="y">
+              </div>
+            </div>
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">Blur</label>
+                <input class="lumos-input" type="number" value="${shadow.blur}" data-field="blur" min="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Color</label>
+                <input type="color" class="lumos-input" value="${rgbToHex(shadow.color) || '#000000'}" data-field="color">
+              </div>
+            </div>
+
+            <div class="lumos-layout-quick" style="margin-top:12px">
+              <button class="lumos-layout-quick-btn" data-preset="subtle">Subtle</button>
+              <button class="lumos-layout-quick-btn" data-preset="drop">Drop</button>
+              <button class="lumos-layout-quick-btn" data-preset="glow">Glow</button>
+              <button class="lumos-layout-quick-btn" data-preset="none">None</button>
+            </div>
+          </div>
+          <div class="lumos-modal-footer">
+            <button class="lumos-btn lumos-btn-secondary" onclick="this.closest('.lumos-modal-overlay').remove()">Cancel</button>
+            <button class="lumos-btn lumos-btn-primary" id="lumos-apply-text-shadow">Apply</button>
+          </div>
+        </div>
+      `;
+
+      overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+      overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+      overlay.querySelectorAll('input').forEach(input => {
+        input.onchange = () => {
+          const field = input.dataset.field;
+          shadow[field] = field === 'color' ? input.value : parseInt(input.value) || 0;
+          render();
+        };
+      });
+
+      overlay.querySelectorAll('[data-preset]').forEach(btn => {
+        btn.onclick = () => {
+          const p = btn.dataset.preset;
+          if (p === 'subtle') shadow = { x: 1, y: 1, blur: 2, color: 'rgba(0,0,0,0.2)' };
+          else if (p === 'drop') shadow = { x: 3, y: 3, blur: 6, color: 'rgba(0,0,0,0.4)' };
+          else if (p === 'glow') shadow = { x: 0, y: 0, blur: 10, color: 'rgba(139,92,246,0.8)' };
+          else if (p === 'none') shadow = { x: 0, y: 0, blur: 0, color: 'rgba(0,0,0,0)' };
+          render();
+        };
+      });
+
+      overlay.querySelector('#lumos-apply-text-shadow').onclick = () => {
+        const val = `${shadow.x}px ${shadow.y}px ${shadow.blur}px ${shadow.color}`;
+        applyStyleChange('text-shadow', val);
+        showToast('Text shadow applied!', 'success');
+        overlay.remove();
+      };
+    }
+
+    document.body.appendChild(overlay);
+    render();
+  }
+
+  // ============================================
+  // SMART PROPERTY SUGGESTIONS
+  // ============================================
+  const propertySuggestions = {
+    'display': ['flex', 'grid', 'block', 'inline-flex', 'none'],
+    'position': ['relative', 'absolute', 'fixed', 'sticky'],
+    'flex-direction': ['row', 'column', 'row-reverse', 'column-reverse'],
+    'justify-content': ['flex-start', 'center', 'flex-end', 'space-between', 'space-around'],
+    'align-items': ['flex-start', 'center', 'flex-end', 'stretch', 'baseline'],
+    'text-align': ['left', 'center', 'right', 'justify'],
+    'font-weight': ['400', '500', '600', '700', 'bold'],
+    'overflow': ['hidden', 'auto', 'scroll', 'visible'],
+    'cursor': ['pointer', 'default', 'move', 'text', 'not-allowed']
+  };
+
+  function showPropertySuggestions(input, property) {
+    const suggestions = propertySuggestions[property];
+    if (!suggestions) return;
+
+    document.querySelector('.lumos-suggestions')?.remove();
+
+    const rect = input.getBoundingClientRect();
+    const panel = document.createElement('div');
+    panel.className = 'lumos-suggestions lumos-ui';
+    panel.style.cssText = `left:${rect.left}px;top:${rect.bottom + 4}px;min-width:${rect.width}px`;
+
+    panel.innerHTML = suggestions.map(s => `
+      <div class="lumos-suggestion-item" data-value="${s}">${s}</div>
+    `).join('');
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-suggestion-item').forEach(item => {
+      item.onclick = () => {
+        input.value = item.dataset.value;
+        input.dispatchEvent(new Event('change'));
+        panel.remove();
+      };
+    });
+
+    // Close on click outside
+    setTimeout(() => {
+      document.addEventListener('click', function handler(e) {
+        if (!panel.contains(e.target) && e.target !== input) {
+          panel.remove();
+          document.removeEventListener('click', handler);
+        }
+      });
+    }, 10);
+  }
+
+  // ============================================
   // ADD NEW COMMANDS TO PALETTE
   // ============================================
   commands.push(
@@ -6186,8 +7209,26 @@
     { id: 'quick-bar', label: 'Toggle Quick Bar', icon: 'zap', action: toggleQuickBar },
     { id: 'select-parent', label: 'Select Parent', icon: 'arrowUp', shortcut: '⌥↑', action: selectParent },
     { id: 'select-child', label: 'Select Child', icon: 'arrowDown', shortcut: '⌥↓', action: selectFirstChild },
-    { id: 'screenshot', label: 'Screenshot Element', icon: 'camera', action: captureElement }
+    { id: 'screenshot', label: 'Screenshot Element', icon: 'camera', action: captureElement },
+    { id: 'box-shadow', label: 'Box Shadow Editor', icon: 'shadow', action: openBoxShadowEditor },
+    { id: 'filter', label: 'Filter Editor', icon: 'sliders', action: openFilterEditor },
+    { id: 'focus-mode', label: 'Toggle Focus Mode', icon: 'focus', shortcut: 'F', action: toggleFocusMode },
+    { id: 'compare', label: 'Compare Styles', icon: 'gitCompare', action: openStyleComparison },
+    { id: 'compare-start', label: 'Start Comparison', icon: 'gitCompare', action: startStyleComparison },
+    { id: 'z-index', label: 'Z-Index Manager', icon: 'layersIcon', action: openZIndexManager },
+    { id: 'css-audit', label: 'CSS Audit', icon: 'fileSearch', action: runCSSAudit },
+    { id: 'dark-mode', label: 'Toggle Dark Mode', icon: 'moon', action: toggleDarkModePreview },
+    { id: 'text-shadow', label: 'Text Shadow Editor', icon: 'textCursor', action: openTextShadowEditor }
   );
+
+  // Focus mode keyboard shortcut
+  document.addEventListener('keydown', e => {
+    if (e.key === 'f' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (commandPaletteOpen) return;
+      toggleFocusMode();
+    }
+  });
 
   // ============================================
   // INITIALIZE ADDITIONAL FEATURES
