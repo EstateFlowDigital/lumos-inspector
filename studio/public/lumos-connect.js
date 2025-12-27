@@ -993,6 +993,48 @@
     showToast('Changes exported!', 'success');
   }
 
+  // Open Lumos Studio to create a PR
+  function openCreatePR() {
+    if (changes.length === 0) {
+      showToast('No changes to commit', 'error');
+      return;
+    }
+
+    // Generate CSS from changes
+    const grouped = {};
+    changes.forEach(c => {
+      if (!grouped[c.selector]) grouped[c.selector] = {};
+      grouped[c.selector][c.property] = c.newValue;
+    });
+
+    let css = '';
+    Object.entries(grouped).forEach(([selector, props]) => {
+      css += `${selector} {\n`;
+      Object.entries(props).forEach(([prop, val]) => {
+        const kebab = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+        css += `  ${kebab}: ${val};\n`;
+      });
+      css += '}\n\n';
+    });
+
+    // Encode data for URL
+    const payload = {
+      css,
+      changes,
+      sourceUrl: window.location.href,
+      sessionId,
+      timestamp: Date.now(),
+    };
+
+    // Compress and encode
+    const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+
+    // Open Lumos Studio create-pr page
+    const prUrl = `${studioUrl}/create-pr?data=${encoded}`;
+    window.open(prUrl, '_blank');
+    showToast('Opening Lumos Studio...', 'success');
+  }
+
   // Import changes from JSON
   function importChanges() {
     const input = document.createElement('input');
@@ -1127,12 +1169,14 @@
     const redoBtn = panel.querySelector('.lumos-btn-redo');
     const copyBtn = panel.querySelector('.lumos-btn-copy');
     const exportBtn = panel.querySelector('.lumos-btn-export');
+    const prBtn = panel.querySelector('.lumos-btn-pr');
 
     changesCount.textContent = changes.length;
     if (undoBtn) undoBtn.disabled = changes.length === 0;
     if (redoBtn) redoBtn.disabled = undoStack.length === 0;
     if (copyBtn) copyBtn.disabled = changes.length === 0;
     if (exportBtn) exportBtn.disabled = changes.length === 0;
+    if (prBtn) prBtn.disabled = changes.length === 0;
 
     changesList.innerHTML = changes.slice(-3).reverse().map(c => `
       <div class="lumos-change-item">
@@ -1819,9 +1863,9 @@
       <button class="lumos-btn lumos-btn-secondary lumos-btn-icon lumos-btn-clear" title="Clear All">
         ${icons.trash}
       </button>
-      <button class="lumos-btn lumos-btn-primary lumos-btn-save" style="flex: 2">
-        ${icons.save}
-        Save CSS
+      <button class="lumos-btn lumos-btn-primary lumos-btn-pr" disabled>
+        ${icons.github}
+        Create PR
       </button>
     </div>
   `;
@@ -1859,8 +1903,8 @@
   // Event: Clear button
   panel.querySelector('.lumos-btn-clear').onclick = clearChanges;
 
-  // Event: Save button (copies CSS)
-  panel.querySelector('.lumos-btn-save').onclick = copyCss;
+  // Event: Create PR button
+  panel.querySelector('.lumos-btn-pr').onclick = openCreatePR;
 
   // Event: Opacity slider
   const opacitySlider = panel.querySelector('[data-prop="opacity"]');
