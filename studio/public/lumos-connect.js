@@ -26,6 +26,38 @@
   let changes = [];
   let undoStack = [];
   let currentViewport = 'desktop';
+  let currentTab = 'layout';
+
+  // LocalStorage key for persistence
+  const STORAGE_KEY = `lumos-changes-${sessionId || 'default'}`;
+
+  // Load persisted changes
+  function loadPersistedChanges() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const data = JSON.parse(saved);
+        changes = data.changes || [];
+        // Re-apply persisted changes
+        changes.forEach(c => {
+          const el = document.querySelector(c.selector);
+          if (el) el.style[c.property] = c.newValue;
+        });
+        showToast(`Restored ${changes.length} changes`, 'success');
+      }
+    } catch (e) {
+      console.warn('[Lumos] Failed to load persisted changes:', e);
+    }
+  }
+
+  // Save changes to localStorage
+  function persistChanges() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ changes, timestamp: Date.now() }));
+    } catch (e) {
+      console.warn('[Lumos] Failed to persist changes:', e);
+    }
+  }
 
   // Viewport sizes
   const viewports = {
@@ -34,8 +66,15 @@
     mobile: { width: '375px', label: 'Mobile' },
   };
 
-  // Check if running inside iframe
-  const isInIframe = window.parent !== window;
+  // Font stacks
+  const fontFamilies = [
+    { label: 'System', value: 'system-ui, -apple-system, sans-serif' },
+    { label: 'Sans Serif', value: 'Arial, Helvetica, sans-serif' },
+    { label: 'Serif', value: 'Georgia, Times, serif' },
+    { label: 'Mono', value: 'ui-monospace, monospace' },
+    { label: 'Inter', value: 'Inter, sans-serif' },
+    { label: 'Roboto', value: 'Roboto, sans-serif' },
+  ];
 
   // Inject styles
   const style = document.createElement('style');
@@ -85,7 +124,7 @@
       box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
     }
     .lumos-fab.panel-open {
-      right: 340px;
+      right: 360px;
     }
     .lumos-fab svg {
       width: 24px;
@@ -98,8 +137,8 @@
     .lumos-panel {
       position: fixed;
       top: 0;
-      right: -320px;
-      width: 320px;
+      right: -340px;
+      width: 340px;
       height: 100vh;
       background: #18181b;
       color: #fafafa;
@@ -190,6 +229,10 @@
       color: #fafafa;
       background: #8b5cf6;
     }
+    .lumos-toolbar-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
     .lumos-toolbar-btn svg {
       width: 16px;
       height: 16px;
@@ -271,18 +314,21 @@
       display: flex;
       border-bottom: 1px solid #27272a;
       background: #18181b;
+      overflow-x: auto;
     }
     .lumos-tab {
       flex: 1;
-      padding: 10px;
+      min-width: 60px;
+      padding: 10px 8px;
       background: none;
       border: none;
       color: #71717a;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: all 0.15s;
+      white-space: nowrap;
     }
     .lumos-tab:hover {
       color: #a1a1aa;
@@ -296,7 +342,7 @@
     .lumos-panel-content {
       flex: 1;
       overflow-y: auto;
-      padding-bottom: 120px;
+      padding-bottom: 140px;
     }
     .lumos-tab-content {
       display: none;
@@ -357,6 +403,8 @@
       font-family: ui-monospace, monospace;
       outline: none;
       transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
     }
     .lumos-input:focus {
       border-color: #8b5cf6;
@@ -373,10 +421,33 @@
       font-size: 12px;
       outline: none;
       cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
     }
     .lumos-select:focus {
       border-color: #8b5cf6;
     }
+
+    /* 4-value input (padding/margin) */
+    .lumos-quad-input {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+      position: relative;
+    }
+    .lumos-quad-input input {
+      text-align: center;
+      padding: 6px 4px;
+    }
+    .lumos-quad-input .lumos-quad-label {
+      position: absolute;
+      font-size: 8px;
+      color: #52525b;
+      text-transform: uppercase;
+    }
+    .lumos-quad-input .top { grid-column: span 2; }
+    .lumos-quad-input .bottom { grid-column: span 2; }
 
     /* Color Input */
     .lumos-color-row {
@@ -400,6 +471,63 @@
       margin: -6px;
       border: none;
       cursor: pointer;
+    }
+
+    /* Range Slider */
+    .lumos-range-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lumos-range {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background: #3f3f46;
+      appearance: none;
+      cursor: pointer;
+    }
+    .lumos-range::-webkit-slider-thumb {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      cursor: pointer;
+    }
+    .lumos-range-value {
+      width: 45px;
+      font-size: 11px;
+      font-family: ui-monospace, monospace;
+      text-align: right;
+      color: #a1a1aa;
+    }
+
+    /* Box Shadow Builder */
+    .lumos-shadow-inputs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .lumos-shadow-inputs input {
+      text-align: center;
+      padding: 6px 4px;
+      font-size: 11px;
+    }
+    .lumos-shadow-preview {
+      height: 40px;
+      background: #27272a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lumos-shadow-box {
+      width: 60px;
+      height: 24px;
+      background: #fafafa;
+      border-radius: 4px;
     }
 
     /* Changes List */
@@ -457,12 +585,14 @@
       background: linear-gradient(to top, #18181b 90%, transparent);
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .lumos-btn {
       flex: 1;
-      padding: 10px 16px;
+      min-width: 70px;
+      padding: 10px 12px;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       cursor: pointer;
       border: none;
@@ -470,7 +600,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
     }
     .lumos-btn svg {
       width: 14px;
@@ -502,7 +632,15 @@
     .lumos-btn-icon {
       flex: none;
       width: 36px;
+      min-width: 36px;
       padding: 10px;
+    }
+    .lumos-btn-danger {
+      background: #dc2626;
+      color: white;
+    }
+    .lumos-btn-danger:hover {
+      background: #b91c1c;
     }
 
     /* Empty State */
@@ -551,6 +689,41 @@
     .lumos-toast.error {
       background: #dc2626;
     }
+
+    /* Modal */
+    .lumos-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .lumos-modal-overlay.show {
+      opacity: 1;
+    }
+    .lumos-modal {
+      background: #18181b;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .lumos-modal h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .lumos-modal-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -569,6 +742,9 @@
     phone: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>',
     trash: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',
     copy: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+    download: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+    upload: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>',
+    github: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>',
   };
 
   // Helper: Convert RGB to Hex
@@ -621,23 +797,49 @@
       display: computed.display,
       position: computed.position,
       flexDirection: computed.flexDirection,
+      flexWrap: computed.flexWrap,
       justifyContent: computed.justifyContent,
       alignItems: computed.alignItems,
       gap: computed.gap,
+      // Flex item
+      flexGrow: computed.flexGrow,
+      flexShrink: computed.flexShrink,
+      flexBasis: computed.flexBasis,
+      order: computed.order,
+      alignSelf: computed.alignSelf,
+      // Grid
+      gridTemplateColumns: computed.gridTemplateColumns,
+      gridTemplateRows: computed.gridTemplateRows,
+      gridColumn: computed.gridColumn,
+      gridRow: computed.gridRow,
       // Sizing
       width: computed.width,
       height: computed.height,
       minWidth: computed.minWidth,
       maxWidth: computed.maxWidth,
+      minHeight: computed.minHeight,
+      maxHeight: computed.maxHeight,
       // Spacing
       padding: computed.padding,
+      paddingTop: computed.paddingTop,
+      paddingRight: computed.paddingRight,
+      paddingBottom: computed.paddingBottom,
+      paddingLeft: computed.paddingLeft,
       margin: computed.margin,
+      marginTop: computed.marginTop,
+      marginRight: computed.marginRight,
+      marginBottom: computed.marginBottom,
+      marginLeft: computed.marginLeft,
       // Typography
+      fontFamily: computed.fontFamily,
       fontSize: computed.fontSize,
       fontWeight: computed.fontWeight,
       lineHeight: computed.lineHeight,
       letterSpacing: computed.letterSpacing,
       textAlign: computed.textAlign,
+      textDecoration: computed.textDecoration,
+      textTransform: computed.textTransform,
+      whiteSpace: computed.whiteSpace,
       color: rgbToHex(computed.color),
       // Background
       backgroundColor: rgbToHex(computed.backgroundColor),
@@ -649,6 +851,14 @@
       // Effects
       opacity: computed.opacity,
       boxShadow: computed.boxShadow,
+      // Positioning
+      zIndex: computed.zIndex,
+      overflow: computed.overflow,
+      overflowX: computed.overflowX,
+      overflowY: computed.overflowY,
+      visibility: computed.visibility,
+      cursor: computed.cursor,
+      pointerEvents: computed.pointerEvents,
     };
   }
 
@@ -674,14 +884,15 @@
     if (!selectedElement) return;
 
     const selector = generateSelector(selectedElement);
-    const oldValue = selectedElement.style[property] || getComputedStyle(selectedElement)[property];
+    const camelCase = property.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    const oldValue = selectedElement.style[camelCase] || getComputedStyle(selectedElement)[camelCase];
 
-    selectedElement.style[property] = value;
+    selectedElement.style[camelCase] = value;
 
     const change = {
       id: Date.now().toString(36),
       selector,
-      property,
+      property: camelCase,
       oldValue,
       newValue: value,
       timestamp: Date.now(),
@@ -689,6 +900,7 @@
 
     changes.push(change);
     undoStack = [];
+    persistChanges();
     updateUI();
     showToast(`${property}: ${value}`, 'success');
   }
@@ -702,6 +914,7 @@
       el.style[change.property] = change.oldValue;
     }
     undoStack.push(change);
+    persistChanges();
     updateUI();
   }
 
@@ -714,6 +927,7 @@
       el.style[change.property] = change.newValue;
     }
     changes.push(change);
+    persistChanges();
     updateUI();
   }
 
@@ -727,6 +941,7 @@
     });
     changes = [];
     undoStack = [];
+    localStorage.removeItem(STORAGE_KEY);
     updateUI();
     showToast('All changes cleared');
   }
@@ -767,15 +982,47 @@
       return;
     }
 
-    const data = JSON.stringify(changes, null, 2);
+    const data = JSON.stringify({ changes, exportedAt: new Date().toISOString() }, null, 2);
     const blob = new Blob([data], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'lumos-changes.json';
+    a.download = `lumos-changes-${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
     showToast('Changes exported!', 'success');
+  }
+
+  // Import changes from JSON
+  function importChanges() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          const data = JSON.parse(evt.target.result);
+          if (data.changes && Array.isArray(data.changes)) {
+            // Apply imported changes
+            data.changes.forEach(c => {
+              const el = document.querySelector(c.selector);
+              if (el) el.style[c.property] = c.newValue;
+            });
+            changes = [...changes, ...data.changes];
+            persistChanges();
+            updateUI();
+            showToast(`Imported ${data.changes.length} changes`, 'success');
+          }
+        } catch (err) {
+          showToast('Invalid file format', 'error');
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
   }
 
   // Set viewport
@@ -825,6 +1072,7 @@
 
   // Switch tab
   function switchTab(tabId) {
+    currentTab = tabId;
     panel.querySelectorAll('.lumos-tab').forEach(t => {
       t.classList.toggle('active', t.dataset.tab === tabId);
     });
@@ -843,7 +1091,6 @@
     const elementInfo = panel.querySelector('.lumos-element-info');
     const emptyState = panel.querySelector('.lumos-empty');
     const tabsContainer = panel.querySelector('.lumos-tabs');
-    const tabContent = panel.querySelector('.lumos-tab-content');
 
     if (selectedElement) {
       const styles = getElementStyles(selectedElement);
@@ -879,11 +1126,13 @@
     const undoBtn = panel.querySelector('.lumos-btn-undo');
     const redoBtn = panel.querySelector('.lumos-btn-redo');
     const copyBtn = panel.querySelector('.lumos-btn-copy');
+    const exportBtn = panel.querySelector('.lumos-btn-export');
 
     changesCount.textContent = changes.length;
-    undoBtn.disabled = changes.length === 0;
-    redoBtn.disabled = undoStack.length === 0;
-    copyBtn.disabled = changes.length === 0;
+    if (undoBtn) undoBtn.disabled = changes.length === 0;
+    if (redoBtn) redoBtn.disabled = undoStack.length === 0;
+    if (copyBtn) copyBtn.disabled = changes.length === 0;
+    if (exportBtn) exportBtn.disabled = changes.length === 0;
 
     changesList.innerHTML = changes.slice(-3).reverse().map(c => `
       <div class="lumos-change-item">
@@ -900,6 +1149,8 @@
       if (input) {
         if (input.type === 'color') {
           input.value = val || '#000000';
+        } else if (input.type === 'range') {
+          input.value = parseFloat(val) || 0;
         } else {
           input.value = val || '';
         }
@@ -910,26 +1161,52 @@
     setVal('display', styles.display);
     setVal('position', styles.position);
     setVal('flex-direction', styles.flexDirection);
+    setVal('flex-wrap', styles.flexWrap);
     setVal('justify-content', styles.justifyContent);
     setVal('align-items', styles.alignItems);
     setVal('gap', styles.gap);
+
+    // Flex item
+    setVal('flex-grow', styles.flexGrow);
+    setVal('flex-shrink', styles.flexShrink);
+    setVal('flex-basis', styles.flexBasis);
+    setVal('order', styles.order);
+    setVal('align-self', styles.alignSelf);
+
+    // Grid
+    setVal('grid-template-columns', styles.gridTemplateColumns);
+    setVal('grid-template-rows', styles.gridTemplateRows);
 
     // Sizing
     setVal('width', styles.width);
     setVal('height', styles.height);
     setVal('min-width', styles.minWidth);
     setVal('max-width', styles.maxWidth);
+    setVal('min-height', styles.minHeight);
+    setVal('max-height', styles.maxHeight);
 
     // Spacing
     setVal('padding', styles.padding);
+    setVal('padding-top', styles.paddingTop);
+    setVal('padding-right', styles.paddingRight);
+    setVal('padding-bottom', styles.paddingBottom);
+    setVal('padding-left', styles.paddingLeft);
     setVal('margin', styles.margin);
+    setVal('margin-top', styles.marginTop);
+    setVal('margin-right', styles.marginRight);
+    setVal('margin-bottom', styles.marginBottom);
+    setVal('margin-left', styles.marginLeft);
 
     // Typography
+    setVal('font-family', styles.fontFamily);
     setVal('font-size', styles.fontSize);
     setVal('font-weight', styles.fontWeight);
     setVal('line-height', styles.lineHeight);
     setVal('letter-spacing', styles.letterSpacing);
     setVal('text-align', styles.textAlign);
+    setVal('text-decoration', styles.textDecoration);
+    setVal('text-transform', styles.textTransform);
+    setVal('white-space', styles.whiteSpace);
     setVal('color', styles.color);
     setVal('color-text', styles.color);
 
@@ -946,6 +1223,14 @@
 
     // Effects
     setVal('opacity', styles.opacity);
+    setVal('box-shadow', styles.boxShadow);
+
+    // Positioning
+    setVal('z-index', styles.zIndex);
+    setVal('overflow', styles.overflow);
+    setVal('visibility', styles.visibility);
+    setVal('cursor', styles.cursor);
+    setVal('pointer-events', styles.pointerEvents);
   }
 
   // Create FAB (Floating Action Button)
@@ -974,8 +1259,8 @@
         <button class="lumos-toolbar-btn lumos-viewport-btn" data-viewport="mobile" title="Mobile">${icons.phone}</button>
       </div>
       <div class="lumos-toolbar-group">
-        <button class="lumos-toolbar-btn lumos-btn-undo" title="Undo" disabled>${icons.undo}</button>
-        <button class="lumos-toolbar-btn lumos-btn-redo" title="Redo" disabled>${icons.redo}</button>
+        <button class="lumos-toolbar-btn lumos-btn-undo" title="Undo (Ctrl+Z)" disabled>${icons.undo}</button>
+        <button class="lumos-toolbar-btn lumos-btn-redo" title="Redo (Ctrl+Shift+Z)" disabled>${icons.redo}</button>
       </div>
     </div>
 
@@ -991,8 +1276,10 @@
 
     <div class="lumos-tabs" style="display: none;">
       <button class="lumos-tab active" data-tab="layout">Layout</button>
+      <button class="lumos-tab" data-tab="spacing">Space</button>
       <button class="lumos-tab" data-tab="typography">Text</button>
       <button class="lumos-tab" data-tab="style">Style</button>
+      <button class="lumos-tab" data-tab="effects">FX</button>
     </div>
 
     <div class="lumos-panel-content">
@@ -1004,7 +1291,7 @@
       <!-- Layout Tab -->
       <div class="lumos-tab-content active" data-tab="layout" style="display: none;">
         <div class="lumos-section">
-          <div class="lumos-section-header">Display</div>
+          <div class="lumos-section-header">Display & Position</div>
           <div class="lumos-section-content">
             <div class="lumos-row">
               <div class="lumos-field">
@@ -1032,11 +1319,27 @@
                 </select>
               </div>
             </div>
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">Z-Index</label>
+                <input type="text" class="lumos-input" data-prop="z-index" placeholder="auto">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Overflow</label>
+                <select class="lumos-select" data-prop="overflow">
+                  <option value="">—</option>
+                  <option value="visible">visible</option>
+                  <option value="hidden">hidden</option>
+                  <option value="scroll">scroll</option>
+                  <option value="auto">auto</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="lumos-section">
-          <div class="lumos-section-header">Flex</div>
+          <div class="lumos-section-header">Flexbox</div>
           <div class="lumos-section-content">
             <div class="lumos-row">
               <div class="lumos-field">
@@ -1050,8 +1353,13 @@
                 </select>
               </div>
               <div class="lumos-field">
-                <label class="lumos-label">Gap</label>
-                <input type="text" class="lumos-input" data-prop="gap" placeholder="0px">
+                <label class="lumos-label">Wrap</label>
+                <select class="lumos-select" data-prop="flex-wrap">
+                  <option value="">—</option>
+                  <option value="nowrap">nowrap</option>
+                  <option value="wrap">wrap</option>
+                  <option value="wrap-reverse">wrap-reverse</option>
+                </select>
               </div>
             </div>
             <div class="lumos-row">
@@ -1077,6 +1385,67 @@
                   <option value="stretch">stretch</option>
                   <option value="baseline">baseline</option>
                 </select>
+              </div>
+            </div>
+            <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">Gap</label>
+                <input type="text" class="lumos-input" data-prop="gap" placeholder="0px">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lumos-section">
+          <div class="lumos-section-header">Flex Item</div>
+          <div class="lumos-section-content">
+            <div class="lumos-row lumos-row-3">
+              <div class="lumos-field">
+                <label class="lumos-label">Grow</label>
+                <input type="text" class="lumos-input" data-prop="flex-grow" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Shrink</label>
+                <input type="text" class="lumos-input" data-prop="flex-shrink" placeholder="1">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Basis</label>
+                <input type="text" class="lumos-input" data-prop="flex-basis" placeholder="auto">
+              </div>
+            </div>
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">Order</label>
+                <input type="text" class="lumos-input" data-prop="order" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Align Self</label>
+                <select class="lumos-select" data-prop="align-self">
+                  <option value="">—</option>
+                  <option value="auto">auto</option>
+                  <option value="flex-start">start</option>
+                  <option value="center">center</option>
+                  <option value="flex-end">end</option>
+                  <option value="stretch">stretch</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lumos-section">
+          <div class="lumos-section-header">Grid</div>
+          <div class="lumos-section-content">
+            <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">Columns</label>
+                <input type="text" class="lumos-input" data-prop="grid-template-columns" placeholder="repeat(3, 1fr)">
+              </div>
+            </div>
+            <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">Rows</label>
+                <input type="text" class="lumos-input" data-prop="grid-template-rows" placeholder="auto">
               </div>
             </div>
           </div>
@@ -1105,20 +1474,77 @@
                 <input type="text" class="lumos-input" data-prop="max-width" placeholder="none">
               </div>
             </div>
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">Min H</label>
+                <input type="text" class="lumos-input" data-prop="min-height" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Max H</label>
+                <input type="text" class="lumos-input" data-prop="max-height" placeholder="none">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacing Tab -->
+      <div class="lumos-tab-content" data-tab="spacing">
+        <div class="lumos-section">
+          <div class="lumos-section-header">Padding</div>
+          <div class="lumos-section-content">
+            <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">All Sides</label>
+                <input type="text" class="lumos-input" data-prop="padding" placeholder="0px">
+              </div>
+            </div>
+            <div class="lumos-row lumos-row-4">
+              <div class="lumos-field">
+                <label class="lumos-label">Top</label>
+                <input type="text" class="lumos-input" data-prop="padding-top" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Right</label>
+                <input type="text" class="lumos-input" data-prop="padding-right" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Bottom</label>
+                <input type="text" class="lumos-input" data-prop="padding-bottom" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Left</label>
+                <input type="text" class="lumos-input" data-prop="padding-left" placeholder="0">
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="lumos-section">
-          <div class="lumos-section-header">Spacing</div>
+          <div class="lumos-section-header">Margin</div>
           <div class="lumos-section-content">
             <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">All Sides</label>
+                <input type="text" class="lumos-input" data-prop="margin" placeholder="0px">
+              </div>
+            </div>
+            <div class="lumos-row lumos-row-4">
               <div class="lumos-field">
-                <label class="lumos-label">Padding</label>
-                <input type="text" class="lumos-input" data-prop="padding" placeholder="0px">
+                <label class="lumos-label">Top</label>
+                <input type="text" class="lumos-input" data-prop="margin-top" placeholder="0">
               </div>
               <div class="lumos-field">
-                <label class="lumos-label">Margin</label>
-                <input type="text" class="lumos-input" data-prop="margin" placeholder="0px">
+                <label class="lumos-label">Right</label>
+                <input type="text" class="lumos-input" data-prop="margin-right" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Bottom</label>
+                <input type="text" class="lumos-input" data-prop="margin-bottom" placeholder="0">
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Left</label>
+                <input type="text" class="lumos-input" data-prop="margin-left" placeholder="0">
               </div>
             </div>
           </div>
@@ -1130,6 +1556,20 @@
         <div class="lumos-section">
           <div class="lumos-section-header">Font</div>
           <div class="lumos-section-content">
+            <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">Font Family</label>
+                <select class="lumos-select" data-prop="font-family">
+                  <option value="">—</option>
+                  <option value="system-ui, -apple-system, sans-serif">System</option>
+                  <option value="Arial, Helvetica, sans-serif">Sans Serif</option>
+                  <option value="Georgia, Times, serif">Serif</option>
+                  <option value="ui-monospace, monospace">Mono</option>
+                  <option value="Inter, sans-serif">Inter</option>
+                  <option value="Roboto, sans-serif">Roboto</option>
+                </select>
+              </div>
+            </div>
             <div class="lumos-row">
               <div class="lumos-field">
                 <label class="lumos-label">Size</label>
@@ -1163,17 +1603,49 @@
         </div>
 
         <div class="lumos-section">
-          <div class="lumos-section-header">Alignment</div>
+          <div class="lumos-section-header">Text Style</div>
           <div class="lumos-section-content">
             <div class="lumos-row">
-              <div class="lumos-field full">
-                <label class="lumos-label">Text Align</label>
+              <div class="lumos-field">
+                <label class="lumos-label">Align</label>
                 <select class="lumos-select" data-prop="text-align">
                   <option value="">—</option>
                   <option value="left">left</option>
                   <option value="center">center</option>
                   <option value="right">right</option>
                   <option value="justify">justify</option>
+                </select>
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Transform</label>
+                <select class="lumos-select" data-prop="text-transform">
+                  <option value="">—</option>
+                  <option value="none">none</option>
+                  <option value="uppercase">uppercase</option>
+                  <option value="lowercase">lowercase</option>
+                  <option value="capitalize">capitalize</option>
+                </select>
+              </div>
+            </div>
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">Decoration</label>
+                <select class="lumos-select" data-prop="text-decoration">
+                  <option value="">—</option>
+                  <option value="none">none</option>
+                  <option value="underline">underline</option>
+                  <option value="line-through">line-through</option>
+                  <option value="overline">overline</option>
+                </select>
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">White Space</label>
+                <select class="lumos-select" data-prop="white-space">
+                  <option value="">—</option>
+                  <option value="normal">normal</option>
+                  <option value="nowrap">nowrap</option>
+                  <option value="pre">pre</option>
+                  <option value="pre-wrap">pre-wrap</option>
                 </select>
               </div>
             </div>
@@ -1257,13 +1729,69 @@
         </div>
 
         <div class="lumos-section">
-          <div class="lumos-section-header">Effects</div>
+          <div class="lumos-section-header">Visibility</div>
+          <div class="lumos-section-content">
+            <div class="lumos-row">
+              <div class="lumos-field">
+                <label class="lumos-label">Visibility</label>
+                <select class="lumos-select" data-prop="visibility">
+                  <option value="">—</option>
+                  <option value="visible">visible</option>
+                  <option value="hidden">hidden</option>
+                </select>
+              </div>
+              <div class="lumos-field">
+                <label class="lumos-label">Pointer Events</label>
+                <select class="lumos-select" data-prop="pointer-events">
+                  <option value="">—</option>
+                  <option value="auto">auto</option>
+                  <option value="none">none</option>
+                </select>
+              </div>
+            </div>
+            <div class="lumos-row">
+              <div class="lumos-field full">
+                <label class="lumos-label">Cursor</label>
+                <select class="lumos-select" data-prop="cursor">
+                  <option value="">—</option>
+                  <option value="auto">auto</option>
+                  <option value="default">default</option>
+                  <option value="pointer">pointer</option>
+                  <option value="move">move</option>
+                  <option value="text">text</option>
+                  <option value="wait">wait</option>
+                  <option value="not-allowed">not-allowed</option>
+                  <option value="grab">grab</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Effects Tab -->
+      <div class="lumos-tab-content" data-tab="effects">
+        <div class="lumos-section">
+          <div class="lumos-section-header">Opacity</div>
+          <div class="lumos-section-content">
+            <div class="lumos-range-row">
+              <input type="range" class="lumos-range" data-prop="opacity" min="0" max="1" step="0.01" value="1">
+              <span class="lumos-range-value">1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lumos-section">
+          <div class="lumos-section-header">Box Shadow</div>
           <div class="lumos-section-content">
             <div class="lumos-row">
               <div class="lumos-field full">
-                <label class="lumos-label">Opacity</label>
-                <input type="text" class="lumos-input" data-prop="opacity" placeholder="1">
+                <label class="lumos-label">Shadow</label>
+                <input type="text" class="lumos-input" data-prop="box-shadow" placeholder="0 4px 6px rgba(0,0,0,0.1)">
               </div>
+            </div>
+            <div class="lumos-shadow-preview">
+              <div class="lumos-shadow-box" id="lumos-shadow-preview-box"></div>
             </div>
           </div>
         </div>
@@ -1282,20 +1810,22 @@
       <button class="lumos-btn lumos-btn-secondary lumos-btn-icon lumos-btn-copy" title="Copy CSS" disabled>
         ${icons.copy}
       </button>
-      <button class="lumos-btn lumos-btn-secondary lumos-btn-icon" title="Clear All" onclick="this.getRootNode().host?.clearChanges?.() || window.__lumosClearChanges?.()">
+      <button class="lumos-btn lumos-btn-secondary lumos-btn-icon lumos-btn-export" title="Export JSON" disabled>
+        ${icons.download}
+      </button>
+      <button class="lumos-btn lumos-btn-secondary lumos-btn-icon lumos-btn-import" title="Import JSON">
+        ${icons.upload}
+      </button>
+      <button class="lumos-btn lumos-btn-secondary lumos-btn-icon lumos-btn-clear" title="Clear All">
         ${icons.trash}
       </button>
-      <button class="lumos-btn lumos-btn-primary" style="flex: 2" onclick="this.getRootNode().host?.exportChanges?.() || window.__lumosExport?.()">
+      <button class="lumos-btn lumos-btn-primary lumos-btn-save" style="flex: 2">
         ${icons.save}
-        Export CSS
+        Save CSS
       </button>
     </div>
   `;
   document.body.appendChild(panel);
-
-  // Expose functions for inline handlers
-  window.__lumosClearChanges = clearChanges;
-  window.__lumosExport = copyCss;
 
   // Event: Close panel
   panel.querySelector('.lumos-panel-close').onclick = togglePanel;
@@ -1320,33 +1850,66 @@
   // Event: Copy CSS button
   panel.querySelector('.lumos-btn-copy').onclick = copyCss;
 
+  // Event: Export button
+  panel.querySelector('.lumos-btn-export').onclick = exportChanges;
+
+  // Event: Import button
+  panel.querySelector('.lumos-btn-import').onclick = importChanges;
+
+  // Event: Clear button
+  panel.querySelector('.lumos-btn-clear').onclick = clearChanges;
+
+  // Event: Save button (copies CSS)
+  panel.querySelector('.lumos-btn-save').onclick = copyCss;
+
+  // Event: Opacity slider
+  const opacitySlider = panel.querySelector('[data-prop="opacity"]');
+  if (opacitySlider && opacitySlider.type === 'range') {
+    opacitySlider.oninput = (e) => {
+      const val = e.target.value;
+      panel.querySelector('.lumos-range-value').textContent = val;
+      if (selectedElement) {
+        applyStyleChange('opacity', val);
+      }
+    };
+  }
+
+  // Event: Box shadow preview
+  const shadowInput = panel.querySelector('[data-prop="box-shadow"]');
+  if (shadowInput) {
+    shadowInput.oninput = (e) => {
+      const previewBox = document.getElementById('lumos-shadow-preview-box');
+      if (previewBox) previewBox.style.boxShadow = e.target.value;
+    };
+  }
+
   // Event: Style inputs
   panel.querySelectorAll('.lumos-select, .lumos-input').forEach(input => {
     const handler = () => {
       const prop = input.dataset.prop;
       if (!prop || !selectedElement) return;
 
+      // Skip opacity slider (handled separately)
+      if (prop === 'opacity' && input.type === 'range') return;
+
       // Handle linked color inputs
       if (prop.endsWith('-text')) {
         const baseProp = prop.replace('-text', '');
         const colorInput = panel.querySelector(`[data-prop="${baseProp}"]`);
-        const camelCase = baseProp.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-        applyStyleChange(camelCase, input.value);
+        applyStyleChange(baseProp, input.value);
         if (colorInput) colorInput.value = input.value;
       } else if (input.type === 'color') {
-        const camelCase = prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-        applyStyleChange(camelCase, input.value);
+        applyStyleChange(prop, input.value);
         const textInput = panel.querySelector(`[data-prop="${prop}-text"]`);
         if (textInput) textInput.value = input.value;
       } else {
-        const camelCase = prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-        applyStyleChange(camelCase, input.value);
+        applyStyleChange(prop, input.value);
       }
     };
 
     if (input.tagName === 'SELECT' || input.type === 'color') {
       input.onchange = handler;
-    } else {
+    } else if (input.type !== 'range') {
       input.onblur = handler;
       input.onkeydown = (e) => { if (e.key === 'Enter') handler(); };
     }
@@ -1417,7 +1980,15 @@
         redo();
       }
     }
+    // Ctrl/Cmd + S to save/copy CSS
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      copyCss();
+    }
   });
+
+  // Load persisted changes on init
+  setTimeout(loadPersistedChanges, 500);
 
   console.log('[Lumos] Inspector loaded. Click the purple button to start editing.');
 })();
