@@ -1,0 +1,124 @@
+/**
+ * Lumos Inspector - Fallback CSS Variables
+ *
+ * This file provides default CSS variables for the Lumos Inspector.
+ * Import this file if your app doesn't have shadcn/ui theme variables.
+ *
+ * Usage: import "@/components/lumos-inspector/lumos-inspector.css"
+ */
+
+/* Lumos Inspector scoped styles */
+[data-devtools] {
+  /* Base colors with fallbacks */
+  --background: var(--background, hsl(0 0% 100%));
+  --foreground: var(--foreground, hsl(0 0% 3.9%));
+
+  --card: var(--card, hsl(0 0% 100%));
+  --card-foreground: var(--card-foreground, hsl(0 0% 3.9%));
+
+  --popover: var(--popover, hsl(0 0% 100%));
+  --popover-foreground: var(--popover-foreground, hsl(0 0% 3.9%));
+
+  --primary: var(--primary, hsl(0 0% 9%));
+  --primary-foreground: var(--primary-foreground, hsl(0 0% 98%));
+
+  --secondary: var(--secondary, hsl(0 0% 96.1%));
+  --secondary-foreground: var(--secondary-foreground, hsl(0 0% 9%));
+
+  --muted: var(--muted, hsl(0 0% 96.1%));
+  --muted-foreground: var(--muted-foreground, hsl(0 0% 45.1%));
+
+  --accent: var(--accent, hsl(0 0% 96.1%));
+  --accent-foreground: var(--accent-foreground, hsl(0 0% 9%));
+
+  --destructive: var(--destructive, hsl(0 84.2% 60.2%));
+  --destructive-foreground: var(--destructive-foreground, hsl(0 0% 98%));
+
+  --border: var(--border, hsl(0 0% 89.8%));
+  --input: var(--input, hsl(0 0% 89.8%));
+  --ring: var(--ring, hsl(0 0% 3.9%));
+
+  /* Chart colors - commonly used in the inspector */
+  --chart-1: var(--chart-1, hsl(221 83% 53%));
+  --chart-1-foreground: var(--chart-1-foreground, hsl(0 0% 98%));
+  --chart-2: var(--chart-2, hsl(142 71% 45%));
+  --chart-2-foreground: var(--chart-2-foreground, hsl(0 0% 98%));
+  --chart-3: var(--chart-3, hsl(47 96% 53%));
+  --chart-3-foreground: var(--chart-3-foreground, hsl(0 0% 9%));
+  --chart-4: var(--chart-4, hsl(280 87% 65%));
+  --chart-4-foreground: var(--chart-4-foreground, hsl(0 0% 98%));
+  --chart-5: var(--chart-5, hsl(340 75% 55%));
+  --chart-5-foreground: var(--chart-5-foreground, hsl(0 0% 98%));
+
+  /* Radius */
+  --radius: var(--radius, 0.5rem);
+
+  /* RGB versions for rgba() usage */
+  --primary-rgb: var(--primary-rgb, 24, 24, 27);
+  --chart-1-rgb: var(--chart-1-rgb, 59, 130, 246);
+}
+
+/* Dark mode fallbacks */
+.dark [data-devtools],
+[data-devtools].dark {
+  --background: var(--background, hsl(0 0% 3.9%));
+  --foreground: var(--foreground, hsl(0 0% 98%));
+
+  --card: var(--card, hsl(0 0% 3.9%));
+  --card-foreground: var(--card-foreground, hsl(0 0% 98%));
+
+  --popover: var(--popover, hsl(0 0% 3.9%));
+  --popover-foreground: var(--popover-foreground, hsl(0 0% 98%));
+
+  --primary: var(--primary, hsl(0 0% 98%));
+  --primary-foreground: var(--primary-foreground, hsl(0 0% 9%));
+
+  --secondary: var(--secondary, hsl(0 0% 14.9%));
+  --secondary-foreground: var(--secondary-foreground, hsl(0 0% 98%));
+
+  --muted: var(--muted, hsl(0 0% 14.9%));
+  --muted-foreground: var(--muted-foreground, hsl(0 0% 63.9%));
+
+  --accent: var(--accent, hsl(0 0% 14.9%));
+  --accent-foreground: var(--accent-foreground, hsl(0 0% 98%));
+
+  --destructive: var(--destructive, hsl(0 62.8% 30.6%));
+  --destructive-foreground: var(--destructive-foreground, hsl(0 0% 98%));
+
+  --border: var(--border, hsl(0 0% 14.9%));
+  --input: var(--input, hsl(0 0% 14.9%));
+  --ring: var(--ring, hsl(0 0% 83.1%));
+}
+
+/* Ensure inspector panels don't inherit problematic styles */
+[data-devtools] {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix potential layout issues */
+[data-devtools] * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper scrolling */
+[data-devtools] [data-slot="scroll-area-viewport"] {
+  overflow: auto !important;
+}
+
+/* Z-index layer for inspector */
+[data-devtools].z-9998 {
+  z-index: 9998 !important;
+}
+
+[data-devtools].z-9999,
+[data-devtools] .z-9999 {
+  z-index: 9999 !important;
+}
+
+[data-devtools] .z-\[10002\] {
+  z-index: 10002 !important;
+}

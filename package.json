@@ -1,0 +1,54 @@
+{
+  "name": "lumos-inspector",
+  "version": "2.1.0",
+  "description": "Webflow-style visual inspector for Lumos-based React/Next.js applications",
+  "main": "index.tsx",
+  "types": "index.tsx",
+  "scripts": {
+    "install:deps": "npm install lucide-react sonner clsx tailwind-merge",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^14.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "@vitest/ui": "^1.2.0",
+    "jsdom": "^24.0.0",
+    "vitest": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "next": "^14.0.0 || ^15.0.0 || ^16.0.0"
+  },
+  "lumos": {
+    "requiredComponents": [
+      "button",
+      "input",
+      "label",
+      "badge",
+      "tabs",
+      "scroll-area",
+      "collapsible",
+      "select",
+      "tooltip",
+      "separator",
+      "slider",
+      "switch",
+      "avatar"
+    ]
+  },
+  "keywords": [
+    "lumos",
+    "react",
+    "nextjs",
+    "devtools",
+    "inspector",
+    "visual-editor"
+  ],
+  "license": "MIT"
+}

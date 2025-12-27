@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+buildCommand = "cd studio && npm install && npm run build"
+watchPatterns = ["studio/**"]
+
+[deploy]
+startCommand = "cd studio && npm run start"
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
