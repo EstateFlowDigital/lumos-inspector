@@ -682,56 +682,202 @@
       font-family: ui-monospace, monospace;
     }
 
-    /* Box Model Visual */
-    .lumos-box-model {
-      padding: 12px;
+    /* Interactive Box Model */
+    .lumos-box-model-interactive {
+      padding: 8px;
+    }
+    .lumos-box-layer {
+      position: relative;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      padding: 16px;
     }
-    .lumos-box-margin {
-      background: #fbbf24;
-      padding: 8px;
+    .lumos-box-margin-layer {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px dashed rgba(251, 191, 36, 0.5);
       border-radius: 4px;
-      opacity: 0.3;
     }
-    .lumos-box-border {
-      background: #3b82f6;
-      padding: 4px;
-      border-radius: 2px;
-      opacity: 0.5;
-    }
-    .lumos-box-padding {
-      background: #22c55e;
-      padding: 8px;
-      border-radius: 2px;
-      opacity: 0.4;
-    }
-    .lumos-box-content {
-      background: #8b5cf6;
-      color: white;
-      padding: 16px 24px;
-      font-size: 10px;
-      text-align: center;
-      border-radius: 2px;
-    }
-    .lumos-box-label {
-      font-size: 9px;
-      color: #71717a;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .lumos-box-values {
-      display: flex;
-      justify-content: space-between;
+    .lumos-box-border-layer {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px dashed rgba(59, 130, 246, 0.5);
+      border-radius: 3px;
       width: 100%;
-      margin-top: 4px;
     }
-    .lumos-box-value {
-      font-size: 9px;
+    .lumos-box-padding-layer {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px dashed rgba(34, 197, 94, 0.5);
+      border-radius: 2px;
+      width: 100%;
+    }
+    .lumos-box-content-layer {
+      background: #8b5cf6;
+      border-radius: 2px;
+      padding: 12px 20px;
+      min-width: 60px;
+      text-align: center;
+    }
+    .lumos-box-size-label {
+      font-size: 10px;
+      color: white;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-box-corner-label {
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      font-size: 8px;
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .lumos-box-input {
+      position: absolute;
+      width: 32px;
+      padding: 2px 4px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 3px;
+      color: #a1a1aa;
+      font-size: 10px;
+      font-family: ui-monospace, monospace;
+      text-align: center;
+      outline: none;
+    }
+    .lumos-box-input:focus {
+      border-color: #8b5cf6;
+      color: #fafafa;
+    }
+    .lumos-box-input.lumos-box-top { top: 2px; left: 50%; transform: translateX(-50%); }
+    .lumos-box-input.lumos-box-right { right: 2px; top: 50%; transform: translateY(-50%); }
+    .lumos-box-input.lumos-box-bottom { bottom: 2px; left: 50%; transform: translateX(-50%); }
+    .lumos-box-input.lumos-box-left { left: 2px; top: 50%; transform: translateY(-50%); }
+
+    /* Class Management */
+    .lumos-class-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .lumos-class-tag {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 6px;
+      background: #27272a;
+      border-radius: 4px;
+      font-size: 10px;
       color: #a1a1aa;
       font-family: ui-monospace, monospace;
+    }
+    .lumos-class-tag:hover {
+      background: #3f3f46;
+    }
+    .lumos-class-remove {
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.15s;
+    }
+    .lumos-class-remove:hover {
+      opacity: 1;
+      color: #ef4444;
+    }
+    .lumos-class-add {
+      display: flex;
+      gap: 6px;
+    }
+    .lumos-class-add input {
+      flex: 1;
+    }
+    .lumos-class-add button {
+      padding: 6px 10px;
+      background: #8b5cf6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+    .lumos-class-add button:hover {
+      background: #7c3aed;
+    }
+
+    /* Gradient Editor */
+    .lumos-gradient-preview {
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid #27272a;
+      margin-bottom: 8px;
+    }
+    .lumos-gradient-type {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .lumos-gradient-type button {
+      flex: 1;
+      padding: 6px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #71717a;
+      font-size: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .lumos-gradient-type button.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-gradient-stops {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .lumos-gradient-stop {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lumos-gradient-stop-color {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid #27272a;
+      overflow: hidden;
+    }
+    .lumos-gradient-stop-color input {
+      width: 32px;
+      height: 32px;
+      margin: -4px;
+      border: none;
+      cursor: pointer;
+    }
+    .lumos-gradient-stop-pos {
+      width: 50px;
+    }
+    .lumos-gradient-stop-remove {
+      cursor: pointer;
+      color: #71717a;
+    }
+    .lumos-gradient-stop-remove:hover {
+      color: #ef4444;
+    }
+    .lumos-add-stop-btn {
+      width: 100%;
+      padding: 6px;
+      background: #18181b;
+      border: 1px dashed #27272a;
+      color: #71717a;
+      font-size: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .lumos-add-stop-btn:hover {
+      background: #27272a;
+      color: #a1a1aa;
     }
 
     /* Changes Footer */
@@ -1000,7 +1146,15 @@
       whiteSpace: cs.whiteSpace,
       color: rgbToHex(cs.color),
       backgroundColor: rgbToHex(cs.backgroundColor),
+      backgroundImage: cs.backgroundImage,
+      backgroundSize: cs.backgroundSize,
+      backgroundPosition: cs.backgroundPosition,
+      backgroundRepeat: cs.backgroundRepeat,
       borderRadius: cs.borderRadius,
+      borderTopLeftRadius: cs.borderTopLeftRadius,
+      borderTopRightRadius: cs.borderTopRightRadius,
+      borderBottomRightRadius: cs.borderBottomRightRadius,
+      borderBottomLeftRadius: cs.borderBottomLeftRadius,
       borderWidth: cs.borderWidth,
       borderStyle: cs.borderStyle,
       borderColor: rgbToHex(cs.borderColor),
@@ -1008,6 +1162,10 @@
       borderRightWidth: cs.borderRightWidth,
       borderBottomWidth: cs.borderBottomWidth,
       borderLeftWidth: cs.borderLeftWidth,
+      borderTopStyle: cs.borderTopStyle,
+      borderRightStyle: cs.borderRightStyle,
+      borderBottomStyle: cs.borderBottomStyle,
+      borderLeftStyle: cs.borderLeftStyle,
       opacity: cs.opacity,
       boxShadow: cs.boxShadow,
       zIndex: cs.zIndex,
@@ -1361,6 +1519,7 @@
     const pseudoRow = container.querySelector('.lumos-pseudo-row');
     const styleTabs = container.querySelector('.lumos-style-tabs');
     const styleContents = container.querySelectorAll('.lumos-style-content');
+    const classSection = container.querySelector('.lumos-class-section');
 
     if (selectedElement) {
       const styles = getElementStyles(selectedElement);
@@ -1373,6 +1532,7 @@
       emptyState.style.display = 'none';
       pseudoRow.style.display = 'flex';
       styleTabs.style.display = 'flex';
+      if (classSection) classSection.style.display = 'block';
       styleContents.forEach(c => {
         if (c.classList.contains('active')) c.style.display = 'block';
         else c.style.display = 'none';
@@ -1387,12 +1547,20 @@
         <div class="lumos-element-size">${Math.round(rect.width)} x ${Math.round(rect.height)}</div>
       `;
 
+      // Update box model size label
+      const boxSizeLabel = container.querySelector('.lumos-box-size-label');
+      if (boxSizeLabel) {
+        boxSizeLabel.textContent = `${Math.round(rect.width)} × ${Math.round(rect.height)}`;
+      }
+
       updateStyleInputs(styles);
+      updateClassList();
     } else {
       elInfo.style.display = 'none';
       emptyState.style.display = 'block';
       pseudoRow.style.display = 'none';
       styleTabs.style.display = 'none';
+      if (classSection) classSection.style.display = 'none';
       styleContents.forEach(c => c.style.display = 'none');
     }
 
@@ -1479,12 +1647,28 @@
 
     // Background
     setVal('background-color', styles.backgroundColor);
+    setVal('background-image', styles.backgroundImage);
+    setVal('background-size', styles.backgroundSize);
+    setVal('background-position', styles.backgroundPosition);
+    setVal('background-repeat', styles.backgroundRepeat);
 
     // Border
     setVal('border-width', styles.borderWidth);
     setVal('border-style', styles.borderStyle);
     setVal('border-color', styles.borderColor);
     setVal('border-radius', styles.borderRadius);
+    setVal('border-top-width', styles.borderTopWidth);
+    setVal('border-right-width', styles.borderRightWidth);
+    setVal('border-bottom-width', styles.borderBottomWidth);
+    setVal('border-left-width', styles.borderLeftWidth);
+    setVal('border-top-style', styles.borderTopStyle);
+    setVal('border-right-style', styles.borderRightStyle);
+    setVal('border-bottom-style', styles.borderBottomStyle);
+    setVal('border-left-style', styles.borderLeftStyle);
+    setVal('border-top-left-radius', styles.borderTopLeftRadius);
+    setVal('border-top-right-radius', styles.borderTopRightRadius);
+    setVal('border-bottom-right-radius', styles.borderBottomRightRadius);
+    setVal('border-bottom-left-radius', styles.borderBottomLeftRadius);
 
     // Effects
     setVal('opacity', styles.opacity);
@@ -1500,6 +1684,15 @@
     // Update opacity display
     const opacityVal = container.querySelector('.lumos-opacity-value');
     if (opacityVal) opacityVal.textContent = styles.opacity;
+
+    // Update box model inputs
+    const boxInputs = container.querySelectorAll('.lumos-box-input');
+    boxInputs.forEach(input => {
+      const prop = input.dataset.prop;
+      if (prop && styles[prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase())]) {
+        input.value = styles[prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase())];
+      }
+    });
   }
 
   // Create FAB
@@ -1553,6 +1746,20 @@
       </div>
 
       <div class="lumos-element-info" style="display:none"></div>
+
+      <!-- Class Management -->
+      <div class="lumos-class-section" style="display:none">
+        <div class="lumos-section">
+          <div class="lumos-section-header">Classes</div>
+          <div class="lumos-section-content">
+            <div class="lumos-class-list"></div>
+            <div class="lumos-class-add">
+              <input class="lumos-input lumos-class-input" placeholder="Add class...">
+              <button class="lumos-add-class-btn">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="lumos-pseudo-row" style="display:none">
         <button class="lumos-pseudo-btn active" data-state="none">None</button>
@@ -1743,6 +1950,39 @@
 
         <!-- Spacing Tab -->
         <div class="lumos-style-content" data-tab="spacing">
+          <!-- Interactive Box Model -->
+          <div class="lumos-section">
+            <div class="lumos-section-header">Box Model</div>
+            <div class="lumos-section-content">
+              <div class="lumos-box-model-interactive">
+                <div class="lumos-box-layer lumos-box-margin-layer">
+                  <span class="lumos-box-corner-label">margin</span>
+                  <input class="lumos-box-input lumos-box-top" data-prop="margin-top" placeholder="0">
+                  <input class="lumos-box-input lumos-box-right" data-prop="margin-right" placeholder="0">
+                  <input class="lumos-box-input lumos-box-bottom" data-prop="margin-bottom" placeholder="0">
+                  <input class="lumos-box-input lumos-box-left" data-prop="margin-left" placeholder="0">
+                  <div class="lumos-box-layer lumos-box-border-layer">
+                    <span class="lumos-box-corner-label">border</span>
+                    <input class="lumos-box-input lumos-box-top" data-prop="border-top-width" placeholder="0">
+                    <input class="lumos-box-input lumos-box-right" data-prop="border-right-width" placeholder="0">
+                    <input class="lumos-box-input lumos-box-bottom" data-prop="border-bottom-width" placeholder="0">
+                    <input class="lumos-box-input lumos-box-left" data-prop="border-left-width" placeholder="0">
+                    <div class="lumos-box-layer lumos-box-padding-layer">
+                      <span class="lumos-box-corner-label">padding</span>
+                      <input class="lumos-box-input lumos-box-top" data-prop="padding-top" placeholder="0">
+                      <input class="lumos-box-input lumos-box-right" data-prop="padding-right" placeholder="0">
+                      <input class="lumos-box-input lumos-box-bottom" data-prop="padding-bottom" placeholder="0">
+                      <input class="lumos-box-input lumos-box-left" data-prop="padding-left" placeholder="0">
+                      <div class="lumos-box-content-layer">
+                        <span class="lumos-box-size-label"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="lumos-section">
             <div class="lumos-section-header">Padding</div>
             <div class="lumos-section-content">
@@ -1951,7 +2191,7 @@
         <!-- Background Tab -->
         <div class="lumos-style-content" data-tab="background">
           <div class="lumos-section">
-            <div class="lumos-section-header">Background</div>
+            <div class="lumos-section-header">Solid Color</div>
             <div class="lumos-section-content">
               <div class="lumos-row">
                 <div class="lumos-field full">
@@ -1964,12 +2204,91 @@
               </div>
             </div>
           </div>
+
+          <div class="lumos-section">
+            <div class="lumos-section-header">Gradient</div>
+            <div class="lumos-section-content">
+              <div class="lumos-gradient-preview" id="lumos-gradient-preview"></div>
+              <div class="lumos-gradient-type">
+                <button class="lumos-gradient-type-btn active" data-type="linear">Linear</button>
+                <button class="lumos-gradient-type-btn" data-type="radial">Radial</button>
+              </div>
+              <div class="lumos-row">
+                <div class="lumos-field full">
+                  <label class="lumos-label">Angle (Linear)</label>
+                  <input class="lumos-input" id="lumos-gradient-angle" value="90" placeholder="90">
+                </div>
+              </div>
+              <div class="lumos-gradient-stops" id="lumos-gradient-stops">
+                <div class="lumos-gradient-stop" data-index="0">
+                  <div class="lumos-gradient-stop-color"><input type="color" value="#8b5cf6"></div>
+                  <input class="lumos-input lumos-gradient-stop-pos" value="0%">
+                  <span class="lumos-gradient-stop-remove">×</span>
+                </div>
+                <div class="lumos-gradient-stop" data-index="1">
+                  <div class="lumos-gradient-stop-color"><input type="color" value="#06b6d4"></div>
+                  <input class="lumos-input lumos-gradient-stop-pos" value="100%">
+                  <span class="lumos-gradient-stop-remove">×</span>
+                </div>
+              </div>
+              <button class="lumos-add-stop-btn" id="lumos-add-stop">+ Add Color Stop</button>
+              <div class="lumos-row" style="margin-top:8px">
+                <button class="lumos-btn lumos-btn-primary" id="lumos-apply-gradient" style="width:100%">Apply Gradient</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lumos-section">
+            <div class="lumos-section-header">Background Image</div>
+            <div class="lumos-section-content">
+              <div class="lumos-row">
+                <div class="lumos-field full">
+                  <label class="lumos-label">Image URL</label>
+                  <input class="lumos-input" data-prop="background-image" placeholder="url(...)">
+                </div>
+              </div>
+              <div class="lumos-row">
+                <div class="lumos-field">
+                  <label class="lumos-label">Size</label>
+                  <select class="lumos-select" data-prop="background-size">
+                    <option value="">—</option>
+                    <option value="cover">cover</option>
+                    <option value="contain">contain</option>
+                    <option value="auto">auto</option>
+                  </select>
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">Position</label>
+                  <select class="lumos-select" data-prop="background-position">
+                    <option value="">—</option>
+                    <option value="center">center</option>
+                    <option value="top">top</option>
+                    <option value="bottom">bottom</option>
+                    <option value="left">left</option>
+                    <option value="right">right</option>
+                  </select>
+                </div>
+              </div>
+              <div class="lumos-row">
+                <div class="lumos-field full">
+                  <label class="lumos-label">Repeat</label>
+                  <select class="lumos-select" data-prop="background-repeat">
+                    <option value="">—</option>
+                    <option value="no-repeat">no-repeat</option>
+                    <option value="repeat">repeat</option>
+                    <option value="repeat-x">repeat-x</option>
+                    <option value="repeat-y">repeat-y</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Borders Tab -->
         <div class="lumos-style-content" data-tab="borders">
           <div class="lumos-section">
-            <div class="lumos-section-header">Border</div>
+            <div class="lumos-section-header">All Borders</div>
             <div class="lumos-section-content">
               <div class="lumos-row">
                 <div class="lumos-field">
@@ -1996,10 +2315,102 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="lumos-section">
+            <div class="lumos-section-header">Individual Sides</div>
+            <div class="lumos-section-content">
+              <div class="lumos-row lumos-row-4">
+                <div class="lumos-field">
+                  <label class="lumos-label">Top</label>
+                  <input class="lumos-input" data-prop="border-top-width" placeholder="0">
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">Right</label>
+                  <input class="lumos-input" data-prop="border-right-width" placeholder="0">
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">Bottom</label>
+                  <input class="lumos-input" data-prop="border-bottom-width" placeholder="0">
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">Left</label>
+                  <input class="lumos-input" data-prop="border-left-width" placeholder="0">
+                </div>
+              </div>
+              <div class="lumos-row">
+                <div class="lumos-field">
+                  <label class="lumos-label">Top Style</label>
+                  <select class="lumos-select" data-prop="border-top-style">
+                    <option value="">—</option>
+                    <option value="none">none</option>
+                    <option value="solid">solid</option>
+                    <option value="dashed">dashed</option>
+                    <option value="dotted">dotted</option>
+                  </select>
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">Bottom Style</label>
+                  <select class="lumos-select" data-prop="border-bottom-style">
+                    <option value="">—</option>
+                    <option value="none">none</option>
+                    <option value="solid">solid</option>
+                    <option value="dashed">dashed</option>
+                    <option value="dotted">dotted</option>
+                  </select>
+                </div>
+              </div>
+              <div class="lumos-row">
+                <div class="lumos-field">
+                  <label class="lumos-label">Left Style</label>
+                  <select class="lumos-select" data-prop="border-left-style">
+                    <option value="">—</option>
+                    <option value="none">none</option>
+                    <option value="solid">solid</option>
+                    <option value="dashed">dashed</option>
+                    <option value="dotted">dotted</option>
+                  </select>
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">Right Style</label>
+                  <select class="lumos-select" data-prop="border-right-style">
+                    <option value="">—</option>
+                    <option value="none">none</option>
+                    <option value="solid">solid</option>
+                    <option value="dashed">dashed</option>
+                    <option value="dotted">dotted</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lumos-section">
+            <div class="lumos-section-header">Border Radius</div>
+            <div class="lumos-section-content">
               <div class="lumos-row">
                 <div class="lumos-field full">
-                  <label class="lumos-label">Radius</label>
+                  <label class="lumos-label">All Corners</label>
                   <input class="lumos-input" data-prop="border-radius" placeholder="0px">
+                </div>
+              </div>
+              <div class="lumos-row lumos-row-4">
+                <div class="lumos-field">
+                  <label class="lumos-label">TL</label>
+                  <input class="lumos-input" data-prop="border-top-left-radius" placeholder="0">
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">TR</label>
+                  <input class="lumos-input" data-prop="border-top-right-radius" placeholder="0">
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">BR</label>
+                  <input class="lumos-input" data-prop="border-bottom-right-radius" placeholder="0">
+                </div>
+                <div class="lumos-field">
+                  <label class="lumos-label">BL</label>
+                  <input class="lumos-input" data-prop="border-bottom-left-radius" placeholder="0">
                 </div>
               </div>
             </div>
@@ -2232,6 +2643,178 @@
       e.preventDefault();
       copyCss();
     }
+  });
+
+  // Class management handlers
+  function updateClassList() {
+    const classList = container.querySelector('.lumos-class-list');
+    if (!selectedElement || !classList) return;
+
+    const classes = Array.from(selectedElement.classList)
+      .filter(c => !c.startsWith('lumos-'));
+
+    classList.innerHTML = classes.map(c => `
+      <span class="lumos-class-tag">
+        .${c}
+        <span class="lumos-class-remove" data-class="${c}">×</span>
+      </span>
+    `).join('');
+
+    // Add remove handlers
+    classList.querySelectorAll('.lumos-class-remove').forEach(btn => {
+      btn.onclick = () => {
+        const className = btn.dataset.class;
+        if (selectedElement && className) {
+          selectedElement.classList.remove(className);
+          changes.push({
+            id: Date.now().toString(36),
+            selector: generateSelector(selectedElement),
+            property: 'classList.remove',
+            oldValue: className,
+            newValue: '',
+            timestamp: Date.now(),
+          });
+          persistChanges();
+          updateClassList();
+          showToast(`Removed .${className}`);
+        }
+      };
+    });
+  }
+
+  container.querySelector('.lumos-add-class-btn').onclick = () => {
+    const input = container.querySelector('.lumos-class-input');
+    const className = input.value.trim().replace(/^\./, '');
+    if (selectedElement && className) {
+      selectedElement.classList.add(className);
+      changes.push({
+        id: Date.now().toString(36),
+        selector: generateSelector(selectedElement),
+        property: 'classList.add',
+        oldValue: '',
+        newValue: className,
+        timestamp: Date.now(),
+      });
+      persistChanges();
+      input.value = '';
+      updateClassList();
+      showToast(`Added .${className}`, 'success');
+    }
+  };
+
+  container.querySelector('.lumos-class-input').onkeydown = (e) => {
+    if (e.key === 'Enter') {
+      container.querySelector('.lumos-add-class-btn').click();
+    }
+  };
+
+  // Gradient editor state
+  let gradientType = 'linear';
+  let gradientAngle = 90;
+  let gradientStops = [
+    { color: '#8b5cf6', position: '0%' },
+    { color: '#06b6d4', position: '100%' }
+  ];
+
+  function updateGradientPreview() {
+    const preview = container.querySelector('#lumos-gradient-preview');
+    if (!preview) return;
+
+    const stopsStr = gradientStops.map(s => `${s.color} ${s.position}`).join(', ');
+    if (gradientType === 'linear') {
+      preview.style.background = `linear-gradient(${gradientAngle}deg, ${stopsStr})`;
+    } else {
+      preview.style.background = `radial-gradient(circle, ${stopsStr})`;
+    }
+  }
+
+  function renderGradientStops() {
+    const stopsContainer = container.querySelector('#lumos-gradient-stops');
+    if (!stopsContainer) return;
+
+    stopsContainer.innerHTML = gradientStops.map((stop, i) => `
+      <div class="lumos-gradient-stop" data-index="${i}">
+        <div class="lumos-gradient-stop-color"><input type="color" value="${stop.color}"></div>
+        <input class="lumos-input lumos-gradient-stop-pos" value="${stop.position}">
+        ${gradientStops.length > 2 ? `<span class="lumos-gradient-stop-remove">×</span>` : ''}
+      </div>
+    `).join('');
+
+    // Add handlers
+    stopsContainer.querySelectorAll('.lumos-gradient-stop').forEach((el, i) => {
+      el.querySelector('input[type="color"]').onchange = (e) => {
+        gradientStops[i].color = e.target.value;
+        updateGradientPreview();
+      };
+      el.querySelector('.lumos-gradient-stop-pos').onchange = (e) => {
+        gradientStops[i].position = e.target.value;
+        updateGradientPreview();
+      };
+      const removeBtn = el.querySelector('.lumos-gradient-stop-remove');
+      if (removeBtn) {
+        removeBtn.onclick = () => {
+          gradientStops.splice(i, 1);
+          renderGradientStops();
+          updateGradientPreview();
+        };
+      }
+    });
+  }
+
+  // Gradient type buttons
+  container.querySelectorAll('.lumos-gradient-type-btn').forEach(btn => {
+    btn.onclick = () => {
+      gradientType = btn.dataset.type;
+      container.querySelectorAll('.lumos-gradient-type-btn').forEach(b => {
+        b.classList.toggle('active', b === btn);
+      });
+      updateGradientPreview();
+    };
+  });
+
+  // Gradient angle
+  container.querySelector('#lumos-gradient-angle').onchange = (e) => {
+    gradientAngle = parseInt(e.target.value) || 90;
+    updateGradientPreview();
+  };
+
+  // Add stop button
+  container.querySelector('#lumos-add-stop').onclick = () => {
+    const lastPos = parseInt(gradientStops[gradientStops.length - 1]?.position) || 100;
+    gradientStops.push({ color: '#ffffff', position: `${Math.min(lastPos + 10, 100)}%` });
+    renderGradientStops();
+    updateGradientPreview();
+  };
+
+  // Apply gradient button
+  container.querySelector('#lumos-apply-gradient').onclick = () => {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    const stopsStr = gradientStops.map(s => `${s.color} ${s.position}`).join(', ');
+    let gradientValue;
+    if (gradientType === 'linear') {
+      gradientValue = `linear-gradient(${gradientAngle}deg, ${stopsStr})`;
+    } else {
+      gradientValue = `radial-gradient(circle, ${stopsStr})`;
+    }
+
+    applyStyleChange('background', gradientValue);
+    showToast('Gradient applied!', 'success');
+  };
+
+  // Initialize gradient editor
+  renderGradientStops();
+  updateGradientPreview();
+
+  // Box model input handlers
+  container.querySelectorAll('.lumos-box-input').forEach(input => {
+    const handler = () => {
+      const prop = input.dataset.prop;
+      if (!prop || !selectedElement) return;
+      applyStyleChange(prop, input.value);
+    };
+    input.onblur = handler;
+    input.onkeydown = e => e.key === 'Enter' && handler();
   });
 
   // Initialize
