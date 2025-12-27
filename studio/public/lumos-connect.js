@@ -2744,6 +2744,549 @@
       font-size: 10px;
       margin-top: 2px;
     }
+
+    /* Transform Editor */
+    .lumos-transform-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+    }
+    .lumos-transform-preview {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .lumos-transform-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    .lumos-transform-slider-row label {
+      width: 70px;
+      font-size: 11px;
+      color: #a1a1aa;
+    }
+    .lumos-transform-slider-row input[type="range"] {
+      flex: 1;
+      accent-color: #8b5cf6;
+    }
+    .lumos-transform-slider-row input[type="number"] {
+      width: 60px;
+      padding: 4px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #fafafa;
+      font-size: 11px;
+    }
+
+    /* Position Editor */
+    .lumos-position-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-position-type-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding: 12px;
+      background: #18181b;
+      border-radius: 8px;
+    }
+    .lumos-position-type-btn {
+      padding: 8px 4px;
+      background: #09090b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .lumos-position-type-btn:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-position-type-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-position-offsets {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .lumos-offset-input {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .lumos-offset-input label {
+      font-size: 10px;
+      color: #71717a;
+      text-transform: uppercase;
+    }
+    .lumos-offset-input input {
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #fafafa;
+      font-size: 12px;
+    }
+
+    /* Border Editor */
+    .lumos-border-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-border-sides {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+    .lumos-border-side-btn {
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-border-side-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-border-preview-box {
+      width: 100px;
+      height: 100px;
+      background: #18181b;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #71717a;
+      font-size: 10px;
+    }
+    .lumos-border-style-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .lumos-border-style-btn {
+      padding: 8px 4px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-border-style-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    /* Cursor Picker */
+    .lumos-cursor-picker {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 420px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-cursor-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .lumos-cursor-btn {
+      padding: 12px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .lumos-cursor-btn:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-cursor-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-cursor-preview {
+      width: 60px;
+      height: 60px;
+      background: #18181b;
+      border-radius: 8px;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Overflow Controls */
+    .lumos-overflow-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-overflow-axis {
+      margin-bottom: 16px;
+    }
+    .lumos-overflow-axis-label {
+      font-size: 11px;
+      color: #71717a;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .lumos-overflow-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .lumos-overflow-btn {
+      padding: 10px 4px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-overflow-btn:hover {
+      background: #27272a;
+    }
+    .lumos-overflow-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    /* Display/Visibility Toggles */
+    .lumos-display-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-display-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .lumos-display-btn {
+      padding: 12px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      color: #a1a1aa;
+      font-size: 11px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .lumos-display-btn:hover {
+      background: #27272a;
+    }
+    .lumos-display-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-display-btn-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    /* Flex Item Controls */
+    .lumos-flex-item-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-flex-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #1f1f23;
+    }
+    .lumos-flex-row:last-child {
+      border-bottom: none;
+    }
+    .lumos-flex-row label {
+      width: 90px;
+      font-size: 11px;
+      color: #a1a1aa;
+    }
+    .lumos-flex-row input[type="number"] {
+      width: 80px;
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #fafafa;
+      font-size: 12px;
+    }
+    .lumos-flex-row input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #fafafa;
+      font-size: 12px;
+    }
+    .lumos-flex-align-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+    }
+    .lumos-flex-align-btn {
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 9px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-flex-align-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    /* Aspect Ratio Editor */
+    .lumos-aspect-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-aspect-presets {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .lumos-aspect-preset {
+      padding: 12px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-aspect-preset:hover {
+      background: #27272a;
+    }
+    .lumos-aspect-preset.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+    }
+    .lumos-aspect-preset-box {
+      margin: 0 auto 8px;
+      background: #3b82f6;
+      border-radius: 2px;
+    }
+    .lumos-aspect-preset-label {
+      font-size: 10px;
+      color: #a1a1aa;
+    }
+    .lumos-aspect-preset.active .lumos-aspect-preset-label {
+      color: white;
+    }
+    .lumos-aspect-custom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      background: #18181b;
+      border-radius: 8px;
+    }
+    .lumos-aspect-custom input {
+      width: 60px;
+      padding: 8px;
+      background: #09090b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #fafafa;
+      font-size: 12px;
+      text-align: center;
+    }
+    .lumos-aspect-custom span {
+      color: #71717a;
+      font-size: 14px;
+    }
+
+    /* Background Editor */
+    .lumos-background-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      max-height: 80vh;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+      overflow-y: auto;
+    }
+    .lumos-bg-tabs {
+      display: flex;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-bg-tab {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      color: #71717a;
+      font-size: 12px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .lumos-bg-tab.active {
+      color: #fafafa;
+      border-bottom-color: #8b5cf6;
+    }
+    .lumos-bg-content {
+      padding: 16px;
+    }
+    .lumos-bg-preview {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #27272a;
+    }
+    .lumos-bg-url-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      color: #fafafa;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+    .lumos-bg-size-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .lumos-bg-size-btn {
+      padding: 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-bg-size-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-bg-position-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .lumos-bg-position-btn {
+      padding: 10px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #71717a;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-bg-position-btn:hover {
+      background: #27272a;
+    }
+    .lumos-bg-position-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
   `;
   document.head.appendChild(style);
 
@@ -2817,6 +3360,16 @@
     textCursor: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 6H7a4 4 0 0 0-4 4v1h2v-1a2 2 0 0 1 2-2h4v12H9v2h6v-2h-2V8h4a2 2 0 0 1 2 2v1h2v-1a4 4 0 0 0-4-4z"/></svg>',
     smartphone: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
     lightbulb: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
+    rotate: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>',
+    scale: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 3H15M21 3V9M21 3L14 10M3 21H9M3 21V15M3 21L10 14"/></svg>',
+    mapPin: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    square: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>',
+    mousePointer: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg>',
+    scrollIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="6" x2="12" y2="10"/></svg>',
+    eyeOff: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
+    flexGrow: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="6" width="6" height="12" rx="1"/><rect x="16" y="6" width="6" height="12" rx="1"/><path d="M8 12h8M11 9l3 3-3 3"/></svg>',
+    ratio: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></svg>',
+    image: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -7196,6 +7749,968 @@
   }
 
   // ============================================
+  // TRANSFORM EDITOR
+  // ============================================
+  function openTransformEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-transform-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    // Parse current transform
+    let rotate = 0, scaleX = 1, scaleY = 1, skewX = 0, skewY = 0, translateX = 0, translateY = 0;
+    const transform = cs.transform;
+    if (transform && transform !== 'none') {
+      const matrix = transform.match(/matrix\(([^)]+)\)/);
+      if (matrix) {
+        const values = matrix[1].split(',').map(Number);
+        rotate = Math.round(Math.atan2(values[1], values[0]) * (180 / Math.PI));
+        scaleX = Math.sqrt(values[0] * values[0] + values[1] * values[1]);
+        scaleY = Math.sqrt(values[2] * values[2] + values[3] * values[3]);
+      }
+    }
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-transform-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.rotate}</span>
+          <span style="font-weight:600;color:#fafafa">Transform</span>
+        </div>
+        <button class="lumos-close-transform" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div style="display:flex;justify-content:center;margin-bottom:20px">
+          <div class="lumos-transform-preview"></div>
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Rotate</label>
+          <input type="range" min="-180" max="180" value="${rotate}" data-prop="rotate" />
+          <input type="number" value="${rotate}" data-prop="rotate" />°
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Scale X</label>
+          <input type="range" min="0" max="200" value="${scaleX * 100}" data-prop="scaleX" />
+          <input type="number" value="${Math.round(scaleX * 100)}" data-prop="scaleX" />%
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Scale Y</label>
+          <input type="range" min="0" max="200" value="${scaleY * 100}" data-prop="scaleY" />
+          <input type="number" value="${Math.round(scaleY * 100)}" data-prop="scaleY" />%
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Skew X</label>
+          <input type="range" min="-45" max="45" value="${skewX}" data-prop="skewX" />
+          <input type="number" value="${skewX}" data-prop="skewX" />°
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Skew Y</label>
+          <input type="range" min="-45" max="45" value="${skewY}" data-prop="skewY" />
+          <input type="number" value="${skewY}" data-prop="skewY" />°
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Translate X</label>
+          <input type="range" min="-100" max="100" value="${translateX}" data-prop="translateX" />
+          <input type="number" value="${translateX}" data-prop="translateX" />px
+        </div>
+        <div class="lumos-transform-slider-row">
+          <label>Translate Y</label>
+          <input type="range" min="-100" max="100" value="${translateY}" data-prop="translateY" />
+          <input type="number" value="${translateY}" data-prop="translateY" />px
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <button class="lumos-reset-transform" style="flex:1;padding:10px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer">Reset</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-transform-preview');
+
+    function updateTransform() {
+      const r = panel.querySelector('input[data-prop="rotate"]').value;
+      const sx = panel.querySelector('input[data-prop="scaleX"]').value / 100;
+      const sy = panel.querySelector('input[data-prop="scaleY"]').value / 100;
+      const skx = panel.querySelector('input[data-prop="skewX"]').value;
+      const sky = panel.querySelector('input[data-prop="skewY"]').value;
+      const tx = panel.querySelector('input[data-prop="translateX"]').value;
+      const ty = panel.querySelector('input[data-prop="translateY"]').value;
+
+      const transformValue = `translate(${tx}px, ${ty}px) rotate(${r}deg) scale(${sx}, ${sy}) skew(${skx}deg, ${sky}deg)`;
+
+      preview.style.transform = transformValue;
+      applyStyle(selectedElement, 'transform', transformValue);
+    }
+
+    panel.querySelectorAll('input[type="range"]').forEach(range => {
+      range.oninput = () => {
+        const prop = range.dataset.prop;
+        panel.querySelector(`input[type="number"][data-prop="${prop}"]`).value = range.value;
+        updateTransform();
+      };
+    });
+
+    panel.querySelectorAll('input[type="number"]').forEach(num => {
+      num.onchange = () => {
+        const prop = num.dataset.prop;
+        panel.querySelector(`input[type="range"][data-prop="${prop}"]`).value = num.value;
+        updateTransform();
+      };
+    });
+
+    panel.querySelector('.lumos-reset-transform').onclick = () => {
+      panel.querySelectorAll('input[data-prop="rotate"]').forEach(i => i.value = 0);
+      panel.querySelectorAll('input[data-prop="scaleX"]').forEach(i => i.value = 100);
+      panel.querySelectorAll('input[data-prop="scaleY"]').forEach(i => i.value = 100);
+      panel.querySelectorAll('input[data-prop="skewX"]').forEach(i => i.value = 0);
+      panel.querySelectorAll('input[data-prop="skewY"]').forEach(i => i.value = 0);
+      panel.querySelectorAll('input[data-prop="translateX"]').forEach(i => i.value = 0);
+      panel.querySelectorAll('input[data-prop="translateY"]').forEach(i => i.value = 0);
+      updateTransform();
+    };
+
+    panel.querySelector('.lumos-close-transform').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // POSITION EDITOR
+  // ============================================
+  function openPositionEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-position-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+    const currentPosition = cs.position || 'static';
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-position-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.mapPin}</span>
+          <span style="font-weight:600;color:#fafafa">Position</span>
+        </div>
+        <button class="lumos-close-position" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-position-type-grid">
+          ${['static', 'relative', 'absolute', 'fixed', 'sticky'].map(p => `
+            <button class="lumos-position-type-btn ${currentPosition === p ? 'active' : ''}" data-position="${p}">${p}</button>
+          `).join('')}
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Offsets</div>
+          <div class="lumos-position-offsets">
+            <div class="lumos-offset-input">
+              <label>Top</label>
+              <input type="text" value="${cs.top !== 'auto' ? cs.top : ''}" data-prop="top" placeholder="auto" />
+            </div>
+            <div class="lumos-offset-input">
+              <label>Right</label>
+              <input type="text" value="${cs.right !== 'auto' ? cs.right : ''}" data-prop="right" placeholder="auto" />
+            </div>
+            <div class="lumos-offset-input">
+              <label>Bottom</label>
+              <input type="text" value="${cs.bottom !== 'auto' ? cs.bottom : ''}" data-prop="bottom" placeholder="auto" />
+            </div>
+            <div class="lumos-offset-input">
+              <label>Left</label>
+              <input type="text" value="${cs.left !== 'auto' ? cs.left : ''}" data-prop="left" placeholder="auto" />
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Z-Index</div>
+          <input type="text" value="${cs.zIndex !== 'auto' ? cs.zIndex : ''}" data-prop="zIndex" placeholder="auto" style="width:100%;padding:8px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa" />
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-position-type-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-position-type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'position', btn.dataset.position);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-offset-input input, input[data-prop="zIndex"]').forEach(input => {
+      input.onchange = () => {
+        const prop = input.dataset.prop;
+        const value = input.value || 'auto';
+        applyStyle(selectedElement, prop, value);
+      };
+    });
+
+    panel.querySelector('.lumos-close-position').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // BORDER EDITOR
+  // ============================================
+  function openBorderEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-border-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-border-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.square}</span>
+          <span style="font-weight:600;color:#fafafa">Border</span>
+        </div>
+        <button class="lumos-close-border" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-border-sides">
+          <button class="lumos-border-side-btn active" data-side="all">All</button>
+          <button class="lumos-border-side-btn" data-side="top">Top</button>
+          <button class="lumos-border-side-btn" data-side="right">Right</button>
+          <button class="lumos-border-side-btn" data-side="bottom">Bottom</button>
+          <button class="lumos-border-side-btn" data-side="left">Left</button>
+        </div>
+        <div class="lumos-border-preview-box" style="border:${cs.border}">Preview</div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Width</div>
+          <input type="range" min="0" max="20" value="${parseInt(cs.borderWidth) || 0}" class="lumos-border-width" style="width:100%;accent-color:#8b5cf6" />
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#71717a;margin-top:4px">
+            <span>0px</span>
+            <span class="lumos-border-width-value">${parseInt(cs.borderWidth) || 0}px</span>
+            <span>20px</span>
+          </div>
+        </div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Style</div>
+          <div class="lumos-border-style-grid">
+            ${['none', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'].map(s => `
+              <button class="lumos-border-style-btn ${cs.borderStyle === s ? 'active' : ''}" data-style="${s}">${s}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Color</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="color" value="${rgbToHex(cs.borderColor) || '#000000'}" class="lumos-border-color" style="width:40px;height:32px;border:none;border-radius:4px;cursor:pointer" />
+            <input type="text" value="${rgbToHex(cs.borderColor) || '#000000'}" class="lumos-border-color-text" style="flex:1;padding:8px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa;font-size:12px" />
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Radius</div>
+          <input type="range" min="0" max="50" value="${parseInt(cs.borderRadius) || 0}" class="lumos-border-radius" style="width:100%;accent-color:#8b5cf6" />
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#71717a;margin-top:4px">
+            <span>0px</span>
+            <span class="lumos-border-radius-value">${parseInt(cs.borderRadius) || 0}px</span>
+            <span>50px</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    let activeSide = 'all';
+    const preview = panel.querySelector('.lumos-border-preview-box');
+
+    function updateBorder() {
+      const width = panel.querySelector('.lumos-border-width').value + 'px';
+      const style = panel.querySelector('.lumos-border-style-btn.active')?.dataset.style || 'solid';
+      const color = panel.querySelector('.lumos-border-color').value;
+      const radius = panel.querySelector('.lumos-border-radius').value + 'px';
+
+      panel.querySelector('.lumos-border-width-value').textContent = width;
+      panel.querySelector('.lumos-border-radius-value').textContent = radius;
+
+      if (activeSide === 'all') {
+        applyStyle(selectedElement, 'border', `${width} ${style} ${color}`);
+        preview.style.border = `${width} ${style} ${color}`;
+      } else {
+        const prop = `border${activeSide.charAt(0).toUpperCase() + activeSide.slice(1)}`;
+        applyStyle(selectedElement, prop, `${width} ${style} ${color}`);
+        preview.style[prop] = `${width} ${style} ${color}`;
+      }
+
+      applyStyle(selectedElement, 'borderRadius', radius);
+      preview.style.borderRadius = radius;
+    }
+
+    panel.querySelectorAll('.lumos-border-side-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-border-side-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSide = btn.dataset.side;
+      };
+    });
+
+    panel.querySelectorAll('.lumos-border-style-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-border-style-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateBorder();
+      };
+    });
+
+    panel.querySelector('.lumos-border-width').oninput = updateBorder;
+    panel.querySelector('.lumos-border-radius').oninput = updateBorder;
+    panel.querySelector('.lumos-border-color').oninput = (e) => {
+      panel.querySelector('.lumos-border-color-text').value = e.target.value;
+      updateBorder();
+    };
+    panel.querySelector('.lumos-border-color-text').onchange = (e) => {
+      panel.querySelector('.lumos-border-color').value = e.target.value;
+      updateBorder();
+    };
+
+    panel.querySelector('.lumos-close-border').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // CURSOR PICKER
+  // ============================================
+  function openCursorPicker() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-cursor-picker')?.remove();
+    const cs = getComputedStyle(selectedElement);
+    const currentCursor = cs.cursor || 'auto';
+
+    const cursors = [
+      'auto', 'default', 'pointer', 'wait', 'text', 'move', 'help', 'not-allowed',
+      'crosshair', 'grab', 'grabbing', 'zoom-in', 'zoom-out', 'copy', 'alias',
+      'cell', 'context-menu', 'progress', 'col-resize', 'row-resize',
+      'n-resize', 's-resize', 'e-resize', 'w-resize', 'ne-resize', 'nw-resize',
+      'se-resize', 'sw-resize', 'ew-resize', 'ns-resize', 'nesw-resize', 'nwse-resize',
+      'all-scroll', 'no-drop', 'vertical-text', 'none'
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-cursor-picker lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.mousePointer}</span>
+          <span style="font-weight:600;color:#fafafa">Cursor</span>
+        </div>
+        <button class="lumos-close-cursor" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-cursor-preview" style="cursor:${currentCursor}">
+          <span style="color:#71717a;font-size:10px">${currentCursor}</span>
+        </div>
+        <div class="lumos-cursor-grid">
+          ${cursors.map(c => `
+            <button class="lumos-cursor-btn ${currentCursor === c ? 'active' : ''}" data-cursor="${c}" style="cursor:${c}">${c}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-cursor-preview');
+
+    panel.querySelectorAll('.lumos-cursor-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-cursor-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cursor = btn.dataset.cursor;
+        preview.style.cursor = cursor;
+        preview.querySelector('span').textContent = cursor;
+        applyStyle(selectedElement, 'cursor', cursor);
+      };
+    });
+
+    panel.querySelector('.lumos-close-cursor').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // OVERFLOW EDITOR
+  // ============================================
+  function openOverflowEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-overflow-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-overflow-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.scrollIcon}</span>
+          <span style="font-weight:600;color:#fafafa">Overflow</span>
+        </div>
+        <button class="lumos-close-overflow" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-overflow-axis">
+          <div class="lumos-overflow-axis-label">Overflow X</div>
+          <div class="lumos-overflow-options">
+            ${['visible', 'hidden', 'scroll', 'auto'].map(o => `
+              <button class="lumos-overflow-btn ${cs.overflowX === o ? 'active' : ''}" data-axis="x" data-value="${o}">${o}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div class="lumos-overflow-axis">
+          <div class="lumos-overflow-axis-label">Overflow Y</div>
+          <div class="lumos-overflow-options">
+            ${['visible', 'hidden', 'scroll', 'auto'].map(o => `
+              <button class="lumos-overflow-btn ${cs.overflowY === o ? 'active' : ''}" data-axis="y" data-value="${o}">${o}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div class="lumos-overflow-axis" style="margin-bottom:0">
+          <div class="lumos-overflow-axis-label">Both Axes</div>
+          <div class="lumos-overflow-options">
+            ${['visible', 'hidden', 'scroll', 'auto', 'clip'].map(o => `
+              <button class="lumos-overflow-btn" data-axis="both" data-value="${o}">${o}</button>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-overflow-btn').forEach(btn => {
+      btn.onclick = () => {
+        const axis = btn.dataset.axis;
+        const value = btn.dataset.value;
+
+        if (axis === 'both') {
+          panel.querySelectorAll('.lumos-overflow-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          applyStyle(selectedElement, 'overflow', value);
+        } else {
+          panel.querySelectorAll(`.lumos-overflow-btn[data-axis="${axis}"]`).forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const prop = axis === 'x' ? 'overflowX' : 'overflowY';
+          applyStyle(selectedElement, prop, value);
+        }
+      };
+    });
+
+    panel.querySelector('.lumos-close-overflow').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // DISPLAY EDITOR
+  // ============================================
+  function openDisplayEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-display-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const displayOptions = [
+      { value: 'block', icon: '▮', label: 'Block' },
+      { value: 'inline', icon: '─', label: 'Inline' },
+      { value: 'inline-block', icon: '▯', label: 'Inline Block' },
+      { value: 'flex', icon: '⟷', label: 'Flex' },
+      { value: 'inline-flex', icon: '↔', label: 'Inline Flex' },
+      { value: 'grid', icon: '▦', label: 'Grid' },
+      { value: 'inline-grid', icon: '⊞', label: 'Inline Grid' },
+      { value: 'none', icon: '∅', label: 'None' },
+      { value: 'contents', icon: '◇', label: 'Contents' }
+    ];
+
+    const visibilityOptions = [
+      { value: 'visible', label: 'Visible' },
+      { value: 'hidden', label: 'Hidden' },
+      { value: 'collapse', label: 'Collapse' }
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-display-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.eye}</span>
+          <span style="font-weight:600;color:#fafafa">Display & Visibility</span>
+        </div>
+        <button class="lumos-close-display" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div style="font-size:11px;color:#71717a;margin-bottom:8px;text-transform:uppercase">Display</div>
+        <div class="lumos-display-grid">
+          ${displayOptions.map(d => `
+            <button class="lumos-display-btn ${cs.display === d.value ? 'active' : ''}" data-value="${d.value}">
+              <div class="lumos-display-btn-icon">${d.icon}</div>
+              ${d.label}
+            </button>
+          `).join('')}
+        </div>
+        <div style="font-size:11px;color:#71717a;margin:16px 0 8px;text-transform:uppercase">Visibility</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          ${visibilityOptions.map(v => `
+            <button class="lumos-display-btn lumos-visibility-btn ${cs.visibility === v.value ? 'active' : ''}" data-value="${v.value}">${v.label}</button>
+          `).join('')}
+        </div>
+        <div style="font-size:11px;color:#71717a;margin:16px 0 8px;text-transform:uppercase">Opacity</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <input type="range" min="0" max="100" value="${parseFloat(cs.opacity) * 100}" class="lumos-opacity-slider" style="flex:1;accent-color:#8b5cf6" />
+          <span class="lumos-opacity-value" style="font-size:12px;color:#fafafa;width:40px">${Math.round(parseFloat(cs.opacity) * 100)}%</span>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-display-btn:not(.lumos-visibility-btn)').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-display-btn:not(.lumos-visibility-btn)').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'display', btn.dataset.value);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-visibility-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-visibility-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'visibility', btn.dataset.value);
+      };
+    });
+
+    panel.querySelector('.lumos-opacity-slider').oninput = (e) => {
+      const value = e.target.value / 100;
+      panel.querySelector('.lumos-opacity-value').textContent = `${e.target.value}%`;
+      applyStyle(selectedElement, 'opacity', value);
+    };
+
+    panel.querySelector('.lumos-close-display').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // FLEX ITEM EDITOR
+  // ============================================
+  function openFlexItemEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    const parent = selectedElement.parentElement;
+    const parentDisplay = getComputedStyle(parent).display;
+    if (!parentDisplay.includes('flex')) {
+      showToast('Parent must be a flex container', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-flex-item-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const alignOptions = ['auto', 'flex-start', 'center', 'flex-end', 'stretch', 'baseline'];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-flex-item-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.flexGrow}</span>
+          <span style="font-weight:600;color:#fafafa">Flex Item</span>
+        </div>
+        <button class="lumos-close-flex" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-flex-row">
+          <label>Flex Grow</label>
+          <input type="number" min="0" value="${cs.flexGrow}" data-prop="flexGrow" />
+        </div>
+        <div class="lumos-flex-row">
+          <label>Flex Shrink</label>
+          <input type="number" min="0" value="${cs.flexShrink}" data-prop="flexShrink" />
+        </div>
+        <div class="lumos-flex-row">
+          <label>Flex Basis</label>
+          <input type="text" value="${cs.flexBasis}" data-prop="flexBasis" placeholder="auto" />
+        </div>
+        <div class="lumos-flex-row">
+          <label>Order</label>
+          <input type="number" value="${cs.order}" data-prop="order" />
+        </div>
+        <div class="lumos-flex-row" style="flex-direction:column;align-items:stretch">
+          <label style="width:auto;margin-bottom:8px">Align Self</label>
+          <div class="lumos-flex-align-grid">
+            ${alignOptions.map(a => `
+              <button class="lumos-flex-align-btn ${cs.alignSelf === a ? 'active' : ''}" data-value="${a}">${a.replace('flex-', '')}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid #27272a">
+          <button class="lumos-flex-preset" data-preset="grow" style="flex:1;padding:10px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer;font-size:11px">Grow</button>
+          <button class="lumos-flex-preset" data-preset="shrink" style="flex:1;padding:10px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer;font-size:11px">Shrink</button>
+          <button class="lumos-flex-preset" data-preset="none" style="flex:1;padding:10px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer;font-size:11px">None</button>
+          <button class="lumos-flex-preset" data-preset="auto" style="flex:1;padding:10px;background:#27272a;border:none;border-radius:6px;color:#fafafa;cursor:pointer;font-size:11px">Auto</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('input').forEach(input => {
+      input.onchange = () => {
+        applyStyle(selectedElement, input.dataset.prop, input.value);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-flex-align-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-flex-align-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'alignSelf', btn.dataset.value);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-flex-preset').forEach(btn => {
+      btn.onclick = () => {
+        const preset = btn.dataset.preset;
+        const presets = {
+          grow: { flexGrow: 1, flexShrink: 1, flexBasis: '0%' },
+          shrink: { flexGrow: 0, flexShrink: 1, flexBasis: 'auto' },
+          none: { flexGrow: 0, flexShrink: 0, flexBasis: 'auto' },
+          auto: { flexGrow: 1, flexShrink: 1, flexBasis: 'auto' }
+        };
+        Object.entries(presets[preset]).forEach(([prop, value]) => {
+          applyStyle(selectedElement, prop, value);
+          const input = panel.querySelector(`input[data-prop="${prop}"]`);
+          if (input) input.value = value;
+        });
+        showToast(`Applied flex: ${preset}`, 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-close-flex').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // ASPECT RATIO EDITOR
+  // ============================================
+  function openAspectRatioEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-aspect-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+    const currentRatio = cs.aspectRatio || 'auto';
+
+    const presets = [
+      { ratio: '1/1', label: 'Square', w: 40, h: 40 },
+      { ratio: '4/3', label: '4:3', w: 48, h: 36 },
+      { ratio: '16/9', label: '16:9', w: 48, h: 27 },
+      { ratio: '21/9', label: '21:9', w: 56, h: 24 },
+      { ratio: '3/2', label: '3:2', w: 48, h: 32 },
+      { ratio: '2/3', label: '2:3', w: 32, h: 48 },
+      { ratio: '9/16', label: '9:16', w: 27, h: 48 },
+      { ratio: '3/4', label: '3:4', w: 36, h: 48 },
+      { ratio: 'auto', label: 'Auto', w: 40, h: 40 }
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-aspect-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.ratio}</span>
+          <span style="font-weight:600;color:#fafafa">Aspect Ratio</span>
+        </div>
+        <button class="lumos-close-aspect" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-aspect-presets">
+          ${presets.map(p => `
+            <div class="lumos-aspect-preset ${currentRatio === p.ratio ? 'active' : ''}" data-ratio="${p.ratio}">
+              <div class="lumos-aspect-preset-box" style="width:${p.w}px;height:${p.h}px"></div>
+              <div class="lumos-aspect-preset-label">${p.label}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="lumos-aspect-custom">
+          <span style="color:#a1a1aa;font-size:12px">Custom:</span>
+          <input type="number" min="1" value="16" class="lumos-aspect-w" />
+          <span>/</span>
+          <input type="number" min="1" value="9" class="lumos-aspect-h" />
+          <button class="lumos-apply-custom-ratio" style="padding:8px 16px;background:#8b5cf6;border:none;border-radius:6px;color:white;cursor:pointer;font-size:11px">Apply</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-aspect-preset').forEach(preset => {
+      preset.onclick = () => {
+        panel.querySelectorAll('.lumos-aspect-preset').forEach(p => p.classList.remove('active'));
+        preset.classList.add('active');
+        applyStyle(selectedElement, 'aspectRatio', preset.dataset.ratio);
+      };
+    });
+
+    panel.querySelector('.lumos-apply-custom-ratio').onclick = () => {
+      const w = panel.querySelector('.lumos-aspect-w').value;
+      const h = panel.querySelector('.lumos-aspect-h').value;
+      const ratio = `${w}/${h}`;
+      panel.querySelectorAll('.lumos-aspect-preset').forEach(p => p.classList.remove('active'));
+      applyStyle(selectedElement, 'aspectRatio', ratio);
+      showToast(`Applied aspect ratio: ${ratio}`, 'success');
+    };
+
+    panel.querySelector('.lumos-close-aspect').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // BACKGROUND EDITOR
+  // ============================================
+  function openBackgroundEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-background-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-background-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.image}</span>
+          <span style="font-weight:600;color:#fafafa">Background</span>
+        </div>
+        <button class="lumos-close-bg" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-bg-tabs">
+        <button class="lumos-bg-tab active" data-tab="color">Color</button>
+        <button class="lumos-bg-tab" data-tab="gradient">Gradient</button>
+        <button class="lumos-bg-tab" data-tab="image">Image</button>
+      </div>
+      <div class="lumos-bg-content" data-active-tab="color">
+        <div class="lumos-bg-preview" style="background:${cs.backgroundColor}"></div>
+
+        <!-- Color Tab -->
+        <div class="lumos-bg-color-content">
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="color" value="${rgbToHex(cs.backgroundColor) || '#ffffff'}" class="lumos-bg-color-picker" style="width:50px;height:40px;border:none;border-radius:6px;cursor:pointer" />
+            <input type="text" value="${rgbToHex(cs.backgroundColor) || '#ffffff'}" class="lumos-bg-color-text" style="flex:1;padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa;font-size:12px" />
+          </div>
+          <div style="margin-top:12px">
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">QUICK COLORS</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              ${['#ffffff', '#000000', '#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', 'transparent'].map(c => `
+                <div class="lumos-quick-bg-color" data-color="${c}" style="width:28px;height:28px;background:${c};border:1px solid #27272a;border-radius:4px;cursor:pointer;${c === 'transparent' ? 'background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:8px 8px;background-position:0 0,0 4px,4px -4px,-4px 0' : ''}"></div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- Gradient Tab -->
+        <div class="lumos-bg-gradient-content" style="display:none">
+          <div style="margin-bottom:12px">
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">TYPE</div>
+            <div style="display:flex;gap:6px">
+              <button class="lumos-gradient-type-btn active" data-type="linear" style="flex:1;padding:8px;background:#27272a;border:1px solid #3f3f46;border-radius:6px;color:#fafafa;cursor:pointer;font-size:11px">Linear</button>
+              <button class="lumos-gradient-type-btn" data-type="radial" style="flex:1;padding:8px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#a1a1aa;cursor:pointer;font-size:11px">Radial</button>
+            </div>
+          </div>
+          <div style="margin-bottom:12px">
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">ANGLE</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <input type="range" min="0" max="360" value="135" class="lumos-gradient-angle" style="flex:1;accent-color:#8b5cf6" />
+              <span class="lumos-gradient-angle-value" style="font-size:11px;color:#fafafa;width:40px">135°</span>
+            </div>
+          </div>
+          <div style="margin-bottom:12px">
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">COLORS</div>
+            <div style="display:flex;gap:8px">
+              <input type="color" value="#3b82f6" class="lumos-gradient-color-1" style="width:50px;height:36px;border:none;border-radius:4px;cursor:pointer" />
+              <input type="color" value="#8b5cf6" class="lumos-gradient-color-2" style="width:50px;height:36px;border:none;border-radius:4px;cursor:pointer" />
+            </div>
+          </div>
+          <button class="lumos-apply-gradient" style="width:100%;padding:10px;background:#8b5cf6;border:none;border-radius:6px;color:white;cursor:pointer;font-size:12px">Apply Gradient</button>
+        </div>
+
+        <!-- Image Tab -->
+        <div class="lumos-bg-image-content" style="display:none">
+          <div style="margin-bottom:12px">
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">IMAGE URL</div>
+            <input type="text" class="lumos-bg-url-input" placeholder="https://example.com/image.jpg" />
+          </div>
+          <div style="margin-bottom:12px">
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">SIZE</div>
+            <div class="lumos-bg-size-grid">
+              ${['cover', 'contain', 'auto', '100% 100%', '50%', 'repeat'].map(s => `
+                <button class="lumos-bg-size-btn ${cs.backgroundSize === s ? 'active' : ''}" data-size="${s}">${s}</button>
+              `).join('')}
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#71717a;margin-bottom:8px">POSITION</div>
+            <div class="lumos-bg-position-grid">
+              ${['↖', '↑', '↗', '←', '•', '→', '↙', '↓', '↘'].map((icon, i) => {
+                const positions = ['top left', 'top center', 'top right', 'center left', 'center center', 'center right', 'bottom left', 'bottom center', 'bottom right'];
+                return `<button class="lumos-bg-position-btn" data-position="${positions[i]}">${icon}</button>`;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-bg-preview');
+
+    // Tab switching
+    panel.querySelectorAll('.lumos-bg-tab').forEach(tab => {
+      tab.onclick = () => {
+        panel.querySelectorAll('.lumos-bg-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const activeTab = tab.dataset.tab;
+        panel.querySelector('.lumos-bg-color-content').style.display = activeTab === 'color' ? 'block' : 'none';
+        panel.querySelector('.lumos-bg-gradient-content').style.display = activeTab === 'gradient' ? 'block' : 'none';
+        panel.querySelector('.lumos-bg-image-content').style.display = activeTab === 'image' ? 'block' : 'none';
+      };
+    });
+
+    // Color tab
+    panel.querySelector('.lumos-bg-color-picker').oninput = (e) => {
+      const color = e.target.value;
+      panel.querySelector('.lumos-bg-color-text').value = color;
+      preview.style.background = color;
+      applyStyle(selectedElement, 'backgroundColor', color);
+    };
+
+    panel.querySelector('.lumos-bg-color-text').onchange = (e) => {
+      const color = e.target.value;
+      panel.querySelector('.lumos-bg-color-picker').value = color;
+      preview.style.background = color;
+      applyStyle(selectedElement, 'backgroundColor', color);
+    };
+
+    panel.querySelectorAll('.lumos-quick-bg-color').forEach(btn => {
+      btn.onclick = () => {
+        const color = btn.dataset.color;
+        panel.querySelector('.lumos-bg-color-picker').value = color === 'transparent' ? '#ffffff' : color;
+        panel.querySelector('.lumos-bg-color-text').value = color;
+        preview.style.background = color;
+        applyStyle(selectedElement, 'backgroundColor', color);
+      };
+    });
+
+    // Gradient tab
+    function updateGradientPreview() {
+      const type = panel.querySelector('.lumos-gradient-type-btn.active').dataset.type;
+      const angle = panel.querySelector('.lumos-gradient-angle').value;
+      const color1 = panel.querySelector('.lumos-gradient-color-1').value;
+      const color2 = panel.querySelector('.lumos-gradient-color-2').value;
+      const gradient = type === 'linear'
+        ? `linear-gradient(${angle}deg, ${color1}, ${color2})`
+        : `radial-gradient(circle, ${color1}, ${color2})`;
+      preview.style.background = gradient;
+    }
+
+    panel.querySelectorAll('.lumos-gradient-type-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-gradient-type-btn').forEach(b => {
+          b.classList.remove('active');
+          b.style.background = '#18181b';
+          b.style.borderColor = '#27272a';
+          b.style.color = '#a1a1aa';
+        });
+        btn.classList.add('active');
+        btn.style.background = '#27272a';
+        btn.style.borderColor = '#3f3f46';
+        btn.style.color = '#fafafa';
+        updateGradientPreview();
+      };
+    });
+
+    panel.querySelector('.lumos-gradient-angle').oninput = (e) => {
+      panel.querySelector('.lumos-gradient-angle-value').textContent = `${e.target.value}°`;
+      updateGradientPreview();
+    };
+
+    panel.querySelectorAll('.lumos-gradient-color-1, .lumos-gradient-color-2').forEach(input => {
+      input.oninput = updateGradientPreview;
+    });
+
+    panel.querySelector('.lumos-apply-gradient').onclick = () => {
+      const type = panel.querySelector('.lumos-gradient-type-btn.active').dataset.type;
+      const angle = panel.querySelector('.lumos-gradient-angle').value;
+      const color1 = panel.querySelector('.lumos-gradient-color-1').value;
+      const color2 = panel.querySelector('.lumos-gradient-color-2').value;
+      const gradient = type === 'linear'
+        ? `linear-gradient(${angle}deg, ${color1}, ${color2})`
+        : `radial-gradient(circle, ${color1}, ${color2})`;
+      applyStyle(selectedElement, 'background', gradient);
+      showToast('Gradient applied', 'success');
+    };
+
+    // Image tab
+    panel.querySelector('.lumos-bg-url-input').onchange = (e) => {
+      const url = e.target.value;
+      if (url) {
+        preview.style.backgroundImage = `url(${url})`;
+        applyStyle(selectedElement, 'backgroundImage', `url(${url})`);
+      }
+    };
+
+    panel.querySelectorAll('.lumos-bg-size-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-bg-size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const size = btn.dataset.size;
+        if (size === 'repeat') {
+          applyStyle(selectedElement, 'backgroundRepeat', 'repeat');
+          applyStyle(selectedElement, 'backgroundSize', 'auto');
+        } else {
+          applyStyle(selectedElement, 'backgroundRepeat', 'no-repeat');
+          applyStyle(selectedElement, 'backgroundSize', size);
+        }
+        preview.style.backgroundSize = size === 'repeat' ? 'auto' : size;
+      };
+    });
+
+    panel.querySelectorAll('.lumos-bg-position-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-bg-position-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const position = btn.dataset.position;
+        applyStyle(selectedElement, 'backgroundPosition', position);
+        preview.style.backgroundPosition = position;
+      };
+    });
+
+    panel.querySelector('.lumos-close-bg').onclick = () => panel.remove();
+  }
+
+  // ============================================
   // ADD NEW COMMANDS TO PALETTE
   // ============================================
   commands.push(
@@ -7218,7 +8733,16 @@
     { id: 'z-index', label: 'Z-Index Manager', icon: 'layersIcon', action: openZIndexManager },
     { id: 'css-audit', label: 'CSS Audit', icon: 'fileSearch', action: runCSSAudit },
     { id: 'dark-mode', label: 'Toggle Dark Mode', icon: 'moon', action: toggleDarkModePreview },
-    { id: 'text-shadow', label: 'Text Shadow Editor', icon: 'textCursor', action: openTextShadowEditor }
+    { id: 'text-shadow', label: 'Text Shadow Editor', icon: 'textCursor', action: openTextShadowEditor },
+    { id: 'transform', label: 'Transform Editor', icon: 'rotate', action: openTransformEditor },
+    { id: 'position', label: 'Position Editor', icon: 'mapPin', action: openPositionEditor },
+    { id: 'border', label: 'Border Editor', icon: 'square', action: openBorderEditor },
+    { id: 'cursor', label: 'Cursor Picker', icon: 'mousePointer', action: openCursorPicker },
+    { id: 'overflow', label: 'Overflow Controls', icon: 'scrollIcon', action: openOverflowEditor },
+    { id: 'display', label: 'Display & Visibility', icon: 'eye', action: openDisplayEditor },
+    { id: 'flex-item', label: 'Flex Item Controls', icon: 'flexGrow', action: openFlexItemEditor },
+    { id: 'aspect-ratio', label: 'Aspect Ratio', icon: 'ratio', action: openAspectRatioEditor },
+    { id: 'background', label: 'Background Editor', icon: 'image', action: openBackgroundEditor }
   );
 
   // Focus mode keyboard shortcut
