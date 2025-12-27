@@ -3287,6 +3287,317 @@
       border-color: #8b5cf6;
       color: white;
     }
+
+    /* Outline Editor */
+    .lumos-outline-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-outline-preview {
+      width: 80px;
+      height: 80px;
+      background: #18181b;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #71717a;
+      font-size: 10px;
+    }
+
+    /* Text Formatting Toolbar */
+    .lumos-text-toolbar {
+      position: fixed;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      gap: 4px;
+      z-index: 1000006;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .lumos-text-toolbar-btn {
+      width: 32px;
+      height: 32px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .lumos-text-toolbar-btn:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-text-toolbar-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-text-toolbar-divider {
+      width: 1px;
+      background: #27272a;
+      margin: 4px 4px;
+    }
+
+    /* Transition Presets */
+    .lumos-transition-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-transition-preset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .lumos-transition-preset {
+      padding: 12px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lumos-transition-preset:hover {
+      background: #27272a;
+      transform: scale(1.02);
+    }
+    .lumos-transition-preset-name {
+      font-size: 12px;
+      color: #fafafa;
+      margin-bottom: 4px;
+    }
+    .lumos-transition-preset-preview {
+      width: 100%;
+      height: 4px;
+      background: #3b82f6;
+      border-radius: 2px;
+    }
+
+    /* Object Fit Controls */
+    .lumos-object-fit-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-object-fit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .lumos-object-fit-btn {
+      padding: 16px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      color: #a1a1aa;
+      cursor: pointer;
+      text-align: center;
+      font-size: 11px;
+    }
+    .lumos-object-fit-btn:hover {
+      background: #27272a;
+    }
+    .lumos-object-fit-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-object-fit-preview {
+      width: 40px;
+      height: 30px;
+      background: linear-gradient(135deg, #3b82f6 50%, #8b5cf6 50%);
+      margin: 0 auto 8px;
+      border-radius: 4px;
+    }
+
+    /* Clip Path Editor */
+    .lumos-clip-path-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 420px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-clip-path-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .lumos-clip-path-btn {
+      padding: 16px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-clip-path-btn:hover {
+      background: #27272a;
+    }
+    .lumos-clip-path-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+    }
+    .lumos-clip-path-shape {
+      width: 40px;
+      height: 40px;
+      background: #3b82f6;
+      margin: 0 auto 8px;
+    }
+    .lumos-clip-path-label {
+      font-size: 10px;
+      color: #a1a1aa;
+    }
+    .lumos-clip-path-btn.active .lumos-clip-path-label {
+      color: white;
+    }
+
+    /* Blend Mode Picker */
+    .lumos-blend-mode-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-blend-mode-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .lumos-blend-mode-btn {
+      padding: 10px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .lumos-blend-mode-btn:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-blend-mode-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-blend-preview {
+      width: 80px;
+      height: 60px;
+      margin: 0 auto 16px;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .lumos-blend-preview-layer1 {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ef4444, #f97316);
+    }
+    .lumos-blend-preview-layer2 {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(225deg, #3b82f6, #8b5cf6);
+    }
+
+    /* Quick Controls Panel */
+    .lumos-quick-controls {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 1000006;
+    }
+    .lumos-quick-control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid #1f1f23;
+    }
+    .lumos-quick-control-row:last-child {
+      border-bottom: none;
+    }
+    .lumos-quick-control-label {
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .lumos-quick-control-value {
+      display: flex;
+      gap: 6px;
+    }
+    .lumos-quick-toggle {
+      width: 40px;
+      height: 22px;
+      background: #27272a;
+      border: none;
+      border-radius: 11px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .lumos-quick-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: #71717a;
+      border-radius: 50%;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .lumos-quick-toggle.active {
+      background: #8b5cf6;
+    }
+    .lumos-quick-toggle.active::after {
+      transform: translateX(18px);
+      background: white;
+    }
   `;
   document.head.appendChild(style);
 
@@ -3370,6 +3681,16 @@
     flexGrow: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="6" width="6" height="12" rx="1"/><rect x="16" y="6" width="6" height="12" rx="1"/><path d="M8 12h8M11 9l3 3-3 3"/></svg>',
     ratio: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></svg>',
     image: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+    outlineIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke-dasharray="4 2"/></svg>',
+    bold: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>',
+    italic: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>',
+    underline: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" y1="20" x2="20" y2="20"/></svg>',
+    timer: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
+    cropIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg>',
+    scissors: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>',
+    blendMode: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="9" cy="9" r="6"/><circle cx="15" cy="15" r="6"/></svg>',
+    pointerIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>',
+    textSelect: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 3a2 2 0 0 0-2 2"/><path d="M19 3a2 2 0 0 1 2 2"/><path d="M21 19a2 2 0 0 1-2 2"/><path d="M5 21a2 2 0 0 1-2-2"/><path d="M9 3h1"/><path d="M9 21h1"/><path d="M14 3h1"/><path d="M14 21h1"/><path d="M3 9v1"/><path d="M21 9v1"/><path d="M3 14v1"/><path d="M21 14v1"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -8711,6 +9032,507 @@
   }
 
   // ============================================
+  // OUTLINE EDITOR
+  // ============================================
+  function openOutlineEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-outline-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-outline-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.outlineIcon}</span>
+          <span style="font-weight:600;color:#fafafa">Outline</span>
+        </div>
+        <button class="lumos-close-outline" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-outline-preview" style="outline:${cs.outline}">Preview</div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Width</div>
+          <input type="range" min="0" max="10" value="${parseInt(cs.outlineWidth) || 0}" class="lumos-outline-width" style="width:100%;accent-color:#8b5cf6" />
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#71717a;margin-top:4px">
+            <span>0px</span><span class="lumos-outline-width-val">${parseInt(cs.outlineWidth) || 0}px</span><span>10px</span>
+          </div>
+        </div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Style</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+            ${['none', 'solid', 'dashed', 'dotted', 'double'].map(s => `
+              <button class="lumos-outline-style-btn" data-style="${s}" style="padding:8px;background:${cs.outlineStyle === s ? '#8b5cf6' : '#18181b'};border:1px solid ${cs.outlineStyle === s ? '#8b5cf6' : '#27272a'};border-radius:6px;color:${cs.outlineStyle === s ? 'white' : '#a1a1aa'};font-size:10px;cursor:pointer">${s}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div style="margin-bottom:16px">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Color</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="color" value="${rgbToHex(cs.outlineColor) || '#000000'}" class="lumos-outline-color" style="width:40px;height:32px;border:none;border-radius:4px;cursor:pointer" />
+            <input type="text" value="${rgbToHex(cs.outlineColor) || '#000000'}" class="lumos-outline-color-text" style="flex:1;padding:8px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa;font-size:12px" />
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Offset</div>
+          <input type="range" min="0" max="20" value="${parseInt(cs.outlineOffset) || 0}" class="lumos-outline-offset" style="width:100%;accent-color:#8b5cf6" />
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#71717a;margin-top:4px">
+            <span>0px</span><span class="lumos-outline-offset-val">${parseInt(cs.outlineOffset) || 0}px</span><span>20px</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const preview = panel.querySelector('.lumos-outline-preview');
+
+    function updateOutline() {
+      const width = panel.querySelector('.lumos-outline-width').value + 'px';
+      const style = panel.querySelector('.lumos-outline-style-btn[style*="#8b5cf6"]')?.dataset.style || 'solid';
+      const color = panel.querySelector('.lumos-outline-color').value;
+      const offset = panel.querySelector('.lumos-outline-offset').value + 'px';
+
+      panel.querySelector('.lumos-outline-width-val').textContent = width;
+      panel.querySelector('.lumos-outline-offset-val').textContent = offset;
+
+      preview.style.outline = `${width} ${style} ${color}`;
+      preview.style.outlineOffset = offset;
+
+      applyStyle(selectedElement, 'outline', `${width} ${style} ${color}`);
+      applyStyle(selectedElement, 'outlineOffset', offset);
+    }
+
+    panel.querySelector('.lumos-outline-width').oninput = updateOutline;
+    panel.querySelector('.lumos-outline-offset').oninput = updateOutline;
+
+    panel.querySelectorAll('.lumos-outline-style-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-outline-style-btn').forEach(b => {
+          b.style.background = '#18181b';
+          b.style.borderColor = '#27272a';
+          b.style.color = '#a1a1aa';
+        });
+        btn.style.background = '#8b5cf6';
+        btn.style.borderColor = '#8b5cf6';
+        btn.style.color = 'white';
+        updateOutline();
+      };
+    });
+
+    panel.querySelector('.lumos-outline-color').oninput = (e) => {
+      panel.querySelector('.lumos-outline-color-text').value = e.target.value;
+      updateOutline();
+    };
+
+    panel.querySelector('.lumos-close-outline').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // TEXT FORMATTING TOOLBAR
+  // ============================================
+  function showTextToolbar() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-text-toolbar')?.remove();
+    const rect = selectedElement.getBoundingClientRect();
+    const cs = getComputedStyle(selectedElement);
+
+    const toolbar = document.createElement('div');
+    toolbar.className = 'lumos-text-toolbar lumos-ui';
+    toolbar.style.cssText = `left:${rect.left}px;top:${rect.top - 50}px`;
+
+    toolbar.innerHTML = `
+      <button class="lumos-text-toolbar-btn ${cs.fontWeight >= 600 ? 'active' : ''}" data-prop="fontWeight" data-on="700" data-off="400" title="Bold">B</button>
+      <button class="lumos-text-toolbar-btn ${cs.fontStyle === 'italic' ? 'active' : ''}" data-prop="fontStyle" data-on="italic" data-off="normal" title="Italic" style="font-style:italic">I</button>
+      <button class="lumos-text-toolbar-btn ${cs.textDecoration.includes('underline') ? 'active' : ''}" data-prop="textDecoration" data-on="underline" data-off="none" title="Underline" style="text-decoration:underline">U</button>
+      <button class="lumos-text-toolbar-btn ${cs.textDecoration.includes('line-through') ? 'active' : ''}" data-prop="textDecoration" data-on="line-through" data-off="none" title="Strikethrough" style="text-decoration:line-through">S</button>
+      <div class="lumos-text-toolbar-divider"></div>
+      <button class="lumos-text-toolbar-btn ${cs.textAlign === 'left' ? 'active' : ''}" data-prop="textAlign" data-value="left" title="Align Left">⫷</button>
+      <button class="lumos-text-toolbar-btn ${cs.textAlign === 'center' ? 'active' : ''}" data-prop="textAlign" data-value="center" title="Align Center">≡</button>
+      <button class="lumos-text-toolbar-btn ${cs.textAlign === 'right' ? 'active' : ''}" data-prop="textAlign" data-value="right" title="Align Right">⫸</button>
+      <div class="lumos-text-toolbar-divider"></div>
+      <button class="lumos-text-toolbar-btn ${cs.textTransform === 'uppercase' ? 'active' : ''}" data-prop="textTransform" data-on="uppercase" data-off="none" title="Uppercase">AA</button>
+      <button class="lumos-text-toolbar-btn ${cs.textTransform === 'capitalize' ? 'active' : ''}" data-prop="textTransform" data-on="capitalize" data-off="none" title="Capitalize">Aa</button>
+    `;
+
+    document.body.appendChild(toolbar);
+
+    toolbar.querySelectorAll('.lumos-text-toolbar-btn').forEach(btn => {
+      btn.onclick = () => {
+        const prop = btn.dataset.prop;
+        if (btn.dataset.value) {
+          // Alignment buttons
+          toolbar.querySelectorAll(`[data-prop="${prop}"]`).forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          applyStyle(selectedElement, prop, btn.dataset.value);
+        } else {
+          // Toggle buttons
+          const isActive = btn.classList.toggle('active');
+          applyStyle(selectedElement, prop, isActive ? btn.dataset.on : btn.dataset.off);
+        }
+      };
+    });
+
+    // Close on click outside
+    setTimeout(() => {
+      document.addEventListener('click', function handler(e) {
+        if (!toolbar.contains(e.target)) {
+          toolbar.remove();
+          document.removeEventListener('click', handler);
+        }
+      });
+    }, 10);
+  }
+
+  // ============================================
+  // TRANSITION PRESETS
+  // ============================================
+  function openTransitionPresets() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-transition-editor')?.remove();
+
+    const presets = [
+      { name: 'Instant', value: 'none' },
+      { name: 'Fast', value: 'all 0.15s ease' },
+      { name: 'Normal', value: 'all 0.3s ease' },
+      { name: 'Slow', value: 'all 0.5s ease' },
+      { name: 'Ease In', value: 'all 0.3s ease-in' },
+      { name: 'Ease Out', value: 'all 0.3s ease-out' },
+      { name: 'Ease In Out', value: 'all 0.3s ease-in-out' },
+      { name: 'Bounce', value: 'all 0.5s cubic-bezier(0.68,-0.55,0.265,1.55)' },
+      { name: 'Elastic', value: 'all 0.6s cubic-bezier(0.68,-0.6,0.32,1.6)' },
+      { name: 'Spring', value: 'all 0.4s cubic-bezier(0.175,0.885,0.32,1.275)' }
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-transition-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.timer}</span>
+          <span style="font-weight:600;color:#fafafa">Transition Presets</span>
+        </div>
+        <button class="lumos-close-transition" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-transition-preset-grid">
+          ${presets.map(p => `
+            <div class="lumos-transition-preset" data-transition="${p.value}">
+              <div class="lumos-transition-preset-name">${p.name}</div>
+              <div class="lumos-transition-preset-preview"></div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid #27272a">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Custom</div>
+          <div style="display:flex;gap:8px">
+            <input type="text" class="lumos-transition-custom" placeholder="all 0.3s ease" style="flex:1;padding:10px;background:#18181b;border:1px solid #27272a;border-radius:6px;color:#fafafa;font-size:12px" />
+            <button class="lumos-apply-transition" style="padding:10px 16px;background:#8b5cf6;border:none;border-radius:6px;color:white;cursor:pointer;font-size:12px">Apply</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-transition-preset').forEach(preset => {
+      preset.onclick = () => {
+        applyStyle(selectedElement, 'transition', preset.dataset.transition);
+        showToast('Transition applied', 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-apply-transition').onclick = () => {
+      const value = panel.querySelector('.lumos-transition-custom').value;
+      if (value) {
+        applyStyle(selectedElement, 'transition', value);
+        showToast('Custom transition applied', 'success');
+      }
+    };
+
+    panel.querySelector('.lumos-close-transition').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // OBJECT FIT CONTROLS
+  // ============================================
+  function openObjectFitEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    if (!['IMG', 'VIDEO', 'CANVAS'].includes(selectedElement.tagName)) {
+      showToast('Select an image or video element', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-object-fit-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const options = ['fill', 'contain', 'cover', 'none', 'scale-down'];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-object-fit-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.cropIcon}</span>
+          <span style="font-weight:600;color:#fafafa">Object Fit</span>
+        </div>
+        <button class="lumos-close-objfit" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-object-fit-grid">
+          ${options.map(o => `
+            <button class="lumos-object-fit-btn ${cs.objectFit === o ? 'active' : ''}" data-fit="${o}">
+              <div class="lumos-object-fit-preview" style="object-fit:${o}"></div>
+              ${o}
+            </button>
+          `).join('')}
+        </div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid #27272a">
+          <div style="font-size:11px;color:#71717a;margin-bottom:8px">Object Position</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+            ${['top left', 'top center', 'top right', 'center left', 'center center', 'center right', 'bottom left', 'bottom center', 'bottom right'].map((pos, i) => {
+              const icons = ['↖', '↑', '↗', '←', '•', '→', '↙', '↓', '↘'];
+              return `<button class="lumos-obj-pos-btn" data-pos="${pos}" style="padding:10px;background:#18181b;border:1px solid #27272a;border-radius:4px;color:#71717a;font-size:14px;cursor:pointer">${icons[i]}</button>`;
+            }).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-object-fit-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-object-fit-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'objectFit', btn.dataset.fit);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-obj-pos-btn').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle(selectedElement, 'objectPosition', btn.dataset.pos);
+        showToast(`Position: ${btn.dataset.pos}`, 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-close-objfit').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // CLIP PATH EDITOR
+  // ============================================
+  function openClipPathEditor() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-clip-path-editor')?.remove();
+
+    const shapes = [
+      { name: 'None', value: 'none', shape: 'border-radius:0' },
+      { name: 'Circle', value: 'circle(50% at 50% 50%)', shape: 'border-radius:50%' },
+      { name: 'Ellipse', value: 'ellipse(50% 40% at 50% 50%)', shape: 'border-radius:50%/40%' },
+      { name: 'Inset', value: 'inset(10%)', shape: 'border-radius:0;width:32px;height:32px;margin:4px auto' },
+      { name: 'Triangle', value: 'polygon(50% 0%, 0% 100%, 100% 100%)', shape: 'clip-path:polygon(50% 0%, 0% 100%, 100% 100%)' },
+      { name: 'Pentagon', value: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', shape: 'clip-path:polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' },
+      { name: 'Hexagon', value: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)', shape: 'clip-path:polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' },
+      { name: 'Star', value: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)', shape: 'clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' },
+      { name: 'Rhombus', value: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', shape: 'clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' },
+      { name: 'Chevron', value: 'polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%)', shape: 'clip-path:polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%)' },
+      { name: 'Arrow', value: 'polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%)', shape: 'clip-path:polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%)' },
+      { name: 'Cross', value: 'polygon(10% 25%, 35% 25%, 35% 0%, 65% 0%, 65% 25%, 90% 25%, 90% 50%, 65% 50%, 65% 100%, 35% 100%, 35% 50%, 10% 50%)', shape: 'clip-path:polygon(10% 25%, 35% 25%, 35% 0%, 65% 0%, 65% 25%, 90% 25%, 90% 50%, 65% 50%, 65% 100%, 35% 100%, 35% 50%, 10% 50%)' }
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-clip-path-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.scissors}</span>
+          <span style="font-weight:600;color:#fafafa">Clip Path</span>
+        </div>
+        <button class="lumos-close-clip" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-clip-path-grid">
+          ${shapes.map(s => `
+            <div class="lumos-clip-path-btn" data-clip="${s.value}">
+              <div class="lumos-clip-path-shape" style="${s.shape}"></div>
+              <div class="lumos-clip-path-label">${s.name}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-clip-path-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-clip-path-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyStyle(selectedElement, 'clipPath', btn.dataset.clip);
+      };
+    });
+
+    panel.querySelector('.lumos-close-clip').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // BLEND MODE PICKER
+  // ============================================
+  function openBlendModePicker() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-blend-mode-editor')?.remove();
+    const cs = getComputedStyle(selectedElement);
+    const currentBlend = cs.mixBlendMode || 'normal';
+
+    const blendModes = [
+      'normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten',
+      'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference',
+      'exclusion', 'hue', 'saturation', 'color', 'luminosity'
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-blend-mode-editor lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.blendMode}</span>
+          <span style="font-weight:600;color:#fafafa">Blend Mode</span>
+        </div>
+        <button class="lumos-close-blend" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div style="padding:16px">
+        <div class="lumos-blend-preview">
+          <div class="lumos-blend-preview-layer1"></div>
+          <div class="lumos-blend-preview-layer2" style="mix-blend-mode:${currentBlend}"></div>
+        </div>
+        <div class="lumos-blend-mode-grid">
+          ${blendModes.map(m => `
+            <button class="lumos-blend-mode-btn ${currentBlend === m ? 'active' : ''}" data-blend="${m}">${m}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    const layer2 = panel.querySelector('.lumos-blend-preview-layer2');
+
+    panel.querySelectorAll('.lumos-blend-mode-btn').forEach(btn => {
+      btn.onclick = () => {
+        panel.querySelectorAll('.lumos-blend-mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const blend = btn.dataset.blend;
+        layer2.style.mixBlendMode = blend;
+        applyStyle(selectedElement, 'mixBlendMode', blend);
+      };
+    });
+
+    panel.querySelector('.lumos-close-blend').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // QUICK CONTROLS (pointer-events, user-select, scroll-behavior)
+  // ============================================
+  function openQuickControls() {
+    if (!selectedElement) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    document.querySelector('.lumos-quick-controls')?.remove();
+    const cs = getComputedStyle(selectedElement);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-quick-controls lumos-ui';
+    panel.innerHTML = `
+      <div style="padding:16px;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:#8b5cf6">${icons.settings}</span>
+          <span style="font-weight:600;color:#fafafa">Quick Controls</span>
+        </div>
+        <button class="lumos-close-quick" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div>
+        <div class="lumos-quick-control-row">
+          <span class="lumos-quick-control-label">Pointer Events</span>
+          <div class="lumos-quick-control-value">
+            <button class="lumos-quick-toggle ${cs.pointerEvents !== 'none' ? 'active' : ''}" data-prop="pointerEvents" data-on="auto" data-off="none"></button>
+          </div>
+        </div>
+        <div class="lumos-quick-control-row">
+          <span class="lumos-quick-control-label">User Select</span>
+          <div class="lumos-quick-control-value">
+            <button class="lumos-quick-toggle ${cs.userSelect !== 'none' ? 'active' : ''}" data-prop="userSelect" data-on="auto" data-off="none"></button>
+          </div>
+        </div>
+        <div class="lumos-quick-control-row">
+          <span class="lumos-quick-control-label">Smooth Scroll</span>
+          <div class="lumos-quick-control-value">
+            <button class="lumos-quick-toggle ${cs.scrollBehavior === 'smooth' ? 'active' : ''}" data-prop="scrollBehavior" data-on="smooth" data-off="auto"></button>
+          </div>
+        </div>
+        <div class="lumos-quick-control-row">
+          <span class="lumos-quick-control-label">Backface Visible</span>
+          <div class="lumos-quick-control-value">
+            <button class="lumos-quick-toggle ${cs.backfaceVisibility !== 'hidden' ? 'active' : ''}" data-prop="backfaceVisibility" data-on="visible" data-off="hidden"></button>
+          </div>
+        </div>
+        <div class="lumos-quick-control-row">
+          <span class="lumos-quick-control-label">Will Change</span>
+          <div class="lumos-quick-control-value" style="gap:4px">
+            <button class="lumos-mini-btn" data-prop="willChange" data-value="auto" style="padding:4px 8px;background:#18181b;border:1px solid #27272a;border-radius:4px;color:#a1a1aa;font-size:10px;cursor:pointer">Auto</button>
+            <button class="lumos-mini-btn" data-prop="willChange" data-value="transform" style="padding:4px 8px;background:#18181b;border:1px solid #27272a;border-radius:4px;color:#a1a1aa;font-size:10px;cursor:pointer">Transform</button>
+            <button class="lumos-mini-btn" data-prop="willChange" data-value="opacity" style="padding:4px 8px;background:#18181b;border:1px solid #27272a;border-radius:4px;color:#a1a1aa;font-size:10px;cursor:pointer">Opacity</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-quick-toggle').forEach(toggle => {
+      toggle.onclick = () => {
+        const isActive = toggle.classList.toggle('active');
+        applyStyle(selectedElement, toggle.dataset.prop, isActive ? toggle.dataset.on : toggle.dataset.off);
+      };
+    });
+
+    panel.querySelectorAll('.lumos-mini-btn').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle(selectedElement, btn.dataset.prop, btn.dataset.value);
+        showToast(`will-change: ${btn.dataset.value}`, 'success');
+      };
+    });
+
+    panel.querySelector('.lumos-close-quick').onclick = () => panel.remove();
+  }
+
+  // ============================================
   // ADD NEW COMMANDS TO PALETTE
   // ============================================
   commands.push(
@@ -8742,7 +9564,14 @@
     { id: 'display', label: 'Display & Visibility', icon: 'eye', action: openDisplayEditor },
     { id: 'flex-item', label: 'Flex Item Controls', icon: 'flexGrow', action: openFlexItemEditor },
     { id: 'aspect-ratio', label: 'Aspect Ratio', icon: 'ratio', action: openAspectRatioEditor },
-    { id: 'background', label: 'Background Editor', icon: 'image', action: openBackgroundEditor }
+    { id: 'background', label: 'Background Editor', icon: 'image', action: openBackgroundEditor },
+    { id: 'outline', label: 'Outline Editor', icon: 'outlineIcon', action: openOutlineEditor },
+    { id: 'text-toolbar', label: 'Text Formatting', icon: 'type', shortcut: 'T', action: showTextToolbar },
+    { id: 'transitions', label: 'Transition Presets', icon: 'timer', action: openTransitionPresets },
+    { id: 'object-fit', label: 'Object Fit', icon: 'cropIcon', action: openObjectFitEditor },
+    { id: 'clip-path', label: 'Clip Path Shapes', icon: 'scissors', action: openClipPathEditor },
+    { id: 'blend-mode', label: 'Blend Mode', icon: 'blendMode', action: openBlendModePicker },
+    { id: 'quick-controls', label: 'Quick Controls', icon: 'settings', action: openQuickControls }
   );
 
   // Focus mode keyboard shortcut
@@ -8751,6 +9580,12 @@
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (commandPaletteOpen) return;
       toggleFocusMode();
+    }
+    // Text toolbar shortcut
+    if (e.key === 't' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (commandPaletteOpen) return;
+      showTextToolbar();
     }
   });
 
