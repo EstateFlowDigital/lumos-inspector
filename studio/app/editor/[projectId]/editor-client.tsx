@@ -33,7 +33,23 @@ import {
   Check,
   Link2,
 } from "lucide-react"
-import { getLumosSocket, generateSessionId, type SelectedElement as SocketSelectedElement } from "@/lib/lumos-socket"
+import { getLumosSocket, type SelectedElement as SocketSelectedElement } from "@/lib/lumos-socket"
+
+// Generate a persistent session ID from repo name
+function createPersistentSessionId(repoName: string): string {
+  // Simple hash function to create a short, consistent ID
+  let hash = 0
+  for (let i = 0; i < repoName.length; i++) {
+    const char = repoName.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash // Convert to 32-bit integer
+  }
+  // Convert to base36 and ensure it's always positive
+  const id = Math.abs(hash).toString(36)
+  // Prefix with repo name (sanitized) for readability
+  const prefix = repoName.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 20)
+  return `${prefix}-${id}`
+}
 
 interface RepoInfo {
   id: number
@@ -87,7 +103,8 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null)
   const [inspectorEnabled, setInspectorEnabled] = useState(true)
   const [connectionMode, setConnectionMode] = useState<ConnectionMode>("iframe")
-  const [sessionId] = useState(() => generateSessionId())
+  // Use persistent session ID based on repo name (stays same for each project)
+  const sessionId = createPersistentSessionId(repo.name)
   const [proxyError, setProxyError] = useState<string | null>(null)
   const [targetConnected, setTargetConnected] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -172,7 +189,7 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
         lumosSocket.current.disconnect()
       }
     }
-  }, [connectionMode, sessionId, handleElementSelected, handleStyleApplied])
+  }, [connectionMode, sessionId, handleElementSelected, handleStyleApplied, repo.name])
 
   const handleLoadUrl = useCallback(() => {
     if (!targetUrl) {
@@ -261,7 +278,7 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
     setCopied(true)
     toast.success("Copied to clipboard!")
     setTimeout(() => setCopied(false), 2000)
-  }, [sessionId])
+  }, [sessionId, repo.name])
 
   const handleCreatePR = useCallback(async () => {
     if (changes.length === 0) {
