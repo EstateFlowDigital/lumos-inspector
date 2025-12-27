@@ -1986,6 +1986,424 @@
       font-size: 11px;
       font-family: ui-monospace, monospace;
     }
+
+    /* Animation Editor */
+    .lumos-animation-editor {
+      padding: 12px;
+    }
+    .lumos-animation-preview {
+      height: 60px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .lumos-animation-preview-box {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      border-radius: 6px;
+    }
+    .lumos-keyframe-timeline {
+      height: 40px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .lumos-keyframe-track {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: #3f3f46;
+      transform: translateY(-50%);
+    }
+    .lumos-keyframe-point {
+      position: absolute;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      background: #8b5cf6;
+      border: 2px solid white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+    .lumos-animation-controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .lumos-animation-control-btn {
+      flex: 1;
+      padding: 6px;
+      background: #27272a;
+      border: none;
+      border-radius: 4px;
+      color: #a1a1aa;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .lumos-animation-control-btn:hover {
+      background: #3f3f46;
+    }
+    .lumos-animation-control-btn.active {
+      background: #8b5cf6;
+      color: white;
+    }
+    .lumos-easing-select {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    /* Spacing Visualizer */
+    .lumos-spacing-overlay {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999997;
+    }
+    .lumos-spacing-margin {
+      background: rgba(249, 115, 22, 0.2);
+      border: 1px dashed #f97316;
+    }
+    .lumos-spacing-padding {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px dashed #22c55e;
+    }
+    .lumos-spacing-label {
+      position: absolute;
+      background: #18181b;
+      color: #fafafa;
+      font-size: 9px;
+      padding: 2px 4px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    /* CSS Variables Panel */
+    .lumos-vars-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .lumos-var-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-var-name {
+      flex: 1;
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: #8b5cf6;
+    }
+    .lumos-var-value {
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: #a1a1aa;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lumos-var-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      border: 1px solid #3f3f46;
+      flex-shrink: 0;
+    }
+
+    /* Element Info Tooltip */
+    .lumos-info-tooltip {
+      position: fixed;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #fafafa;
+      z-index: 1000002;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      max-width: 300px;
+    }
+    .lumos-info-tooltip-tag {
+      color: #f472b6;
+      font-weight: 600;
+    }
+    .lumos-info-tooltip-id {
+      color: #fbbf24;
+    }
+    .lumos-info-tooltip-class {
+      color: #60a5fa;
+    }
+    .lumos-info-tooltip-size {
+      color: #71717a;
+      margin-top: 4px;
+    }
+
+    /* Quick Layout Mode */
+    .lumos-layout-panel {
+      padding: 12px;
+    }
+    .lumos-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .lumos-layout-btn {
+      padding: 12px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      cursor: pointer;
+      text-align: center;
+      font-size: 10px;
+      transition: all 0.2s;
+    }
+    .lumos-layout-btn:hover {
+      background: #27272a;
+      border-color: #3f3f46;
+    }
+    .lumos-layout-btn.active {
+      background: #8b5cf620;
+      border-color: #8b5cf6;
+      color: #8b5cf6;
+    }
+    .lumos-layout-btn svg {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+    .lumos-layout-quick {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .lumos-layout-quick-btn {
+      padding: 8px;
+      background: #27272a;
+      border: none;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+    }
+    .lumos-layout-quick-btn:hover {
+      background: #3f3f46;
+    }
+
+    /* Color Eyedropper */
+    .lumos-eyedropper-cursor {
+      cursor: crosshair !important;
+    }
+    .lumos-eyedropper-preview {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 1000003;
+      overflow: hidden;
+      image-rendering: pixelated;
+    }
+    .lumos-eyedropper-color {
+      position: fixed;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 8px 12px;
+      z-index: 1000003;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-eyedropper-swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid #3f3f46;
+    }
+
+    /* Rulers */
+    .lumos-ruler {
+      position: fixed;
+      background: #18181b;
+      z-index: 999996;
+      user-select: none;
+    }
+    .lumos-ruler-h {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 20px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-ruler-v {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 20px;
+      border-right: 1px solid #27272a;
+    }
+    .lumos-ruler-tick {
+      position: absolute;
+      color: #71717a;
+      font-size: 8px;
+    }
+    .lumos-ruler-h .lumos-ruler-tick {
+      bottom: 2px;
+      transform: translateX(-50%);
+    }
+    .lumos-ruler-v .lumos-ruler-tick {
+      right: 2px;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: right center;
+    }
+    .lumos-ruler-line {
+      position: absolute;
+      background: #8b5cf6;
+    }
+    .lumos-ruler-h .lumos-ruler-line {
+      width: 1px;
+      height: 100%;
+      top: 0;
+    }
+    .lumos-ruler-v .lumos-ruler-line {
+      height: 1px;
+      width: 100%;
+      left: 0;
+    }
+
+    /* DOM Navigation */
+    .lumos-dom-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      background: #18181b;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-dom-nav-btn {
+      padding: 4px 8px;
+      background: #27272a;
+      border: none;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .lumos-dom-nav-btn:hover {
+      background: #3f3f46;
+    }
+    .lumos-dom-nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .lumos-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      overflow-x: auto;
+      font-size: 10px;
+    }
+    .lumos-breadcrumb-item {
+      color: #71717a;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .lumos-breadcrumb-item:hover {
+      color: #a1a1aa;
+    }
+    .lumos-breadcrumb-item.current {
+      color: #8b5cf6;
+    }
+    .lumos-breadcrumb-sep {
+      color: #3f3f46;
+    }
+
+    /* Spacing Guides */
+    .lumos-spacing-guide {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999998;
+    }
+    .lumos-spacing-guide-line {
+      background: #f59e0b;
+      position: absolute;
+    }
+    .lumos-spacing-guide-label {
+      position: absolute;
+      background: #f59e0b;
+      color: #0a0a0b;
+      font-size: 9px;
+      padding: 1px 4px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    /* Quick Actions Floating Bar */
+    .lumos-quick-bar {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      gap: 4px;
+      z-index: 1000000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .lumos-quick-bar-btn {
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: #a1a1aa;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      transition: all 0.2s;
+    }
+    .lumos-quick-bar-btn:hover {
+      background: #27272a;
+      color: #fafafa;
+    }
+    .lumos-quick-bar-btn.active {
+      background: #8b5cf6;
+      color: white;
+    }
+    .lumos-quick-bar-divider {
+      width: 1px;
+      background: #27272a;
+      margin: 0 4px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -2033,6 +2451,21 @@
     help: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
     keyboard: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M8 12h.001M12 12h.001M16 12h.001M6 16h12"/></svg>',
     zap: '<svg viewBox="0 0 24 24" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>',
+    camera: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+    droplet: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+    layout: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>',
+    arrowUp: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg>',
+    arrowDown: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/></svg>',
+    film: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>',
+    crosshair: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>',
+    maximize: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>',
+    cornerUpLeft: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="9,14 4,9 9,4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>',
+    alignLeft: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>',
+    alignCenter: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="10" x2="6" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="18" y1="18" x2="6" y2="18"/></svg>',
+    alignRight: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>',
+    columns: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>',
+    rows: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/></svg>',
+    spacing: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -5046,6 +5479,717 @@
   }
 
   // ============================================
+  // ANIMATION/TRANSITION EDITOR
+  // ============================================
+  function openAnimationEditor() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    const cs = getComputedStyle(selectedElement);
+    const currentTransition = cs.transition;
+    const currentAnimation = cs.animation;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:500px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.film} Animation Editor</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body">
+          <div class="lumos-animation-editor">
+            <div class="lumos-animation-preview">
+              <div class="lumos-animation-preview-box" id="lumos-anim-preview"></div>
+            </div>
+
+            <div class="lumos-section">
+              <div class="lumos-section-header">Transition</div>
+              <div class="lumos-section-content">
+                <div class="lumos-row">
+                  <div class="lumos-field">
+                    <label class="lumos-label">Property</label>
+                    <select class="lumos-select" id="lumos-trans-prop">
+                      <option value="all">all</option>
+                      <option value="transform">transform</option>
+                      <option value="opacity">opacity</option>
+                      <option value="background">background</option>
+                      <option value="color">color</option>
+                      <option value="box-shadow">box-shadow</option>
+                    </select>
+                  </div>
+                  <div class="lumos-field">
+                    <label class="lumos-label">Duration</label>
+                    <input class="lumos-input" id="lumos-trans-dur" value="0.3s" placeholder="0.3s">
+                  </div>
+                </div>
+                <div class="lumos-row">
+                  <div class="lumos-field">
+                    <label class="lumos-label">Easing</label>
+                    <select class="lumos-select lumos-easing-select" id="lumos-trans-ease">
+                      <option value="ease">ease</option>
+                      <option value="ease-in">ease-in</option>
+                      <option value="ease-out">ease-out</option>
+                      <option value="ease-in-out">ease-in-out</option>
+                      <option value="linear">linear</option>
+                      <option value="cubic-bezier(0.4, 0, 0.2, 1)">Material</option>
+                      <option value="cubic-bezier(0.68, -0.55, 0.265, 1.55)">Bounce</option>
+                    </select>
+                  </div>
+                  <div class="lumos-field">
+                    <label class="lumos-label">Delay</label>
+                    <input class="lumos-input" id="lumos-trans-delay" value="0s" placeholder="0s">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lumos-animation-controls">
+              <button class="lumos-animation-control-btn" id="lumos-anim-test">${icons.play} Test</button>
+              <button class="lumos-animation-control-btn" id="lumos-anim-apply">${icons.check} Apply</button>
+            </div>
+
+            <div class="lumos-section">
+              <div class="lumos-section-header">Quick Animations</div>
+              <div class="lumos-section-content">
+                <div class="lumos-layout-quick">
+                  <button class="lumos-layout-quick-btn" data-anim="fade">Fade In/Out</button>
+                  <button class="lumos-layout-quick-btn" data-anim="slide">Slide Up</button>
+                  <button class="lumos-layout-quick-btn" data-anim="scale">Scale</button>
+                  <button class="lumos-layout-quick-btn" data-anim="rotate">Rotate</button>
+                  <button class="lumos-layout-quick-btn" data-anim="shake">Shake</button>
+                  <button class="lumos-layout-quick-btn" data-anim="pulse">Pulse</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const preview = overlay.querySelector('#lumos-anim-preview');
+    const propSel = overlay.querySelector('#lumos-trans-prop');
+    const durInput = overlay.querySelector('#lumos-trans-dur');
+    const easeSel = overlay.querySelector('#lumos-trans-ease');
+    const delayInput = overlay.querySelector('#lumos-trans-delay');
+
+    function getTransitionValue() {
+      return `${propSel.value} ${durInput.value} ${easeSel.value} ${delayInput.value}`;
+    }
+
+    overlay.querySelector('#lumos-anim-test').onclick = () => {
+      preview.style.transition = getTransitionValue();
+      preview.style.transform = 'scale(1.2) rotate(5deg)';
+      setTimeout(() => { preview.style.transform = ''; }, 500);
+    };
+
+    overlay.querySelector('#lumos-anim-apply').onclick = () => {
+      applyStyleChange('transition', getTransitionValue());
+      showToast('Transition applied!', 'success');
+      overlay.remove();
+    };
+
+    overlay.querySelectorAll('[data-anim]').forEach(btn => {
+      btn.onclick = () => {
+        const anim = btn.dataset.anim;
+        let keyframes, animValue;
+        switch(anim) {
+          case 'fade':
+            applyStyleChange('transition', 'opacity 0.3s ease');
+            break;
+          case 'slide':
+            applyStyleChange('transition', 'transform 0.3s ease');
+            break;
+          case 'scale':
+            applyStyleChange('transition', 'transform 0.2s ease-out');
+            break;
+          case 'rotate':
+            applyStyleChange('transition', 'transform 0.5s ease');
+            break;
+          case 'shake':
+            selectedElement.style.animation = 'lumos-shake 0.5s';
+            break;
+          case 'pulse':
+            selectedElement.style.animation = 'lumos-pulse 1s infinite';
+            break;
+        }
+        showToast(`${anim} animation applied`);
+      };
+    });
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  }
+
+  // Add animation keyframes
+  const animStyle = document.createElement('style');
+  animStyle.textContent = `
+    @keyframes lumos-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    @keyframes lumos-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  `;
+  document.head.appendChild(animStyle);
+
+  // ============================================
+  // SPACING VISUALIZER
+  // ============================================
+  let spacingVisualizerEnabled = false;
+
+  function toggleSpacingVisualizer() {
+    spacingVisualizerEnabled = !spacingVisualizerEnabled;
+    updateSpacingVisualizer();
+  }
+
+  function updateSpacingVisualizer() {
+    document.querySelectorAll('.lumos-spacing-overlay').forEach(el => el.remove());
+
+    if (!spacingVisualizerEnabled || !selectedElement) return;
+
+    const rect = selectedElement.getBoundingClientRect();
+    const cs = getComputedStyle(selectedElement);
+
+    const mt = parseFloat(cs.marginTop);
+    const mr = parseFloat(cs.marginRight);
+    const mb = parseFloat(cs.marginBottom);
+    const ml = parseFloat(cs.marginLeft);
+    const pt = parseFloat(cs.paddingTop);
+    const pr = parseFloat(cs.paddingRight);
+    const pb = parseFloat(cs.paddingBottom);
+    const pl = parseFloat(cs.paddingLeft);
+
+    // Margin overlays
+    if (mt > 0) createSpacingOverlay(rect.left, rect.top - mt, rect.width, mt, 'margin', `${mt}px`);
+    if (mr > 0) createSpacingOverlay(rect.right, rect.top, mr, rect.height, 'margin', `${mr}px`);
+    if (mb > 0) createSpacingOverlay(rect.left, rect.bottom, rect.width, mb, 'margin', `${mb}px`);
+    if (ml > 0) createSpacingOverlay(rect.left - ml, rect.top, ml, rect.height, 'margin', `${ml}px`);
+
+    // Padding overlays
+    if (pt > 0) createSpacingOverlay(rect.left, rect.top, rect.width, pt, 'padding', `${pt}px`);
+    if (pr > 0) createSpacingOverlay(rect.right - pr, rect.top, pr, rect.height, 'padding', `${pr}px`);
+    if (pb > 0) createSpacingOverlay(rect.left, rect.bottom - pb, rect.width, pb, 'padding', `${pb}px`);
+    if (pl > 0) createSpacingOverlay(rect.left, rect.top, pl, rect.height, 'padding', `${pl}px`);
+  }
+
+  function createSpacingOverlay(x, y, w, h, type, label) {
+    const div = document.createElement('div');
+    div.className = `lumos-spacing-overlay lumos-spacing-${type} lumos-ui`;
+    div.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+    const labelEl = document.createElement('span');
+    labelEl.className = 'lumos-spacing-label';
+    labelEl.textContent = label;
+    labelEl.style.cssText = 'left:50%;top:50%;transform:translate(-50%,-50%)';
+    div.appendChild(labelEl);
+    document.body.appendChild(div);
+  }
+
+  // ============================================
+  // CSS VARIABLES INSPECTOR
+  // ============================================
+  function openCSSVariablesPanel() {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const allVars = [];
+
+    // Get CSS variables from :root
+    for (const prop of document.styleSheets) {
+      try {
+        for (const rule of prop.cssRules || []) {
+          if (rule.selectorText === ':root') {
+            const text = rule.cssText;
+            const matches = text.matchAll(/--([^:]+):\s*([^;]+)/g);
+            for (const match of matches) {
+              allVars.push({ name: '--' + match[1].trim(), value: match[2].trim() });
+            }
+          }
+        }
+      } catch (e) {}
+    }
+
+    // Fallback: check computed style for common vars
+    if (allVars.length === 0) {
+      ['--background', '--foreground', '--primary', '--secondary', '--muted', '--accent', '--border', '--ring'].forEach(name => {
+        const val = rootStyles.getPropertyValue(name);
+        if (val) allVars.push({ name, value: val.trim() });
+      });
+    }
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:450px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.code} CSS Variables</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="padding:0;max-height:400px;overflow:auto">
+          <div class="lumos-vars-list">
+            ${allVars.length === 0 ? '<div style="padding:24px;text-align:center;color:#71717a">No CSS variables found</div>' :
+              allVars.map(v => {
+                const isColor = v.value.startsWith('#') || v.value.startsWith('rgb') || v.value.startsWith('hsl');
+                return `
+                  <div class="lumos-var-item" data-var="${v.name}">
+                    ${isColor ? `<div class="lumos-var-color" style="background:${v.value}"></div>` : ''}
+                    <span class="lumos-var-name">${v.name}</span>
+                    <span class="lumos-var-value" title="${v.value}">${v.value}</span>
+                    <button class="lumos-copy-var" style="padding:4px 8px;background:#27272a;border:none;border-radius:4px;color:#a1a1aa;cursor:pointer;font-size:10px">Copy</button>
+                  </div>
+                `;
+              }).join('')
+            }
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelectorAll('.lumos-copy-var').forEach(btn => {
+      btn.onclick = () => {
+        const varName = btn.closest('.lumos-var-item').dataset.var;
+        navigator.clipboard.writeText(`var(${varName})`);
+        showToast('Copied!', 'success');
+      };
+    });
+  }
+
+  // ============================================
+  // ELEMENT INFO TOOLTIP
+  // ============================================
+  let infoTooltip = null;
+
+  function showInfoTooltip(el, x, y) {
+    if (!settings.showDimensions) return;
+    if (!infoTooltip) {
+      infoTooltip = document.createElement('div');
+      infoTooltip.className = 'lumos-info-tooltip lumos-ui';
+      document.body.appendChild(infoTooltip);
+    }
+
+    const rect = el.getBoundingClientRect();
+    const tag = el.tagName.toLowerCase();
+    const id = el.id ? `#${el.id}` : '';
+    const classes = (el.className && typeof el.className === 'string')
+      ? el.className.split(' ').filter(c => c && !c.startsWith('lumos-')).slice(0, 3).map(c => '.' + c).join('')
+      : '';
+
+    infoTooltip.innerHTML = `
+      <span class="lumos-info-tooltip-tag">${tag}</span><span class="lumos-info-tooltip-id">${id}</span><span class="lumos-info-tooltip-class">${classes}</span>
+      <div class="lumos-info-tooltip-size">${Math.round(rect.width)} × ${Math.round(rect.height)}</div>
+    `;
+    infoTooltip.style.left = (x + 15) + 'px';
+    infoTooltip.style.top = (y + 15) + 'px';
+    infoTooltip.style.display = 'block';
+  }
+
+  function hideInfoTooltip() {
+    if (infoTooltip) infoTooltip.style.display = 'none';
+  }
+
+  // Hook into mouseover
+  document.addEventListener('mousemove', e => {
+    if (!inspectorEnabled || !settings.showDimensions) return;
+    if (e.target.closest('.lumos-ui')) {
+      hideInfoTooltip();
+      return;
+    }
+    if (hoveredElement && hoveredElement !== selectedElement) {
+      showInfoTooltip(hoveredElement, e.clientX, e.clientY);
+    }
+  });
+
+  document.addEventListener('mouseout', () => hideInfoTooltip());
+
+  // ============================================
+  // QUICK LAYOUT MODE
+  // ============================================
+  function openLayoutPanel() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    const cs = getComputedStyle(selectedElement);
+    const currentDisplay = cs.display;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:400px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.layout} Quick Layout</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body">
+          <div class="lumos-layout-panel">
+            <div class="lumos-section-header" style="margin-bottom:8px">Display Type</div>
+            <div class="lumos-layout-grid">
+              <button class="lumos-layout-btn ${currentDisplay === 'block' ? 'active' : ''}" data-display="block">
+                ${icons.box}<br>Block
+              </button>
+              <button class="lumos-layout-btn ${currentDisplay === 'flex' ? 'active' : ''}" data-display="flex">
+                ${icons.columns}<br>Flex
+              </button>
+              <button class="lumos-layout-btn ${currentDisplay === 'grid' ? 'active' : ''}" data-display="grid">
+                ${icons.grid}<br>Grid
+              </button>
+              <button class="lumos-layout-btn ${currentDisplay === 'inline-flex' ? 'active' : ''}" data-display="inline-flex">
+                ${icons.columns}<br>I-Flex
+              </button>
+              <button class="lumos-layout-btn ${currentDisplay === 'none' ? 'active' : ''}" data-display="none">
+                ${icons.eye}<br>Hidden
+              </button>
+              <button class="lumos-layout-btn ${currentDisplay === 'inline-block' ? 'active' : ''}" data-display="inline-block">
+                ${icons.box}<br>I-Block
+              </button>
+            </div>
+
+            <div class="lumos-section-header" style="margin-bottom:8px">Quick Flex Layouts</div>
+            <div class="lumos-layout-quick">
+              <button class="lumos-layout-quick-btn" data-layout="row-center">Row Center</button>
+              <button class="lumos-layout-quick-btn" data-layout="col-center">Col Center</button>
+              <button class="lumos-layout-quick-btn" data-layout="space-between">Space Between</button>
+              <button class="lumos-layout-quick-btn" data-layout="space-around">Space Around</button>
+              <button class="lumos-layout-quick-btn" data-layout="wrap">Flex Wrap</button>
+              <button class="lumos-layout-quick-btn" data-layout="stretch">Stretch</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelectorAll('[data-display]').forEach(btn => {
+      btn.onclick = () => {
+        applyStyleChange('display', btn.dataset.display);
+        overlay.querySelectorAll('[data-display]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        showToast(`Display: ${btn.dataset.display}`);
+      };
+    });
+
+    overlay.querySelectorAll('[data-layout]').forEach(btn => {
+      btn.onclick = () => {
+        const layout = btn.dataset.layout;
+        applyStyleChange('display', 'flex');
+        switch(layout) {
+          case 'row-center':
+            applyStyleChange('flex-direction', 'row');
+            applyStyleChange('justify-content', 'center');
+            applyStyleChange('align-items', 'center');
+            break;
+          case 'col-center':
+            applyStyleChange('flex-direction', 'column');
+            applyStyleChange('justify-content', 'center');
+            applyStyleChange('align-items', 'center');
+            break;
+          case 'space-between':
+            applyStyleChange('justify-content', 'space-between');
+            break;
+          case 'space-around':
+            applyStyleChange('justify-content', 'space-around');
+            break;
+          case 'wrap':
+            applyStyleChange('flex-wrap', 'wrap');
+            break;
+          case 'stretch':
+            applyStyleChange('align-items', 'stretch');
+            break;
+        }
+        showToast(`Applied ${layout} layout`);
+      };
+    });
+  }
+
+  // ============================================
+  // COLOR EYEDROPPER
+  // ============================================
+  let eyedropperActive = false;
+
+  function toggleEyedropper() {
+    if (!window.EyeDropper) {
+      // Fallback for browsers without EyeDropper API
+      showToast('Eyedropper not supported in this browser', 'error');
+      return;
+    }
+
+    const eyeDropper = new EyeDropper();
+    eyeDropper.open().then(result => {
+      const color = result.sRGBHex;
+      navigator.clipboard.writeText(color);
+      showToast(`Color ${color} copied!`, 'success');
+
+      // If an element is selected and we have a recent color input, apply it
+      if (selectedElement) {
+        const lastColorProp = container.querySelector('[data-prop="color"]') ||
+                              container.querySelector('[data-prop="background-color"]');
+        if (lastColorProp) {
+          // Show color in toast
+          showToast(`Picked: ${color}`, 'success');
+        }
+      }
+    }).catch(() => {
+      // User cancelled
+    });
+  }
+
+  // ============================================
+  // RULERS
+  // ============================================
+  let rulersEnabled = false;
+
+  function toggleRulers() {
+    rulersEnabled = !rulersEnabled;
+    updateRulers();
+  }
+
+  function updateRulers() {
+    document.querySelectorAll('.lumos-ruler').forEach(el => el.remove());
+    if (!rulersEnabled) return;
+
+    // Horizontal ruler
+    const hRuler = document.createElement('div');
+    hRuler.className = 'lumos-ruler lumos-ruler-h lumos-ui';
+    let hTicks = '';
+    for (let i = 0; i <= window.innerWidth; i += 100) {
+      hTicks += `<span class="lumos-ruler-tick" style="left:${i}px">${i}</span>`;
+    }
+    hRuler.innerHTML = hTicks;
+    document.body.appendChild(hRuler);
+
+    // Vertical ruler
+    const vRuler = document.createElement('div');
+    vRuler.className = 'lumos-ruler lumos-ruler-v lumos-ui';
+    let vTicks = '';
+    for (let i = 0; i <= window.innerHeight; i += 100) {
+      vTicks += `<span class="lumos-ruler-tick" style="top:${i}px">${i}</span>`;
+    }
+    vRuler.innerHTML = vTicks;
+    document.body.appendChild(vRuler);
+  }
+
+  // ============================================
+  // DOM NAVIGATION (Parent/Child)
+  // ============================================
+  function selectParent() {
+    if (!selectedElement || selectedElement === document.body) return;
+    const parent = selectedElement.parentElement;
+    if (parent && parent !== document.body && parent !== document.documentElement) {
+      if (selectedElement) selectedElement.classList.remove('lumos-selected-outline');
+      selectedElement = parent;
+      selectedElement.classList.add('lumos-selected-outline');
+      updateUI();
+      showToast(`Selected parent: ${parent.tagName.toLowerCase()}`);
+    }
+  }
+
+  function selectFirstChild() {
+    if (!selectedElement) return;
+    const child = selectedElement.querySelector(':scope > *:not(.lumos-ui)');
+    if (child) {
+      if (selectedElement) selectedElement.classList.remove('lumos-selected-outline');
+      selectedElement = child;
+      selectedElement.classList.add('lumos-selected-outline');
+      updateUI();
+      showToast(`Selected child: ${child.tagName.toLowerCase()}`);
+    }
+  }
+
+  function selectNextSibling() {
+    if (!selectedElement) return;
+    let next = selectedElement.nextElementSibling;
+    while (next && next.classList.contains('lumos-ui')) {
+      next = next.nextElementSibling;
+    }
+    if (next) {
+      if (selectedElement) selectedElement.classList.remove('lumos-selected-outline');
+      selectedElement = next;
+      selectedElement.classList.add('lumos-selected-outline');
+      updateUI();
+    }
+  }
+
+  function selectPrevSibling() {
+    if (!selectedElement) return;
+    let prev = selectedElement.previousElementSibling;
+    while (prev && prev.classList.contains('lumos-ui')) {
+      prev = prev.previousElementSibling;
+    }
+    if (prev) {
+      if (selectedElement) selectedElement.classList.remove('lumos-selected-outline');
+      selectedElement = prev;
+      selectedElement.classList.add('lumos-selected-outline');
+      updateUI();
+    }
+  }
+
+  // Arrow key navigation
+  document.addEventListener('keydown', e => {
+    if (!inspectorEnabled || !selectedElement) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    if (e.altKey && e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectParent();
+    } else if (e.altKey && e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectFirstChild();
+    } else if (e.altKey && e.key === 'ArrowLeft') {
+      e.preventDefault();
+      selectPrevSibling();
+    } else if (e.altKey && e.key === 'ArrowRight') {
+      e.preventDefault();
+      selectNextSibling();
+    }
+  });
+
+  // ============================================
+  // ELEMENT SCREENSHOT
+  // ============================================
+  async function captureElement() {
+    if (!selectedElement) return showToast('Select an element first', 'error');
+
+    try {
+      // Use html2canvas if available, otherwise provide instructions
+      if (typeof html2canvas !== 'undefined') {
+        const canvas = await html2canvas(selectedElement);
+        const link = document.createElement('a');
+        link.download = 'element-screenshot.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        showToast('Screenshot saved!', 'success');
+      } else {
+        // Provide clipboard-based solution
+        const rect = selectedElement.getBoundingClientRect();
+        showToast(`Element size: ${Math.round(rect.width)}×${Math.round(rect.height)}px. Use browser DevTools to capture.`, 'info');
+      }
+    } catch (err) {
+      showToast('Screenshot failed', 'error');
+    }
+  }
+
+  // ============================================
+  // SPACING GUIDES BETWEEN ELEMENTS
+  // ============================================
+  let spacingGuidesEnabled = false;
+
+  function toggleSpacingGuides() {
+    spacingGuidesEnabled = !spacingGuidesEnabled;
+    updateSpacingGuides();
+  }
+
+  function updateSpacingGuides() {
+    document.querySelectorAll('.lumos-spacing-guide').forEach(el => el.remove());
+    if (!spacingGuidesEnabled || !selectedElement || !hoveredElement || selectedElement === hoveredElement) return;
+
+    const r1 = selectedElement.getBoundingClientRect();
+    const r2 = hoveredElement.getBoundingClientRect();
+
+    // Calculate distances
+    const guides = [];
+
+    // Horizontal distance
+    if (r2.left > r1.right) {
+      // r2 is to the right
+      const dist = Math.round(r2.left - r1.right);
+      guides.push({ x: r1.right, y: Math.max(r1.top, r2.top), w: dist, h: 2, label: dist + 'px', dir: 'h' });
+    } else if (r1.left > r2.right) {
+      // r1 is to the right
+      const dist = Math.round(r1.left - r2.right);
+      guides.push({ x: r2.right, y: Math.max(r1.top, r2.top), w: dist, h: 2, label: dist + 'px', dir: 'h' });
+    }
+
+    // Vertical distance
+    if (r2.top > r1.bottom) {
+      // r2 is below
+      const dist = Math.round(r2.top - r1.bottom);
+      guides.push({ x: Math.max(r1.left, r2.left), y: r1.bottom, w: 2, h: dist, label: dist + 'px', dir: 'v' });
+    } else if (r1.top > r2.bottom) {
+      // r1 is below
+      const dist = Math.round(r1.top - r2.bottom);
+      guides.push({ x: Math.max(r1.left, r2.left), y: r2.bottom, w: 2, h: dist, label: dist + 'px', dir: 'v' });
+    }
+
+    guides.forEach(g => {
+      const guide = document.createElement('div');
+      guide.className = 'lumos-spacing-guide lumos-ui';
+      guide.innerHTML = `
+        <div class="lumos-spacing-guide-line" style="left:0;top:0;width:${g.w}px;height:${g.h}px"></div>
+        <span class="lumos-spacing-guide-label" style="${g.dir === 'h' ? 'left:50%;top:-16px;transform:translateX(-50%)' : 'top:50%;left:8px;transform:translateY(-50%)'}">${g.label}</span>
+      `;
+      guide.style.cssText = `left:${g.x}px;top:${g.y}px`;
+      document.body.appendChild(guide);
+    });
+  }
+
+  // Update guides on hover
+  document.addEventListener('mouseover', () => {
+    if (spacingGuidesEnabled) updateSpacingGuides();
+  });
+
+  // ============================================
+  // QUICK ACTIONS BAR
+  // ============================================
+  let quickBarVisible = false;
+
+  function toggleQuickBar() {
+    quickBarVisible = !quickBarVisible;
+    updateQuickBar();
+  }
+
+  function updateQuickBar() {
+    document.querySelector('.lumos-quick-bar')?.remove();
+    if (!quickBarVisible || !selectedElement) return;
+
+    const bar = document.createElement('div');
+    bar.className = 'lumos-quick-bar lumos-ui';
+    bar.innerHTML = `
+      <button class="lumos-quick-bar-btn" data-action="copy-styles" title="Copy Styles">${icons.copy}</button>
+      <button class="lumos-quick-bar-btn" data-action="paste-styles" title="Paste Styles">${icons.paste}</button>
+      <div class="lumos-quick-bar-divider"></div>
+      <button class="lumos-quick-bar-btn" data-action="layout" title="Layout">${icons.layout}</button>
+      <button class="lumos-quick-bar-btn" data-action="animation" title="Animation">${icons.film}</button>
+      <div class="lumos-quick-bar-divider"></div>
+      <button class="lumos-quick-bar-btn" data-action="parent" title="Select Parent">${icons.arrowUp}</button>
+      <button class="lumos-quick-bar-btn" data-action="child" title="Select Child">${icons.arrowDown}</button>
+      <div class="lumos-quick-bar-divider"></div>
+      <button class="lumos-quick-bar-btn" data-action="screenshot" title="Screenshot">${icons.camera}</button>
+    `;
+    document.body.appendChild(bar);
+
+    bar.querySelectorAll('[data-action]').forEach(btn => {
+      btn.onclick = () => {
+        const action = btn.dataset.action;
+        switch(action) {
+          case 'copy-styles': container.querySelector('.lumos-copy-styles-btn')?.click(); break;
+          case 'paste-styles': container.querySelector('.lumos-paste-styles-btn')?.click(); break;
+          case 'layout': openLayoutPanel(); break;
+          case 'animation': openAnimationEditor(); break;
+          case 'parent': selectParent(); break;
+          case 'child': selectFirstChild(); break;
+          case 'screenshot': captureElement(); break;
+        }
+      };
+    });
+  }
+
+  // ============================================
+  // ADD NEW COMMANDS TO PALETTE
+  // ============================================
+  commands.push(
+    { id: 'animation', label: 'Animation Editor', icon: 'film', action: openAnimationEditor },
+    { id: 'layout-panel', label: 'Quick Layout', icon: 'layout', action: openLayoutPanel },
+    { id: 'css-vars', label: 'CSS Variables', icon: 'code', action: openCSSVariablesPanel },
+    { id: 'eyedropper', label: 'Color Eyedropper', icon: 'droplet', action: toggleEyedropper },
+    { id: 'rulers', label: 'Toggle Rulers', icon: 'ruler', action: toggleRulers },
+    { id: 'spacing-viz', label: 'Spacing Visualizer', icon: 'spacing', action: toggleSpacingVisualizer },
+    { id: 'spacing-guides', label: 'Spacing Guides', icon: 'move', action: toggleSpacingGuides },
+    { id: 'quick-bar', label: 'Toggle Quick Bar', icon: 'zap', action: toggleQuickBar },
+    { id: 'select-parent', label: 'Select Parent', icon: 'arrowUp', shortcut: '⌥↑', action: selectParent },
+    { id: 'select-child', label: 'Select Child', icon: 'arrowDown', shortcut: '⌥↓', action: selectFirstChild },
+    { id: 'screenshot', label: 'Screenshot Element', icon: 'camera', action: captureElement }
+  );
+
+  // ============================================
   // INITIALIZE ADDITIONAL FEATURES
   // ============================================
   setTimeout(() => {
@@ -5059,5 +6203,5 @@
   // Initialize
   setTimeout(loadPersistedChanges, 500);
   googleFonts.slice(0, 5).forEach(loadGoogleFont); // Preload popular fonts
-  console.log('[Lumos] Inspector ready. Click the purple button or press ⌘K to start.');
+  console.log('[Lumos] Inspector ready. Press ⌘K for commands, ? for shortcuts.');
 })();
