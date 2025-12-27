@@ -1438,6 +1438,554 @@
       color: #71717a;
       margin-top: 2px;
     }
+
+    /* Command Palette (Cmd+K) */
+    .lumos-command-palette {
+      position: fixed;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      max-width: 90vw;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      z-index: 1000000;
+      overflow: hidden;
+    }
+    .lumos-command-input-wrap {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid #27272a;
+      gap: 10px;
+    }
+    .lumos-command-input-wrap svg {
+      width: 18px;
+      height: 18px;
+      color: #71717a;
+    }
+    .lumos-command-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fafafa;
+      font-size: 14px;
+      outline: none;
+    }
+    .lumos-command-input::placeholder {
+      color: #52525b;
+    }
+    .lumos-command-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .lumos-command-group {
+      padding: 8px;
+    }
+    .lumos-command-group-title {
+      font-size: 10px;
+      color: #52525b;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      letter-spacing: 0.5px;
+    }
+    .lumos-command-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .lumos-command-item:hover, .lumos-command-item.selected {
+      background: #27272a;
+    }
+    .lumos-command-item svg {
+      width: 16px;
+      height: 16px;
+      color: #71717a;
+    }
+    .lumos-command-item-text {
+      flex: 1;
+      font-size: 13px;
+      color: #fafafa;
+    }
+    .lumos-command-item-shortcut {
+      font-size: 10px;
+      color: #52525b;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-command-empty {
+      padding: 24px;
+      text-align: center;
+      color: #52525b;
+      font-size: 13px;
+    }
+
+    /* Navigator Search */
+    .lumos-nav-search {
+      padding: 8px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-nav-search-input {
+      width: 100%;
+      padding: 6px 10px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 11px;
+      outline: none;
+    }
+    .lumos-nav-search-input:focus {
+      border-color: #8b5cf6;
+    }
+    .lumos-nav-search-input::placeholder {
+      color: #52525b;
+    }
+
+    /* Keyboard Shortcuts Panel */
+    .lumos-shortcuts-panel {
+      padding: 16px;
+    }
+    .lumos-shortcut-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #1a1a1d;
+    }
+    .lumos-shortcut-desc {
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .lumos-shortcut-keys {
+      display: flex;
+      gap: 4px;
+    }
+    .lumos-shortcut-key {
+      padding: 2px 6px;
+      background: #27272a;
+      border-radius: 3px;
+      font-size: 10px;
+      color: #71717a;
+      font-family: ui-monospace, monospace;
+    }
+
+    /* History Panel */
+    .lumos-history-panel {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .lumos-history-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #1a1a1d;
+      cursor: pointer;
+    }
+    .lumos-history-item:hover {
+      background: #18181b;
+    }
+    .lumos-history-icon {
+      width: 24px;
+      height: 24px;
+      background: #27272a;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lumos-history-icon svg {
+      width: 12px;
+      height: 12px;
+      color: #8b5cf6;
+    }
+    .lumos-history-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .lumos-history-title {
+      font-size: 11px;
+      color: #fafafa;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lumos-history-meta {
+      font-size: 9px;
+      color: #52525b;
+      margin-top: 2px;
+    }
+    .lumos-history-time {
+      font-size: 9px;
+      color: #52525b;
+      flex-shrink: 0;
+    }
+
+    /* Drag Handles */
+    .lumos-drag-handle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #8b5cf6;
+      border: 2px solid white;
+      border-radius: 2px;
+      cursor: move;
+      z-index: 999997;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .lumos-drag-handle.top-left { cursor: nw-resize; }
+    .lumos-drag-handle.top-right { cursor: ne-resize; }
+    .lumos-drag-handle.bottom-left { cursor: sw-resize; }
+    .lumos-drag-handle.bottom-right { cursor: se-resize; }
+    .lumos-drag-handle.top, .lumos-drag-handle.bottom { cursor: ns-resize; }
+    .lumos-drag-handle.left, .lumos-drag-handle.right { cursor: ew-resize; }
+
+    /* Multi-select */
+    .lumos-multi-selected {
+      outline: 2px dashed #8b5cf6 !important;
+      outline-offset: 2px !important;
+    }
+    .lumos-selection-box {
+      position: fixed;
+      border: 1px dashed #8b5cf6;
+      background: rgba(139, 92, 246, 0.1);
+      pointer-events: none;
+      z-index: 999996;
+    }
+
+    /* Style Presets */
+    .lumos-presets-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .lumos-preset-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: #18181b;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .lumos-preset-item:hover {
+      background: #27272a;
+    }
+    .lumos-preset-preview {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      border: 1px solid #27272a;
+    }
+    .lumos-preset-info {
+      flex: 1;
+    }
+    .lumos-preset-name {
+      font-size: 11px;
+      color: #fafafa;
+    }
+    .lumos-preset-count {
+      font-size: 9px;
+      color: #52525b;
+    }
+    .lumos-preset-delete {
+      color: #71717a;
+      cursor: pointer;
+    }
+    .lumos-preset-delete:hover {
+      color: #ef4444;
+    }
+
+    /* Favorites */
+    .lumos-favorites-bar {
+      display: flex;
+      gap: 4px;
+      padding: 8px 12px;
+      border-bottom: 1px solid #27272a;
+      flex-wrap: wrap;
+    }
+    .lumos-favorite-btn {
+      padding: 4px 8px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      font-size: 9px;
+      color: #a1a1aa;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .lumos-favorite-btn:hover {
+      background: #27272a;
+    }
+    .lumos-favorite-btn svg {
+      width: 10px;
+      height: 10px;
+    }
+    .lumos-star-btn {
+      cursor: pointer;
+      color: #52525b;
+      transition: color 0.15s;
+    }
+    .lumos-star-btn:hover, .lumos-star-btn.active {
+      color: #f59e0b;
+    }
+
+    /* Snap Guides */
+    .lumos-guide-h, .lumos-guide-v {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999995;
+    }
+    .lumos-guide-h {
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #ec4899;
+    }
+    .lumos-guide-v {
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: #ec4899;
+    }
+    .lumos-guide-label {
+      position: fixed;
+      background: #ec4899;
+      color: white;
+      font-size: 9px;
+      padding: 1px 4px;
+      border-radius: 2px;
+      z-index: 999995;
+    }
+
+    /* Comments */
+    .lumos-comment-marker {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      background: #f59e0b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      z-index: 999994;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .lumos-comment-popup {
+      position: fixed;
+      width: 250px;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      z-index: 999995;
+      overflow: hidden;
+    }
+    .lumos-comment-header {
+      padding: 8px 12px;
+      background: #18181b;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lumos-comment-title {
+      font-size: 11px;
+      color: #fafafa;
+      font-weight: 500;
+    }
+    .lumos-comment-body {
+      padding: 12px;
+    }
+    .lumos-comment-input {
+      width: 100%;
+      min-height: 60px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 11px;
+      padding: 8px;
+      resize: none;
+      outline: none;
+    }
+    .lumos-comment-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    /* Settings Panel */
+    .lumos-settings-section {
+      padding: 12px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-settings-title {
+      font-size: 11px;
+      color: #71717a;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .lumos-settings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+    .lumos-settings-label {
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .lumos-toggle {
+      width: 36px;
+      height: 20px;
+      background: #27272a;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lumos-toggle.active {
+      background: #8b5cf6;
+    }
+    .lumos-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: left 0.2s;
+    }
+    .lumos-toggle.active::after {
+      left: 18px;
+    }
+
+    /* Onboarding */
+    .lumos-onboarding-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lumos-onboarding-card {
+      width: 400px;
+      max-width: 90vw;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .lumos-onboarding-header {
+      padding: 24px;
+      text-align: center;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-onboarding-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .lumos-onboarding-icon svg {
+      width: 24px;
+      height: 24px;
+      color: white;
+    }
+    .lumos-onboarding-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fafafa;
+    }
+    .lumos-onboarding-subtitle {
+      font-size: 13px;
+      color: #71717a;
+      margin-top: 4px;
+    }
+    .lumos-onboarding-body {
+      padding: 24px;
+    }
+    .lumos-onboarding-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .lumos-onboarding-step-num {
+      width: 24px;
+      height: 24px;
+      background: #8b5cf6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      flex-shrink: 0;
+    }
+    .lumos-onboarding-step-text {
+      font-size: 13px;
+      color: #a1a1aa;
+      line-height: 1.5;
+    }
+    .lumos-onboarding-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #27272a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lumos-onboarding-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .lumos-onboarding-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #27272a;
+    }
+    .lumos-onboarding-dot.active {
+      background: #8b5cf6;
+    }
+
+    /* Share Link */
+    .lumos-share-url {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .lumos-share-url input {
+      flex: 1;
+      padding: 8px 12px;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-size: 11px;
+      font-family: ui-monospace, monospace;
+    }
   `;
   document.head.appendChild(style);
 
@@ -1473,6 +2021,18 @@
     checkCircle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>',
     alertTriangle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
     bookmark: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
+    search: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>',
+    command: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
+    settings: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>',
+    star: '<svg viewBox="0 0 24 24" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>',
+    share: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>',
+    messageCircle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
+    move: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="5,9 2,12 5,15"/><polyline points="9,5 12,2 15,5"/><polyline points="15,19 12,22 9,19"/><polyline points="19,9 22,12 19,15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>',
+    grid: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+    help: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    keyboard: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M8 12h.001M12 12h.001M16 12h.001M6 16h12"/></svg>',
+    zap: '<svg viewBox="0 0 24 24" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -3697,8 +4257,807 @@
     }
   };
 
+  // ============================================
+  // COMMAND PALETTE (Cmd+K)
+  // ============================================
+  let commandPaletteOpen = false;
+
+  const commands = [
+    { id: 'toggle-inspector', label: 'Toggle Inspector', icon: 'cursor', shortcut: 'I', action: toggleInspector },
+    { id: 'undo', label: 'Undo Change', icon: 'undo', shortcut: '⌘Z', action: undo },
+    { id: 'redo', label: 'Redo Change', icon: 'redo', shortcut: '⇧⌘Z', action: redo },
+    { id: 'copy-css', label: 'Copy CSS', icon: 'copy', shortcut: '⌘S', action: copyCss },
+    { id: 'export', label: 'Export Styles', icon: 'download', action: openExportModal },
+    { id: 'clear', label: 'Clear All Changes', icon: 'trash', action: clearChanges },
+    { id: 'measure', label: 'Toggle Measure Tool', icon: 'ruler', action: () => container.querySelector('.lumos-measure-btn')?.click() },
+    { id: 'copy-styles', label: 'Copy Element Styles', icon: 'copy', action: () => container.querySelector('.lumos-copy-styles-btn')?.click() },
+    { id: 'paste-styles', label: 'Paste Styles', icon: 'paste', action: () => container.querySelector('.lumos-paste-styles-btn')?.click() },
+    { id: 'copy-selector', label: 'Copy Selector', icon: 'copy', action: () => container.querySelector('.lumos-selector-copy')?.click() },
+    { id: 'create-pr', label: 'Create Pull Request', icon: 'github', action: openCreatePR },
+    { id: 'shortcuts', label: 'Show Keyboard Shortcuts', icon: 'keyboard', action: openShortcutsPanel },
+    { id: 'settings', label: 'Open Settings', icon: 'settings', action: openSettingsPanel },
+    { id: 'history', label: 'View Change History', icon: 'clock', action: openHistoryPanel },
+    { id: 'presets', label: 'Manage Style Presets', icon: 'bookmark', action: openPresetsPanel },
+    { id: 'share', label: 'Share Session', icon: 'share', action: openSharePanel },
+    { id: 'help', label: 'Help & Tutorial', icon: 'help', action: showOnboarding },
+    { id: 'toggle-navigator', label: 'Toggle Navigator', icon: 'sidebar', action: toggleNavigator },
+    { id: 'desktop', label: 'Desktop View', icon: 'monitor', action: () => setViewport('desktop') },
+    { id: 'tablet', label: 'Tablet View', icon: 'tablet', action: () => setViewport('tablet') },
+    { id: 'mobile', label: 'Mobile View', icon: 'phone', action: () => setViewport('mobile') },
+  ];
+
+  function openCommandPalette() {
+    if (commandPaletteOpen) return closeCommandPalette();
+    commandPaletteOpen = true;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-command-overlay lumos-ui';
+    overlay.id = 'lumos-command-palette';
+    overlay.innerHTML = `
+      <div class="lumos-command-palette">
+        <div class="lumos-command-header">
+          <span class="lumos-command-icon">${icons.command}</span>
+          <input class="lumos-command-input" placeholder="Search commands..." autofocus>
+          <span class="lumos-command-hint">ESC to close</span>
+        </div>
+        <div class="lumos-command-list"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector('.lumos-command-input');
+    const list = overlay.querySelector('.lumos-command-list');
+    let selectedIndex = 0;
+
+    function renderCommands(filter = '') {
+      const filtered = commands.filter(c =>
+        c.label.toLowerCase().includes(filter.toLowerCase())
+      );
+      list.innerHTML = filtered.map((cmd, i) => `
+        <div class="lumos-command-item ${i === selectedIndex ? 'selected' : ''}" data-index="${i}" data-id="${cmd.id}">
+          <span class="lumos-command-item-icon">${icons[cmd.icon] || ''}</span>
+          <span class="lumos-command-item-label">${cmd.label}</span>
+          ${cmd.shortcut ? `<span class="lumos-command-item-shortcut">${cmd.shortcut}</span>` : ''}
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.lumos-command-item').forEach(item => {
+        item.onclick = () => executeCommand(item.dataset.id);
+        item.onmouseenter = () => {
+          selectedIndex = parseInt(item.dataset.index);
+          renderCommands(input.value);
+        };
+      });
+    }
+
+    function executeCommand(id) {
+      const cmd = commands.find(c => c.id === id);
+      if (cmd) {
+        closeCommandPalette();
+        setTimeout(() => cmd.action(), 50);
+      }
+    }
+
+    input.oninput = () => {
+      selectedIndex = 0;
+      renderCommands(input.value);
+    };
+
+    input.onkeydown = (e) => {
+      const filtered = commands.filter(c =>
+        c.label.toLowerCase().includes(input.value.toLowerCase())
+      );
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, filtered.length - 1);
+        renderCommands(input.value);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, 0);
+        renderCommands(input.value);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (filtered[selectedIndex]) {
+          executeCommand(filtered[selectedIndex].id);
+        }
+      } else if (e.key === 'Escape') {
+        closeCommandPalette();
+      }
+    };
+
+    overlay.onclick = (e) => {
+      if (e.target === overlay) closeCommandPalette();
+    };
+
+    renderCommands();
+    input.focus();
+  }
+
+  function closeCommandPalette() {
+    commandPaletteOpen = false;
+    document.getElementById('lumos-command-palette')?.remove();
+  }
+
+  // Cmd+K handler
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      openCommandPalette();
+    }
+  });
+
+  // ============================================
+  // KEYBOARD SHORTCUTS PANEL
+  // ============================================
+  function openShortcutsPanel() {
+    const shortcuts = [
+      { keys: '⌘K', desc: 'Open command palette' },
+      { keys: '⌘Z', desc: 'Undo change' },
+      { keys: '⇧⌘Z', desc: 'Redo change' },
+      { keys: '⌘S', desc: 'Copy CSS' },
+      { keys: 'Esc', desc: 'Close panel / Disable inspector' },
+      { keys: 'I', desc: 'Toggle inspector mode' },
+      { keys: 'N', desc: 'Toggle navigator' },
+      { keys: '1', desc: 'Desktop viewport' },
+      { keys: '2', desc: 'Tablet viewport' },
+      { keys: '3', desc: 'Mobile viewport' },
+      { keys: '⌘C', desc: 'Copy styles (with element)' },
+      { keys: '⌘V', desc: 'Paste styles (with element)' },
+      { keys: 'M', desc: 'Toggle measure tool' },
+      { keys: 'H', desc: 'Open history panel' },
+      { keys: '?', desc: 'Show help' },
+    ];
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.keyboard} Keyboard Shortcuts</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="max-height:400px;overflow:auto">
+          <div class="lumos-shortcuts-list">
+            ${shortcuts.map(s => `
+              <div class="lumos-shortcut-item">
+                <span class="lumos-shortcut-keys">${s.keys}</span>
+                <span class="lumos-shortcut-desc">${s.desc}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  }
+
+  // Quick keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (commandPaletteOpen) return;
+
+    if (e.key === 'i' && !e.metaKey && !e.ctrlKey) toggleInspector();
+    if (e.key === 'n' && !e.metaKey && !e.ctrlKey) toggleNavigator();
+    if (e.key === '1') setViewport('desktop');
+    if (e.key === '2') setViewport('tablet');
+    if (e.key === '3') setViewport('mobile');
+    if (e.key === 'm' && !e.metaKey && !e.ctrlKey) container.querySelector('.lumos-measure-btn')?.click();
+    if (e.key === 'h' && !e.metaKey && !e.ctrlKey) openHistoryPanel();
+    if (e.key === '?') openShortcutsPanel();
+  });
+
+  // ============================================
+  // HISTORY PANEL
+  // ============================================
+  function openHistoryPanel() {
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:500px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.clock} Change History</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="max-height:500px;overflow:auto;padding:0">
+          <div class="lumos-history-list">
+            ${changes.length === 0 ? '<div style="padding:24px;text-align:center;color:#71717a">No changes yet</div>' :
+              changes.slice().reverse().map((c, i) => `
+                <div class="lumos-history-item" data-index="${changes.length - 1 - i}">
+                  <div class="lumos-history-main">
+                    <span class="lumos-history-selector">${c.selector}</span>
+                    <span class="lumos-history-time">${formatTime(c.timestamp)}</span>
+                  </div>
+                  <div class="lumos-history-change">
+                    <span class="lumos-history-prop">${c.property}:</span>
+                    <span class="lumos-history-old">${c.oldValue || '(none)'}</span>
+                    <span class="lumos-history-arrow">→</span>
+                    <span class="lumos-history-new">${c.newValue}</span>
+                  </div>
+                  <div class="lumos-history-actions">
+                    <button class="lumos-history-revert" data-index="${changes.length - 1 - i}">Revert</button>
+                    <button class="lumos-history-goto" data-selector="${c.selector}">Go to</button>
+                  </div>
+                </div>
+              `).join('')
+            }
+          </div>
+        </div>
+        <div class="lumos-modal-footer">
+          <button class="lumos-btn lumos-btn-secondary" onclick="this.closest('.lumos-modal-overlay').remove()">Close</button>
+          ${changes.length > 0 ? '<button class="lumos-btn lumos-btn-primary lumos-clear-history">Clear All</button>' : ''}
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelectorAll('.lumos-history-revert').forEach(btn => {
+      btn.onclick = () => {
+        const idx = parseInt(btn.dataset.index);
+        const change = changes[idx];
+        if (change) {
+          const el = document.querySelector(change.selector);
+          if (el) el.style[change.property] = change.oldValue;
+          changes.splice(idx, 1);
+          persistChanges();
+          overlay.remove();
+          openHistoryPanel();
+          showToast('Change reverted');
+        }
+      };
+    });
+
+    overlay.querySelectorAll('.lumos-history-goto').forEach(btn => {
+      btn.onclick = () => {
+        const el = document.querySelector(btn.dataset.selector);
+        if (el) {
+          if (selectedElement) selectedElement.classList.remove('lumos-selected-outline');
+          selectedElement = el;
+          selectedElement.classList.add('lumos-selected-outline');
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          overlay.remove();
+          updateUI();
+        }
+      };
+    });
+
+    overlay.querySelector('.lumos-clear-history')?.addEventListener('click', () => {
+      if (confirm('Clear all change history?')) {
+        clearChanges();
+        overlay.remove();
+      }
+    });
+  }
+
+  function formatTime(timestamp) {
+    const d = new Date(timestamp);
+    const now = new Date();
+    const diff = now - d;
+    if (diff < 60000) return 'Just now';
+    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+    return d.toLocaleDateString();
+  }
+
+  // ============================================
+  // STYLE PRESETS
+  // ============================================
+  let stylePresets = JSON.parse(localStorage.getItem('lumos-presets') || '[]');
+
+  function openPresetsPanel() {
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.id = 'lumos-presets-modal';
+
+    function render() {
+      overlay.innerHTML = `
+        <div class="lumos-modal" style="width:500px">
+          <div class="lumos-modal-header">
+            <span class="lumos-modal-title">${icons.bookmark} Style Presets</span>
+            <button class="lumos-modal-close">${icons.close}</button>
+          </div>
+          <div class="lumos-modal-body" style="padding:0;max-height:400px;overflow:auto">
+            ${!selectedElement ? '<div style="padding:24px;text-align:center;color:#71717a">Select an element first to save/apply presets</div>' : `
+              <div style="padding:12px;border-bottom:1px solid #27272a">
+                <button class="lumos-btn lumos-btn-primary lumos-save-preset" style="width:100%">${icons.star} Save Current Styles as Preset</button>
+              </div>
+              <div class="lumos-presets-list">
+                ${stylePresets.length === 0 ? '<div style="padding:24px;text-align:center;color:#71717a">No presets saved yet</div>' :
+                  stylePresets.map((p, i) => `
+                    <div class="lumos-preset-item">
+                      <div class="lumos-preset-info">
+                        <span class="lumos-preset-name">${p.name}</span>
+                        <span class="lumos-preset-count">${Object.keys(p.styles).length} properties</span>
+                      </div>
+                      <div class="lumos-preset-actions">
+                        <button class="lumos-preset-apply" data-index="${i}">Apply</button>
+                        <button class="lumos-preset-delete" data-index="${i}">${icons.trash}</button>
+                      </div>
+                    </div>
+                  `).join('')
+                }
+              </div>
+            `}
+          </div>
+        </div>
+      `;
+
+      overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+      overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+      overlay.querySelector('.lumos-save-preset')?.addEventListener('click', () => {
+        const name = prompt('Preset name:');
+        if (!name || !selectedElement) return;
+        const styles = getElementStyles(selectedElement);
+        stylePresets.push({ name, styles, created: Date.now() });
+        localStorage.setItem('lumos-presets', JSON.stringify(stylePresets));
+        showToast('Preset saved!', 'success');
+        render();
+      });
+
+      overlay.querySelectorAll('.lumos-preset-apply').forEach(btn => {
+        btn.onclick = () => {
+          if (!selectedElement) return showToast('Select an element first', 'error');
+          const preset = stylePresets[parseInt(btn.dataset.index)];
+          Object.entries(preset.styles).forEach(([prop, val]) => {
+            if (val && val !== 'none' && val !== 'auto' && val !== 'normal' && val !== 'rgba(0, 0, 0, 0)') {
+              const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+              applyStyleChange(cssProp, val);
+            }
+          });
+          showToast('Preset applied!', 'success');
+          overlay.remove();
+        };
+      });
+
+      overlay.querySelectorAll('.lumos-preset-delete').forEach(btn => {
+        btn.onclick = () => {
+          stylePresets.splice(parseInt(btn.dataset.index), 1);
+          localStorage.setItem('lumos-presets', JSON.stringify(stylePresets));
+          showToast('Preset deleted');
+          render();
+        };
+      });
+    }
+
+    document.body.appendChild(overlay);
+    render();
+  }
+
+  // ============================================
+  // SETTINGS PANEL
+  // ============================================
+  let settings = JSON.parse(localStorage.getItem('lumos-settings') || '{}');
+  settings = {
+    showGrid: settings.showGrid ?? false,
+    gridSize: settings.gridSize ?? 8,
+    snapToGrid: settings.snapToGrid ?? false,
+    highlightOnHover: settings.highlightOnHover ?? true,
+    showDimensions: settings.showDimensions ?? true,
+    darkMode: settings.darkMode ?? true,
+    autoSave: settings.autoSave ?? true,
+  };
+
+  function saveSettings() {
+    localStorage.setItem('lumos-settings', JSON.stringify(settings));
+  }
+
+  function openSettingsPanel() {
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:400px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.settings} Settings</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body" style="padding:0">
+          <div class="lumos-settings-section">
+            <div class="lumos-settings-title">Inspector</div>
+            <div class="lumos-settings-row">
+              <span class="lumos-settings-label">Highlight on hover</span>
+              <div class="lumos-toggle ${settings.highlightOnHover ? 'active' : ''}" data-setting="highlightOnHover"></div>
+            </div>
+            <div class="lumos-settings-row">
+              <span class="lumos-settings-label">Show dimensions</span>
+              <div class="lumos-toggle ${settings.showDimensions ? 'active' : ''}" data-setting="showDimensions"></div>
+            </div>
+          </div>
+          <div class="lumos-settings-section">
+            <div class="lumos-settings-title">Grid & Snap</div>
+            <div class="lumos-settings-row">
+              <span class="lumos-settings-label">Show grid overlay</span>
+              <div class="lumos-toggle ${settings.showGrid ? 'active' : ''}" data-setting="showGrid"></div>
+            </div>
+            <div class="lumos-settings-row">
+              <span class="lumos-settings-label">Snap to grid</span>
+              <div class="lumos-toggle ${settings.snapToGrid ? 'active' : ''}" data-setting="snapToGrid"></div>
+            </div>
+            <div class="lumos-settings-row">
+              <span class="lumos-settings-label">Grid size</span>
+              <select class="lumos-select" data-setting="gridSize" style="width:80px">
+                <option value="4" ${settings.gridSize === 4 ? 'selected' : ''}>4px</option>
+                <option value="8" ${settings.gridSize === 8 ? 'selected' : ''}>8px</option>
+                <option value="16" ${settings.gridSize === 16 ? 'selected' : ''}>16px</option>
+                <option value="24" ${settings.gridSize === 24 ? 'selected' : ''}>24px</option>
+              </select>
+            </div>
+          </div>
+          <div class="lumos-settings-section">
+            <div class="lumos-settings-title">Data</div>
+            <div class="lumos-settings-row">
+              <span class="lumos-settings-label">Auto-save changes</span>
+              <div class="lumos-toggle ${settings.autoSave ? 'active' : ''}" data-setting="autoSave"></div>
+            </div>
+          </div>
+        </div>
+        <div class="lumos-modal-footer">
+          <button class="lumos-btn lumos-btn-secondary" onclick="this.closest('.lumos-modal-overlay').remove()">Close</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelectorAll('.lumos-toggle').forEach(toggle => {
+      toggle.onclick = () => {
+        const key = toggle.dataset.setting;
+        settings[key] = !settings[key];
+        toggle.classList.toggle('active', settings[key]);
+        saveSettings();
+        applySettings();
+      };
+    });
+
+    overlay.querySelectorAll('select[data-setting]').forEach(select => {
+      select.onchange = () => {
+        const key = select.dataset.setting;
+        settings[key] = parseInt(select.value);
+        saveSettings();
+        applySettings();
+      };
+    });
+  }
+
+  function applySettings() {
+    // Apply grid overlay
+    let gridOverlay = document.getElementById('lumos-grid-overlay');
+    if (settings.showGrid) {
+      if (!gridOverlay) {
+        gridOverlay = document.createElement('div');
+        gridOverlay.id = 'lumos-grid-overlay';
+        gridOverlay.className = 'lumos-ui';
+        gridOverlay.style.cssText = `
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          z-index: 999998;
+          background-image:
+            linear-gradient(to right, rgba(139,92,246,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(139,92,246,0.1) 1px, transparent 1px);
+          background-size: ${settings.gridSize}px ${settings.gridSize}px;
+        `;
+        document.body.appendChild(gridOverlay);
+      } else {
+        gridOverlay.style.backgroundSize = `${settings.gridSize}px ${settings.gridSize}px`;
+      }
+    } else if (gridOverlay) {
+      gridOverlay.remove();
+    }
+  }
+
+  // ============================================
+  // SHARE LINK
+  // ============================================
+  function openSharePanel() {
+    const shareData = {
+      changes: changes,
+      url: window.location.href,
+      timestamp: Date.now()
+    };
+    const encoded = btoa(encodeURIComponent(JSON.stringify(shareData)));
+    const shareUrl = `${studioUrl}/share?data=${encoded}`;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lumos-modal-overlay lumos-ui';
+    overlay.innerHTML = `
+      <div class="lumos-modal" style="width:500px">
+        <div class="lumos-modal-header">
+          <span class="lumos-modal-title">${icons.share} Share Session</span>
+          <button class="lumos-modal-close">${icons.close}</button>
+        </div>
+        <div class="lumos-modal-body">
+          <p style="color:#a1a1aa;margin-bottom:12px">Share this link to let others view your style changes:</p>
+          <div class="lumos-share-url">
+            <input type="text" value="${shareUrl}" readonly>
+            <button class="lumos-btn lumos-btn-primary lumos-copy-share">${icons.copy}</button>
+          </div>
+          <p style="color:#71717a;font-size:11px;margin-top:12px">Note: The link includes all ${changes.length} style changes encoded in the URL.</p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.lumos-modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    overlay.querySelector('.lumos-copy-share').onclick = () => {
+      navigator.clipboard.writeText(shareUrl);
+      showToast('Link copied!', 'success');
+    };
+  }
+
+  // ============================================
+  // ONBOARDING TUTORIAL
+  // ============================================
+  const hasSeenOnboarding = localStorage.getItem('lumos-onboarding-seen');
+
+  function showOnboarding() {
+    const steps = [
+      { title: 'Welcome to Lumos Inspector', subtitle: 'A powerful visual CSS editor', content: [
+        'Inspect and edit any element on the page',
+        'See changes in real-time',
+        'Export CSS in multiple formats',
+        'Create pull requests with your changes'
+      ]},
+      { title: 'Getting Started', subtitle: 'Basic workflow', content: [
+        'Click the purple button to open the panel',
+        'Toggle "Select Element" to enable inspector',
+        'Hover and click elements to select them',
+        'Modify styles in the right panel'
+      ]},
+      { title: 'Pro Tips', subtitle: 'Work faster', content: [
+        'Press ⌘K to open the command palette',
+        'Use keyboard shortcuts (press ? to view)',
+        'Copy/paste styles between elements',
+        'Save presets for reusable style sets'
+      ]}
+    ];
+
+    let currentStep = 0;
+
+    function render() {
+      const overlay = document.getElementById('lumos-onboarding') || document.createElement('div');
+      overlay.id = 'lumos-onboarding';
+      overlay.className = 'lumos-onboarding-overlay lumos-ui';
+
+      const step = steps[currentStep];
+      overlay.innerHTML = `
+        <div class="lumos-onboarding-card">
+          <div class="lumos-onboarding-header">
+            <div class="lumos-onboarding-icon">${icons.paintbrush}</div>
+            <div class="lumos-onboarding-title">${step.title}</div>
+            <div class="lumos-onboarding-subtitle">${step.subtitle}</div>
+          </div>
+          <div class="lumos-onboarding-body">
+            ${step.content.map((text, i) => `
+              <div class="lumos-onboarding-step">
+                <div class="lumos-onboarding-step-num">${i + 1}</div>
+                <div class="lumos-onboarding-step-text">${text}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="lumos-onboarding-footer">
+            <div class="lumos-onboarding-dots">
+              ${steps.map((_, i) => `<div class="lumos-onboarding-dot ${i === currentStep ? 'active' : ''}"></div>`).join('')}
+            </div>
+            <div>
+              ${currentStep > 0 ? '<button class="lumos-btn lumos-btn-secondary lumos-onboarding-prev">Back</button>' : ''}
+              <button class="lumos-btn lumos-btn-primary lumos-onboarding-next">${currentStep === steps.length - 1 ? 'Get Started' : 'Next'}</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (!overlay.parentNode) document.body.appendChild(overlay);
+
+      overlay.querySelector('.lumos-onboarding-prev')?.addEventListener('click', () => {
+        currentStep--;
+        render();
+      });
+
+      overlay.querySelector('.lumos-onboarding-next').addEventListener('click', () => {
+        if (currentStep === steps.length - 1) {
+          localStorage.setItem('lumos-onboarding-seen', 'true');
+          overlay.remove();
+        } else {
+          currentStep++;
+          render();
+        }
+      });
+    }
+
+    render();
+  }
+
+  // ============================================
+  // NAVIGATOR SEARCH
+  // ============================================
+  function addNavigatorSearch() {
+    const navHeader = container.querySelector('.lumos-nav-header');
+    if (!navHeader || navHeader.querySelector('.lumos-nav-search')) return;
+
+    const searchContainer = document.createElement('div');
+    searchContainer.className = 'lumos-nav-search';
+    searchContainer.innerHTML = `
+      <span class="lumos-nav-search-icon">${icons.search}</span>
+      <input class="lumos-nav-search-input" placeholder="Filter elements...">
+    `;
+    navHeader.insertAdjacentElement('afterend', searchContainer);
+
+    const input = searchContainer.querySelector('.lumos-nav-search-input');
+    input.oninput = () => {
+      const filter = input.value.toLowerCase();
+      container.querySelectorAll('.lumos-tree-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) || !filter ? 'flex' : 'none';
+      });
+    };
+  }
+
+  // ============================================
+  // MULTI-ELEMENT SELECTION
+  // ============================================
+  let multiSelectedElements = [];
+
+  document.addEventListener('click', e => {
+    if (!inspectorEnabled) return;
+    if (e.target.closest('.lumos-ui')) return;
+
+    if (e.shiftKey) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const el = e.target;
+      if (multiSelectedElements.includes(el)) {
+        // Deselect
+        el.classList.remove('lumos-multi-selected');
+        multiSelectedElements = multiSelectedElements.filter(x => x !== el);
+      } else {
+        // Add to selection
+        el.classList.add('lumos-multi-selected');
+        multiSelectedElements.push(el);
+      }
+      showToast(`${multiSelectedElements.length} elements selected`);
+    }
+  }, true);
+
+  // ============================================
+  // DRAG HANDLES
+  // ============================================
+  function createDragHandles() {
+    if (!selectedElement || !settings.showDimensions) return;
+
+    // Remove existing handles
+    document.querySelectorAll('.lumos-drag-handle').forEach(h => h.remove());
+
+    const rect = selectedElement.getBoundingClientRect();
+    const handles = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
+
+    handles.forEach(pos => {
+      const handle = document.createElement('div');
+      handle.className = 'lumos-drag-handle lumos-ui';
+      handle.dataset.position = pos;
+
+      let x, y;
+      switch(pos) {
+        case 'nw': x = rect.left; y = rect.top; break;
+        case 'n': x = rect.left + rect.width/2; y = rect.top; break;
+        case 'ne': x = rect.right; y = rect.top; break;
+        case 'e': x = rect.right; y = rect.top + rect.height/2; break;
+        case 'se': x = rect.right; y = rect.bottom; break;
+        case 's': x = rect.left + rect.width/2; y = rect.bottom; break;
+        case 'sw': x = rect.left; y = rect.bottom; break;
+        case 'w': x = rect.left; y = rect.top + rect.height/2; break;
+      }
+
+      handle.style.cssText = `
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: #8b5cf6;
+        border: 2px solid white;
+        border-radius: 2px;
+        z-index: 1000000;
+        cursor: ${pos}-resize;
+        left: ${x - 4}px;
+        top: ${y - 4}px;
+      `;
+
+      handle.onmousedown = (e) => startResize(e, pos);
+      document.body.appendChild(handle);
+    });
+  }
+
+  let resizing = false;
+  let resizeStart = { x: 0, y: 0, width: 0, height: 0 };
+
+  function startResize(e, direction) {
+    if (!selectedElement) return;
+    e.preventDefault();
+    resizing = true;
+    const rect = selectedElement.getBoundingClientRect();
+    resizeStart = { x: e.clientX, y: e.clientY, width: rect.width, height: rect.height };
+
+    const onMouseMove = (e) => {
+      if (!resizing) return;
+      const dx = e.clientX - resizeStart.x;
+      const dy = e.clientY - resizeStart.y;
+
+      let newWidth = resizeStart.width;
+      let newHeight = resizeStart.height;
+
+      if (direction.includes('e')) newWidth += dx;
+      if (direction.includes('w')) newWidth -= dx;
+      if (direction.includes('s')) newHeight += dy;
+      if (direction.includes('n')) newHeight -= dy;
+
+      if (settings.snapToGrid) {
+        newWidth = Math.round(newWidth / settings.gridSize) * settings.gridSize;
+        newHeight = Math.round(newHeight / settings.gridSize) * settings.gridSize;
+      }
+
+      selectedElement.style.width = newWidth + 'px';
+      selectedElement.style.height = newHeight + 'px';
+      createDragHandles();
+    };
+
+    const onMouseUp = () => {
+      if (resizing) {
+        applyStyleChange('width', selectedElement.style.width);
+        applyStyleChange('height', selectedElement.style.height);
+      }
+      resizing = false;
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  }
+
+  // Update drag handles when element changes
+  const originalUpdateUI = updateUI;
+  updateUI = function() {
+    originalUpdateUI();
+    createDragHandles();
+  };
+
+  // ============================================
+  // FAVORITES / PINNED PROPERTIES
+  // ============================================
+  let favoriteProps = JSON.parse(localStorage.getItem('lumos-favorites') || '["color","background-color","font-size","padding","margin"]');
+
+  function toggleFavorite(prop) {
+    if (favoriteProps.includes(prop)) {
+      favoriteProps = favoriteProps.filter(p => p !== prop);
+    } else {
+      favoriteProps.push(prop);
+    }
+    localStorage.setItem('lumos-favorites', JSON.stringify(favoriteProps));
+    showToast(favoriteProps.includes(prop) ? 'Added to favorites' : 'Removed from favorites');
+  }
+
+  // ============================================
+  // INITIALIZE ADDITIONAL FEATURES
+  // ============================================
+  setTimeout(() => {
+    addNavigatorSearch();
+    applySettings();
+    if (!hasSeenOnboarding) {
+      setTimeout(showOnboarding, 1000);
+    }
+  }, 100);
+
   // Initialize
   setTimeout(loadPersistedChanges, 500);
   googleFonts.slice(0, 5).forEach(loadGoogleFont); // Preload popular fonts
-  console.log('[Lumos] Inspector ready. Click the purple button to start.');
+  console.log('[Lumos] Inspector ready. Click the purple button or press ⌘K to start.');
 })();
