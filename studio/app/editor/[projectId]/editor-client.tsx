@@ -266,6 +266,24 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
           <span>{repo.defaultBranch}</span>
         </div>
 
+        {/* URL Display/Edit */}
+        <div className="flex items-center gap-2 ml-4 px-3 py-1.5 bg-muted rounded-lg">
+          <input
+            type="text"
+            value={targetUrl}
+            onChange={(e) => setTargetUrl(e.target.value)}
+            placeholder="Enter app URL..."
+            className="bg-transparent text-sm w-64 focus:outline-none"
+            onKeyDown={(e) => e.key === "Enter" && handleLoadUrl()}
+          />
+          <button
+            onClick={handleLoadUrl}
+            className="px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90"
+          >
+            Load
+          </button>
+        </div>
+
         {/* Viewport controls */}
         <div className="flex items-center gap-1 ml-auto border rounded-lg p-1">
           <button
