@@ -21,7 +21,8 @@
   let socket = null;
   let selectedElement = null;
   let hoveredElement = null;
-  let inspectorEnabled = true;
+  let inspectorEnabled = false; // Start disabled - user clicks to enable
+  let badgeElement = null;
 
   // Check if running inside Lumos Studio iframe
   const isInIframe = window.parent !== window;
@@ -38,24 +39,31 @@
       outline: 2px solid #8b5cf6 !important;
       outline-offset: 2px !important;
     }
-    .lumos-connection-badge {
+    .lumos-badge-container {
       position: fixed;
       bottom: 16px;
       right: 16px;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .lumos-connection-badge {
       background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
       color: white;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      font-family: system-ui, -apple-system, sans-serif;
+      padding: 10px 16px;
+      border-radius: 12px;
       font-size: 13px;
       font-weight: 500;
-      z-index: 999999;
       box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.2s;
+      user-select: none;
     }
     .lumos-connection-badge:hover {
       transform: translateY(-2px);
@@ -65,12 +73,44 @@
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
     }
+    .lumos-connection-badge.inspector-active {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
     .lumos-connection-badge .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: currentColor;
+      flex-shrink: 0;
+    }
+    .lumos-connection-badge .dot.pulse {
       animation: lumos-pulse 2s infinite;
+    }
+    .lumos-toggle-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .lumos-toggle-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .lumos-hint {
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      background: rgba(0,0,0,0.3);
+      padding: 6px 12px;
+      border-radius: 8px;
+      max-width: 200px;
+      text-align: center;
     }
     @keyframes lumos-pulse {
       0%, 100% { opacity: 1; }
@@ -153,6 +193,53 @@
     }
   }
 
+  // Toggle inspector on/off
+  function toggleInspector() {
+    inspectorEnabled = !inspectorEnabled;
+
+    // Clear any existing selections when disabling
+    if (!inspectorEnabled) {
+      if (selectedElement) {
+        selectedElement.classList.remove('lumos-selected-outline');
+        selectedElement = null;
+      }
+      if (hoveredElement) {
+        hoveredElement.classList.remove('lumos-hover-outline');
+        hoveredElement = null;
+      }
+    }
+
+    updateBadgeState();
+  }
+
+  // Update badge appearance based on state
+  function updateBadgeState() {
+    if (!badgeElement) return;
+
+    const dot = badgeElement.querySelector('.dot');
+    const text = badgeElement.querySelector('.badge-text');
+    const btn = badgeElement.querySelector('.lumos-toggle-btn');
+
+    if (inspectorEnabled) {
+      badgeElement.classList.add('inspector-active');
+      badgeElement.classList.remove('connected');
+      if (dot) dot.classList.add('pulse');
+      if (text) text.textContent = 'Inspector Active';
+      if (btn) btn.textContent = 'Stop';
+    } else {
+      badgeElement.classList.remove('inspector-active');
+      if (socket && socket.connected) {
+        badgeElement.classList.add('connected');
+        if (text) text.textContent = 'Connected';
+      } else {
+        badgeElement.classList.remove('connected');
+        if (text) text.textContent = 'Lumos Studio';
+      }
+      if (dot) dot.classList.remove('pulse');
+      if (btn) btn.textContent = 'Inspect';
+    }
+  }
+
   // Handle element selection
   function selectElement(el) {
     if (selectedElement) {
@@ -213,7 +300,7 @@
   document.addEventListener('mouseover', function(e) {
     if (!inspectorEnabled) return;
     if (e.target === document.body || e.target === document.documentElement) return;
-    if (e.target.closest('.lumos-connection-badge')) return;
+    if (e.target.closest('.lumos-badge-container')) return;
 
     if (hoveredElement && hoveredElement !== selectedElement) {
       hoveredElement.classList.remove('lumos-hover-outline');
@@ -233,12 +320,19 @@
 
   document.addEventListener('click', function(e) {
     if (!inspectorEnabled) return;
-    if (e.target.closest('.lumos-connection-badge')) return;
+    if (e.target.closest('.lumos-badge-container')) return;
 
     e.preventDefault();
     e.stopPropagation();
     selectElement(e.target);
   }, true);
+
+  // Keyboard shortcut: Escape to toggle inspector
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      toggleInspector();
+    }
+  });
 
   // Listen for messages from Studio
   function handleStudioMessage(event) {
@@ -269,8 +363,50 @@
 
       case 'LUMOS_TOGGLE_INSPECTOR':
         inspectorEnabled = data.enabled !== false;
+        updateBadgeState();
         break;
     }
+  }
+
+  // Create badge UI
+  function createBadge() {
+    const container = document.createElement('div');
+    container.className = 'lumos-badge-container';
+
+    const badge = document.createElement('div');
+    badge.className = 'lumos-connection-badge';
+    badge.innerHTML = `
+      <span class="dot"></span>
+      <span class="badge-text">Lumos Studio</span>
+      <button class="lumos-toggle-btn">Inspect</button>
+    `;
+
+    // Toggle button click
+    const toggleBtn = badge.querySelector('.lumos-toggle-btn');
+    toggleBtn.onclick = function(e) {
+      e.stopPropagation();
+      toggleInspector();
+    };
+
+    // Badge click opens Studio
+    badge.onclick = function(e) {
+      if (e.target === toggleBtn) return;
+      window.open(studioUrl + '/connect?session=' + sessionId, '_blank');
+    };
+
+    container.appendChild(badge);
+
+    // Add hint when inspector is active
+    const hint = document.createElement('div');
+    hint.className = 'lumos-hint';
+    hint.style.display = 'none';
+    hint.textContent = 'Click elements to inspect. Press ESC to stop.';
+    container.appendChild(hint);
+
+    document.body.appendChild(container);
+    badgeElement = badge;
+
+    return { badge, hint };
   }
 
   // Set up communication based on context
@@ -278,9 +414,12 @@
     // Running inside Studio iframe - use postMessage
     window.addEventListener('message', handleStudioMessage);
     sendToStudio('LUMOS_CONNECTED', {});
+    inspectorEnabled = true; // Auto-enable in iframe mode
     console.log('[Lumos] Connected to Studio via iframe');
   } else if (sessionId) {
     // Running standalone with session ID - connect via Socket.io
+    const { badge, hint } = createBadge();
+
     // Load Socket.io client dynamically
     const socketScript = document.createElement('script');
     socketScript.src = studioUrl + '/socket.io/socket.io.js';
@@ -293,7 +432,7 @@
       socket.on('connect', function() {
         console.log('[Lumos] Connected to Studio via WebSocket');
         socket.emit('join-session', { sessionId, role: 'target' });
-        updateBadge(true);
+        updateBadgeState();
       });
 
       socket.on('session-joined', function() {
@@ -302,12 +441,12 @@
 
       socket.on('studio-connected', function() {
         console.log('[Lumos] Studio is now connected');
-        updateBadge(true);
+        updateBadgeState();
       });
 
       socket.on('studio-disconnected', function() {
         console.log('[Lumos] Studio disconnected');
-        updateBadge(false);
+        updateBadgeState();
       });
 
       socket.on('apply-style', function(data) {
@@ -324,36 +463,23 @@
 
       socket.on('disconnect', function() {
         console.log('[Lumos] Disconnected from Studio');
-        updateBadge(false);
+        updateBadgeState();
       });
     };
     document.body.appendChild(socketScript);
 
-    // Show connection badge
-    const badge = document.createElement('div');
-    badge.className = 'lumos-connection-badge';
-    badge.innerHTML = '<span class="dot"></span> Lumos Studio';
-    badge.onclick = function() {
-      window.open(studioUrl + '/connect?session=' + sessionId, '_blank');
+    // Show/hide hint based on inspector state
+    const originalToggle = toggleInspector;
+    toggleInspector = function() {
+      originalToggle();
+      hint.style.display = inspectorEnabled ? 'block' : 'none';
     };
-    document.body.appendChild(badge);
-
-    function updateBadge(connected) {
-      badge.classList.toggle('connected', connected);
-      badge.innerHTML = connected
-        ? '<span class="dot"></span> Connected to Studio'
-        : '<span class="dot"></span> Waiting for Studio...';
-    }
   } else {
     // No session ID - show instructions
     console.log('[Lumos] No session ID provided. Add data-session="YOUR_SESSION_ID" to the script tag.');
 
-    const badge = document.createElement('div');
-    badge.className = 'lumos-connection-badge';
-    badge.innerHTML = '<span class="dot"></span> Lumos (No Session)';
-    badge.onclick = function() {
-      window.open(studioUrl + '/connect', '_blank');
-    };
-    document.body.appendChild(badge);
+    const { badge } = createBadge();
+    badge.querySelector('.badge-text').textContent = 'Lumos (No Session)';
+    badge.querySelector('.lumos-toggle-btn').style.display = 'none';
   }
 })();
