@@ -4,9 +4,10 @@
   "private": true,
   "description": "Visual editor platform for React/Next.js apps - powered by Lumos Inspector",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
+    "start:next": "next start",
     "lint": "next lint"
   },
   "dependencies": {

@@ -27,7 +27,13 @@ import {
   Palette,
   Box,
   Move,
+  Wifi,
+  WifiOff,
+  Copy,
+  Check,
+  Link2,
 } from "lucide-react"
+import { getLumosSocket, generateSessionId, type SelectedElement as SocketSelectedElement } from "@/lib/lumos-socket"
 
 interface RepoInfo {
   id: number
@@ -61,6 +67,7 @@ interface EditorClientProps {
 }
 
 type ViewportSize = "desktop" | "tablet" | "mobile"
+type ConnectionMode = "iframe" | "direct" | "connecting"
 
 const viewportSizes: Record<ViewportSize, { width: number; height: number }> = {
   desktop: { width: 1440, height: 900 },
@@ -79,45 +86,93 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
   const [isCreatingPR, setIsCreatingPR] = useState(false)
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null)
   const [inspectorEnabled, setInspectorEnabled] = useState(true)
+  const [connectionMode, setConnectionMode] = useState<ConnectionMode>("iframe")
+  const [sessionId] = useState(() => generateSessionId())
+  const [proxyError, setProxyError] = useState<string | null>(null)
+  const [targetConnected, setTargetConnected] = useState(false)
+  const [copied, setCopied] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
+  const lumosSocket = useRef(getLumosSocket())
+
+  // Handle element selection (from both iframe postMessage and Socket.io)
+  const handleElementSelected = useCallback((data: SelectedElement | SocketSelectedElement) => {
+    setSelectedElement({
+      selector: data.selector,
+      tagName: data.tagName,
+      className: data.className,
+      id: data.id,
+      styles: data.styles,
+    })
+  }, [])
+
+  // Handle style change confirmation
+  const handleStyleApplied = useCallback((data: { selector: string; property: string; oldValue: string; newValue: string }) => {
+    const change: StyleChange = {
+      id: crypto.randomUUID(),
+      selector: data.selector,
+      property: data.property,
+      oldValue: data.oldValue,
+      newValue: data.newValue,
+      timestamp: Date.now(),
+    }
+    setChanges((prev) => [...prev, change])
+    setSelectedElement((prev) => prev ? {
+      ...prev,
+      styles: { ...prev.styles, [data.property]: data.newValue }
+    } : null)
+    toast.success("Style updated", {
+      description: `${data.property}: ${data.newValue}`,
+    })
+  }, [])
 
   // Handle messages from the iframe (inspector changes)
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.data.type === "LUMOS_STYLE_CHANGE") {
-        const change: StyleChange = {
-          id: crypto.randomUUID(),
-          selector: event.data.selector,
-          property: event.data.property,
-          oldValue: event.data.oldValue,
-          newValue: event.data.newValue,
-          timestamp: Date.now(),
-        }
-        setChanges((prev) => [...prev, change])
-        setSelectedElement((prev) => prev ? {
-          ...prev,
-          styles: { ...prev.styles, [event.data.property]: event.data.newValue }
-        } : null)
-        toast.success("Style updated", {
-          description: `${event.data.property}: ${event.data.newValue}`,
-        })
+        handleStyleApplied(event.data)
       } else if (event.data.type === "LUMOS_CONNECTED") {
         setIsConnected(true)
-        toast.success("Inspector connected")
+        setProxyError(null)
+        toast.success("Inspector connected via iframe")
       } else if (event.data.type === "LUMOS_ELEMENT_SELECTED") {
-        setSelectedElement({
-          selector: event.data.selector,
-          tagName: event.data.tagName,
-          className: event.data.className,
-          id: event.data.id,
-          styles: event.data.styles,
-        })
+        handleElementSelected(event.data)
       }
     }
 
     window.addEventListener("message", handleMessage)
     return () => window.removeEventListener("message", handleMessage)
-  }, [])
+  }, [handleElementSelected, handleStyleApplied])
+
+  // Connect to Socket.io when in direct mode
+  useEffect(() => {
+    if (connectionMode === "direct") {
+      lumosSocket.current.connect(sessionId, {
+        onConnected: () => {
+          setIsConnected(true)
+          toast.success("Connected to Lumos server")
+        },
+        onDisconnected: () => {
+          setIsConnected(false)
+        },
+        onTargetConnected: () => {
+          setTargetConnected(true)
+          toast.success("Target app connected!", {
+            description: "You can now select elements",
+          })
+        },
+        onTargetDisconnected: () => {
+          setTargetConnected(false)
+          toast.info("Target app disconnected")
+        },
+        onElementSelected: handleElementSelected,
+        onStyleApplied: handleStyleApplied,
+      })
+
+      return () => {
+        lumosSocket.current.disconnect()
+      }
+    }
+  }, [connectionMode, sessionId, handleElementSelected, handleStyleApplied])
 
   const handleLoadUrl = useCallback(() => {
     if (!targetUrl) {
@@ -179,14 +234,34 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
   const handleStyleChange = useCallback((property: string, value: string) => {
     if (!selectedElement) return
 
-    // Send message to iframe to apply the style
-    iframeRef.current?.contentWindow?.postMessage({
-      type: "LUMOS_APPLY_STYLE",
-      selector: selectedElement.selector,
-      property,
-      value,
-    }, "*")
-  }, [selectedElement])
+    if (connectionMode === "direct") {
+      // Send via Socket.io
+      lumosSocket.current.applyStyle(selectedElement.selector, property, value)
+    } else {
+      // Send message to iframe
+      iframeRef.current?.contentWindow?.postMessage({
+        type: "LUMOS_APPLY_STYLE",
+        selector: selectedElement.selector,
+        property,
+        value,
+      }, "*")
+    }
+  }, [selectedElement, connectionMode])
+
+  // Switch to direct mode
+  const switchToDirectMode = useCallback(() => {
+    setConnectionMode("direct")
+    setShowUrlInput(false)
+  }, [])
+
+  // Copy SDK script to clipboard
+  const copySDKScript = useCallback(() => {
+    const script = `<script src="${window.location.origin}/lumos-connect.js" data-session="${sessionId}"></script>`
+    navigator.clipboard.writeText(script)
+    setCopied(true)
+    toast.success("Copied to clipboard!")
+    setTimeout(() => setCopied(false), 2000)
+  }, [sessionId])
 
   const handleCreatePR = useCallback(async () => {
     if (changes.length === 0) {
@@ -266,21 +341,46 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
           <span>{repo.defaultBranch}</span>
         </div>
 
-        {/* URL Display/Edit */}
-        <div className="flex items-center gap-2 ml-4 px-3 py-1.5 bg-muted rounded-lg">
-          <input
-            type="text"
-            value={targetUrl}
-            onChange={(e) => setTargetUrl(e.target.value)}
-            placeholder="Enter app URL..."
-            className="bg-transparent text-sm w-64 focus:outline-none"
-            onKeyDown={(e) => e.key === "Enter" && handleLoadUrl()}
-          />
+        {/* Connection Status */}
+        <div className="flex items-center gap-2 ml-4">
+          {connectionMode === "direct" ? (
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg ${targetConnected ? "bg-green-500/10 text-green-600" : "bg-amber-500/10 text-amber-600"}`}>
+              {targetConnected ? <Wifi className="h-4 w-4" /> : <WifiOff className="h-4 w-4" />}
+              <span className="text-sm font-medium">
+                {targetConnected ? "Target Connected" : "Waiting for target..."}
+              </span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-muted rounded-lg">
+              <input
+                type="text"
+                value={targetUrl}
+                onChange={(e) => setTargetUrl(e.target.value)}
+                placeholder="Enter app URL..."
+                className="bg-transparent text-sm w-64 focus:outline-none"
+                onKeyDown={(e) => e.key === "Enter" && handleLoadUrl()}
+              />
+              <button
+                onClick={handleLoadUrl}
+                className="px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90"
+              >
+                Load
+              </button>
+            </div>
+          )}
+
+          {/* Mode Toggle */}
           <button
-            onClick={handleLoadUrl}
-            className="px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90"
+            onClick={switchToDirectMode}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              connectionMode === "direct"
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:text-foreground"
+            }`}
+            title="Switch to direct SDK mode"
           >
-            Load
+            <Link2 className="h-4 w-4" />
+            <span>Direct</span>
           </button>
         </div>
 
@@ -356,9 +456,87 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
 
       {/* Main editor area */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Iframe container */}
+        {/* Content container */}
         <div className="flex-1 bg-muted/50 flex items-center justify-center p-4 overflow-auto">
-          {showUrlInput ? (
+          {connectionMode === "direct" ? (
+            /* Direct Mode - Show SDK Instructions */
+            <div className="w-full max-w-2xl p-8 bg-card rounded-xl border shadow-lg">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center">
+                  <Link2 className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-semibold">Direct Connection Mode</h2>
+                  <p className="text-muted-foreground text-sm">
+                    Add the SDK to your app to enable live editing
+                  </p>
+                </div>
+              </div>
+
+              {/* Connection Status */}
+              <div className={`p-4 rounded-lg mb-6 ${targetConnected ? "bg-green-500/10 border border-green-500/20" : "bg-amber-500/10 border border-amber-500/20"}`}>
+                <div className="flex items-center gap-3">
+                  {targetConnected ? (
+                    <>
+                      <Wifi className="h-5 w-5 text-green-600" />
+                      <div>
+                        <p className="font-medium text-green-600">Target App Connected</p>
+                        <p className="text-sm text-green-600/80">Click on elements in your app to select them</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <WifiOff className="h-5 w-5 text-amber-600" />
+                      <div>
+                        <p className="font-medium text-amber-600">Waiting for Target App</p>
+                        <p className="text-sm text-amber-600/80">Add the SDK script below to your app</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* SDK Script */}
+              <div className="mb-6">
+                <label className="text-sm font-medium mb-2 block">Add this script to your app:</label>
+                <div className="relative">
+                  <pre className="p-4 bg-muted rounded-lg text-sm font-mono overflow-x-auto">
+                    <code>{`<script src="${typeof window !== 'undefined' ? window.location.origin : ''}/lumos-connect.js" data-session="${sessionId}"></script>`}</code>
+                  </pre>
+                  <button
+                    onClick={copySDKScript}
+                    className="absolute top-2 right-2 p-2 rounded-lg bg-background border hover:bg-accent transition-colors"
+                    title="Copy to clipboard"
+                  >
+                    {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Instructions */}
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <div className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-medium">1</span>
+                  <p>Copy the script tag above and add it to your app&apos;s HTML (before the closing &lt;/body&gt; tag)</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-medium">2</span>
+                  <p>Open your app in a browser - you&apos;ll see a &quot;Lumos Studio&quot; badge appear</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-medium">3</span>
+                  <p>Click on any element in your app to select it and edit its styles here</p>
+                </div>
+              </div>
+
+              {/* Session ID */}
+              <div className="mt-6 pt-6 border-t">
+                <p className="text-xs text-muted-foreground">
+                  Session ID: <code className="px-1.5 py-0.5 bg-muted rounded font-mono">{sessionId}</code>
+                </p>
+              </div>
+            </div>
+          ) : showUrlInput ? (
             <div className="w-full max-w-lg p-8 bg-card rounded-xl border shadow-lg">
               <h2 className="text-xl font-semibold mb-2">Enter your app URL</h2>
               <p className="text-muted-foreground text-sm mb-6">
@@ -380,13 +558,22 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
                   Load
                 </button>
               </div>
-              <p className="text-xs text-muted-foreground mt-4">
-                Tip: Use your Railway, Vercel, or local dev server URL
-              </p>
+              <div className="mt-6 pt-6 border-t">
+                <p className="text-sm text-muted-foreground mb-3">
+                  Having trouble with the iframe? Try direct mode instead:
+                </p>
+                <button
+                  onClick={switchToDirectMode}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted text-foreground hover:bg-accent transition-colors"
+                >
+                  <Link2 className="h-4 w-4" />
+                  Switch to Direct Mode
+                </button>
+              </div>
             </div>
           ) : (
             <div
-              className="bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-300"
+              className="bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-300 relative"
               style={{
                 width: viewportSizes[viewport].width,
                 height: viewportSizes[viewport].height,
@@ -399,12 +586,29 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
                   <RefreshCw className="h-8 w-8 animate-spin text-primary" />
                 </div>
               )}
+              {proxyError && (
+                <div className="absolute inset-0 flex items-center justify-center bg-background/95 z-20 p-8">
+                  <div className="text-center max-w-md">
+                    <WifiOff className="h-12 w-12 text-destructive mx-auto mb-4" />
+                    <h3 className="font-semibold mb-2">Failed to load site</h3>
+                    <p className="text-sm text-muted-foreground mb-4">{proxyError}</p>
+                    <button
+                      onClick={switchToDirectMode}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 mx-auto"
+                    >
+                      <Link2 className="h-4 w-4" />
+                      Try Direct Mode
+                    </button>
+                  </div>
+                </div>
+              )}
               <iframe
                 ref={iframeRef}
                 src={proxyUrl}
                 className="w-full h-full border-0"
                 title="Preview"
                 sandbox="allow-scripts allow-same-origin allow-forms"
+                onError={() => setProxyError("Failed to load the site. Try using Direct Mode instead.")}
               />
             </div>
           )}
