@@ -2,12 +2,25 @@ import { NextRequest, NextResponse } from "next/server"
 
 // Inspector injection script
 const INSPECTOR_SCRIPT = `
+<style>
+  .lumos-hover-outline {
+    outline: 2px solid #3b82f6 !important;
+    outline-offset: 2px !important;
+  }
+  .lumos-selected-outline {
+    outline: 2px solid #8b5cf6 !important;
+    outline-offset: 2px !important;
+  }
+</style>
 <script>
 (function() {
+  let selectedElement = null;
+  let hoveredElement = null;
+
   // Notify parent that we're loaded
   window.parent.postMessage({ type: 'LUMOS_CONNECTED' }, '*');
 
-  // Listen for undo/redo commands
+  // Listen for commands from parent
   window.addEventListener('message', function(event) {
     if (event.data.type === 'LUMOS_UNDO') {
       const change = event.data.change;
@@ -21,56 +34,120 @@ const INSPECTOR_SCRIPT = `
       if (el) {
         el.style[change.property] = change.newValue;
       }
+    } else if (event.data.type === 'LUMOS_APPLY_STYLE') {
+      const el = document.querySelector(event.data.selector);
+      if (el) {
+        const oldValue = el.style[event.data.property] || getComputedStyle(el)[event.data.property];
+        el.style[event.data.property] = event.data.value;
+
+        // Notify parent of change
+        window.parent.postMessage({
+          type: 'LUMOS_STYLE_CHANGE',
+          selector: event.data.selector,
+          property: event.data.property,
+          oldValue: oldValue,
+          newValue: event.data.value,
+        }, '*');
+      }
     }
   });
 
-  // Override style setter to track changes
-  const originalSetProperty = CSSStyleDeclaration.prototype.setProperty;
-  CSSStyleDeclaration.prototype.setProperty = function(prop, value, priority) {
-    const el = this.parentElement || document.querySelector('[style]');
-    if (el) {
-      const oldValue = this.getPropertyValue(prop);
-      originalSetProperty.call(this, prop, value, priority);
+  // Handle hover
+  document.addEventListener('mouseover', function(e) {
+    if (e.target === document.body || e.target === document.documentElement) return;
 
-      // Generate a unique selector for this element
-      const selector = generateSelector(el);
-
-      window.parent.postMessage({
-        type: 'LUMOS_STYLE_CHANGE',
-        selector: selector,
-        property: prop,
-        oldValue: oldValue,
-        newValue: value,
-      }, '*');
-    } else {
-      originalSetProperty.call(this, prop, value, priority);
+    if (hoveredElement && hoveredElement !== selectedElement) {
+      hoveredElement.classList.remove('lumos-hover-outline');
     }
-  };
+
+    hoveredElement = e.target;
+    if (hoveredElement !== selectedElement) {
+      hoveredElement.classList.add('lumos-hover-outline');
+    }
+  });
+
+  document.addEventListener('mouseout', function(e) {
+    if (hoveredElement && hoveredElement !== selectedElement) {
+      hoveredElement.classList.remove('lumos-hover-outline');
+    }
+  });
+
+  // Handle click to select element
+  document.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (selectedElement) {
+      selectedElement.classList.remove('lumos-selected-outline');
+    }
+
+    selectedElement = e.target;
+    selectedElement.classList.add('lumos-selected-outline');
+    if (hoveredElement) {
+      hoveredElement.classList.remove('lumos-hover-outline');
+    }
+
+    // Get computed styles
+    const computed = getComputedStyle(selectedElement);
+    const styles = {
+      display: computed.display,
+      position: computed.position,
+      padding: computed.padding,
+      margin: computed.margin,
+      fontSize: computed.fontSize,
+      fontWeight: computed.fontWeight,
+      color: rgbToHex(computed.color),
+      backgroundColor: rgbToHex(computed.backgroundColor),
+      borderRadius: computed.borderRadius,
+      borderWidth: computed.borderWidth,
+    };
+
+    // Notify parent of selection
+    window.parent.postMessage({
+      type: 'LUMOS_ELEMENT_SELECTED',
+      selector: generateSelector(selectedElement),
+      tagName: selectedElement.tagName.toLowerCase(),
+      className: selectedElement.className.replace('lumos-selected-outline', '').replace('lumos-hover-outline', '').trim(),
+      id: selectedElement.id || '',
+      styles: styles,
+    }, '*');
+  }, true);
+
+  function rgbToHex(rgb) {
+    if (!rgb || rgb === 'transparent' || rgb === 'rgba(0, 0, 0, 0)') return '';
+    const match = rgb.match(/^rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)/);
+    if (!match) return rgb;
+    return '#' + [match[1], match[2], match[3]].map(x => {
+      const hex = parseInt(x).toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    }).join('');
+  }
 
   function generateSelector(el) {
     if (el.id) return '#' + el.id;
     if (el.className) {
-      const classes = el.className.split(' ').filter(c => c).slice(0, 2).join('.');
+      const classes = el.className.split(' ').filter(c => c && !c.startsWith('lumos-')).slice(0, 2).join('.');
       if (classes) return el.tagName.toLowerCase() + '.' + classes;
     }
 
     // Generate path-based selector
     const path = [];
-    while (el && el.nodeType === Node.ELEMENT_NODE) {
-      let selector = el.nodeName.toLowerCase();
-      if (el.id) {
-        selector = '#' + el.id;
+    let current = el;
+    while (current && current.nodeType === Node.ELEMENT_NODE && current !== document.body) {
+      let selector = current.nodeName.toLowerCase();
+      if (current.id) {
+        selector = '#' + current.id;
         path.unshift(selector);
         break;
       }
-      let sibling = el;
+      let sibling = current;
       let nth = 1;
       while (sibling = sibling.previousElementSibling) {
-        if (sibling.nodeName.toLowerCase() === selector) nth++;
+        if (sibling.nodeName.toLowerCase() === current.nodeName.toLowerCase()) nth++;
       }
       if (nth !== 1) selector += ':nth-of-type(' + nth + ')';
       path.unshift(selector);
-      el = el.parentNode;
+      current = current.parentNode;
     }
     return path.join(' > ');
   }

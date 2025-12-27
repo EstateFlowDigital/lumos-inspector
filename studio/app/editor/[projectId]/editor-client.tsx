@@ -22,6 +22,11 @@ import {
   Layers,
   Play,
   Pause,
+  MousePointer,
+  Type,
+  Palette,
+  Box,
+  Move,
 } from "lucide-react"
 
 interface RepoInfo {
@@ -39,6 +44,14 @@ interface StyleChange {
   oldValue: string
   newValue: string
   timestamp: number
+}
+
+interface SelectedElement {
+  selector: string
+  tagName: string
+  className: string
+  id: string
+  styles: Record<string, string>
 }
 
 interface EditorClientProps {
@@ -64,6 +77,8 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
   const [undoStack, setUndoStack] = useState<StyleChange[]>([])
   const [showUrlInput, setShowUrlInput] = useState(!deploymentUrl)
   const [isCreatingPR, setIsCreatingPR] = useState(false)
+  const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null)
+  const [inspectorEnabled, setInspectorEnabled] = useState(true)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   // Handle messages from the iframe (inspector changes)
@@ -79,12 +94,24 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
           timestamp: Date.now(),
         }
         setChanges((prev) => [...prev, change])
+        setSelectedElement((prev) => prev ? {
+          ...prev,
+          styles: { ...prev.styles, [event.data.property]: event.data.newValue }
+        } : null)
         toast.success("Style updated", {
           description: `${event.data.property}: ${event.data.newValue}`,
         })
       } else if (event.data.type === "LUMOS_CONNECTED") {
         setIsConnected(true)
         toast.success("Inspector connected")
+      } else if (event.data.type === "LUMOS_ELEMENT_SELECTED") {
+        setSelectedElement({
+          selector: event.data.selector,
+          tagName: event.data.tagName,
+          className: event.data.className,
+          id: event.data.id,
+          styles: event.data.styles,
+        })
       }
     }
 
@@ -148,6 +175,18 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
       setTimeout(() => setIsLoading(false), 2000)
     }
   }, [])
+
+  const handleStyleChange = useCallback((property: string, value: string) => {
+    if (!selectedElement) return
+
+    // Send message to iframe to apply the style
+    iframeRef.current?.contentWindow?.postMessage({
+      type: "LUMOS_APPLY_STYLE",
+      selector: selectedElement.selector,
+      property,
+      value,
+    }, "*")
+  }, [selectedElement])
 
   const handleCreatePR = useCallback(async () => {
     if (changes.length === 0) {
@@ -353,37 +392,254 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
           )}
         </div>
 
-        {/* Changes sidebar */}
-        {changes.length > 0 && (
-          <div className="w-80 border-l bg-card flex flex-col">
-            <div className="p-4 border-b">
-              <h3 className="font-semibold">Pending Changes</h3>
-              <p className="text-sm text-muted-foreground">
-                {changes.length} style change{changes.length !== 1 ? "s" : ""}
-              </p>
-            </div>
-            <div className="flex-1 overflow-auto p-2">
-              {changes.map((change) => (
-                <div
-                  key={change.id}
-                  className="p-3 rounded-lg bg-muted/50 mb-2 text-sm"
-                >
-                  <div className="font-mono text-xs text-muted-foreground truncate mb-1">
-                    {change.selector}
+        {/* Inspector Panel */}
+        <div className="w-80 border-l bg-card flex flex-col">
+          {/* Inspector Header */}
+          <div className="p-3 border-b flex items-center justify-between">
+            <h3 className="font-semibold flex items-center gap-2">
+              <MousePointer className="h-4 w-4" />
+              Inspector
+            </h3>
+            <button
+              onClick={() => setInspectorEnabled(!inspectorEnabled)}
+              className={`p-1.5 rounded ${inspectorEnabled ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+              title={inspectorEnabled ? "Disable inspector" : "Enable inspector"}
+            >
+              <Eye className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          {selectedElement ? (
+            <div className="flex-1 overflow-auto">
+              {/* Selected Element Info */}
+              <div className="p-3 border-b bg-muted/30">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="px-2 py-0.5 bg-primary/20 text-primary rounded text-xs font-mono">
+                    {selectedElement.tagName}
+                  </span>
+                  {selectedElement.id && (
+                    <span className="text-xs text-muted-foreground">#{selectedElement.id}</span>
+                  )}
+                </div>
+                {selectedElement.className && (
+                  <p className="text-xs text-muted-foreground font-mono truncate">
+                    .{selectedElement.className.split(" ").join(" .")}
+                  </p>
+                )}
+              </div>
+
+              {/* Quick Style Controls */}
+              <div className="p-3 border-b">
+                <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Layout</h4>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Display</label>
+                    <select
+                      className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background"
+                      value={selectedElement.styles.display || ""}
+                      onChange={(e) => handleStyleChange("display", e.target.value)}
+                    >
+                      <option value="">-</option>
+                      <option value="block">block</option>
+                      <option value="flex">flex</option>
+                      <option value="grid">grid</option>
+                      <option value="inline">inline</option>
+                      <option value="inline-block">inline-block</option>
+                      <option value="none">none</option>
+                    </select>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{change.property}:</span>
-                    <span className="text-destructive line-through">
-                      {change.oldValue || "(none)"}
-                    </span>
-                    <span>→</span>
-                    <span className="text-chart-2">{change.newValue}</span>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Position</label>
+                    <select
+                      className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background"
+                      value={selectedElement.styles.position || ""}
+                      onChange={(e) => handleStyleChange("position", e.target.value)}
+                    >
+                      <option value="">-</option>
+                      <option value="static">static</option>
+                      <option value="relative">relative</option>
+                      <option value="absolute">absolute</option>
+                      <option value="fixed">fixed</option>
+                      <option value="sticky">sticky</option>
+                    </select>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Spacing */}
+              <div className="p-3 border-b">
+                <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Spacing</h4>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Padding</label>
+                    <input
+                      type="text"
+                      className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                      placeholder="0px"
+                      defaultValue={selectedElement.styles.padding || ""}
+                      onBlur={(e) => handleStyleChange("padding", e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleStyleChange("padding", e.currentTarget.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Margin</label>
+                    <input
+                      type="text"
+                      className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                      placeholder="0px"
+                      defaultValue={selectedElement.styles.margin || ""}
+                      onBlur={(e) => handleStyleChange("margin", e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleStyleChange("margin", e.currentTarget.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Typography */}
+              <div className="p-3 border-b">
+                <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Typography</h4>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="text-xs text-muted-foreground">Font Size</label>
+                      <input
+                        type="text"
+                        className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                        placeholder="16px"
+                        defaultValue={selectedElement.styles.fontSize || ""}
+                        onBlur={(e) => handleStyleChange("font-size", e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleStyleChange("font-size", e.currentTarget.value)}
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-muted-foreground">Font Weight</label>
+                      <select
+                        className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background"
+                        value={selectedElement.styles.fontWeight || ""}
+                        onChange={(e) => handleStyleChange("font-weight", e.target.value)}
+                      >
+                        <option value="">-</option>
+                        <option value="300">Light</option>
+                        <option value="400">Normal</option>
+                        <option value="500">Medium</option>
+                        <option value="600">Semibold</option>
+                        <option value="700">Bold</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Color</label>
+                    <div className="flex gap-2 mt-1">
+                      <input
+                        type="color"
+                        className="w-10 h-8 rounded border cursor-pointer"
+                        value={selectedElement.styles.color || "#000000"}
+                        onChange={(e) => handleStyleChange("color", e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        className="flex-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                        placeholder="#000000"
+                        defaultValue={selectedElement.styles.color || ""}
+                        onBlur={(e) => handleStyleChange("color", e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleStyleChange("color", e.currentTarget.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Background */}
+              <div className="p-3 border-b">
+                <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Background</h4>
+                <div>
+                  <label className="text-xs text-muted-foreground">Background Color</label>
+                  <div className="flex gap-2 mt-1">
+                    <input
+                      type="color"
+                      className="w-10 h-8 rounded border cursor-pointer"
+                      value={selectedElement.styles.backgroundColor || "#ffffff"}
+                      onChange={(e) => handleStyleChange("background-color", e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      className="flex-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                      placeholder="transparent"
+                      defaultValue={selectedElement.styles.backgroundColor || ""}
+                      onBlur={(e) => handleStyleChange("background-color", e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleStyleChange("background-color", e.currentTarget.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Border */}
+              <div className="p-3">
+                <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Border</h4>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Border Radius</label>
+                    <input
+                      type="text"
+                      className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                      placeholder="0px"
+                      defaultValue={selectedElement.styles.borderRadius || ""}
+                      onBlur={(e) => handleStyleChange("border-radius", e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleStyleChange("border-radius", e.currentTarget.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Border Width</label>
+                    <input
+                      type="text"
+                      className="w-full mt-1 px-2 py-1.5 text-sm rounded border bg-background font-mono"
+                      placeholder="0px"
+                      defaultValue={selectedElement.styles.borderWidth || ""}
+                      onBlur={(e) => handleStyleChange("border-width", e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleStyleChange("border-width", e.currentTarget.value)}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="flex-1 flex items-center justify-center p-8 text-center">
+              <div>
+                <MousePointer className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
+                <p className="text-sm text-muted-foreground">
+                  Click on an element in the preview to inspect and edit its styles
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Changes Section */}
+          {changes.length > 0 && (
+            <div className="border-t">
+              <div className="p-3 border-b bg-muted/30">
+                <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                  Pending Changes ({changes.length})
+                </h4>
+              </div>
+              <div className="max-h-48 overflow-auto p-2">
+                {changes.slice(-5).map((change) => (
+                  <div
+                    key={change.id}
+                    className="p-2 rounded bg-muted/50 mb-1 text-xs"
+                  >
+                    <div className="font-mono text-muted-foreground truncate">
+                      {change.selector}
+                    </div>
+                    <div className="flex items-center gap-1 mt-1">
+                      <span className="font-medium">{change.property}:</span>
+                      <span className="text-chart-2">{change.newValue}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
