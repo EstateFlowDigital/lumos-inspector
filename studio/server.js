@@ -1,5 +1,6 @@
 const { createServer } = require("http")
 const { parse } = require("url")
+const path = require("path")
 const next = require("next")
 const { Server } = require("socket.io")
 
@@ -7,7 +8,13 @@ const dev = process.env.NODE_ENV !== "production"
 const hostname = "0.0.0.0"
 const port = parseInt(process.env.PORT || "3000", 10)
 
-const app = next({ dev, hostname, port })
+// Use the directory where server.js is located
+const dir = path.join(__dirname)
+
+console.log(`Starting server in ${dev ? "development" : "production"} mode`)
+console.log(`Working directory: ${dir}`)
+
+const app = next({ dev, hostname, port, dir })
 const handle = app.getRequestHandler()
 
 // Store active sessions: sessionId -> { studio: socket, targets: [socket] }
