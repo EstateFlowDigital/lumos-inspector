@@ -113,6 +113,8 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
 
   // Handle element selection (from both iframe postMessage and Socket.io)
   const handleElementSelected = useCallback((data: SelectedElement | SocketSelectedElement) => {
+    // If we're receiving element selections, the target is connected
+    setTargetConnected(true)
     setSelectedElement({
       selector: data.selector,
       tagName: data.tagName,
