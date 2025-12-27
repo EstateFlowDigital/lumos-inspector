@@ -1,12 +1,13 @@
 import { Paintbrush, Copy, ExternalLink, Link2, Code, Zap } from "lucide-react"
 import Link from "next/link"
 
-export default function ConnectPage({
-  searchParams,
-}: {
-  searchParams: { session?: string }
-}) {
-  const sessionId = searchParams.session
+interface PageProps {
+  searchParams: Promise<{ session?: string }>
+}
+
+export default async function ConnectPage({ searchParams }: PageProps) {
+  const params = await searchParams
+  const sessionId = params.session
 
   return (
     <div className="min-h-screen bg-background">
