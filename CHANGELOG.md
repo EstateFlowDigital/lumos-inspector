@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Theme Detection** - Auto-detects light/dark mode from system preferences, html/body classes, or background color
+- **Quick Actions Bar** - Labeled buttons for Audit, Changes, and Responsive with icons
 - **Style Audit** - Detects elements missing Lumos utility classes (`u-*`, `is-*`, `w-*`) and data attributes (`data-state`, `data-trigger`, etc.)
 - **Improvement Log Panel** - Shows all detected style issues with click-to-navigate functionality
 - **Element Operations** - Duplicate (⌘D), Copy (⌘C), Paste (⌘V), Delete (⌫) with full undo support
@@ -17,13 +19,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Animation Timeline Editor** - Visual keyframe animation builder with curve presets
 - **Gradient Builder** - Visual gradient editor with angle, color stops, and type selection
 - **Tailwind CSS Export** - Convert styles to Tailwind utility classes
-- **Responsive Breakpoints** - Improved viewport preview with iframe-based rendering
+- **Tooltips** - All toolbar buttons now have descriptive tooltips with keyboard shortcuts
 - 8 new command palette entries for all new features
+
+### Changed
+- **Responsive Breakpoints** - Now uses CSS-based viewport simulation instead of iframe for real-time editing
+- **Panel Width** - Inspector panel widened from 320px to 340px for better readability
+- **Scrolling** - All panels now properly scrollable with custom styled scrollbars
+- **CSS Architecture** - All hardcoded colors replaced with CSS variables for theming
 
 ### Fixed
 - Variable naming conflicts causing FAB to disappear (`breakpoints`, `currentBreakpoint`, `currentViewport`)
 - Suspense boundary error for `useSearchParams()` in create-pr page
-- Responsive breakpoint preview now uses iframe for accurate rendering
+- Responsive breakpoints now work correctly with real-time editing
+- Containers properly scroll to show all tools
 
 ## [0.1.0] - 2025-12-26
 
