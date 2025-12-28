@@ -3860,6 +3860,396 @@
       font-size: 20px;
       margin-bottom: 4px;
     }
+
+    /* Content Visibility Editor */
+    .lumos-content-visibility-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-cv-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #3f3f46;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lumos-cv-title {
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lumos-cv-body {
+      padding: 16px;
+    }
+    .lumos-cv-section {
+      margin-bottom: 16px;
+    }
+    .lumos-cv-section:last-child {
+      margin-bottom: 0;
+    }
+    .lumos-cv-label {
+      font-size: 11px;
+      color: #a1a1aa;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .lumos-cv-options {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .lumos-cv-option {
+      padding: 8px 12px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lumos-cv-option:hover {
+      background: #3f3f46;
+    }
+    .lumos-cv-option.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-cv-info {
+      margin-top: 12px;
+      padding: 10px;
+      background: #27272a;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #a1a1aa;
+      line-height: 1.5;
+    }
+
+    /* Touch Action Editor */
+    .lumos-touch-action-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-ta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .lumos-ta-btn {
+      padding: 12px 8px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .lumos-ta-btn:hover {
+      background: #3f3f46;
+    }
+    .lumos-ta-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-ta-btn-icon {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* Pointer Events Editor */
+    .lumos-pointer-events-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-pe-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .lumos-pe-option {
+      padding: 16px 12px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .lumos-pe-option:hover {
+      background: #3f3f46;
+    }
+    .lumos-pe-option.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-pe-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .lumos-pe-name {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .lumos-pe-desc {
+      font-size: 10px;
+      color: #71717a;
+      margin-top: 4px;
+    }
+    .lumos-pe-option.active .lumos-pe-desc {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Will-Change Optimizer */
+    .lumos-will-change-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-wc-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .lumos-wc-preset {
+      padding: 8px 14px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lumos-wc-preset:hover {
+      background: #3f3f46;
+    }
+    .lumos-wc-preset.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-wc-custom {
+      display: flex;
+      gap: 8px;
+    }
+    .lumos-wc-input {
+      flex: 1;
+      padding: 10px 12px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      color: #e4e4e7;
+      font-size: 13px;
+      font-family: monospace;
+    }
+    .lumos-wc-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+    }
+    .lumos-wc-apply {
+      padding: 10px 16px;
+      background: #8b5cf6;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .lumos-wc-warning {
+      margin-top: 12px;
+      padding: 10px;
+      background: #422006;
+      border: 1px solid #78350f;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #fbbf24;
+      line-height: 1.5;
+    }
+
+    /* Contain Property Editor */
+    .lumos-contain-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-contain-options {
+      display: grid;
+      gap: 8px;
+    }
+    .lumos-contain-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lumos-contain-option:hover {
+      background: #3f3f46;
+    }
+    .lumos-contain-option.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+    }
+    .lumos-contain-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #52525b;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lumos-contain-option.active .lumos-contain-checkbox {
+      background: white;
+      border-color: white;
+    }
+    .lumos-contain-check {
+      display: none;
+      color: #8b5cf6;
+    }
+    .lumos-contain-option.active .lumos-contain-check {
+      display: block;
+    }
+    .lumos-contain-info {
+      flex: 1;
+    }
+    .lumos-contain-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .lumos-contain-desc {
+      font-size: 11px;
+      color: #71717a;
+      margin-top: 2px;
+    }
+    .lumos-contain-option.active .lumos-contain-desc {
+      color: rgba(255,255,255,0.7);
+    }
+    .lumos-contain-presets {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #3f3f46;
+    }
+    .lumos-contain-preset {
+      flex: 1;
+      padding: 10px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .lumos-contain-preset:hover {
+      background: #3f3f46;
+    }
+
+    /* User Select Editor */
+    .lumos-user-select-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-us-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .lumos-us-option {
+      padding: 14px 12px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .lumos-us-option:hover {
+      background: #3f3f46;
+    }
+    .lumos-us-option.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-us-icon {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+    .lumos-us-name {
+      font-size: 12px;
+      font-weight: 500;
+    }
   `;
   document.head.appendChild(style);
 
@@ -3961,6 +4351,13 @@
     writingMode: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 19V5M5 12h14"/><path d="M5 5h14M5 19h14"/></svg>',
     wordBreak: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M10 4v16"/><path d="M14 4v16"/><path d="M3 8h4M17 8h4M3 16h4M17 16h4"/></svg>',
     resizeIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-6-6m6 6v-4.8m0 4.8h-4.8"/><path d="M3 16.2V21m0 0h4.8M3 21l6-6"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>',
+    contentVisibility: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><circle cx="15" cy="15" r="2" opacity="0.5"/></svg>',
+    touchAction: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 17"/></svg>',
+    pointerEvents: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><circle cx="12" cy="12" r="10" stroke-dasharray="4 2" fill="none"/></svg>',
+    willChange: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+    containProp: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>',
+    userSelect: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><path d="M15 5l4 4"/></svg>',
+    scrollBehavior: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -10402,6 +10799,372 @@
   }
 
   // ============================================
+  // CONTENT VISIBILITY EDITOR
+  // ============================================
+  function openContentVisibilityEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-content-visibility-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const currentVisibility = selectedElement.style.contentVisibility || cs.contentVisibility || 'visible';
+    const currentIntrinsic = selectedElement.style.containIntrinsicSize || '';
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-content-visibility-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.contentVisibility} Content Visibility</span>
+        <button class="lumos-close-cv" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-cv-section">
+          <div class="lumos-cv-label">Content Visibility</div>
+          <div class="lumos-cv-options">
+            <button class="lumos-cv-option ${currentVisibility === 'visible' ? 'active' : ''}" data-cv="visible">visible</button>
+            <button class="lumos-cv-option ${currentVisibility === 'auto' ? 'active' : ''}" data-cv="auto">auto</button>
+            <button class="lumos-cv-option ${currentVisibility === 'hidden' ? 'active' : ''}" data-cv="hidden">hidden</button>
+          </div>
+        </div>
+        <div class="lumos-cv-section">
+          <div class="lumos-cv-label">Contain Intrinsic Size</div>
+          <div style="display:flex;gap:8px">
+            <input type="text" class="lumos-wc-input lumos-cv-intrinsic" value="${currentIntrinsic}" placeholder="e.g., 0 500px">
+            <button class="lumos-wc-apply lumos-cv-apply-intrinsic">Apply</button>
+          </div>
+        </div>
+        <div class="lumos-cv-info">
+          <strong>auto:</strong> Offscreen content is skipped for rendering (great for long pages).<br>
+          <strong>hidden:</strong> Content is never rendered (similar to display:none but preserves layout).
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-cv-option').forEach(btn => {
+      btn.onclick = () => {
+        const val = btn.dataset.cv;
+        applyStyle('contentVisibility', val);
+        panel.querySelectorAll('.lumos-cv-option').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-cv-apply-intrinsic').onclick = () => {
+      const val = panel.querySelector('.lumos-cv-intrinsic').value;
+      if (val) applyStyle('containIntrinsicSize', val);
+    };
+
+    panel.querySelector('.lumos-close-cv').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // TOUCH ACTION EDITOR
+  // ============================================
+  function openTouchActionEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-touch-action-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.touchAction || cs.touchAction || 'auto';
+
+    const options = [
+      { value: 'auto', label: 'Auto', icon: '✋' },
+      { value: 'none', label: 'None', icon: '🚫' },
+      { value: 'pan-x', label: 'Pan X', icon: '↔️' },
+      { value: 'pan-y', label: 'Pan Y', icon: '↕️' },
+      { value: 'pan-left', label: 'Pan Left', icon: '⬅️' },
+      { value: 'pan-right', label: 'Pan Right', icon: '➡️' },
+      { value: 'pan-up', label: 'Pan Up', icon: '⬆️' },
+      { value: 'pan-down', label: 'Pan Down', icon: '⬇️' },
+      { value: 'pinch-zoom', label: 'Pinch Zoom', icon: '🔍' },
+      { value: 'manipulation', label: 'Manipulation', icon: '👆' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-touch-action-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.touchAction} Touch Action</span>
+        <button class="lumos-close-ta" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-ta-grid">
+          ${options.map(o => `
+            <button class="lumos-ta-btn ${current === o.value ? 'active' : ''}" data-ta="${o.value}">
+              <div class="lumos-ta-btn-icon">${o.icon}</div>
+              ${o.label}
+            </button>
+          `).join('')}
+        </div>
+        <div class="lumos-cv-info" style="margin-top:16px">
+          Controls how touch gestures are handled. <strong>manipulation</strong> allows pan/zoom but disables double-tap zoom (faster clicks).
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-ta-btn').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('touchAction', btn.dataset.ta);
+        panel.querySelectorAll('.lumos-ta-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-close-ta').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // POINTER EVENTS EDITOR
+  // ============================================
+  function openPointerEventsEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-pointer-events-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.pointerEvents || cs.pointerEvents || 'auto';
+
+    const options = [
+      { value: 'auto', icon: '👆', name: 'Auto', desc: 'Normal pointer behavior' },
+      { value: 'none', icon: '🚫', name: 'None', desc: 'Element ignores all pointer events' },
+      { value: 'visiblePainted', icon: '🎨', name: 'Visible Painted', desc: 'SVG: visible + fill/stroke' },
+      { value: 'visibleFill', icon: '🪣', name: 'Visible Fill', desc: 'SVG: visible + fill only' },
+      { value: 'visibleStroke', icon: '✏️', name: 'Visible Stroke', desc: 'SVG: visible + stroke only' },
+      { value: 'visible', icon: '👁️', name: 'Visible', desc: 'SVG: if visible' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-pointer-events-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.pointerEvents} Pointer Events</span>
+        <button class="lumos-close-pe" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-pe-grid">
+          ${options.map(o => `
+            <div class="lumos-pe-option ${current === o.value ? 'active' : ''}" data-pe="${o.value}">
+              <div class="lumos-pe-icon">${o.icon}</div>
+              <div class="lumos-pe-name">${o.name}</div>
+              <div class="lumos-pe-desc">${o.desc}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-pe-option').forEach(opt => {
+      opt.onclick = () => {
+        applyStyle('pointerEvents', opt.dataset.pe);
+        panel.querySelectorAll('.lumos-pe-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-close-pe').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // WILL-CHANGE OPTIMIZER
+  // ============================================
+  function openWillChangeEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-will-change-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.willChange || cs.willChange || 'auto';
+
+    const presets = [
+      { value: 'auto', label: 'Auto' },
+      { value: 'scroll-position', label: 'Scroll' },
+      { value: 'contents', label: 'Contents' },
+      { value: 'transform', label: 'Transform' },
+      { value: 'opacity', label: 'Opacity' },
+      { value: 'transform, opacity', label: 'Transform + Opacity' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-will-change-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.willChange} Will-Change</span>
+        <button class="lumos-close-wc" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-cv-label">Quick Presets</div>
+        <div class="lumos-wc-presets">
+          ${presets.map(p => `
+            <button class="lumos-wc-preset ${current === p.value ? 'active' : ''}" data-wc="${p.value}">${p.label}</button>
+          `).join('')}
+        </div>
+        <div class="lumos-cv-label" style="margin-top:12px">Custom Value</div>
+        <div class="lumos-wc-custom">
+          <input type="text" class="lumos-wc-input lumos-wc-custom-input" value="${current}" placeholder="e.g., left, top">
+          <button class="lumos-wc-apply lumos-wc-custom-apply">Apply</button>
+        </div>
+        <div class="lumos-wc-warning">
+          ⚠️ Use sparingly! will-change creates a new compositor layer which uses memory. Only apply to elements that will actually animate, and remove when animation is done.
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-wc-preset').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('willChange', btn.dataset.wc);
+        panel.querySelectorAll('.lumos-wc-preset').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        panel.querySelector('.lumos-wc-custom-input').value = btn.dataset.wc;
+      };
+    });
+
+    panel.querySelector('.lumos-wc-custom-apply').onclick = () => {
+      const val = panel.querySelector('.lumos-wc-custom-input').value;
+      if (val) {
+        applyStyle('willChange', val);
+        panel.querySelectorAll('.lumos-wc-preset').forEach(b => b.classList.remove('active'));
+      }
+    };
+
+    panel.querySelector('.lumos-close-wc').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // CONTAIN PROPERTY EDITOR
+  // ============================================
+  function openContainEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-contain-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.contain || cs.contain || 'none';
+
+    const containOptions = [
+      { value: 'layout', name: 'Layout', desc: 'Layout is independent from the rest of the page' },
+      { value: 'paint', name: 'Paint', desc: 'Descendants do not display outside the bounds' },
+      { value: 'size', name: 'Size', desc: 'Size can be computed without checking descendants' },
+      { value: 'style', name: 'Style', desc: 'CSS counters/quotes scoped to this subtree' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-contain-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.containProp} CSS Contain</span>
+        <button class="lumos-close-contain" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-contain-options">
+          ${containOptions.map(o => `
+            <div class="lumos-contain-option ${current.includes(o.value) ? 'active' : ''}" data-contain="${o.value}">
+              <div class="lumos-contain-checkbox">
+                <span class="lumos-contain-check">✓</span>
+              </div>
+              <div class="lumos-contain-info">
+                <div class="lumos-contain-name">${o.name}</div>
+                <div class="lumos-contain-desc">${o.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="lumos-contain-presets">
+          <button class="lumos-contain-preset" data-preset="none">None</button>
+          <button class="lumos-contain-preset" data-preset="strict">Strict</button>
+          <button class="lumos-contain-preset" data-preset="content">Content</button>
+        </div>
+        <div class="lumos-cv-info" style="margin-top:12px">
+          <strong>strict</strong> = size layout paint style<br>
+          <strong>content</strong> = layout paint style (no size)
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const updateContain = () => {
+      const active = [...panel.querySelectorAll('.lumos-contain-option.active')].map(o => o.dataset.contain);
+      const value = active.length > 0 ? active.join(' ') : 'none';
+      applyStyle('contain', value);
+    };
+
+    panel.querySelectorAll('.lumos-contain-option').forEach(opt => {
+      opt.onclick = () => {
+        opt.classList.toggle('active');
+        updateContain();
+      };
+    });
+
+    panel.querySelectorAll('.lumos-contain-preset').forEach(btn => {
+      btn.onclick = () => {
+        const preset = btn.dataset.preset;
+        panel.querySelectorAll('.lumos-contain-option').forEach(o => o.classList.remove('active'));
+        if (preset === 'strict') {
+          panel.querySelectorAll('.lumos-contain-option').forEach(o => o.classList.add('active'));
+        } else if (preset === 'content') {
+          panel.querySelectorAll('.lumos-contain-option:not([data-contain="size"])').forEach(o => o.classList.add('active'));
+        }
+        applyStyle('contain', preset);
+      };
+    });
+
+    panel.querySelector('.lumos-close-contain').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // USER SELECT EDITOR
+  // ============================================
+  function openUserSelectEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-user-select-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.userSelect || cs.userSelect || 'auto';
+
+    const options = [
+      { value: 'auto', icon: '🔄', name: 'Auto' },
+      { value: 'text', icon: '📝', name: 'Text' },
+      { value: 'all', icon: '✅', name: 'All' },
+      { value: 'none', icon: '🚫', name: 'None' },
+      { value: 'contain', icon: '📦', name: 'Contain' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-user-select-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.userSelect} User Select</span>
+        <button class="lumos-close-us" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-us-grid">
+          ${options.map(o => `
+            <div class="lumos-us-option ${current === o.value ? 'active' : ''}" data-us="${o.value}">
+              <div class="lumos-us-icon">${o.icon}</div>
+              <div class="lumos-us-name">${o.name}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="lumos-cv-info" style="margin-top:16px">
+          <strong>none:</strong> Text cannot be selected<br>
+          <strong>all:</strong> Entire element selected on click<br>
+          <strong>contain:</strong> Selection starts/ends within element
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-us-option').forEach(opt => {
+      opt.onclick = () => {
+        applyStyle('userSelect', opt.dataset.us);
+        panel.querySelectorAll('.lumos-us-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-close-us').onclick = () => panel.remove();
+  }
+
+  // ============================================
   // ADD NEW COMMANDS TO PALETTE
   // ============================================
   commands.push(
@@ -10447,7 +11210,13 @@
     { id: 'scroll-snap', label: 'Scroll Snap', icon: 'scrollSnap', action: openScrollSnapEditor },
     { id: 'writing-mode', label: 'Writing Mode', icon: 'writingMode', action: openWritingModeEditor },
     { id: 'word-break', label: 'Word Break', icon: 'wordBreak', action: openWordBreakEditor },
-    { id: 'resize', label: 'Resize Control', icon: 'resizeIcon', action: openResizeEditor }
+    { id: 'resize', label: 'Resize Control', icon: 'resizeIcon', action: openResizeEditor },
+    { id: 'content-visibility', label: 'Content Visibility', icon: 'contentVisibility', action: openContentVisibilityEditor },
+    { id: 'touch-action', label: 'Touch Action', icon: 'touchAction', action: openTouchActionEditor },
+    { id: 'pointer-events', label: 'Pointer Events', icon: 'pointerEvents', action: openPointerEventsEditor },
+    { id: 'will-change', label: 'Will-Change', icon: 'willChange', action: openWillChangeEditor },
+    { id: 'contain', label: 'CSS Contain', icon: 'containProp', action: openContainEditor },
+    { id: 'user-select', label: 'User Select', icon: 'userSelect', action: openUserSelectEditor }
   );
 
   // Focus mode keyboard shortcut
