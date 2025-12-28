@@ -33,6 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Suspense boundary error for `useSearchParams()` in create-pr page
 - Responsive breakpoints now work correctly with real-time editing
 - Containers properly scroll to show all tools
+- Missing icons (`clipboard`, `history`, `plus`, `edit`) causing undefined in UI
+- Function name mismatch (`openChangesLog` → `openChangesLogPanel`)
+- Variable reference error (`selectedEl` → `selectedElement`) in element operations
+- Keyboard shortcuts for element operations now work correctly
 
 ## [0.1.0] - 2025-12-26
 
