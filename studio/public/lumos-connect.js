@@ -35,6 +35,226 @@
   let recentColors = [];
   let measureMode = false;
   let measureStart = null;
+  let socket = null;
+  let socketConnected = false;
+  let studioConnected = false;
+
+  // ============================================
+  // SOCKET.IO CONNECTION FOR REAL-TIME SYNC
+  // ============================================
+  function initSocket() {
+    // Only connect if we have a session ID
+    if (!sessionId) {
+      console.log('[Lumos] No session ID, running in standalone mode');
+      return;
+    }
+
+    // Load Socket.io client if not already loaded
+    if (typeof io === 'undefined') {
+      const script = document.createElement('script');
+      script.src = studioUrl + '/socket.io/socket.io.js';
+      script.onload = connectSocket;
+      script.onerror = () => console.warn('[Lumos] Failed to load Socket.io client');
+      document.head.appendChild(script);
+    } else {
+      connectSocket();
+    }
+  }
+
+  function connectSocket() {
+    try {
+      socket = io(studioUrl, {
+        path: '/lumos-socket',
+        transports: ['websocket', 'polling'],
+        reconnection: true,
+        reconnectionAttempts: 10,
+        reconnectionDelay: 1000,
+      });
+
+      socket.on('connect', () => {
+        console.log('[Lumos] Connected to Studio server');
+        socketConnected = true;
+        socket.emit('join-session', { sessionId, role: 'target' });
+        updateConnectionBadge();
+      });
+
+      socket.on('session-joined', ({ sessionId: sid }) => {
+        console.log('[Lumos] Joined session:', sid);
+        showToast('Connected to Lumos Studio', 'success');
+      });
+
+      socket.on('studio-connected', () => {
+        console.log('[Lumos] Studio connected');
+        studioConnected = true;
+        updateConnectionBadge();
+        showToast('Studio is now connected', 'success');
+      });
+
+      socket.on('studio-disconnected', () => {
+        console.log('[Lumos] Studio disconnected');
+        studioConnected = false;
+        updateConnectionBadge();
+      });
+
+      // Handle style changes from Studio
+      socket.on('apply-style', (data) => {
+        console.log('[Lumos] Applying style from Studio:', data);
+        const { selector, property, value } = data;
+        const el = document.querySelector(selector);
+        if (el) {
+          const oldValue = el.style[property] || getComputedStyle(el)[property];
+          el.style[property] = value;
+
+          // Record the change
+          const change = {
+            id: Date.now().toString(36),
+            selector,
+            property,
+            oldValue,
+            newValue: value,
+            timestamp: Date.now(),
+            fromStudio: true,
+          };
+          changes.push(change);
+          persistChanges();
+
+          // Confirm back to Studio
+          socket.emit('style-applied', {
+            selector,
+            property,
+            oldValue,
+            newValue: value,
+            success: true,
+          });
+
+          // Update UI if the element is selected
+          if (selectedElement === el) {
+            updateUI();
+          }
+        } else {
+          socket.emit('style-applied', {
+            selector,
+            property,
+            success: false,
+            error: 'Element not found',
+          });
+        }
+      });
+
+      // Handle undo from Studio
+      socket.on('undo', () => {
+        if (changes.length > 0) {
+          const lastChange = changes.pop();
+          undoStack.push(lastChange);
+          const el = document.querySelector(lastChange.selector);
+          if (el) {
+            el.style[lastChange.property] = lastChange.oldValue;
+          }
+          persistChanges();
+          updateUI();
+        }
+      });
+
+      // Handle redo from Studio
+      socket.on('redo', () => {
+        if (undoStack.length > 0) {
+          const change = undoStack.pop();
+          changes.push(change);
+          const el = document.querySelector(change.selector);
+          if (el) {
+            el.style[change.property] = change.newValue;
+          }
+          persistChanges();
+          updateUI();
+        }
+      });
+
+      socket.on('disconnect', () => {
+        console.log('[Lumos] Disconnected from server');
+        socketConnected = false;
+        studioConnected = false;
+        updateConnectionBadge();
+      });
+
+      socket.on('connect_error', (error) => {
+        console.warn('[Lumos] Connection error:', error.message);
+      });
+
+      socket.io.on('reconnect', (attempt) => {
+        console.log('[Lumos] Reconnected after', attempt, 'attempts');
+        socket.emit('join-session', { sessionId, role: 'target' });
+        updateConnectionBadge();
+      });
+
+    } catch (e) {
+      console.warn('[Lumos] Socket connection failed:', e);
+    }
+  }
+
+  function updateConnectionBadge() {
+    const badge = document.querySelector('.lumos-connection-badge');
+    if (badge) {
+      if (socketConnected && studioConnected) {
+        badge.style.background = '#22c55e';
+        badge.title = 'Connected to Studio';
+      } else if (socketConnected) {
+        badge.style.background = '#eab308';
+        badge.title = 'Connected, waiting for Studio';
+      } else {
+        badge.style.background = '#ef4444';
+        badge.title = 'Disconnected';
+      }
+    }
+  }
+
+  // Send element selection to Studio
+  function sendElementSelection(el) {
+    if (!socket || !socketConnected) return;
+
+    const cs = getComputedStyle(el);
+    const rect = el.getBoundingClientRect();
+
+    socket.emit('element-selected', {
+      selector: generateSelector(el),
+      tagName: el.tagName.toLowerCase(),
+      id: el.id,
+      className: el.className,
+      rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+      computedStyles: {
+        display: cs.display,
+        position: cs.position,
+        width: cs.width,
+        height: cs.height,
+        padding: cs.padding,
+        margin: cs.margin,
+        color: cs.color,
+        backgroundColor: cs.backgroundColor,
+        fontSize: cs.fontSize,
+        fontFamily: cs.fontFamily,
+        fontWeight: cs.fontWeight,
+        lineHeight: cs.lineHeight,
+        textAlign: cs.textAlign,
+        borderRadius: cs.borderRadius,
+        boxShadow: cs.boxShadow,
+        opacity: cs.opacity,
+        transform: cs.transform,
+      },
+    });
+  }
+
+  // Send style change to Studio for history
+  function sendStyleChange(selector, property, oldValue, newValue) {
+    if (!socket || !socketConnected) return;
+
+    socket.emit('style-applied', {
+      selector,
+      property,
+      oldValue,
+      newValue,
+      success: true,
+      timestamp: Date.now(),
+    });
+  }
 
   // Breakpoints for responsive editing
   const breakpoints = {
@@ -4910,6 +5130,10 @@
     changes.push(change);
     undoStack = [];
     persistChanges();
+
+    // Send change to Studio
+    sendStyleChange(selector, camelCase, oldValue, value);
+
     updateUI();
   }
 
@@ -5404,7 +5628,19 @@
   // Create FAB
   const fab = document.createElement('button');
   fab.className = 'lumos-fab lumos-ui';
-  fab.innerHTML = icons.paintbrush;
+  fab.innerHTML = `
+    ${icons.paintbrush}
+    <span class="lumos-connection-badge" style="
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ef4444;
+      border: 2px solid #18181b;
+    " title="Disconnected"></span>
+  `;
   fab.onclick = togglePanel;
   document.body.appendChild(fab);
 
@@ -6376,6 +6612,9 @@
 
     selectedElement = e.target;
     selectedElement.classList.add('lumos-selected-outline');
+
+    // Send selection to Studio
+    sendElementSelection(selectedElement);
 
     updateUI();
   }, true);
@@ -12208,5 +12447,9 @@
   // Initialize
   setTimeout(loadPersistedChanges, 500);
   googleFonts.slice(0, 5).forEach(loadGoogleFont); // Preload popular fonts
+
+  // Initialize Socket.io connection for Studio sync
+  setTimeout(initSocket, 100);
+
   console.log('[Lumos] Inspector ready. Press ⌘K for commands, ? for shortcuts.');
 })();
