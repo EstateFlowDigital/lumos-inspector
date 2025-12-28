@@ -5273,6 +5273,293 @@
       background: #ef4444;
       color: white;
     }
+
+    /* Viewport Container for Responsive Preview */
+    #lumos-viewport-container {
+      position: fixed;
+      inset: 0;
+      z-index: 999980;
+      background: #18181b;
+      display: flex;
+      flex-direction: column;
+    }
+    .lumos-viewport-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #0a0a0b;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-viewport-size {
+      font-size: 13px;
+      color: #a1a1aa;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-viewport-frame {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: auto;
+    }
+    .lumos-viewport-frame iframe {
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Style Issue Highlight */
+    .lumos-issue-highlight {
+      outline: 2px dashed #ef4444 !important;
+      outline-offset: 2px !important;
+      position: relative;
+    }
+    .lumos-issue-highlight::after {
+      content: '!' attr(data-lumos-issue);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      background: #ef4444;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* Inline Text Editing */
+    .lumos-text-editing {
+      outline: 2px solid #22c55e !important;
+      outline-offset: 2px !important;
+      cursor: text !important;
+      min-width: 20px;
+      min-height: 1em;
+    }
+    .lumos-text-editing:focus {
+      outline-color: #16a34a !important;
+    }
+
+    /* Improvement Log Panel */
+    .lumos-improvement-log {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      max-width: 90vw;
+      max-height: 80vh;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .lumos-improvement-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-improvement-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fafafa;
+      margin: 0;
+    }
+    .lumos-improvement-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .lumos-issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lumos-issue-item:hover {
+      background: #18181b;
+    }
+    .lumos-issue-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #7f1d1d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lumos-issue-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: #fca5a5;
+    }
+    .lumos-issue-details {
+      flex: 1;
+    }
+    .lumos-issue-element {
+      font-size: 13px;
+      font-weight: 500;
+      color: #fafafa;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-issue-message {
+      font-size: 12px;
+      color: #a1a1aa;
+      margin-top: 4px;
+    }
+    .lumos-issue-fix {
+      font-size: 11px;
+      color: #22c55e;
+      margin-top: 4px;
+    }
+
+    /* Changes Log Panel */
+    .lumos-changes-log-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      max-width: 90vw;
+      max-height: 80vh;
+      background: #0a0a0b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .lumos-changes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px solid #27272a;
+    }
+    .lumos-changes-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fafafa;
+      margin: 0;
+    }
+    .lumos-changes-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .lumos-changes-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .lumos-change-item {
+      padding: 12px;
+      border-radius: 8px;
+      background: #18181b;
+      margin-bottom: 8px;
+    }
+    .lumos-change-type {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .lumos-change-type.css {
+      background: #1e3a5f;
+      color: #60a5fa;
+    }
+    .lumos-change-type.element-add {
+      background: #14532d;
+      color: #4ade80;
+    }
+    .lumos-change-type.element-remove {
+      background: #7f1d1d;
+      color: #fca5a5;
+    }
+    .lumos-change-type.content {
+      background: #713f12;
+      color: #fbbf24;
+    }
+    .lumos-change-selector {
+      font-size: 12px;
+      color: #a78bfa;
+      font-family: ui-monospace, monospace;
+      margin-bottom: 4px;
+    }
+    .lumos-change-detail {
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .lumos-change-values {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 11px;
+      font-family: ui-monospace, monospace;
+    }
+    .lumos-change-old {
+      color: #f87171;
+      text-decoration: line-through;
+    }
+    .lumos-change-new {
+      color: #4ade80;
+    }
+    .lumos-export-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lumos-export-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    }
+    .lumos-clear-btn {
+      padding: 8px 16px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      color: #a1a1aa;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lumos-clear-btn:hover {
+      background: #3f3f46;
+      color: #fafafa;
+    }
+    .lumos-no-changes {
+      text-align: center;
+      padding: 40px;
+      color: #71717a;
+    }
+    .lumos-no-changes svg {
+      width: 48px;
+      height: 48px;
+      stroke: #3f3f46;
+      margin-bottom: 16px;
+    }
   `;
   document.head.appendChild(style);
 
@@ -13215,7 +13502,7 @@
   }
 
   // ============================================
-  // RESPONSIVE BREAKPOINTS
+  // RESPONSIVE BREAKPOINTS (IMPROVED)
   // ============================================
   let breakpointsActive = false;
   let activeViewportSize = 'full';
@@ -13241,7 +13528,7 @@
 
     // Create the breakpoints bar
     const bar = document.createElement('div');
-    bar.className = 'lumos-breakpoints-bar';
+    bar.className = 'lumos-breakpoints-bar lumos-ui';
     bar.innerHTML = `
       ${viewportBreakpoints.map(bp => `
         <button class="lumos-breakpoint-btn ${bp.id === 'full' ? 'active' : ''}" data-bp="${bp.id}">
@@ -13251,9 +13538,9 @@
         </button>
       `).join('')}
       <div class="lumos-breakpoints-divider"></div>
-      <input type="number" class="lumos-viewport-input" placeholder="Width" value="">
+      <input type="number" class="lumos-viewport-input" placeholder="W" value="">
       <span style="color:#71717a;font-size:11px">×</span>
-      <input type="number" class="lumos-viewport-input lumos-height-input" placeholder="Height" value="">
+      <input type="number" class="lumos-viewport-input lumos-height-input" placeholder="H" value="">
       <button class="lumos-rotate-btn" title="Rotate">${icons.rotateDevice}</button>
       <button class="lumos-breakpoints-close" title="Close">${icons.close}</button>
     `;
@@ -13268,9 +13555,11 @@
 
         const bp = viewportBreakpoints.find(b => b.id === activeViewportSize);
         if (bp && bp.width) {
-          bar.querySelector('.lumos-viewport-input').value = isRotated ? '' : bp.width;
-          bar.querySelector('.lumos-height-input').value = isRotated ? bp.width : '';
-          applyViewportSize(bp.width, null);
+          const w = isRotated ? 800 : bp.width;
+          const h = isRotated ? bp.width : 800;
+          bar.querySelector('.lumos-viewport-input').value = w;
+          bar.querySelector('.lumos-height-input').value = h;
+          applyViewportSize(w, h);
         } else {
           bar.querySelector('.lumos-viewport-input').value = '';
           bar.querySelector('.lumos-height-input').value = '';
@@ -13280,40 +13569,69 @@
     });
 
     // Handle custom width input
-    bar.querySelector('.lumos-viewport-input').oninput = (e) => {
-      const width = parseInt(e.target.value);
+    const widthInput = bar.querySelector('.lumos-viewport-input');
+    const heightInput = bar.querySelector('.lumos-height-input');
+
+    widthInput.oninput = () => {
+      const width = parseInt(widthInput.value) || 0;
+      const height = parseInt(heightInput.value) || 600;
       if (width > 0) {
         bar.querySelectorAll('.lumos-breakpoint-btn').forEach(b => b.classList.remove('active'));
-        applyViewportSize(width, null);
+        applyViewportSize(width, height);
+      }
+    };
+
+    heightInput.oninput = () => {
+      const width = parseInt(widthInput.value) || 0;
+      const height = parseInt(heightInput.value) || 600;
+      if (width > 0) {
+        applyViewportSize(width, height);
       }
     };
 
     // Handle rotate button
     bar.querySelector('.lumos-rotate-btn').onclick = () => {
       isRotated = !isRotated;
-      const widthInput = bar.querySelector('.lumos-viewport-input');
-      const heightInput = bar.querySelector('.lumos-height-input');
       const tempW = widthInput.value;
       const tempH = heightInput.value;
-      widthInput.value = tempH;
-      heightInput.value = tempW;
+      widthInput.value = tempH || '';
+      heightInput.value = tempW || '';
 
-      if (tempH) {
-        applyViewportSize(parseInt(tempH), tempW ? parseInt(tempW) : null);
+      if (tempH || tempW) {
+        applyViewportSize(parseInt(tempH) || parseInt(tempW), parseInt(tempW) || 600);
       }
     };
 
     // Handle close button
     bar.querySelector('.lumos-breakpoints-close').onclick = closeResponsiveBreakpoints;
 
-    showToast('Responsive mode enabled', 'info');
+    showToast('Responsive mode: Click a breakpoint or enter custom size', 'info');
   }
 
   function applyViewportSize(width, height) {
-    // Remove existing frame
-    document.querySelectorAll('.lumos-viewport-frame').forEach(f => f.remove());
+    // Remove existing viewport container
+    let vpContainer = document.getElementById('lumos-viewport-container');
 
-    // Add CSS to constrain viewport simulation
+    if (!vpContainer) {
+      // Create viewport container that wraps content
+      vpContainer = document.createElement('div');
+      vpContainer.id = 'lumos-viewport-container';
+      vpContainer.className = 'lumos-ui';
+      document.body.appendChild(vpContainer);
+    }
+
+    // Create viewport frame
+    let vpFrame = document.getElementById('lumos-viewport-frame');
+    if (!vpFrame) {
+      vpFrame = document.createElement('div');
+      vpFrame.id = 'lumos-viewport-frame';
+      vpFrame.className = 'lumos-ui';
+      vpContainer.appendChild(vpFrame);
+    }
+
+    const actualHeight = height || Math.min(window.innerHeight - 120, 800);
+
+    // Apply viewport styling
     let viewportStyle = document.getElementById('lumos-viewport-style');
     if (!viewportStyle) {
       viewportStyle = document.createElement('style');
@@ -13321,26 +13639,34 @@
       document.head.appendChild(viewportStyle);
     }
 
-    // We simulate viewport by showing the actual content width indicator
-    // Rather than iframing (which loses state), we add visual guides
     viewportStyle.textContent = `
-      body::before {
-        content: '';
+      #lumos-viewport-container {
         position: fixed;
         top: 50px;
-        left: calc(50% - ${width / 2}px);
-        width: ${width}px;
-        height: calc(100vh - 60px);
-        border: 2px dashed #3b82f6;
-        border-radius: 8px;
-        pointer-events: none;
-        z-index: 2147483640;
-        box-shadow: 0 0 0 9999px rgba(0,0,0,0.3);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2147483630;
+        padding: 20px;
       }
-      body::after {
-        content: '${width}px viewport';
-        position: fixed;
-        top: 55px;
+      #lumos-viewport-frame {
+        width: ${width}px;
+        height: ${actualHeight}px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        overflow: hidden;
+        position: relative;
+        resize: both;
+      }
+      #lumos-viewport-frame::before {
+        content: '${width} × ${actualHeight}';
+        position: absolute;
+        bottom: -25px;
         left: 50%;
         transform: translateX(-50%);
         background: #3b82f6;
@@ -13349,18 +13675,24 @@
         border-radius: 4px;
         font-size: 11px;
         font-family: system-ui, sans-serif;
-        z-index: 2147483641;
-        pointer-events: none;
+        white-space: nowrap;
+      }
+      #lumos-viewport-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
       }
     `;
+
+    // Create iframe to show current page at that viewport
+    vpFrame.innerHTML = `<iframe src="${window.location.href}" title="Viewport Preview"></iframe>`;
   }
 
   function resetViewport() {
     const viewportStyle = document.getElementById('lumos-viewport-style');
-    if (viewportStyle) {
-      viewportStyle.remove();
-    }
-    document.querySelectorAll('.lumos-viewport-frame').forEach(f => f.remove());
+    if (viewportStyle) viewportStyle.remove();
+    const vpContainer = document.getElementById('lumos-viewport-container');
+    if (vpContainer) vpContainer.remove();
   }
 
   function closeResponsiveBreakpoints() {
@@ -13369,6 +13701,591 @@
     resetViewport();
     showToast('Responsive mode disabled', 'info');
   }
+
+  // ============================================
+  // LUMOS STYLE AUDIT
+  // ============================================
+  const lumosClassPatterns = [
+    /^u-/, // Utility classes
+    /^is-/, // State classes
+    /^w-/, // Webflow classes
+  ];
+
+  const lumosDataAttributes = [
+    'data-state',
+    'data-trigger',
+    'data-number',
+    'data-button',
+  ];
+
+  const lumosRequiredPatterns = {
+    // Element types and their expected Lumos patterns
+    'section': ['u-section', 'u-container'],
+    'div': ['u-layout', 'u-container', 'u-wrapper'],
+    'button': ['u-button', 'data-button'],
+    'a': ['u-link', 'u-button'],
+    'h1,h2,h3,h4,h5,h6': ['u-text-style', 'u-heading'],
+    'p': ['u-text-style', 'u-text'],
+    'img': ['u-image', 'u-background'],
+    'ul,ol': ['u-list'],
+  };
+
+  let styleIssues = [];
+  let improvementLogOpen = false;
+
+  function runStyleAudit() {
+    styleIssues = [];
+
+    // Check all elements on the page
+    const allElements = document.querySelectorAll('body *:not(.lumos-ui):not(.lumos-ui *)');
+
+    allElements.forEach(el => {
+      const issues = [];
+      const classes = el.className || '';
+      const tagName = el.tagName.toLowerCase();
+
+      // Skip script, style, and hidden elements
+      if (['script', 'style', 'link', 'meta', 'noscript'].includes(tagName)) return;
+      if (el.offsetParent === null && tagName !== 'body') return;
+
+      // Check if element has any Lumos classes
+      const hasLumosClass = lumosClassPatterns.some(pattern => pattern.test(classes));
+      const hasLumosData = lumosDataAttributes.some(attr => el.hasAttribute(attr));
+
+      // Check specific requirements based on element type
+      Object.entries(lumosRequiredPatterns).forEach(([selector, patterns]) => {
+        if (el.matches(selector)) {
+          const hasRequiredPattern = patterns.some(p => {
+            if (p.startsWith('data-')) return el.hasAttribute(p);
+            return classes.includes(p);
+          });
+
+          if (!hasRequiredPattern && !hasLumosClass) {
+            issues.push({
+              type: 'missing-lumos-class',
+              message: `Missing Lumos class. Expected one of: ${patterns.join(', ')}`,
+              severity: 'warning',
+            });
+          }
+        }
+      });
+
+      // Check for inline styles (should use Lumos utilities instead)
+      if (el.style.cssText && el.style.cssText.length > 0) {
+        issues.push({
+          type: 'inline-style',
+          message: 'Has inline styles. Consider using Lumos utility classes.',
+          severity: 'info',
+        });
+      }
+
+      // Check for missing semantic structure
+      if (tagName === 'div' && !hasLumosClass && el.children.length > 0) {
+        const hasNoClasses = !classes || classes.trim() === '';
+        if (hasNoClasses) {
+          issues.push({
+            type: 'unstyled-wrapper',
+            message: 'Wrapper div without Lumos layout class',
+            severity: 'warning',
+          });
+        }
+      }
+
+      if (issues.length > 0) {
+        styleIssues.push({
+          element: el,
+          selector: generateSelector(el),
+          tagName,
+          issues,
+        });
+      }
+    });
+
+    // Show results
+    if (styleIssues.length > 0) {
+      openImprovementLog();
+      showToast(`Found ${styleIssues.length} style improvements`, 'warning');
+    } else {
+      showToast('All elements follow Lumos patterns!', 'success');
+    }
+  }
+
+  function openImprovementLog() {
+    if (improvementLogOpen) {
+      document.querySelector('.lumos-improvement-log')?.remove();
+      improvementLogOpen = false;
+      return;
+    }
+
+    improvementLogOpen = true;
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-improvement-log lumos-ui';
+
+    const groupedIssues = {};
+    styleIssues.forEach(issue => {
+      const severity = issue.issues[0]?.severity || 'info';
+      if (!groupedIssues[severity]) groupedIssues[severity] = [];
+      groupedIssues[severity].push(issue);
+    });
+
+    panel.innerHTML = `
+      <div class="lumos-improvement-header">
+        <h3>${icons.alertTriangle} Improvement Log</h3>
+        <span class="lumos-issue-count">${styleIssues.length} issues</span>
+        <button class="lumos-close-improvement">${icons.close}</button>
+      </div>
+      <div class="lumos-improvement-content">
+        ${Object.entries(groupedIssues).map(([severity, issues]) => `
+          <div class="lumos-issue-group">
+            <div class="lumos-issue-group-header ${severity}">
+              ${severity === 'warning' ? icons.alertTriangle : icons.info}
+              ${severity.charAt(0).toUpperCase() + severity.slice(1)} (${issues.length})
+            </div>
+            ${issues.slice(0, 50).map((item, idx) => `
+              <div class="lumos-issue-item" data-issue-index="${styleIssues.indexOf(item)}">
+                <div class="lumos-issue-selector">${item.tagName} - ${item.selector.slice(0, 40)}</div>
+                <div class="lumos-issue-message">${item.issues.map(i => i.message).join('; ')}</div>
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+      <div class="lumos-improvement-footer">
+        <button class="lumos-refresh-audit">${icons.refresh} Re-scan</button>
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    // Handle click to navigate to element
+    panel.querySelectorAll('.lumos-issue-item').forEach(item => {
+      item.onclick = () => {
+        const idx = parseInt(item.dataset.issueIndex);
+        const issue = styleIssues[idx];
+        if (issue && issue.element) {
+          // Remove previous highlight
+          document.querySelectorAll('.lumos-issue-highlight').forEach(el =>
+            el.classList.remove('lumos-issue-highlight')
+          );
+
+          // Highlight and scroll to element
+          issue.element.classList.add('lumos-issue-highlight');
+          issue.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Select the element
+          selectElement(issue.element);
+
+          showToast(`Selected: ${issue.selector}`, 'info');
+        }
+      };
+    });
+
+    panel.querySelector('.lumos-close-improvement').onclick = () => {
+      panel.remove();
+      improvementLogOpen = false;
+      document.querySelectorAll('.lumos-issue-highlight').forEach(el =>
+        el.classList.remove('lumos-issue-highlight')
+      );
+    };
+
+    panel.querySelector('.lumos-refresh-audit').onclick = () => {
+      panel.remove();
+      improvementLogOpen = false;
+      runStyleAudit();
+    };
+  }
+
+  // ============================================
+  // ELEMENT OPERATIONS (Webflow-like)
+  // ============================================
+  let clipboardElement = null;
+  let clipboardHTML = '';
+  let clipboardStyles = {};
+
+  // Duplicate element (Cmd+D)
+  function duplicateElement() {
+    if (!selectedEl) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    const clone = selectedEl.cloneNode(true);
+    clone.classList.remove('lumos-selected-outline', 'lumos-hover-outline', 'lumos-issue-highlight');
+
+    // Insert after the selected element
+    selectedEl.parentNode.insertBefore(clone, selectedEl.nextSibling);
+
+    // Log the change
+    logChange({
+      type: 'element-add',
+      action: 'duplicate',
+      element: clone.tagName.toLowerCase(),
+      parentSelector: generateSelector(selectedEl.parentNode),
+      html: clone.outerHTML,
+      position: 'after',
+      referenceSelector: generateSelector(selectedEl),
+    });
+
+    // Select the new element
+    selectElement(clone);
+    showToast('Element duplicated', 'success');
+  }
+
+  // Copy element (Cmd+C)
+  function copyElement() {
+    if (!selectedEl) {
+      showToast('Select an element first', 'warning');
+      return;
+    }
+
+    clipboardElement = selectedEl;
+    clipboardHTML = selectedEl.outerHTML;
+    clipboardStyles = {};
+
+    // Copy computed styles
+    const computed = getComputedStyle(selectedEl);
+    ['color', 'backgroundColor', 'fontSize', 'fontWeight', 'padding', 'margin', 'borderRadius'].forEach(prop => {
+      clipboardStyles[prop] = computed[prop];
+    });
+
+    showToast('Element copied', 'success');
+  }
+
+  // Paste element (Cmd+V)
+  function pasteElement() {
+    if (!clipboardHTML) {
+      showToast('Nothing to paste', 'warning');
+      return;
+    }
+
+    const target = selectedEl || document.body;
+    const temp = document.createElement('div');
+    temp.innerHTML = clipboardHTML;
+    const newEl = temp.firstElementChild;
+
+    if (newEl) {
+      newEl.classList.remove('lumos-selected-outline', 'lumos-hover-outline');
+      target.appendChild(newEl);
+
+      logChange({
+        type: 'element-add',
+        action: 'paste',
+        element: newEl.tagName.toLowerCase(),
+        parentSelector: generateSelector(target),
+        html: newEl.outerHTML,
+        position: 'append',
+      });
+
+      selectElement(newEl);
+      showToast('Element pasted', 'success');
+    }
+  }
+
+  // Delete element (Backspace/Delete)
+  function deleteElement() {
+    if (!selectedEl || selectedEl === document.body) {
+      showToast('Cannot delete this element', 'warning');
+      return;
+    }
+
+    const selector = generateSelector(selectedEl);
+    const parentSelector = generateSelector(selectedEl.parentNode);
+    const html = selectedEl.outerHTML;
+
+    logChange({
+      type: 'element-remove',
+      action: 'delete',
+      element: selectedEl.tagName.toLowerCase(),
+      selector,
+      parentSelector,
+      html,
+    });
+
+    const parent = selectedEl.parentNode;
+    selectedEl.remove();
+    selectedEl = null;
+
+    showToast('Element deleted', 'success');
+  }
+
+  // ============================================
+  // INLINE TEXT EDITING (Double-click)
+  // ============================================
+  let editingElement = null;
+  let originalText = '';
+
+  function enableTextEditing(el) {
+    if (editingElement) {
+      finishTextEditing();
+    }
+
+    // Only allow editing on text-containing elements
+    const textElements = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A', 'BUTTON', 'LABEL', 'LI', 'TD', 'TH'];
+    if (!textElements.includes(el.tagName)) {
+      showToast('Double-click on text elements to edit', 'info');
+      return;
+    }
+
+    editingElement = el;
+    originalText = el.textContent;
+
+    el.contentEditable = 'true';
+    el.classList.add('lumos-text-editing');
+    el.focus();
+
+    // Select all text
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    showToast('Editing text. Press Enter to save, Escape to cancel.', 'info');
+  }
+
+  function finishTextEditing(save = true) {
+    if (!editingElement) return;
+
+    editingElement.contentEditable = 'false';
+    editingElement.classList.remove('lumos-text-editing');
+
+    if (save && editingElement.textContent !== originalText) {
+      logChange({
+        type: 'content-change',
+        action: 'text-edit',
+        selector: generateSelector(editingElement),
+        element: editingElement.tagName.toLowerCase(),
+        oldValue: originalText,
+        newValue: editingElement.textContent,
+      });
+      showToast('Text updated', 'success');
+    } else if (!save) {
+      editingElement.textContent = originalText;
+      showToast('Edit cancelled', 'info');
+    }
+
+    editingElement = null;
+    originalText = '';
+  }
+
+  // ============================================
+  // COMPREHENSIVE CHANGES LOG
+  // ============================================
+  const allChanges = [];
+
+  function logChange(change) {
+    change.timestamp = Date.now();
+    change.id = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).substr(2);
+    allChanges.push(change);
+
+    // Update changes counter in UI if visible
+    updateChangesCounter();
+  }
+
+  function updateChangesCounter() {
+    const counter = document.querySelector('.lumos-changes-count');
+    if (counter) {
+      counter.textContent = allChanges.length;
+    }
+  }
+
+  function openChangesLog() {
+    const existing = document.querySelector('.lumos-changes-log-panel');
+    if (existing) {
+      existing.remove();
+      return;
+    }
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-changes-log-panel lumos-ui';
+
+    panel.innerHTML = `
+      <div class="lumos-changes-header">
+        <h3>${icons.history} Changes Log</h3>
+        <span class="lumos-changes-count">${allChanges.length}</span>
+        <button class="lumos-export-changes">${icons.download} Export for Claude</button>
+        <button class="lumos-close-changes">${icons.close}</button>
+      </div>
+      <div class="lumos-changes-content">
+        ${allChanges.length === 0 ? '<div class="lumos-no-changes">No changes yet. Make edits to see them here.</div>' :
+          allChanges.map((change, idx) => `
+            <div class="lumos-change-item" data-index="${idx}">
+              <div class="lumos-change-type ${change.type}">${getChangeIcon(change.type)} ${change.action || change.type}</div>
+              <div class="lumos-change-detail">
+                ${formatChangeDetail(change)}
+              </div>
+              <div class="lumos-change-time">${new Date(change.timestamp).toLocaleTimeString()}</div>
+            </div>
+          `).join('')}
+      </div>
+    `;
+
+    document.body.appendChild(panel);
+
+    panel.querySelector('.lumos-close-changes').onclick = () => panel.remove();
+    panel.querySelector('.lumos-export-changes').onclick = exportChangesForClaude;
+  }
+
+  function getChangeIcon(type) {
+    const iconMap = {
+      'style-change': icons.palette,
+      'element-add': icons.plus,
+      'element-remove': icons.trash,
+      'content-change': icons.type,
+    };
+    return iconMap[type] || icons.edit;
+  }
+
+  function formatChangeDetail(change) {
+    switch (change.type) {
+      case 'style-change':
+        return `<code>${change.selector}</code><br>${change.property}: ${change.oldValue || '(none)'} → ${change.newValue}`;
+      case 'element-add':
+        return `Added <code>${change.element}</code> to <code>${change.parentSelector}</code>`;
+      case 'element-remove':
+        return `Removed <code>${change.element}</code> from <code>${change.parentSelector}</code>`;
+      case 'content-change':
+        return `<code>${change.selector}</code><br>"${(change.oldValue || '').slice(0, 30)}..." → "${(change.newValue || '').slice(0, 30)}..."`;
+      default:
+        return JSON.stringify(change).slice(0, 100);
+    }
+  }
+
+  function exportChangesForClaude() {
+    const exportData = {
+      _instructions: "Apply these changes to the codebase. Each change includes the type, selector, and what needs to be modified.",
+      _generatedAt: new Date().toISOString(),
+      _pageUrl: window.location.href,
+      totalChanges: allChanges.length,
+      changes: allChanges.map(change => {
+        const base = {
+          type: change.type,
+          action: change.action,
+          timestamp: new Date(change.timestamp).toISOString(),
+        };
+
+        if (change.type === 'style-change') {
+          return {
+            ...base,
+            instruction: `Change CSS property "${change.property}" on element "${change.selector}"`,
+            selector: change.selector,
+            property: change.property,
+            from: change.oldValue,
+            to: change.newValue,
+            css: `${change.selector} { ${change.property}: ${change.newValue}; }`,
+          };
+        }
+
+        if (change.type === 'element-add') {
+          return {
+            ...base,
+            instruction: `Add new ${change.element} element inside "${change.parentSelector}"`,
+            parentSelector: change.parentSelector,
+            position: change.position,
+            referenceSelector: change.referenceSelector,
+            html: change.html,
+          };
+        }
+
+        if (change.type === 'element-remove') {
+          return {
+            ...base,
+            instruction: `Remove the ${change.element} element at "${change.selector}"`,
+            selector: change.selector,
+            parentSelector: change.parentSelector,
+            removedHtml: change.html,
+          };
+        }
+
+        if (change.type === 'content-change') {
+          return {
+            ...base,
+            instruction: `Update text content of "${change.selector}"`,
+            selector: change.selector,
+            element: change.element,
+            from: change.oldValue,
+            to: change.newValue,
+          };
+        }
+
+        return { ...base, ...change };
+      }),
+    };
+
+    const json = JSON.stringify(exportData, null, 2);
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(json).then(() => {
+      showToast('Changes copied to clipboard! Paste into Claude.', 'success');
+    }).catch(() => {
+      // Fallback: download as file
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `lumos-changes-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Changes downloaded as JSON', 'success');
+    });
+  }
+
+  // ============================================
+  // KEYBOARD SHORTCUTS FOR ELEMENT OPS
+  // ============================================
+  function handleElementShortcuts(e) {
+    // Skip if typing in an input
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.contentEditable === 'true') {
+      // Handle text editing keys
+      if (editingElement) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          finishTextEditing(true);
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          finishTextEditing(false);
+        }
+      }
+      return;
+    }
+
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    const modKey = isMac ? e.metaKey : e.ctrlKey;
+
+    // Cmd/Ctrl + D = Duplicate
+    if (modKey && e.key === 'd') {
+      e.preventDefault();
+      duplicateElement();
+    }
+    // Cmd/Ctrl + C = Copy
+    else if (modKey && e.key === 'c' && selectedEl) {
+      e.preventDefault();
+      copyElement();
+    }
+    // Cmd/Ctrl + V = Paste
+    else if (modKey && e.key === 'v' && clipboardHTML) {
+      e.preventDefault();
+      pasteElement();
+    }
+    // Backspace or Delete = Delete element
+    else if ((e.key === 'Backspace' || e.key === 'Delete') && selectedEl) {
+      e.preventDefault();
+      deleteElement();
+    }
+  }
+
+  // Add event listeners for element operations
+  document.addEventListener('keydown', handleElementShortcuts);
+
+  // Double-click for text editing
+  document.addEventListener('dblclick', (e) => {
+    if (e.target.closest('.lumos-ui')) return;
+    if (inspectorEnabled) {
+      e.preventDefault();
+      enableTextEditing(e.target);
+    }
+  });
 
   // ============================================
   // ADD NEW COMMANDS TO PALETTE
@@ -13433,7 +14350,14 @@
     { id: 'animation-timeline', label: 'Animation Timeline', icon: 'timeline', action: openAnimationTimelineEditor },
     { id: 'gradient-builder', label: 'Gradient Builder', icon: 'gradientIcon', action: openGradientBuilder },
     { id: 'tailwind-export', label: 'Tailwind Export', icon: 'tailwindIcon', action: openTailwindExport },
-    { id: 'responsive', label: 'Responsive Breakpoints', icon: 'responsive', action: openResponsiveBreakpoints }
+    { id: 'responsive', label: 'Responsive Breakpoints', icon: 'responsive', action: openResponsiveBreakpoints },
+    { id: 'style-audit', label: 'Style Audit', icon: 'fileSearch', action: runStyleAudit },
+    { id: 'changes-log', label: 'Changes Log', icon: 'clipboard', action: openChangesLogPanel },
+    { id: 'improvement-log', label: 'Improvement Log', icon: 'alertCircle', action: openImprovementLog },
+    { id: 'duplicate-element', label: 'Duplicate Element', icon: 'copy', shortcut: '⌘D', action: duplicateElement },
+    { id: 'copy-element', label: 'Copy Element', icon: 'copy', shortcut: '⌘C', action: copyElement },
+    { id: 'paste-element', label: 'Paste Element', icon: 'clipboard', shortcut: '⌘V', action: pasteElement },
+    { id: 'delete-element', label: 'Delete Element', icon: 'trash', shortcut: '⌫', action: deleteElement }
   );
 
   // Focus mode keyboard shortcut
