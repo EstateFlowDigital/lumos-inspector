@@ -4250,6 +4250,390 @@
       font-size: 12px;
       font-weight: 500;
     }
+
+    /* Backdrop Filter Editor */
+    .lumos-backdrop-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-backdrop-preview {
+      height: 100px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lumos-backdrop-preview::before {
+      content: 'Preview';
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+    .lumos-backdrop-preview-overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .lumos-backdrop-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .lumos-backdrop-slider-label {
+      width: 80px;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .lumos-backdrop-slider {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      background: #3f3f46;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .lumos-backdrop-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #8b5cf6;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .lumos-backdrop-value {
+      width: 50px;
+      text-align: right;
+      font-size: 12px;
+      font-family: monospace;
+      color: #e4e4e7;
+    }
+
+    /* Gap Editor */
+    .lumos-gap-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-gap-visual {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 20px;
+      background: #27272a;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .lumos-gap-visual-item {
+      height: 30px;
+      background: #8b5cf6;
+      border-radius: 4px;
+      opacity: 0.5;
+    }
+    .lumos-gap-input-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .lumos-gap-input-group {
+      flex: 1;
+    }
+    .lumos-gap-input-label {
+      font-size: 11px;
+      color: #a1a1aa;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .lumos-gap-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      color: #e4e4e7;
+      font-size: 13px;
+      font-family: monospace;
+    }
+    .lumos-gap-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+    }
+
+    /* Accent Color Editor */
+    .lumos-accent-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-accent-preview {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      padding: 20px;
+      background: #27272a;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .lumos-accent-preview input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .lumos-accent-preview input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .lumos-accent-preview input[type="range"] {
+      width: 100px;
+      cursor: pointer;
+    }
+    .lumos-accent-color-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .lumos-accent-color-picker {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* Columns Editor */
+    .lumos-columns-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-columns-preview {
+      display: flex;
+      gap: 8px;
+      padding: 20px;
+      background: #27272a;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      min-height: 60px;
+    }
+    .lumos-columns-preview-col {
+      flex: 1;
+      background: #8b5cf6;
+      border-radius: 4px;
+      opacity: 0.5;
+    }
+    .lumos-columns-count-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .lumos-columns-btn {
+      width: 36px;
+      height: 36px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      color: #e4e4e7;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lumos-columns-btn:hover {
+      background: #3f3f46;
+    }
+    .lumos-columns-count {
+      flex: 1;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    /* Overscroll Behavior Editor */
+    .lumos-overscroll-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-overscroll-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .lumos-overscroll-btn {
+      padding: 14px 8px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .lumos-overscroll-btn:hover {
+      background: #3f3f46;
+    }
+    .lumos-overscroll-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    /* List Style Editor */
+    .lumos-list-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-list-preview {
+      padding: 16px;
+      background: #27272a;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .lumos-list-preview ul, .lumos-list-preview ol {
+      margin: 0;
+      padding-left: 24px;
+      color: #e4e4e7;
+    }
+    .lumos-list-types {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .lumos-list-type-btn {
+      padding: 10px 6px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 6px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .lumos-list-type-btn:hover {
+      background: #3f3f46;
+    }
+    .lumos-list-type-btn.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    /* Isolation Editor */
+    .lumos-isolation-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      z-index: 2147483647;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      font-family: system-ui, sans-serif;
+      color: #e4e4e7;
+    }
+    .lumos-isolation-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .lumos-isolation-option {
+      padding: 16px;
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .lumos-isolation-option:hover {
+      background: #3f3f46;
+    }
+    .lumos-isolation-option.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .lumos-isolation-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .lumos-isolation-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
   `;
   document.head.appendChild(style);
 
@@ -4358,6 +4742,14 @@
     containProp: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>',
     userSelect: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><path d="M15 5l4 4"/></svg>',
     scrollBehavior: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
+    backdropFilter: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" opacity="0.3"/><rect x="6" y="6" width="12" height="12" rx="2"/></svg>',
+    gapIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><line x1="10" y1="6.5" x2="14" y2="6.5" stroke-dasharray="2 1"/><line x1="10" y1="17.5" x2="14" y2="17.5" stroke-dasharray="2 1"/></svg>',
+    accentColor: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>',
+    caretColor: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 4v16"/><path d="M8 8l4-4 4 4"/><path d="M8 16l4 4 4-4"/></svg>',
+    columnsIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="3" width="5" height="18" rx="1"/><rect x="17" y="3" width="5" height="18" rx="1"/></svg>',
+    overscroll: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/><path d="M4 12h-2M22 12h-2M12 4v-2M12 22v-2"/></svg>',
+    listIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="4" cy="6" r="2"/><circle cx="4" cy="12" r="2"/><circle cx="4" cy="18" r="2"/><line x1="9" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="9" y1="18" x2="21" y2="18"/></svg>',
+    isolationIcon: '<svg viewBox="0 0 24 24" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="3" opacity="0.5"/><circle cx="15" cy="15" r="3" opacity="0.5"/></svg>',
   };
 
   // Helper: RGB to Hex
@@ -11165,6 +11557,567 @@
   }
 
   // ============================================
+  // BACKDROP FILTER EDITOR
+  // ============================================
+  function openBackdropFilterEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-backdrop-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const currentFilter = selectedElement.style.backdropFilter || cs.backdropFilter || 'none';
+
+    // Parse existing values
+    let blur = 0, brightness = 100, contrast = 100, saturate = 100, grayscale = 0;
+    const blurMatch = currentFilter.match(/blur\((\d+)px\)/);
+    if (blurMatch) blur = parseInt(blurMatch[1]);
+    const brightnessMatch = currentFilter.match(/brightness\((\d+)%\)/);
+    if (brightnessMatch) brightness = parseInt(brightnessMatch[1]);
+    const contrastMatch = currentFilter.match(/contrast\((\d+)%\)/);
+    if (contrastMatch) contrast = parseInt(contrastMatch[1]);
+    const saturateMatch = currentFilter.match(/saturate\((\d+)%\)/);
+    if (saturateMatch) saturate = parseInt(saturateMatch[1]);
+    const grayscaleMatch = currentFilter.match(/grayscale\((\d+)%\)/);
+    if (grayscaleMatch) grayscale = parseInt(grayscaleMatch[1]);
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-backdrop-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.backdropFilter} Backdrop Filter</span>
+        <button class="lumos-close-bf" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-backdrop-preview">
+          <div class="lumos-backdrop-preview-overlay"></div>
+        </div>
+
+        <div class="lumos-backdrop-slider-row">
+          <span class="lumos-backdrop-slider-label">Blur</span>
+          <input type="range" class="lumos-backdrop-slider" data-prop="blur" min="0" max="50" value="${blur}">
+          <span class="lumos-backdrop-value">${blur}px</span>
+        </div>
+
+        <div class="lumos-backdrop-slider-row">
+          <span class="lumos-backdrop-slider-label">Brightness</span>
+          <input type="range" class="lumos-backdrop-slider" data-prop="brightness" min="0" max="200" value="${brightness}">
+          <span class="lumos-backdrop-value">${brightness}%</span>
+        </div>
+
+        <div class="lumos-backdrop-slider-row">
+          <span class="lumos-backdrop-slider-label">Contrast</span>
+          <input type="range" class="lumos-backdrop-slider" data-prop="contrast" min="0" max="200" value="${contrast}">
+          <span class="lumos-backdrop-value">${contrast}%</span>
+        </div>
+
+        <div class="lumos-backdrop-slider-row">
+          <span class="lumos-backdrop-slider-label">Saturate</span>
+          <input type="range" class="lumos-backdrop-slider" data-prop="saturate" min="0" max="200" value="${saturate}">
+          <span class="lumos-backdrop-value">${saturate}%</span>
+        </div>
+
+        <div class="lumos-backdrop-slider-row">
+          <span class="lumos-backdrop-slider-label">Grayscale</span>
+          <input type="range" class="lumos-backdrop-slider" data-prop="grayscale" min="0" max="100" value="${grayscale}">
+          <span class="lumos-backdrop-value">${grayscale}%</span>
+        </div>
+
+        <div class="lumos-cv-info">
+          Creates glassmorphism effects. Works best on elements with semi-transparent backgrounds.
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const updateFilter = () => {
+      const b = panel.querySelector('[data-prop="blur"]').value;
+      const br = panel.querySelector('[data-prop="brightness"]').value;
+      const c = panel.querySelector('[data-prop="contrast"]').value;
+      const s = panel.querySelector('[data-prop="saturate"]').value;
+      const g = panel.querySelector('[data-prop="grayscale"]').value;
+
+      const parts = [];
+      if (b > 0) parts.push(`blur(${b}px)`);
+      if (br != 100) parts.push(`brightness(${br}%)`);
+      if (c != 100) parts.push(`contrast(${c}%)`);
+      if (s != 100) parts.push(`saturate(${s}%)`);
+      if (g > 0) parts.push(`grayscale(${g}%)`);
+
+      const filterValue = parts.length > 0 ? parts.join(' ') : 'none';
+      applyStyle('backdropFilter', filterValue);
+      panel.querySelector('.lumos-backdrop-preview-overlay').style.backdropFilter = filterValue;
+    };
+
+    panel.querySelectorAll('.lumos-backdrop-slider').forEach(slider => {
+      slider.oninput = () => {
+        const val = slider.value;
+        const unit = slider.dataset.prop === 'blur' ? 'px' : '%';
+        slider.parentElement.querySelector('.lumos-backdrop-value').textContent = val + unit;
+        updateFilter();
+      };
+    });
+
+    panel.querySelector('.lumos-close-bf').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // GAP EDITOR
+  // ============================================
+  function openGapEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-gap-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const currentRowGap = selectedElement.style.rowGap || cs.rowGap || '0px';
+    const currentColGap = selectedElement.style.columnGap || cs.columnGap || '0px';
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-gap-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.gapIcon} Gap Editor</span>
+        <button class="lumos-close-gap" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-gap-visual">
+          <div class="lumos-gap-visual-item"></div>
+          <div class="lumos-gap-visual-item"></div>
+          <div class="lumos-gap-visual-item"></div>
+          <div class="lumos-gap-visual-item"></div>
+          <div class="lumos-gap-visual-item"></div>
+          <div class="lumos-gap-visual-item"></div>
+        </div>
+
+        <div class="lumos-gap-input-row">
+          <div class="lumos-gap-input-group">
+            <div class="lumos-gap-input-label">Row Gap</div>
+            <input type="text" class="lumos-gap-input lumos-gap-row" value="${currentRowGap}" placeholder="e.g., 16px">
+          </div>
+          <div class="lumos-gap-input-group">
+            <div class="lumos-gap-input-label">Column Gap</div>
+            <input type="text" class="lumos-gap-input lumos-gap-col" value="${currentColGap}" placeholder="e.g., 16px">
+          </div>
+        </div>
+
+        <div class="lumos-cv-label" style="margin-top:12px">Quick Values</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="lumos-cv-option" data-gap="0">0</button>
+          <button class="lumos-cv-option" data-gap="4px">4px</button>
+          <button class="lumos-cv-option" data-gap="8px">8px</button>
+          <button class="lumos-cv-option" data-gap="12px">12px</button>
+          <button class="lumos-cv-option" data-gap="16px">16px</button>
+          <button class="lumos-cv-option" data-gap="24px">24px</button>
+          <button class="lumos-cv-option" data-gap="32px">32px</button>
+          <button class="lumos-cv-option" data-gap="1rem">1rem</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const updateVisual = () => {
+      const rowGap = panel.querySelector('.lumos-gap-row').value || '0';
+      const colGap = panel.querySelector('.lumos-gap-col').value || '0';
+      panel.querySelector('.lumos-gap-visual').style.gap = `${rowGap} ${colGap}`;
+    };
+    updateVisual();
+
+    panel.querySelector('.lumos-gap-row').oninput = (e) => {
+      applyStyle('rowGap', e.target.value);
+      updateVisual();
+    };
+
+    panel.querySelector('.lumos-gap-col').oninput = (e) => {
+      applyStyle('columnGap', e.target.value);
+      updateVisual();
+    };
+
+    panel.querySelectorAll('[data-gap]').forEach(btn => {
+      btn.onclick = () => {
+        const val = btn.dataset.gap;
+        panel.querySelector('.lumos-gap-row').value = val;
+        panel.querySelector('.lumos-gap-col').value = val;
+        applyStyle('gap', val);
+        updateVisual();
+      };
+    });
+
+    panel.querySelector('.lumos-close-gap').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // ACCENT COLOR EDITOR
+  // ============================================
+  function openAccentColorEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-accent-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const currentAccent = selectedElement.style.accentColor || cs.accentColor || 'auto';
+    const currentCaret = selectedElement.style.caretColor || cs.caretColor || 'auto';
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-accent-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.accentColor} Accent & Caret Color</span>
+        <button class="lumos-close-accent" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-accent-preview">
+          <input type="checkbox" checked class="lumos-accent-demo-checkbox">
+          <input type="radio" checked name="demo" class="lumos-accent-demo-radio">
+          <input type="range" value="50" class="lumos-accent-demo-range">
+        </div>
+
+        <div class="lumos-cv-section">
+          <div class="lumos-cv-label">Accent Color</div>
+          <div class="lumos-accent-color-row">
+            <input type="color" class="lumos-accent-color-picker lumos-accent-picker" value="${currentAccent !== 'auto' ? rgbToHex(currentAccent) || '#8b5cf6' : '#8b5cf6'}">
+            <button class="lumos-cv-option ${currentAccent === 'auto' ? 'active' : ''}" data-accent="auto">Auto</button>
+            <input type="text" class="lumos-gap-input" style="flex:1" value="${currentAccent}" placeholder="e.g., #8b5cf6">
+          </div>
+        </div>
+
+        <div class="lumos-cv-section">
+          <div class="lumos-cv-label">Caret Color</div>
+          <div class="lumos-accent-color-row">
+            <input type="color" class="lumos-accent-color-picker lumos-caret-picker" value="${currentCaret !== 'auto' ? rgbToHex(currentCaret) || '#8b5cf6' : '#8b5cf6'}">
+            <button class="lumos-cv-option ${currentCaret === 'auto' ? 'active' : ''}" data-caret="auto">Auto</button>
+            <input type="text" class="lumos-gap-input lumos-caret-input" style="flex:1" value="${currentCaret}" placeholder="e.g., #8b5cf6">
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const updatePreview = () => {
+      const accent = panel.querySelector('.lumos-accent-picker').value;
+      panel.querySelectorAll('.lumos-accent-preview input').forEach(inp => {
+        inp.style.accentColor = accent;
+      });
+    };
+
+    panel.querySelector('.lumos-accent-picker').oninput = (e) => {
+      applyStyle('accentColor', e.target.value);
+      updatePreview();
+    };
+
+    panel.querySelector('.lumos-caret-picker').oninput = (e) => {
+      applyStyle('caretColor', e.target.value);
+    };
+
+    panel.querySelector('[data-accent]').onclick = () => {
+      applyStyle('accentColor', 'auto');
+    };
+
+    panel.querySelector('[data-caret]').onclick = () => {
+      applyStyle('caretColor', 'auto');
+    };
+
+    panel.querySelector('.lumos-close-accent').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // COLUMNS EDITOR
+  // ============================================
+  function openColumnsEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-columns-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const currentCount = selectedElement.style.columnCount || cs.columnCount || 'auto';
+    const currentGap = selectedElement.style.columnGap || cs.columnGap || 'normal';
+    const currentRule = selectedElement.style.columnRule || cs.columnRule || 'none';
+
+    let count = parseInt(currentCount) || 3;
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-columns-editor';
+
+    const updatePreview = () => {
+      const preview = panel.querySelector('.lumos-columns-preview');
+      preview.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const col = document.createElement('div');
+        col.className = 'lumos-columns-preview-col';
+        preview.appendChild(col);
+      }
+    };
+
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.columnsIcon} Multi-Column Layout</span>
+        <button class="lumos-close-cols" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-columns-preview"></div>
+
+        <div class="lumos-cv-label">Column Count</div>
+        <div class="lumos-columns-count-row">
+          <button class="lumos-columns-btn lumos-cols-minus">−</button>
+          <span class="lumos-columns-count">${count}</span>
+          <button class="lumos-columns-btn lumos-cols-plus">+</button>
+          <button class="lumos-cv-option" data-cols="auto" style="margin-left:auto">Auto</button>
+        </div>
+
+        <div class="lumos-gap-input-row" style="margin-top:12px">
+          <div class="lumos-gap-input-group">
+            <div class="lumos-gap-input-label">Gap</div>
+            <input type="text" class="lumos-gap-input lumos-cols-gap" value="${currentGap}" placeholder="e.g., 20px">
+          </div>
+          <div class="lumos-gap-input-group">
+            <div class="lumos-gap-input-label">Rule</div>
+            <input type="text" class="lumos-gap-input lumos-cols-rule" value="${currentRule}" placeholder="e.g., 1px solid #ccc">
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+    updatePreview();
+
+    panel.querySelector('.lumos-cols-minus').onclick = () => {
+      if (count > 1) {
+        count--;
+        panel.querySelector('.lumos-columns-count').textContent = count;
+        applyStyle('columnCount', count.toString());
+        updatePreview();
+      }
+    };
+
+    panel.querySelector('.lumos-cols-plus').onclick = () => {
+      if (count < 12) {
+        count++;
+        panel.querySelector('.lumos-columns-count').textContent = count;
+        applyStyle('columnCount', count.toString());
+        updatePreview();
+      }
+    };
+
+    panel.querySelector('[data-cols="auto"]').onclick = () => {
+      applyStyle('columnCount', 'auto');
+      panel.querySelector('.lumos-columns-count').textContent = 'auto';
+    };
+
+    panel.querySelector('.lumos-cols-gap').oninput = (e) => {
+      applyStyle('columnGap', e.target.value);
+    };
+
+    panel.querySelector('.lumos-cols-rule').oninput = (e) => {
+      applyStyle('columnRule', e.target.value);
+    };
+
+    panel.querySelector('.lumos-close-cols').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // OVERSCROLL BEHAVIOR EDITOR
+  // ============================================
+  function openOverscrollEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-overscroll-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.overscrollBehavior || cs.overscrollBehavior || 'auto';
+
+    const options = [
+      { value: 'auto', label: 'Auto' },
+      { value: 'contain', label: 'Contain' },
+      { value: 'none', label: 'None' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-overscroll-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.overscroll} Overscroll Behavior</span>
+        <button class="lumos-close-os" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-cv-label">Both Axes</div>
+        <div class="lumos-overscroll-grid">
+          ${options.map(o => `
+            <button class="lumos-overscroll-btn ${current === o.value ? 'active' : ''}" data-os="${o.value}">${o.label}</button>
+          `).join('')}
+        </div>
+
+        <div class="lumos-cv-label" style="margin-top:16px">X Axis</div>
+        <div class="lumos-overscroll-grid">
+          ${options.map(o => `
+            <button class="lumos-overscroll-btn" data-osx="${o.value}">${o.label}</button>
+          `).join('')}
+        </div>
+
+        <div class="lumos-cv-label" style="margin-top:16px">Y Axis</div>
+        <div class="lumos-overscroll-grid">
+          ${options.map(o => `
+            <button class="lumos-overscroll-btn" data-osy="${o.value}">${o.label}</button>
+          `).join('')}
+        </div>
+
+        <div class="lumos-cv-info" style="margin-top:16px">
+          <strong>contain:</strong> Prevents scroll chaining to parent<br>
+          <strong>none:</strong> Also disables bounce/glow effects
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('[data-os]').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('overscrollBehavior', btn.dataset.os);
+        panel.querySelectorAll('[data-os]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    panel.querySelectorAll('[data-osx]').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('overscrollBehaviorX', btn.dataset.osx);
+        panel.querySelectorAll('[data-osx]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    panel.querySelectorAll('[data-osy]').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('overscrollBehaviorY', btn.dataset.osy);
+        panel.querySelectorAll('[data-osy]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-close-os').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // LIST STYLE EDITOR
+  // ============================================
+  function openListStyleEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-list-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const currentType = selectedElement.style.listStyleType || cs.listStyleType || 'disc';
+    const currentPosition = selectedElement.style.listStylePosition || cs.listStylePosition || 'outside';
+
+    const types = [
+      { value: 'none', label: 'None' },
+      { value: 'disc', label: '●' },
+      { value: 'circle', label: '○' },
+      { value: 'square', label: '■' },
+      { value: 'decimal', label: '1.' },
+      { value: 'decimal-leading-zero', label: '01.' },
+      { value: 'lower-alpha', label: 'a.' },
+      { value: 'upper-alpha', label: 'A.' },
+      { value: 'lower-roman', label: 'i.' },
+      { value: 'upper-roman', label: 'I.' },
+      { value: 'lower-greek', label: 'α.' },
+      { value: 'armenian', label: 'Ա.' },
+    ];
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-list-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.listIcon} List Style</span>
+        <button class="lumos-close-list" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-list-preview">
+          <ul style="list-style-type:${currentType}">
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+          </ul>
+        </div>
+
+        <div class="lumos-cv-label">List Style Type</div>
+        <div class="lumos-list-types">
+          ${types.map(t => `
+            <button class="lumos-list-type-btn ${currentType === t.value ? 'active' : ''}" data-type="${t.value}">${t.label}</button>
+          `).join('')}
+        </div>
+
+        <div class="lumos-cv-label" style="margin-top:16px">Position</div>
+        <div style="display:flex;gap:8px">
+          <button class="lumos-cv-option ${currentPosition === 'outside' ? 'active' : ''}" data-pos="outside">Outside</button>
+          <button class="lumos-cv-option ${currentPosition === 'inside' ? 'active' : ''}" data-pos="inside">Inside</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const updatePreview = () => {
+      const type = [...panel.querySelectorAll('[data-type].active')][0]?.dataset?.type || 'disc';
+      panel.querySelector('.lumos-list-preview ul').style.listStyleType = type;
+    };
+
+    panel.querySelectorAll('[data-type]').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('listStyleType', btn.dataset.type);
+        panel.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updatePreview();
+      };
+    });
+
+    panel.querySelectorAll('[data-pos]').forEach(btn => {
+      btn.onclick = () => {
+        applyStyle('listStylePosition', btn.dataset.pos);
+        panel.querySelectorAll('[data-pos]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-close-list').onclick = () => panel.remove();
+  }
+
+  // ============================================
+  // ISOLATION EDITOR
+  // ============================================
+  function openIsolationEditor() {
+    if (!selectedElement) return;
+    document.querySelectorAll('.lumos-isolation-editor').forEach(e => e.remove());
+
+    const cs = getComputedStyle(selectedElement);
+    const current = selectedElement.style.isolation || cs.isolation || 'auto';
+
+    const panel = document.createElement('div');
+    panel.className = 'lumos-isolation-editor';
+    panel.innerHTML = `
+      <div class="lumos-cv-header">
+        <span class="lumos-cv-title">${icons.isolationIcon} Isolation</span>
+        <button class="lumos-close-iso" style="background:none;border:none;color:#71717a;cursor:pointer">${icons.close}</button>
+      </div>
+      <div class="lumos-cv-body">
+        <div class="lumos-isolation-options">
+          <div class="lumos-isolation-option ${current === 'auto' ? 'active' : ''}" data-iso="auto">
+            <div class="lumos-isolation-icon">🔗</div>
+            <div class="lumos-isolation-name">Auto</div>
+          </div>
+          <div class="lumos-isolation-option ${current === 'isolate' ? 'active' : ''}" data-iso="isolate">
+            <div class="lumos-isolation-icon">📦</div>
+            <div class="lumos-isolation-name">Isolate</div>
+          </div>
+        </div>
+        <div class="lumos-cv-info" style="margin-top:16px">
+          <strong>isolate:</strong> Creates a new stacking context, preventing blend modes from affecting elements outside this container.
+        </div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    panel.querySelectorAll('.lumos-isolation-option').forEach(opt => {
+      opt.onclick = () => {
+        applyStyle('isolation', opt.dataset.iso);
+        panel.querySelectorAll('.lumos-isolation-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      };
+    });
+
+    panel.querySelector('.lumos-close-iso').onclick = () => panel.remove();
+  }
+
+  // ============================================
   // ADD NEW COMMANDS TO PALETTE
   // ============================================
   commands.push(
@@ -11216,7 +12169,14 @@
     { id: 'pointer-events', label: 'Pointer Events', icon: 'pointerEvents', action: openPointerEventsEditor },
     { id: 'will-change', label: 'Will-Change', icon: 'willChange', action: openWillChangeEditor },
     { id: 'contain', label: 'CSS Contain', icon: 'containProp', action: openContainEditor },
-    { id: 'user-select', label: 'User Select', icon: 'userSelect', action: openUserSelectEditor }
+    { id: 'user-select', label: 'User Select', icon: 'userSelect', action: openUserSelectEditor },
+    { id: 'backdrop-filter', label: 'Backdrop Filter', icon: 'backdropFilter', action: openBackdropFilterEditor },
+    { id: 'gap', label: 'Gap Editor', icon: 'gapIcon', action: openGapEditor },
+    { id: 'accent-color', label: 'Accent Color', icon: 'accentColor', action: openAccentColorEditor },
+    { id: 'columns', label: 'Multi-Column', icon: 'columnsIcon', action: openColumnsEditor },
+    { id: 'overscroll', label: 'Overscroll Behavior', icon: 'overscroll', action: openOverscrollEditor },
+    { id: 'list-style', label: 'List Style', icon: 'listIcon', action: openListStyleEditor },
+    { id: 'isolation', label: 'Isolation', icon: 'isolationIcon', action: openIsolationEditor }
   );
 
   // Focus mode keyboard shortcut
