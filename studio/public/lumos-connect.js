@@ -13218,7 +13218,7 @@
   // RESPONSIVE BREAKPOINTS
   // ============================================
   let breakpointsActive = false;
-  let currentBreakpoint = 'full';
+  let activeViewportSize = 'full';
   let isRotated = false;
 
   const viewportBreakpoints = [
@@ -13236,7 +13236,7 @@
     }
 
     breakpointsActive = true;
-    currentBreakpoint = 'full';
+    activeViewportSize = 'full';
     isRotated = false;
 
     // Create the breakpoints bar
@@ -13262,11 +13262,11 @@
     // Handle breakpoint buttons
     bar.querySelectorAll('.lumos-breakpoint-btn').forEach(btn => {
       btn.onclick = () => {
-        currentBreakpoint = btn.dataset.bp;
+        activeViewportSize = btn.dataset.bp;
         bar.querySelectorAll('.lumos-breakpoint-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const bp = viewportBreakpoints.find(b => b.id === currentBreakpoint);
+        const bp = viewportBreakpoints.find(b => b.id === activeViewportSize);
         if (bp && bp.width) {
           bar.querySelector('.lumos-viewport-input').value = isRotated ? '' : bp.width;
           bar.querySelector('.lumos-height-input').value = isRotated ? bp.width : '';
