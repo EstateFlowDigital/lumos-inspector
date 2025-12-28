@@ -5798,6 +5798,7 @@
     check: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>',
     box: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
     paste: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>',
+    clipboard: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>',
     ruler: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>',
     code: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>',
     eye: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
@@ -5806,6 +5807,9 @@
     palette: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>',
     type: '<svg viewBox="0 0 24 24" stroke-width="2"><polyline points="4,7 4,4 20,4 20,7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>',
     alertCircle: '<svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+    history: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>',
+    plus: '<svg viewBox="0 0 24 24" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+    edit: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
     checkCircle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>',
     alertTriangle: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
     bookmark: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
@@ -14122,26 +14126,26 @@
 
   // Duplicate element (Cmd+D)
   function duplicateElement() {
-    if (!selectedEl) {
+    if (!selectedElement) {
       showToast('Select an element first', 'warning');
       return;
     }
 
-    const clone = selectedEl.cloneNode(true);
+    const clone = selectedElement.cloneNode(true);
     clone.classList.remove('lumos-selected-outline', 'lumos-hover-outline', 'lumos-issue-highlight');
 
     // Insert after the selected element
-    selectedEl.parentNode.insertBefore(clone, selectedEl.nextSibling);
+    selectedElement.parentNode.insertBefore(clone, selectedElement.nextSibling);
 
     // Log the change
     logChange({
       type: 'element-add',
       action: 'duplicate',
       element: clone.tagName.toLowerCase(),
-      parentSelector: generateSelector(selectedEl.parentNode),
+      parentSelector: generateSelector(selectedElement.parentNode),
       html: clone.outerHTML,
       position: 'after',
-      referenceSelector: generateSelector(selectedEl),
+      referenceSelector: generateSelector(selectedElement),
     });
 
     // Select the new element
@@ -14151,17 +14155,17 @@
 
   // Copy element (Cmd+C)
   function copyElement() {
-    if (!selectedEl) {
+    if (!selectedElement) {
       showToast('Select an element first', 'warning');
       return;
     }
 
-    clipboardElement = selectedEl;
-    clipboardHTML = selectedEl.outerHTML;
+    clipboardElement = selectedElement;
+    clipboardHTML = selectedElement.outerHTML;
     clipboardStyles = {};
 
     // Copy computed styles
-    const computed = getComputedStyle(selectedEl);
+    const computed = getComputedStyle(selectedElement);
     ['color', 'backgroundColor', 'fontSize', 'fontWeight', 'padding', 'margin', 'borderRadius'].forEach(prop => {
       clipboardStyles[prop] = computed[prop];
     });
@@ -14176,7 +14180,7 @@
       return;
     }
 
-    const target = selectedEl || document.body;
+    const target = selectedElement || document.body;
     const temp = document.createElement('div');
     temp.innerHTML = clipboardHTML;
     const newEl = temp.firstElementChild;
@@ -14201,27 +14205,27 @@
 
   // Delete element (Backspace/Delete)
   function deleteElement() {
-    if (!selectedEl || selectedEl === document.body) {
+    if (!selectedElement || selectedElement === document.body) {
       showToast('Cannot delete this element', 'warning');
       return;
     }
 
-    const selector = generateSelector(selectedEl);
-    const parentSelector = generateSelector(selectedEl.parentNode);
-    const html = selectedEl.outerHTML;
+    const selector = generateSelector(selectedElement);
+    const parentSelector = generateSelector(selectedElement.parentNode);
+    const html = selectedElement.outerHTML;
 
     logChange({
       type: 'element-remove',
       action: 'delete',
-      element: selectedEl.tagName.toLowerCase(),
+      element: selectedElement.tagName.toLowerCase(),
       selector,
       parentSelector,
       html,
     });
 
-    const parent = selectedEl.parentNode;
-    selectedEl.remove();
-    selectedEl = null;
+    const parent = selectedElement.parentNode;
+    selectedElement.remove();
+    selectedElement = null;
 
     showToast('Element deleted', 'success');
   }
@@ -14307,7 +14311,7 @@
     }
   }
 
-  function openChangesLog() {
+  function openChangesLogPanel() {
     const existing = document.querySelector('.lumos-changes-log-panel');
     if (existing) {
       existing.remove();
@@ -14476,7 +14480,7 @@
       duplicateElement();
     }
     // Cmd/Ctrl + C = Copy
-    else if (modKey && e.key === 'c' && selectedEl) {
+    else if (modKey && e.key === 'c' && selectedElement) {
       e.preventDefault();
       copyElement();
     }
@@ -14486,7 +14490,7 @@
       pasteElement();
     }
     // Backspace or Delete = Delete element
-    else if ((e.key === 'Backspace' || e.key === 'Delete') && selectedEl) {
+    else if ((e.key === 'Backspace' || e.key === 'Delete') && selectedElement) {
       e.preventDefault();
       deleteElement();
     }
