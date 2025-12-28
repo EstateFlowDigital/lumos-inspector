@@ -13221,7 +13221,7 @@
   let currentBreakpoint = 'full';
   let isRotated = false;
 
-  const breakpoints = [
+  const viewportBreakpoints = [
     { id: 'full', label: 'Full', width: null, icon: 'monitor' },
     { id: 'lg', label: 'Desktop', width: 1280, icon: 'monitor' },
     { id: 'md', label: 'Tablet', width: 768, icon: 'tablet' },
@@ -13243,7 +13243,7 @@
     const bar = document.createElement('div');
     bar.className = 'lumos-breakpoints-bar';
     bar.innerHTML = `
-      ${breakpoints.map(bp => `
+      ${viewportBreakpoints.map(bp => `
         <button class="lumos-breakpoint-btn ${bp.id === 'full' ? 'active' : ''}" data-bp="${bp.id}">
           ${icons[bp.icon]}
           <span class="lumos-breakpoint-label">${bp.label}</span>
@@ -13266,7 +13266,7 @@
         bar.querySelectorAll('.lumos-breakpoint-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const bp = breakpoints.find(b => b.id === currentBreakpoint);
+        const bp = viewportBreakpoints.find(b => b.id === currentBreakpoint);
         if (bp && bp.width) {
           bar.querySelector('.lumos-viewport-input').value = isRotated ? '' : bp.width;
           bar.querySelector('.lumos-height-input').value = isRotated ? bp.width : '';
