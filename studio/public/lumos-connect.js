@@ -6081,24 +6081,32 @@
 
   // Undo
   function undo() {
-    if (changes.length === 0) return;
+    if (changes.length === 0) {
+      showToast('Nothing to undo', 'info');
+      return;
+    }
     const change = changes.pop();
     const el = document.querySelector(change.selector);
     if (el) el.style[change.property] = change.oldValue;
     undoStack.push(change);
     persistChanges();
     updateUI();
+    showToast(`Undo: ${change.property}`, 'success');
   }
 
   // Redo
   function redo() {
-    if (undoStack.length === 0) return;
+    if (undoStack.length === 0) {
+      showToast('Nothing to redo', 'info');
+      return;
+    }
     const change = undoStack.pop();
     const el = document.querySelector(change.selector);
     if (el) el.style[change.property] = change.newValue;
     changes.push(change);
     persistChanges();
     updateUI();
+    showToast(`Redo: ${change.property}`, 'success');
   }
 
   // Clear all
@@ -14578,7 +14586,9 @@
     { id: 'duplicate-element', label: 'Duplicate Element', icon: 'copy', shortcut: '⌘D', action: duplicateElement },
     { id: 'copy-element', label: 'Copy Element', icon: 'copy', shortcut: '⌘C', action: copyElement },
     { id: 'paste-element', label: 'Paste Element', icon: 'clipboard', shortcut: '⌘V', action: pasteElement },
-    { id: 'delete-element', label: 'Delete Element', icon: 'trash', shortcut: '⌫', action: deleteElement }
+    { id: 'delete-element', label: 'Delete Element', icon: 'trash', shortcut: '⌫', action: deleteElement },
+    { id: 'undo', label: 'Undo', icon: 'undo', shortcut: '⌘Z', action: undo },
+    { id: 'redo', label: 'Redo', icon: 'redo', shortcut: '⌘⇧Z', action: redo }
   );
 
   // Focus mode keyboard shortcut
