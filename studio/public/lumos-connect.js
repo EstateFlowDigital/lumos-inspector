@@ -318,10 +318,109 @@
     mobile: { width: '375px', icon: 'phone' },
   };
 
+  // ============================================
+  // THEME DETECTION
+  // ============================================
+  function detectTheme() {
+    // Check for dark mode preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Check for dark class on html or body
+    const hasDarkClass = document.documentElement.classList.contains('dark') ||
+                         document.body.classList.contains('dark') ||
+                         document.documentElement.getAttribute('data-theme') === 'dark' ||
+                         document.body.getAttribute('data-theme') === 'dark';
+
+    // Check background color of body
+    const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+    const rgb = bodyBg.match(/\d+/g);
+    const isDarkBg = rgb && (parseInt(rgb[0]) + parseInt(rgb[1]) + parseInt(rgb[2])) / 3 < 128;
+
+    return hasDarkClass || prefersDark || isDarkBg;
+  }
+
+  let isDarkTheme = detectTheme();
+
+  // Listen for theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    isDarkTheme = detectTheme();
+    updateTheme();
+  });
+
+  // Observe class changes on html/body for theme switching
+  const themeObserver = new MutationObserver(() => {
+    const newTheme = detectTheme();
+    if (newTheme !== isDarkTheme) {
+      isDarkTheme = newTheme;
+      updateTheme();
+    }
+  });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+  themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+
+  function updateTheme() {
+    const container = document.querySelector('.lumos-container');
+    if (container) {
+      container.classList.toggle('lumos-light', !isDarkTheme);
+      container.classList.toggle('lumos-dark', isDarkTheme);
+    }
+    const fab = document.querySelector('.lumos-fab');
+    if (fab) {
+      fab.classList.toggle('lumos-light', !isDarkTheme);
+    }
+  }
+
   // Inject styles
   const style = document.createElement('style');
   style.id = 'lumos-inspector-styles';
   style.textContent = `
+    /* ============================================
+       CSS VARIABLES FOR THEMING
+       ============================================ */
+    .lumos-ui {
+      /* Dark theme (default) */
+      --lumos-bg-primary: #0a0a0b;
+      --lumos-bg-secondary: #18181b;
+      --lumos-bg-tertiary: #27272a;
+      --lumos-bg-hover: #3f3f46;
+      --lumos-border: #27272a;
+      --lumos-border-hover: #3f3f46;
+      --lumos-text-primary: #fafafa;
+      --lumos-text-secondary: #a1a1aa;
+      --lumos-text-muted: #71717a;
+      --lumos-accent: #8b5cf6;
+      --lumos-accent-hover: #a78bfa;
+      --lumos-success: #22c55e;
+      --lumos-warning: #f59e0b;
+      --lumos-error: #ef4444;
+      --lumos-info: #3b82f6;
+      --lumos-shadow: rgba(0, 0, 0, 0.5);
+    }
+
+    .lumos-ui.lumos-light, .lumos-light .lumos-ui {
+      /* Light theme */
+      --lumos-bg-primary: #ffffff;
+      --lumos-bg-secondary: #f4f4f5;
+      --lumos-bg-tertiary: #e4e4e7;
+      --lumos-bg-hover: #d4d4d8;
+      --lumos-border: #e4e4e7;
+      --lumos-border-hover: #d4d4d8;
+      --lumos-text-primary: #09090b;
+      --lumos-text-secondary: #52525b;
+      --lumos-text-muted: #71717a;
+      --lumos-accent: #7c3aed;
+      --lumos-accent-hover: #6d28d9;
+      --lumos-success: #16a34a;
+      --lumos-warning: #d97706;
+      --lumos-error: #dc2626;
+      --lumos-info: #2563eb;
+      --lumos-shadow: rgba(0, 0, 0, 0.15);
+    }
+
+    .lumos-fab.lumos-light {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+    }
+
     /* Reset for Lumos elements */
     .lumos-ui, .lumos-ui * {
       box-sizing: border-box;
@@ -330,19 +429,19 @@
 
     /* Hover/Selection Outlines */
     .lumos-hover-outline {
-      outline: 2px solid #3b82f6 !important;
+      outline: 2px solid var(--lumos-info, #3b82f6) !important;
       outline-offset: 1px !important;
     }
     .lumos-selected-outline {
-      outline: 2px solid #8b5cf6 !important;
+      outline: 2px solid var(--lumos-accent, #8b5cf6) !important;
       outline-offset: 1px !important;
     }
 
-    /* Viewport Preview */
+    /* Viewport Preview - Real resize approach */
     .lumos-viewport-active {
       margin: 0 auto !important;
       transition: max-width 0.3s ease;
-      box-shadow: 0 0 0 1px #3f3f46;
+      box-shadow: 0 0 0 1px var(--lumos-border);
     }
 
     /* FAB Button */
@@ -397,8 +496,8 @@
     .lumos-navigator {
       width: 280px;
       height: 100%;
-      background: #0a0a0b;
-      border-right: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border-right: 1px solid var(--lumos-border);
       display: flex;
       flex-direction: column;
       pointer-events: auto;
@@ -410,23 +509,37 @@
     }
     .lumos-nav-header {
       padding: 12px 16px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #09090b;
+      background: var(--lumos-bg-primary);
+      flex-shrink: 0;
     }
     .lumos-nav-title {
       font-size: 12px;
       font-weight: 600;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .lumos-nav-content {
       flex: 1;
       overflow-y: auto;
+      overflow-x: hidden;
       padding: 8px 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--lumos-bg-tertiary) transparent;
+    }
+    .lumos-nav-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .lumos-nav-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .lumos-nav-content::-webkit-scrollbar-thumb {
+      background: var(--lumos-bg-tertiary);
+      border-radius: 3px;
     }
 
     /* Element Tree */
@@ -498,10 +611,10 @@
 
     /* Right Inspector Panel */
     .lumos-inspector {
-      width: 320px;
+      width: 340px;
       height: 100%;
-      background: #0a0a0b;
-      border-left: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border-left: 1px solid var(--lumos-border);
       display: flex;
       flex-direction: column;
       pointer-events: auto;
@@ -515,11 +628,12 @@
     /* Inspector Header */
     .lumos-header {
       padding: 10px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #09090b;
+      background: var(--lumos-bg-primary);
+      flex-shrink: 0;
     }
     .lumos-logo {
       width: 28px;
@@ -540,7 +654,7 @@
       flex: 1;
       font-weight: 600;
       font-size: 13px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-header-btn {
       width: 28px;
@@ -548,16 +662,40 @@
       border-radius: 6px;
       border: none;
       background: transparent;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.15s;
+      position: relative;
     }
     .lumos-header-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
+    }
+    /* Tooltips for buttons */
+    .lumos-header-btn[data-tooltip]::after,
+    .lumos-toolbar-btn[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 100;
+    }
+    .lumos-header-btn[data-tooltip]:hover::after,
+    .lumos-toolbar-btn[data-tooltip]:hover::after {
+      opacity: 1;
     }
     .lumos-header-btn svg {
       width: 16px;
@@ -567,15 +705,17 @@
     /* Toolbar */
     .lumos-toolbar {
       padding: 8px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #0a0a0b;
+      background: var(--lumos-bg-primary);
+      flex-shrink: 0;
+      flex-wrap: wrap;
     }
     .lumos-toolbar-group {
       display: flex;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 6px;
       padding: 2px;
     }
@@ -584,19 +724,20 @@
       height: 26px;
       border: none;
       background: transparent;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 4px;
       transition: all 0.15s;
+      position: relative;
     }
     .lumos-toolbar-btn:hover {
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-toolbar-btn.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
     }
     .lumos-toolbar-btn:disabled {
@@ -610,25 +751,77 @@
     .lumos-toolbar-divider {
       width: 1px;
       height: 20px;
-      background: #27272a;
+      background: var(--lumos-border);
       margin: 0 4px;
+    }
+    /* Toolbar with labels */
+    .lumos-toolbar-btn-labeled {
+      width: auto;
+      padding: 0 8px;
+      gap: 4px;
+    }
+    .lumos-toolbar-btn-labeled span {
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Quick Actions Bar */
+    .lumos-quick-actions {
+      display: flex;
+      gap: 4px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--lumos-border);
+      background: var(--lumos-bg-secondary);
+      flex-shrink: 0;
+    }
+    .lumos-quick-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
+      border-radius: 6px;
+      color: var(--lumos-text-secondary);
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lumos-quick-btn:hover {
+      background: var(--lumos-bg-tertiary);
+      border-color: var(--lumos-border-hover);
+      color: var(--lumos-text-primary);
+    }
+    .lumos-quick-btn.active {
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
+      color: white;
+    }
+    .lumos-quick-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
     }
 
     /* Inspector Toggle */
     .lumos-inspect-toggle {
       padding: 10px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #0a0a0b;
+      background: var(--lumos-bg-primary);
+      flex-shrink: 0;
     }
     .lumos-inspect-label {
       display: flex;
       align-items: center;
       gap: 8px;
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-inspect-label svg {
       width: 14px;
@@ -786,7 +979,20 @@
     .lumos-panel-content {
       flex: 1;
       overflow-y: auto;
-      background: #0a0a0b;
+      overflow-x: hidden;
+      background: var(--lumos-bg-primary);
+      scrollbar-width: thin;
+      scrollbar-color: var(--lumos-bg-tertiary) transparent;
+    }
+    .lumos-panel-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .lumos-panel-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .lumos-panel-content::-webkit-scrollbar-thumb {
+      background: var(--lumos-bg-tertiary);
+      border-radius: 3px;
     }
     .lumos-tab-content {
       display: none;
@@ -797,23 +1003,23 @@
 
     /* Sections */
     .lumos-section {
-      border-bottom: 1px solid #1a1a1d;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-section-header {
       padding: 10px 12px;
       font-size: 10px;
       font-weight: 600;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      background: #0f0f10;
+      background: var(--lumos-bg-secondary);
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
     }
     .lumos-section-header:hover {
-      color: #71717a;
+      color: var(--lumos-text-secondary);
     }
     .lumos-section-content {
       padding: 10px 12px;
@@ -5159,70 +5365,78 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 8px 12px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      padding: 8px 16px;
+      background: var(--lumos-bg-secondary, #18181b);
+      border: 1px solid var(--lumos-border-hover, #3f3f46);
       border-top: none;
       border-radius: 0 0 12px 12px;
       z-index: 2147483646;
       font-family: system-ui, sans-serif;
+      box-shadow: 0 4px 12px var(--lumos-shadow, rgba(0,0,0,0.3));
     }
     .lumos-breakpoint-btn {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      padding: 6px 10px;
+      gap: 2px;
+      padding: 8px 12px;
       background: transparent;
       border: 1px solid transparent;
-      border-radius: 6px;
-      color: #71717a;
+      border-radius: 8px;
+      color: var(--lumos-text-muted, #71717a);
       cursor: pointer;
       transition: all 0.15s;
       font-size: 11px;
+      min-width: 60px;
     }
     .lumos-breakpoint-btn:hover {
-      background: #27272a;
-      color: #e4e4e7;
+      background: var(--lumos-bg-tertiary, #27272a);
+      color: var(--lumos-text-primary, #e4e4e7);
     }
     .lumos-breakpoint-btn.active {
-      background: #3b82f6;
-      border-color: #3b82f6;
+      background: var(--lumos-info, #3b82f6);
+      border-color: var(--lumos-info, #3b82f6);
       color: white;
     }
     .lumos-breakpoint-btn svg {
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
       stroke: currentColor;
       fill: none;
     }
     .lumos-breakpoint-label {
       font-weight: 500;
+      font-size: 10px;
+      margin-top: 2px;
     }
     .lumos-breakpoint-size {
       opacity: 0.7;
-      font-size: 10px;
+      font-size: 9px;
     }
     .lumos-breakpoints-divider {
       width: 1px;
-      height: 20px;
-      background: #3f3f46;
-      margin: 0 4px;
+      height: 32px;
+      background: var(--lumos-border-hover, #3f3f46);
+      margin: 0 8px;
     }
     .lumos-viewport-input {
-      width: 60px;
-      padding: 4px 8px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
-      border-radius: 4px;
-      color: #e4e4e7;
-      font-size: 11px;
-      font-family: monospace;
+      width: 65px;
+      padding: 6px 8px;
+      background: var(--lumos-bg-tertiary, #27272a);
+      border: 1px solid var(--lumos-border-hover, #3f3f46);
+      border-radius: 6px;
+      color: var(--lumos-text-primary, #e4e4e7);
+      font-size: 12px;
+      font-family: ui-monospace, monospace;
       text-align: center;
     }
     .lumos-viewport-input:focus {
       outline: none;
-      border-color: #3b82f6;
+      border-color: var(--lumos-info, #3b82f6);
+    }
+    .lumos-viewport-input::placeholder {
+      color: var(--lumos-text-muted, #71717a);
     }
     .lumos-viewport-frame {
       position: fixed;
@@ -6355,15 +6569,15 @@
   fab.onclick = togglePanel;
   document.body.appendChild(fab);
 
-  // Create main container
+  // Create main container with theme
   const container = document.createElement('div');
-  container.className = 'lumos-container lumos-ui';
+  container.className = `lumos-container lumos-ui ${isDarkTheme ? 'lumos-dark' : 'lumos-light'}`;
   container.innerHTML = `
     <!-- Left Navigator -->
     <div class="lumos-navigator">
       <div class="lumos-nav-header">
         <span class="lumos-nav-title">Navigator</span>
-        <button class="lumos-header-btn" onclick="this.closest('.lumos-navigator').classList.remove('open')">${icons.close}</button>
+        <button class="lumos-header-btn" data-tooltip="Close" onclick="this.closest('.lumos-navigator').classList.remove('open')">${icons.close}</button>
       </div>
       <div class="lumos-nav-content"></div>
     </div>
@@ -6375,36 +6589,38 @@
     <div class="lumos-inspector">
       <div class="lumos-header">
         <div class="lumos-logo">${icons.paintbrush}</div>
-        <span class="lumos-header-title">Lumos</span>
-        <button class="lumos-header-btn lumos-nav-toggle" title="Toggle Navigator">${icons.sidebar}</button>
-        <button class="lumos-header-btn lumos-close-btn" title="Close">${icons.close}</button>
+        <span class="lumos-header-title">Lumos Studio</span>
+        <button class="lumos-header-btn lumos-nav-toggle" data-tooltip="Navigator">${icons.sidebar}</button>
+        <button class="lumos-header-btn lumos-close-btn" data-tooltip="Close">${icons.close}</button>
       </div>
 
       <div class="lumos-toolbar">
         <div class="lumos-toolbar-group">
-          <button class="lumos-toolbar-btn lumos-viewport-btn active" data-viewport="desktop" title="Desktop">${icons.monitor}</button>
-          <button class="lumos-toolbar-btn lumos-viewport-btn" data-viewport="tablet" title="Tablet">${icons.tablet}</button>
-          <button class="lumos-toolbar-btn lumos-viewport-btn" data-viewport="mobile" title="Mobile">${icons.phone}</button>
+          <button class="lumos-toolbar-btn lumos-viewport-btn active" data-viewport="desktop" data-tooltip="Desktop">${icons.monitor}</button>
+          <button class="lumos-toolbar-btn lumos-viewport-btn" data-viewport="tablet" data-tooltip="Tablet">${icons.tablet}</button>
+          <button class="lumos-toolbar-btn lumos-viewport-btn" data-viewport="mobile" data-tooltip="Mobile">${icons.phone}</button>
         </div>
         <div class="lumos-toolbar-divider"></div>
         <div class="lumos-toolbar-group">
-          <button class="lumos-toolbar-btn lumos-undo-btn" title="Undo" disabled>${icons.undo}</button>
-          <button class="lumos-toolbar-btn lumos-redo-btn" title="Redo" disabled>${icons.redo}</button>
+          <button class="lumos-toolbar-btn lumos-undo-btn" data-tooltip="Undo (⌘Z)" disabled>${icons.undo}</button>
+          <button class="lumos-toolbar-btn lumos-redo-btn" data-tooltip="Redo (⌘⇧Z)" disabled>${icons.redo}</button>
         </div>
         <div class="lumos-toolbar-divider"></div>
         <div class="lumos-toolbar-group">
-          <button class="lumos-toolbar-btn lumos-measure-btn" title="Measure">${icons.ruler}</button>
-          <button class="lumos-toolbar-btn lumos-export-btn" title="Export">${icons.code}</button>
+          <button class="lumos-toolbar-btn lumos-measure-btn" data-tooltip="Measure">${icons.ruler}</button>
+          <button class="lumos-toolbar-btn lumos-export-btn" data-tooltip="Export CSS">${icons.code}</button>
         </div>
+        <div class="lumos-toolbar-divider"></div>
+        <button class="lumos-toolbar-btn lumos-toolbar-btn-labeled lumos-cmd-btn" data-tooltip="Command Palette (⌘K)">
+          ${icons.command}<span>⌘K</span>
+        </button>
       </div>
 
-      <!-- Breakpoint Bar -->
-      <div class="lumos-breakpoint-bar">
-        <button class="lumos-breakpoint-btn active" data-bp="base">${icons.layers} Base</button>
-        <button class="lumos-breakpoint-btn" data-bp="sm">${icons.phone} SM</button>
-        <button class="lumos-breakpoint-btn" data-bp="md">${icons.tablet} MD</button>
-        <button class="lumos-breakpoint-btn" data-bp="lg">${icons.monitor} LG</button>
-        <button class="lumos-breakpoint-btn" data-bp="xl">${icons.monitor} XL</button>
+      <!-- Quick Actions Bar -->
+      <div class="lumos-quick-actions">
+        <button class="lumos-quick-btn" data-action="style-audit" data-tooltip="Find style issues">${icons.fileSearch}<span>Audit</span></button>
+        <button class="lumos-quick-btn" data-action="changes-log" data-tooltip="View all changes">${icons.clipboard}<span>Changes</span></button>
+        <button class="lumos-quick-btn" data-action="responsive" data-tooltip="Test breakpoints">${icons.responsive}<span>Responsive</span></button>
       </div>
 
       <div class="lumos-inspect-toggle">
@@ -7765,6 +7981,19 @@
 
   // Export modal
   container.querySelector('.lumos-export-btn')?.addEventListener('click', openExportModal);
+
+  // Command palette button
+  container.querySelector('.lumos-cmd-btn')?.addEventListener('click', openCommandPalette);
+
+  // Quick action buttons
+  container.querySelectorAll('.lumos-quick-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.action;
+      if (action === 'style-audit') runStyleAudit();
+      else if (action === 'changes-log') openChangesLogPanel();
+      else if (action === 'responsive') openResponsiveBreakpoints();
+    });
+  });
 
   function openExportModal() {
     if (changes.length === 0) return showToast('No changes to export', 'error');
@@ -13609,29 +13838,9 @@
   }
 
   function applyViewportSize(width, height) {
-    // Remove existing viewport container
-    let vpContainer = document.getElementById('lumos-viewport-container');
+    // Use a simpler approach: constrain body width and center it
+    // This allows real-time editing while simulating different viewport sizes
 
-    if (!vpContainer) {
-      // Create viewport container that wraps content
-      vpContainer = document.createElement('div');
-      vpContainer.id = 'lumos-viewport-container';
-      vpContainer.className = 'lumos-ui';
-      document.body.appendChild(vpContainer);
-    }
-
-    // Create viewport frame
-    let vpFrame = document.getElementById('lumos-viewport-frame');
-    if (!vpFrame) {
-      vpFrame = document.createElement('div');
-      vpFrame.id = 'lumos-viewport-frame';
-      vpFrame.className = 'lumos-ui';
-      vpContainer.appendChild(vpFrame);
-    }
-
-    const actualHeight = height || Math.min(window.innerHeight - 120, 800);
-
-    // Apply viewport styling
     let viewportStyle = document.getElementById('lumos-viewport-style');
     if (!viewportStyle) {
       viewportStyle = document.createElement('style');
@@ -13639,60 +13848,68 @@
       document.head.appendChild(viewportStyle);
     }
 
+    // Add visual container around body content
+    let vpWrapper = document.getElementById('lumos-viewport-wrapper');
+    if (!vpWrapper) {
+      vpWrapper = document.createElement('div');
+      vpWrapper.id = 'lumos-viewport-wrapper';
+      vpWrapper.className = 'lumos-ui';
+      document.body.appendChild(vpWrapper);
+    }
+
+    const actualHeight = height || window.innerHeight - 80;
+
     viewportStyle.textContent = `
-      #lumos-viewport-container {
+      /* Responsive viewport simulation */
+      body {
+        background: #1a1a1a !important;
+        min-height: 100vh;
+      }
+      body > *:not(.lumos-ui):not(#lumos-viewport-wrapper):not(script):not(style):not(link) {
+        max-width: ${width}px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        background: inherit;
+      }
+      #lumos-viewport-wrapper {
         position: fixed;
-        top: 50px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2147483630;
-        padding: 20px;
-      }
-      #lumos-viewport-frame {
-        width: ${width}px;
-        height: ${actualHeight}px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-        overflow: hidden;
-        position: relative;
-        resize: both;
-      }
-      #lumos-viewport-frame::before {
-        content: '${width} × ${actualHeight}';
-        position: absolute;
-        bottom: -25px;
+        bottom: 60px;
         left: 50%;
         transform: translateX(-50%);
-        background: #3b82f6;
-        color: white;
-        padding: 4px 12px;
-        border-radius: 4px;
-        font-size: 11px;
-        font-family: system-ui, sans-serif;
-        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: var(--lumos-bg-secondary, #18181b);
+        border: 1px solid var(--lumos-border-hover, #3f3f46);
+        border-radius: 8px;
+        font-family: ui-monospace, monospace;
+        font-size: 12px;
+        color: var(--lumos-text-secondary, #a1a1aa);
+        z-index: 2147483640;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       }
-      #lumos-viewport-frame iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
+      #lumos-viewport-wrapper::before {
+        content: 'Viewport:';
+        color: var(--lumos-text-muted, #71717a);
+      }
+      #lumos-viewport-wrapper .size {
+        color: var(--lumos-info, #3b82f6);
+        font-weight: 600;
       }
     `;
 
-    // Create iframe to show current page at that viewport
-    vpFrame.innerHTML = `<iframe src="${window.location.href}" title="Viewport Preview"></iframe>`;
+    vpWrapper.innerHTML = `<span class="size">${width} × ${actualHeight || 'auto'}</span>`;
+
+    showToast(`Viewport: ${width}px wide`, 'info');
   }
 
   function resetViewport() {
     const viewportStyle = document.getElementById('lumos-viewport-style');
     if (viewportStyle) viewportStyle.remove();
-    const vpContainer = document.getElementById('lumos-viewport-container');
-    if (vpContainer) vpContainer.remove();
+    const vpWrapper = document.getElementById('lumos-viewport-wrapper');
+    if (vpWrapper) vpWrapper.remove();
   }
 
   function closeResponsiveBreakpoints() {
