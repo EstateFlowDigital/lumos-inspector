@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **AI Assistant Tool** - Claude-powered style analysis and suggestions
+  - Analyze selected elements for CSS improvement opportunities
+  - Get suggestions for layout, typography, spacing, color, accessibility, and performance
+  - One-click apply suggestions with automatic undo history
+  - Chat interface for asking questions about styles
+  - Context-aware suggestions based on element type and current styles
+  - API route `/api/ai-assistant` for AI analysis (requires ANTHROPIC_API_KEY)
 - **Theme Detection** - Auto-detects light/dark mode from system preferences, html/body classes, or background color
 - **Quick Actions Bar** - Labeled buttons for Audit, Changes, and Responsive with icons
 - **Style Audit** - Detects elements missing Lumos utility classes (`u-*`, `is-*`, `w-*`) and data attributes (`data-state`, `data-trigger`, etc.)

@@ -94,6 +94,7 @@ const CSSShapesEditor = lazy(() => import("../../../tools/css-shapes-editor").th
 const KeyframeEditor = lazy(() => import("../../../tools/keyframe-editor").then(m => ({ default: m.KeyframeEditor })))
 const GradientBuilder = lazy(() => import("../../../tools/gradient-builder").then(m => ({ default: m.GradientBuilder })))
 const TransformBuilder = lazy(() => import("../../../tools/transform-builder").then(m => ({ default: m.TransformBuilder })))
+const AIAssistant = lazy(() => import("../../../tools/ai-assistant").then(m => ({ default: m.AIAssistantTool })))
 
 // Loading fallback for lazy components
 function ToolLoadingFallback() {
@@ -216,6 +217,11 @@ export function StylesTab() {
         setBoxShadow={styleEditor.setBoxShadow}
         applyStyle={styleEditor.applyStyle}
       />
+
+      {/* AI Assistant - analyze and improve styles */}
+      <Suspense fallback={<ToolLoadingFallback />}>
+        <AIAssistant />
+      </Suspense>
 
       {/* Lazy-loaded advanced tools */}
       <Suspense fallback={<ToolLoadingFallback />}>
