@@ -112,15 +112,17 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
   const lumosSocket = useRef(getLumosSocket())
 
   // Handle element selection (from both iframe postMessage and Socket.io)
-  const handleElementSelected = useCallback((data: SelectedElement | SocketSelectedElement) => {
+  const handleElementSelected = useCallback((data: SelectedElement | SocketSelectedElement | { selector: string; tagName: string; className: string; id: string; computedStyles?: Record<string, string>; styles?: Record<string, string> }) => {
     // If we're receiving element selections, the target is connected
     setTargetConnected(true)
+    // Handle both 'styles' and 'computedStyles' field names (lumos-connect.js sends computedStyles)
+    const styles = data.styles || (data as { computedStyles?: Record<string, string> }).computedStyles || {}
     setSelectedElement({
       selector: data.selector,
       tagName: data.tagName,
-      className: data.className,
-      id: data.id,
-      styles: data.styles,
+      className: typeof data.className === 'string' ? data.className : '',
+      id: data.id || '',
+      styles,
     })
   }, [])
 

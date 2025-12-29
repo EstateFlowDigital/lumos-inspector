@@ -6,6 +6,7 @@ export interface SelectedElement {
   className: string
   id: string
   styles: Record<string, string>
+  computedStyles?: Record<string, string>
 }
 
 export interface StyleChange {
