@@ -549,23 +549,24 @@
       align-items: center;
       padding: 6px 12px;
       cursor: pointer;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 12px;
       transition: all 0.1s;
       border-left: 2px solid transparent;
     }
     .lumos-tree-item:hover {
-      background: #18181b;
-      color: #fafafa;
+      background: var(--lumos-bg-secondary);
+      color: var(--lumos-text-primary);
     }
     .lumos-tree-item.selected {
-      background: #1e1b4b;
-      color: #a78bfa;
-      border-left-color: #8b5cf6;
+      background: var(--lumos-accent);
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--lumos-accent);
+      border-left-color: var(--lumos-accent);
     }
     .lumos-tree-item.hovered {
-      background: #172554;
-      border-left-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.15);
+      border-left-color: var(--lumos-info);
     }
     .lumos-tree-toggle {
       width: 16px;
@@ -574,7 +575,7 @@
       align-items: center;
       justify-content: center;
       margin-right: 4px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
     }
     .lumos-tree-toggle svg {
       width: 10px;
@@ -585,12 +586,12 @@
       transform: rotate(90deg);
     }
     .lumos-tree-tag {
-      color: #a78bfa;
+      color: var(--lumos-accent);
       font-family: ui-monospace, monospace;
       font-size: 11px;
     }
     .lumos-tree-class {
-      color: #52525b;
+      color: var(--lumos-text-muted);
       font-size: 10px;
       margin-left: 6px;
       max-width: 120px;
@@ -599,7 +600,7 @@
       white-space: nowrap;
     }
     .lumos-tree-id {
-      color: #f59e0b;
+      color: var(--lumos-warning);
       font-size: 10px;
       margin-left: 4px;
     }
@@ -831,14 +832,14 @@
     .lumos-switch {
       width: 36px;
       height: 20px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 10px;
       cursor: pointer;
       position: relative;
       transition: background 0.2s;
     }
     .lumos-switch.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
     }
     .lumos-switch::after {
       content: '';
@@ -858,8 +859,8 @@
     /* Element Info */
     .lumos-element-info {
       padding: 10px 12px;
-      background: #18181b;
-      border-bottom: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-element-row {
       display: flex;
@@ -869,7 +870,7 @@
     }
     .lumos-element-tag {
       padding: 2px 6px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
       border-radius: 3px;
       font-size: 10px;
@@ -877,61 +878,61 @@
       font-weight: 500;
     }
     .lumos-element-id {
-      color: #f59e0b;
+      color: var(--lumos-warning);
       font-size: 10px;
       font-family: ui-monospace, monospace;
     }
     .lumos-element-classes {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-family: ui-monospace, monospace;
       word-break: break-all;
     }
     .lumos-element-size {
       font-size: 10px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       margin-top: 4px;
     }
 
     /* Pseudo State Selector */
     .lumos-pseudo-row {
       padding: 8px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       gap: 4px;
     }
     .lumos-pseudo-btn {
       padding: 4px 8px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
       background: transparent;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 10px;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.15s;
     }
     .lumos-pseudo-btn:hover {
-      border-color: #3f3f46;
-      color: #a1a1aa;
+      border-color: var(--lumos-border-hover);
+      color: var(--lumos-text-secondary);
     }
     .lumos-pseudo-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
     /* Main Tabs */
     .lumos-main-tabs {
       display: flex;
-      border-bottom: 1px solid #27272a;
-      background: #0a0a0b;
+      border-bottom: 1px solid var(--lumos-border);
+      background: var(--lumos-bg-primary);
     }
     .lumos-main-tab {
       flex: 1;
       padding: 10px;
       border: none;
       background: transparent;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 11px;
       font-weight: 500;
       cursor: pointer;
@@ -939,11 +940,11 @@
       transition: all 0.15s;
     }
     .lumos-main-tab:hover {
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-main-tab.active {
-      color: #fafafa;
-      border-bottom-color: #8b5cf6;
+      color: var(--lumos-text-primary);
+      border-bottom-color: var(--lumos-accent);
     }
 
     /* Style Tabs */
@@ -951,15 +952,15 @@
       display: flex;
       padding: 8px 12px;
       gap: 4px;
-      border-bottom: 1px solid #27272a;
-      background: #0a0a0b;
+      border-bottom: 1px solid var(--lumos-border);
+      background: var(--lumos-bg-primary);
       overflow-x: auto;
     }
     .lumos-style-tab {
       padding: 6px 10px;
       border: none;
       background: transparent;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 10px;
       font-weight: 500;
       cursor: pointer;
@@ -968,12 +969,12 @@
       transition: all 0.15s;
     }
     .lumos-style-tab:hover {
-      background: #18181b;
-      color: #a1a1aa;
+      background: var(--lumos-bg-secondary);
+      color: var(--lumos-text-secondary);
     }
     .lumos-style-tab.active {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
 
     /* Panel Content */
@@ -1049,41 +1050,41 @@
     }
     .lumos-label {
       font-size: 9px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.3px;
     }
     .lumos-input {
       width: 100%;
       padding: 6px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 11px;
       font-family: ui-monospace, monospace;
       outline: none;
       transition: border-color 0.15s;
     }
     .lumos-input:focus {
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
     }
     .lumos-input::placeholder {
-      color: #3f3f46;
+      color: var(--lumos-text-muted);
     }
     .lumos-select {
       width: 100%;
       padding: 6px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 11px;
       outline: none;
       cursor: pointer;
     }
     .lumos-select:focus {
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
     }
 
     /* Color Input */
@@ -1096,7 +1097,7 @@
       width: 26px;
       height: 26px;
       border-radius: 4px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
       overflow: hidden;
       flex-shrink: 0;
       cursor: pointer;
@@ -1118,7 +1119,7 @@
     .lumos-range {
       flex: 1;
       height: 4px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 2px;
       -webkit-appearance: none;
       cursor: pointer;
@@ -1127,14 +1128,14 @@
       -webkit-appearance: none;
       width: 12px;
       height: 12px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 50%;
       cursor: pointer;
     }
     .lumos-range-value {
       width: 36px;
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-align: right;
       font-family: ui-monospace, monospace;
     }
@@ -1168,7 +1169,7 @@
       width: 100%;
     }
     .lumos-box-content-layer {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 2px;
       padding: 12px 20px;
       min-width: 60px;
@@ -1184,7 +1185,7 @@
       top: 2px;
       left: 4px;
       font-size: 8px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.3px;
     }
@@ -1192,18 +1193,18 @@
       position: absolute;
       width: 32px;
       padding: 2px 4px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 3px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       font-family: ui-monospace, monospace;
       text-align: center;
       outline: none;
     }
     .lumos-box-input:focus {
-      border-color: #8b5cf6;
-      color: #fafafa;
+      border-color: var(--lumos-accent);
+      color: var(--lumos-text-primary);
     }
     .lumos-box-input.lumos-box-top { top: 2px; left: 50%; transform: translateX(-50%); }
     .lumos-box-input.lumos-box-right { right: 2px; top: 50%; transform: translateY(-50%); }
@@ -1222,14 +1223,14 @@
       align-items: center;
       gap: 4px;
       padding: 3px 6px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 4px;
       font-size: 10px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-family: ui-monospace, monospace;
     }
     .lumos-class-tag:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-class-remove {
       cursor: pointer;
@@ -1238,7 +1239,7 @@
     }
     .lumos-class-remove:hover {
       opacity: 1;
-      color: #ef4444;
+      color: var(--lumos-error);
     }
     .lumos-class-add {
       display: flex;
@@ -1249,7 +1250,7 @@
     }
     .lumos-class-add button {
       padding: 6px 10px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
       border: none;
       border-radius: 4px;
@@ -1257,14 +1258,14 @@
       cursor: pointer;
     }
     .lumos-class-add button:hover {
-      background: #7c3aed;
+      background: var(--lumos-accent-hover);
     }
 
     /* Gradient Editor */
     .lumos-gradient-preview {
       height: 40px;
       border-radius: 4px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
       margin-bottom: 8px;
     }
     .lumos-gradient-type {
@@ -1275,16 +1276,16 @@
     .lumos-gradient-type button {
       flex: 1;
       padding: 6px;
-      background: #18181b;
-      border: 1px solid #27272a;
-      color: #71717a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
+      color: var(--lumos-text-muted);
       font-size: 10px;
       border-radius: 4px;
       cursor: pointer;
     }
     .lumos-gradient-type button.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-gradient-stops {
@@ -1302,7 +1303,7 @@
       width: 24px;
       height: 24px;
       border-radius: 4px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
       overflow: hidden;
     }
     .lumos-gradient-stop-color input {
@@ -1317,30 +1318,30 @@
     }
     .lumos-gradient-stop-remove {
       cursor: pointer;
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-gradient-stop-remove:hover {
-      color: #ef4444;
+      color: var(--lumos-error);
     }
     .lumos-add-stop-btn {
       width: 100%;
       padding: 6px;
-      background: #18181b;
-      border: 1px dashed #27272a;
-      color: #71717a;
+      background: var(--lumos-bg-secondary);
+      border: 1px dashed var(--lumos-border);
+      color: var(--lumos-text-muted);
       font-size: 10px;
       border-radius: 4px;
       cursor: pointer;
     }
     .lumos-add-stop-btn:hover {
-      background: #27272a;
-      color: #a1a1aa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-secondary);
     }
 
     /* Changes Footer */
     .lumos-changes {
-      border-top: 1px solid #27272a;
-      background: #09090b;
+      border-top: 1px solid var(--lumos-border);
+      background: var(--lumos-bg-primary);
       padding: 10px 12px;
     }
     .lumos-changes-header {
@@ -1351,11 +1352,11 @@
     }
     .lumos-changes-title {
       font-size: 10px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
     }
     .lumos-changes-count {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
       padding: 1px 6px;
       border-radius: 8px;
@@ -1368,24 +1369,24 @@
     }
     .lumos-change-item {
       padding: 4px 8px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 3px;
       margin-bottom: 3px;
       font-size: 10px;
     }
     .lumos-change-prop {
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-change-val {
-      color: #a78bfa;
+      color: var(--lumos-accent);
       font-family: ui-monospace, monospace;
     }
 
     /* Action Bar */
     .lumos-actions {
       padding: 10px 12px;
-      background: #09090b;
-      border-top: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border-top: 1px solid var(--lumos-border);
       display: flex;
       gap: 6px;
     }
@@ -1408,25 +1409,25 @@
     }
     .lumos-btn-primary {
       flex: 1;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
     }
     .lumos-btn-primary:hover {
-      background: #7c3aed;
+      background: var(--lumos-accent-hover);
     }
     .lumos-btn-primary:disabled {
-      background: #27272a;
-      color: #52525b;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-muted);
       cursor: not-allowed;
     }
     .lumos-btn-secondary {
-      background: #18181b;
-      color: #a1a1aa;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      color: var(--lumos-text-secondary);
+      border: 1px solid var(--lumos-border);
     }
     .lumos-btn-secondary:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-btn-icon {
       width: 32px;
@@ -1441,12 +1442,12 @@
     .lumos-empty svg {
       width: 40px;
       height: 40px;
-      color: #27272a;
+      color: var(--lumos-bg-tertiary);
       margin-bottom: 12px;
     }
     .lumos-empty-text {
       font-size: 12px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       line-height: 1.5;
     }
 
@@ -1456,12 +1457,12 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: #18181b;
-      color: #fafafa;
+      background: var(--lumos-bg-secondary);
+      color: var(--lumos-text-primary);
       padding: 10px 16px;
       border-radius: 6px;
       font-size: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px var(--lumos-shadow);
       opacity: 0;
       transition: all 0.2s;
       z-index: 999999;
@@ -1474,10 +1475,10 @@
       transform: translateX(-50%) translateY(0);
     }
     .lumos-toast.success {
-      background: #059669;
+      background: var(--lumos-success);
     }
     .lumos-toast.error {
-      background: #dc2626;
+      background: var(--lumos-error);
     }
 
     /* Scrollbar */
@@ -1489,11 +1490,11 @@
       background: transparent;
     }
     .lumos-ui ::-webkit-scrollbar-thumb {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 3px;
     }
     .lumos-ui ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
 
     /* Breakpoint Bar */
@@ -1501,14 +1502,14 @@
       display: flex;
       padding: 6px 12px;
       gap: 4px;
-      border-bottom: 1px solid #27272a;
-      background: #09090b;
+      border-bottom: 1px solid var(--lumos-border);
+      background: var(--lumos-bg-primary);
     }
     .lumos-breakpoint-btn {
       padding: 4px 8px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
       background: transparent;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 9px;
       border-radius: 4px;
       cursor: pointer;
@@ -1518,12 +1519,12 @@
       transition: all 0.15s;
     }
     .lumos-breakpoint-btn:hover {
-      border-color: #3f3f46;
-      color: #a1a1aa;
+      border-color: var(--lumos-border-hover);
+      color: var(--lumos-text-secondary);
     }
     .lumos-breakpoint-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-breakpoint-btn svg {
@@ -1534,8 +1535,8 @@
     /* Selector Helper */
     .lumos-selector-row {
       padding: 8px 12px;
-      background: #0f0f10;
-      border-bottom: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -1544,23 +1545,23 @@
       flex: 1;
       font-size: 10px;
       font-family: ui-monospace, monospace;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     .lumos-selector-copy {
       padding: 3px 6px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border: none;
       border-radius: 3px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 9px;
       cursor: pointer;
     }
     .lumos-selector-copy:hover {
-      background: #3f3f46;
-      color: #fafafa;
+      background: var(--lumos-bg-hover);
+      color: var(--lumos-text-primary);
     }
 
     /* Color Palette */
@@ -1574,13 +1575,13 @@
       width: 20px;
       height: 20px;
       border-radius: 4px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
       cursor: pointer;
       transition: transform 0.1s;
     }
     .lumos-recent-color:hover {
       transform: scale(1.1);
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
     }
 
     /* Computed Styles */
@@ -1592,18 +1593,18 @@
       display: flex;
       padding: 4px 8px;
       font-size: 10px;
-      border-bottom: 1px solid #1a1a1d;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-computed-item:hover {
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
     }
     .lumos-computed-prop {
       flex: 1;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-family: ui-monospace, monospace;
     }
     .lumos-computed-val {
-      color: #a78bfa;
+      color: var(--lumos-accent);
       font-family: ui-monospace, monospace;
       max-width: 120px;
       overflow: hidden;
@@ -1616,14 +1617,14 @@
       display: flex;
       gap: 4px;
       padding: 8px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-copy-paste-btn {
       flex: 1;
       padding: 6px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
-      color: #a1a1aa;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       border-radius: 4px;
       cursor: pointer;
@@ -1633,8 +1634,8 @@
       gap: 4px;
     }
     .lumos-copy-paste-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-copy-paste-btn:disabled {
       opacity: 0.5;
@@ -1692,8 +1693,8 @@
       justify-content: center;
     }
     .lumos-modal {
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       width: 500px;
       max-width: 90vw;
@@ -1704,7 +1705,7 @@
     }
     .lumos-modal-header {
       padding: 16px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1712,17 +1713,17 @@
     .lumos-modal-title {
       font-size: 14px;
       font-weight: 600;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-modal-close {
       background: none;
       border: none;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
       padding: 4px;
     }
     .lumos-modal-close:hover {
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-modal-body {
       padding: 16px;
@@ -1736,33 +1737,33 @@
     }
     .lumos-modal-tab {
       padding: 6px 12px;
-      background: #18181b;
-      border: 1px solid #27272a;
-      color: #71717a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
+      color: var(--lumos-text-muted);
       font-size: 11px;
       border-radius: 4px;
       cursor: pointer;
     }
     .lumos-modal-tab.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-modal-code {
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       padding: 12px;
       font-family: ui-monospace, monospace;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       max-height: 300px;
       overflow: auto;
       white-space: pre-wrap;
     }
     .lumos-modal-footer {
       padding: 12px 16px;
-      border-top: 1px solid #27272a;
+      border-top: 1px solid var(--lumos-border);
       display: flex;
       gap: 8px;
       justify-content: flex-end;
@@ -1770,7 +1771,7 @@
 
     /* Animation Editor */
     .lumos-animation-timeline {
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 6px;
       padding: 12px;
       margin-bottom: 8px;
@@ -1778,7 +1779,7 @@
     .lumos-keyframe-track {
       position: relative;
       height: 24px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 4px;
       margin-bottom: 8px;
     }
@@ -1788,7 +1789,7 @@
       transform: translate(-50%, -50%);
       width: 10px;
       height: 10px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 50%;
       cursor: pointer;
     }
@@ -1812,7 +1813,7 @@
     }
     .lumos-a11y-item {
       padding: 8px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 6px;
       display: flex;
       align-items: flex-start;
@@ -1825,13 +1826,13 @@
       margin-top: 2px;
     }
     .lumos-a11y-icon.pass {
-      color: #22c55e;
+      color: var(--lumos-success);
     }
     .lumos-a11y-icon.warn {
-      color: #f59e0b;
+      color: var(--lumos-warning);
     }
     .lumos-a11y-icon.fail {
-      color: #ef4444;
+      color: var(--lumos-error);
     }
     .lumos-a11y-content {
       flex: 1;
@@ -1839,12 +1840,12 @@
     .lumos-a11y-title {
       font-size: 11px;
       font-weight: 500;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       margin-bottom: 2px;
     }
     .lumos-a11y-desc {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
 
     /* Font Preview */
@@ -1854,15 +1855,15 @@
       transition: background 0.1s;
     }
     .lumos-font-option:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-font-preview {
       font-size: 14px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-font-name {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-top: 2px;
     }
 
@@ -1874,8 +1875,8 @@
       transform: translateX(-50%);
       width: 500px;
       max-width: 90vw;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
       z-index: 1000000;
@@ -1885,24 +1886,24 @@
       display: flex;
       align-items: center;
       padding: 12px 16px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       gap: 10px;
     }
     .lumos-command-input-wrap svg {
       width: 18px;
       height: 18px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-command-input {
       flex: 1;
       background: transparent;
       border: none;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 14px;
       outline: none;
     }
     .lumos-command-input::placeholder {
-      color: #52525b;
+      color: var(--lumos-text-muted);
     }
     .lumos-command-list {
       max-height: 300px;
@@ -1913,7 +1914,7 @@
     }
     .lumos-command-group-title {
       font-size: 10px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
       padding: 4px 8px;
       letter-spacing: 0.5px;
@@ -1928,50 +1929,50 @@
       transition: background 0.1s;
     }
     .lumos-command-item:hover, .lumos-command-item.selected {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-command-item svg {
       width: 16px;
       height: 16px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-command-item-text {
       flex: 1;
       font-size: 13px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-command-item-shortcut {
       font-size: 10px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       font-family: ui-monospace, monospace;
     }
     .lumos-command-empty {
       padding: 24px;
       text-align: center;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       font-size: 13px;
     }
 
     /* Navigator Search */
     .lumos-nav-search {
       padding: 8px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-nav-search-input {
       width: 100%;
       padding: 6px 10px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 11px;
       outline: none;
     }
     .lumos-nav-search-input:focus {
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
     }
     .lumos-nav-search-input::placeholder {
-      color: #52525b;
+      color: var(--lumos-text-muted);
     }
 
     /* Keyboard Shortcuts Panel */
@@ -1983,11 +1984,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 8px 0;
-      border-bottom: 1px solid #1a1a1d;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-shortcut-desc {
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-shortcut-keys {
       display: flex;
@@ -1995,10 +1996,10 @@
     }
     .lumos-shortcut-key {
       padding: 2px 6px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 3px;
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-family: ui-monospace, monospace;
     }
 
@@ -2012,16 +2013,16 @@
       align-items: flex-start;
       gap: 10px;
       padding: 10px 12px;
-      border-bottom: 1px solid #1a1a1d;
+      border-bottom: 1px solid var(--lumos-border);
       cursor: pointer;
     }
     .lumos-history-item:hover {
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
     }
     .lumos-history-icon {
       width: 24px;
       height: 24px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -2031,7 +2032,7 @@
     .lumos-history-icon svg {
       width: 12px;
       height: 12px;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
     }
     .lumos-history-content {
       flex: 1;
@@ -2039,19 +2040,19 @@
     }
     .lumos-history-title {
       font-size: 11px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .lumos-history-meta {
       font-size: 9px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       margin-top: 2px;
     }
     .lumos-history-time {
       font-size: 9px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       flex-shrink: 0;
     }
 
@@ -2060,7 +2061,7 @@
       position: fixed;
       width: 10px;
       height: 10px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border: 2px solid white;
       border-radius: 2px;
       cursor: move;
@@ -2098,36 +2099,36 @@
       align-items: center;
       gap: 8px;
       padding: 8px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 6px;
       cursor: pointer;
     }
     .lumos-preset-item:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-preset-preview {
       width: 32px;
       height: 32px;
       border-radius: 4px;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
     }
     .lumos-preset-info {
       flex: 1;
     }
     .lumos-preset-name {
       font-size: 11px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-preset-count {
       font-size: 9px;
-      color: #52525b;
+      color: var(--lumos-text-muted);
     }
     .lumos-preset-delete {
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
     }
     .lumos-preset-delete:hover {
-      color: #ef4444;
+      color: var(--lumos-error);
     }
 
     /* Favorites */
@@ -2135,23 +2136,23 @@
       display: flex;
       gap: 4px;
       padding: 8px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       flex-wrap: wrap;
     }
     .lumos-favorite-btn {
       padding: 4px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
       font-size: 9px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
     }
     .lumos-favorite-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-favorite-btn svg {
       width: 10px;
@@ -2159,11 +2160,11 @@
     }
     .lumos-star-btn {
       cursor: pointer;
-      color: #52525b;
+      color: var(--lumos-text-muted);
       transition: color 0.15s;
     }
     .lumos-star-btn:hover, .lumos-star-btn.active {
-      color: #f59e0b;
+      color: var(--lumos-warning);
     }
 
     /* Snap Guides */
@@ -2214,23 +2215,23 @@
     .lumos-comment-popup {
       position: fixed;
       width: 250px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       z-index: 999995;
       overflow: hidden;
     }
     .lumos-comment-header {
       padding: 8px 12px;
-      background: #18181b;
-      border-bottom: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .lumos-comment-title {
       font-size: 11px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-weight: 500;
     }
     .lumos-comment-body {
@@ -2239,10 +2240,10 @@
     .lumos-comment-input {
       width: 100%;
       min-height: 60px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 11px;
       padding: 8px;
       resize: none;
@@ -2257,11 +2258,11 @@
     /* Settings Panel */
     .lumos-settings-section {
       padding: 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-settings-title {
       font-size: 11px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -2273,19 +2274,19 @@
     }
     .lumos-settings-label {
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-toggle {
       width: 36px;
       height: 20px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 10px;
       position: relative;
       cursor: pointer;
       transition: background 0.2s;
     }
     .lumos-toggle.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
     }
     .lumos-toggle::after {
       content: '';
@@ -2315,15 +2316,15 @@
     .lumos-onboarding-card {
       width: 400px;
       max-width: 90vw;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 16px;
       overflow: hidden;
     }
     .lumos-onboarding-header {
       padding: 24px;
       text-align: center;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-onboarding-icon {
       width: 48px;
@@ -2343,11 +2344,11 @@
     .lumos-onboarding-title {
       font-size: 18px;
       font-weight: 600;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-onboarding-subtitle {
       font-size: 13px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-top: 4px;
     }
     .lumos-onboarding-body {
@@ -2361,7 +2362,7 @@
     .lumos-onboarding-step-num {
       width: 24px;
       height: 24px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -2373,12 +2374,12 @@
     }
     .lumos-onboarding-step-text {
       font-size: 13px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       line-height: 1.5;
     }
     .lumos-onboarding-footer {
       padding: 16px 24px;
-      border-top: 1px solid #27272a;
+      border-top: 1px solid var(--lumos-border);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -2391,10 +2392,10 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-onboarding-dot.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
     }
 
     /* Share Link */
@@ -2406,10 +2407,10 @@
     .lumos-share-url input {
       flex: 1;
       padding: 8px 12px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 11px;
       font-family: ui-monospace, monospace;
     }
@@ -2420,8 +2421,8 @@
     }
     .lumos-animation-preview {
       height: 60px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -2436,8 +2437,8 @@
     }
     .lumos-keyframe-timeline {
       height: 40px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       position: relative;
       margin-bottom: 12px;
@@ -2448,7 +2449,7 @@
       left: 12px;
       right: 12px;
       height: 2px;
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
       transform: translateY(-50%);
     }
     .lumos-keyframe-point {
@@ -2456,7 +2457,7 @@
       top: 50%;
       width: 12px;
       height: 12px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border: 2px solid white;
       border-radius: 50%;
       transform: translate(-50%, -50%);
@@ -2470,10 +2471,10 @@
     .lumos-animation-control-btn {
       flex: 1;
       padding: 6px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border: none;
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -2482,10 +2483,10 @@
       font-size: 11px;
     }
     .lumos-animation-control-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-animation-control-btn.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
     }
     .lumos-easing-select {
@@ -2509,8 +2510,8 @@
     }
     .lumos-spacing-label {
       position: absolute;
-      background: #18181b;
-      color: #fafafa;
+      background: var(--lumos-bg-secondary);
+      color: var(--lumos-text-primary);
       font-size: 9px;
       padding: 2px 4px;
       border-radius: 2px;
@@ -2527,18 +2528,18 @@
       align-items: center;
       gap: 8px;
       padding: 8px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-var-name {
       flex: 1;
       font-family: ui-monospace, monospace;
       font-size: 11px;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
     }
     .lumos-var-value {
       font-family: ui-monospace, monospace;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       max-width: 120px;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2547,19 +2548,19 @@
       width: 16px;
       height: 16px;
       border-radius: 3px;
-      border: 1px solid #3f3f46;
+      border: 1px solid var(--lumos-border-hover);
       flex-shrink: 0;
     }
 
     /* Element Info Tooltip */
     .lumos-info-tooltip {
       position: fixed;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       padding: 8px 12px;
       font-size: 11px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       z-index: 1000002;
       pointer-events: none;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
@@ -2576,7 +2577,7 @@
       color: #60a5fa;
     }
     .lumos-info-tooltip-size {
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-top: 4px;
     }
 
@@ -2592,23 +2593,23 @@
     }
     .lumos-layout-btn {
       padding: 12px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
       text-align: center;
       font-size: 10px;
       transition: all 0.2s;
     }
     .lumos-layout-btn:hover {
-      background: #27272a;
-      border-color: #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border-color: var(--lumos-border-hover);
     }
     .lumos-layout-btn.active {
       background: #8b5cf620;
-      border-color: #8b5cf6;
-      color: #8b5cf6;
+      border-color: var(--lumos-accent);
+      color: var(--lumos-accent);
     }
     .lumos-layout-btn svg {
       width: 24px;
@@ -2622,15 +2623,15 @@
     }
     .lumos-layout-quick-btn {
       padding: 8px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border: none;
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
     }
     .lumos-layout-quick-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
 
     /* Color Eyedropper */
@@ -2651,8 +2652,8 @@
     }
     .lumos-eyedropper-color {
       position: fixed;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       padding: 8px 12px;
       z-index: 1000003;
@@ -2666,13 +2667,13 @@
       width: 24px;
       height: 24px;
       border-radius: 4px;
-      border: 1px solid #3f3f46;
+      border: 1px solid var(--lumos-border-hover);
     }
 
     /* Rulers */
     .lumos-ruler {
       position: fixed;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       z-index: 999996;
       user-select: none;
     }
@@ -2681,18 +2682,18 @@
       left: 0;
       right: 0;
       height: 20px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-ruler-v {
       top: 0;
       left: 0;
       bottom: 0;
       width: 20px;
-      border-right: 1px solid #27272a;
+      border-right: 1px solid var(--lumos-border);
     }
     .lumos-ruler-tick {
       position: absolute;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 8px;
     }
     .lumos-ruler-h .lumos-ruler-tick {
@@ -2706,7 +2707,7 @@
     }
     .lumos-ruler-line {
       position: absolute;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
     }
     .lumos-ruler-h .lumos-ruler-line {
       width: 1px;
@@ -2725,15 +2726,15 @@
       align-items: center;
       gap: 4px;
       padding: 8px 12px;
-      background: #18181b;
-      border-bottom: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-dom-nav-btn {
       padding: 4px 8px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border: none;
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       display: flex;
@@ -2741,7 +2742,7 @@
       gap: 4px;
     }
     .lumos-dom-nav-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-dom-nav-btn:disabled {
       opacity: 0.5;
@@ -2756,18 +2757,18 @@
       font-size: 10px;
     }
     .lumos-breadcrumb-item {
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
       white-space: nowrap;
     }
     .lumos-breadcrumb-item:hover {
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-breadcrumb-item.current {
-      color: #8b5cf6;
+      color: var(--lumos-accent);
     }
     .lumos-breadcrumb-sep {
-      color: #3f3f46;
+      color: var(--lumos-text-muted);
     }
 
     /* Spacing Guides */
@@ -2796,8 +2797,8 @@
       bottom: 80px;
       left: 50%;
       transform: translateX(-50%);
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       padding: 8px;
       display: flex;
@@ -2810,7 +2811,7 @@
       background: transparent;
       border: none;
       border-radius: 8px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -2819,16 +2820,16 @@
       transition: all 0.2s;
     }
     .lumos-quick-bar-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-quick-bar-btn.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       color: white;
     }
     .lumos-quick-bar-divider {
       width: 1px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       margin: 0 4px;
     }
 
@@ -2838,8 +2839,8 @@
     }
     .lumos-shadow-preview {
       height: 100px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -2849,7 +2850,7 @@
     .lumos-shadow-preview-box {
       width: 60px;
       height: 60px;
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
       border-radius: 8px;
     }
     .lumos-shadow-layers {
@@ -2862,8 +2863,8 @@
       align-items: center;
       gap: 8px;
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       margin-bottom: 6px;
     }
@@ -2871,7 +2872,7 @@
       width: 24px;
       height: 24px;
       border-radius: 4px;
-      border: 1px solid #3f3f46;
+      border: 1px solid var(--lumos-border-hover);
       cursor: pointer;
     }
     .lumos-shadow-layer-inputs {
@@ -2882,10 +2883,10 @@
     .lumos-shadow-layer-input {
       width: 40px;
       padding: 4px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       text-align: center;
     }
@@ -2893,7 +2894,7 @@
       padding: 4px 8px;
       background: transparent;
       border: none;
-      color: #ef4444;
+      color: var(--lumos-error);
       cursor: pointer;
       font-size: 14px;
     }
@@ -2918,18 +2919,18 @@
     }
     .lumos-filter-slider-label {
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-filter-slider-value {
       font-size: 11px;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
       font-family: ui-monospace, monospace;
     }
     .lumos-filter-range {
       width: 100%;
       height: 4px;
       -webkit-appearance: none;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 2px;
       outline: none;
     }
@@ -2937,7 +2938,7 @@
       -webkit-appearance: none;
       width: 14px;
       height: 14px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 50%;
       cursor: pointer;
     }
@@ -2965,20 +2966,20 @@
       padding: 12px;
     }
     .lumos-compare-side {
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       padding: 12px;
     }
     .lumos-compare-title {
       font-size: 11px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-bottom: 8px;
       text-transform: uppercase;
     }
     .lumos-compare-selector {
       font-size: 12px;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
       margin-bottom: 8px;
       font-family: ui-monospace, monospace;
     }
@@ -2986,10 +2987,10 @@
       font-size: 11px;
     }
     .lumos-compare-same {
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-compare-different {
-      color: #f59e0b;
+      color: var(--lumos-warning);
     }
 
     /* Z-Index Manager */
@@ -3002,11 +3003,11 @@
       align-items: center;
       gap: 8px;
       padding: 10px 12px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       cursor: pointer;
     }
     .lumos-zindex-item:hover {
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
     }
     .lumos-zindex-item.selected {
       background: #8b5cf620;
@@ -3014,10 +3015,10 @@
     .lumos-zindex-value {
       width: 50px;
       padding: 4px 8px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
       font-family: ui-monospace, monospace;
       font-size: 11px;
       text-align: center;
@@ -3025,7 +3026,7 @@
     .lumos-zindex-selector {
       flex: 1;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -3033,13 +3034,13 @@
     .lumos-zindex-bar {
       width: 60px;
       height: 4px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 2px;
       overflow: hidden;
     }
     .lumos-zindex-bar-fill {
       height: 100%;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
     }
 
     /* CSS Audit */
@@ -3051,7 +3052,7 @@
       align-items: center;
       gap: 8px;
       padding: 8px 12px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 6px;
       margin-bottom: 8px;
     }
@@ -3059,17 +3060,17 @@
       width: 20px;
       height: 20px;
     }
-    .lumos-audit-icon.pass { color: #22c55e; }
-    .lumos-audit-icon.warn { color: #f59e0b; }
-    .lumos-audit-icon.fail { color: #ef4444; }
+    .lumos-audit-icon.pass { color: var(--lumos-success); }
+    .lumos-audit-icon.warn { color: var(--lumos-warning); }
+    .lumos-audit-icon.fail { color: var(--lumos-error); }
     .lumos-audit-title {
       flex: 1;
       font-size: 12px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
     .lumos-audit-count {
       font-size: 11px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-audit-items {
       padding-left: 12px;
@@ -3077,12 +3078,12 @@
     .lumos-audit-item {
       padding: 6px 8px;
       font-size: 11px;
-      color: #a1a1aa;
-      border-left: 2px solid #27272a;
+      color: var(--lumos-text-secondary);
+      border-left: 2px solid var(--lumos-border);
       margin-bottom: 4px;
     }
     .lumos-audit-item code {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       padding: 1px 4px;
       border-radius: 2px;
       font-family: ui-monospace, monospace;
@@ -3094,19 +3095,19 @@
       align-items: center;
       gap: 8px;
       padding: 8px 12px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       cursor: pointer;
     }
     .lumos-darkmode-toggle:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
 
     /* Text Shadow Editor */
     .lumos-text-shadow-preview {
       padding: 20px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
       margin-bottom: 12px;
       text-align: center;
@@ -3114,7 +3115,7 @@
     .lumos-text-shadow-preview-text {
       font-size: 24px;
       font-weight: 600;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
     }
 
     /* Responsive Preview */
@@ -3125,16 +3126,16 @@
       padding: 12px;
     }
     .lumos-responsive-frame {
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       overflow: hidden;
     }
     .lumos-responsive-frame-header {
       padding: 8px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-align: center;
     }
     .lumos-responsive-frame-content {
@@ -3145,8 +3146,8 @@
     /* Smart Suggestions */
     .lumos-suggestions {
       position: absolute;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
       max-height: 200px;
       overflow-y: auto;
@@ -3156,18 +3157,18 @@
     .lumos-suggestion-item {
       padding: 8px 12px;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
     }
     .lumos-suggestion-item:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-suggestion-item-prop {
-      color: #8b5cf6;
+      color: var(--lumos-accent);
     }
     .lumos-suggestion-item-desc {
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 10px;
       margin-top: 2px;
     }
@@ -3179,8 +3180,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
@@ -3201,19 +3202,19 @@
     .lumos-transform-slider-row label {
       width: 70px;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-transform-slider-row input[type="range"] {
       flex: 1;
-      accent-color: #8b5cf6;
+      accent-color: var(--lumos-accent);
     }
     .lumos-transform-slider-row input[type="number"] {
       width: 60px;
       padding: 4px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 11px;
     }
 
@@ -3224,8 +3225,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3234,27 +3235,27 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
       padding: 12px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
     }
     .lumos-position-type-btn {
       padding: 8px 4px;
-      background: #09090b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
       transition: all 0.2s;
     }
     .lumos-position-type-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-position-type-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-position-offsets {
@@ -3269,15 +3270,15 @@
     }
     .lumos-offset-input label {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
     }
     .lumos-offset-input input {
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 12px;
     }
 
@@ -3288,8 +3289,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3301,28 +3302,28 @@
     }
     .lumos-border-side-btn {
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-border-side-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-border-preview-box {
       width: 100px;
       height: 100px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       margin: 0 auto 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 10px;
     }
     .lumos-border-style-grid {
@@ -3332,17 +3333,17 @@
     }
     .lumos-border-style-btn {
       padding: 8px 4px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-border-style-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -3353,8 +3354,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 420px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3367,28 +3368,28 @@
     }
     .lumos-cursor-btn {
       padding: 12px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
       transition: all 0.2s;
     }
     .lumos-cursor-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-cursor-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-cursor-preview {
       width: 60px;
       height: 60px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
       margin: 0 auto 8px;
       display: flex;
@@ -3403,8 +3404,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3413,7 +3414,7 @@
     }
     .lumos-overflow-axis-label {
       font-size: 11px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-bottom: 8px;
       text-transform: uppercase;
     }
@@ -3424,20 +3425,20 @@
     }
     .lumos-overflow-btn {
       padding: 10px 4px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-overflow-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-overflow-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -3448,8 +3449,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3460,21 +3461,21 @@
     }
     .lumos-display-btn {
       padding: 12px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 11px;
       cursor: pointer;
       text-align: center;
       transition: all 0.2s;
     }
     .lumos-display-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-display-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-display-btn-icon {
@@ -3489,8 +3490,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3499,7 +3500,7 @@
       align-items: center;
       gap: 12px;
       padding: 10px 0;
-      border-bottom: 1px solid #1f1f23;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-flex-row:last-child {
       border-bottom: none;
@@ -3507,24 +3508,24 @@
     .lumos-flex-row label {
       width: 90px;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-flex-row input[type="number"] {
       width: 80px;
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 12px;
     }
     .lumos-flex-row input[type="text"] {
       flex: 1;
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 12px;
     }
     .lumos-flex-align-grid {
@@ -3534,17 +3535,17 @@
     }
     .lumos-flex-align-btn {
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 9px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-flex-align-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -3555,8 +3556,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3568,18 +3569,18 @@
     }
     .lumos-aspect-preset {
       padding: 12px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-aspect-preset:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-aspect-preset.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
     }
     .lumos-aspect-preset-box {
       margin: 0 auto 8px;
@@ -3588,7 +3589,7 @@
     }
     .lumos-aspect-preset-label {
       font-size: 10px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-aspect-preset.active .lumos-aspect-preset-label {
       color: white;
@@ -3598,21 +3599,21 @@
       align-items: center;
       gap: 8px;
       padding: 12px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
     }
     .lumos-aspect-custom input {
       width: 60px;
       padding: 8px;
-      background: #09090b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 12px;
       text-align: center;
     }
     .lumos-aspect-custom span {
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 14px;
     }
 
@@ -3624,29 +3625,29 @@
       transform: translate(-50%, -50%);
       width: 400px;
       max-height: 80vh;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
       overflow-y: auto;
     }
     .lumos-bg-tabs {
       display: flex;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-bg-tab {
       flex: 1;
       padding: 12px;
       background: transparent;
       border: none;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 12px;
       cursor: pointer;
       border-bottom: 2px solid transparent;
     }
     .lumos-bg-tab.active {
-      color: #fafafa;
-      border-bottom-color: #8b5cf6;
+      color: var(--lumos-text-primary);
+      border-bottom-color: var(--lumos-accent);
     }
     .lumos-bg-content {
       padding: 16px;
@@ -3658,15 +3659,15 @@
       margin-bottom: 16px;
       background-size: cover;
       background-position: center;
-      border: 1px solid #27272a;
+      border: 1px solid var(--lumos-border);
     }
     .lumos-bg-url-input {
       width: 100%;
       padding: 10px 12px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 12px;
       margin-bottom: 12px;
     }
@@ -3678,17 +3679,17 @@
     }
     .lumos-bg-size-btn {
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-bg-size-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-bg-position-grid {
@@ -3698,20 +3699,20 @@
     }
     .lumos-bg-position-btn {
       padding: 10px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 4px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 16px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-bg-position-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-bg-position-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -3722,28 +3723,28 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
     .lumos-outline-preview {
       width: 80px;
       height: 80px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       margin: 0 auto 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       font-size: 10px;
     }
 
     /* Text Formatting Toolbar */
     .lumos-text-toolbar {
       position: fixed;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       padding: 8px;
       display: flex;
@@ -3754,10 +3755,10 @@
     .lumos-text-toolbar-btn {
       width: 32px;
       height: 32px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -3766,17 +3767,17 @@
       font-weight: 600;
     }
     .lumos-text-toolbar-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-text-toolbar-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-text-toolbar-divider {
       width: 1px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       margin: 4px 4px;
     }
 
@@ -3787,8 +3788,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 400px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3799,19 +3800,19 @@
     }
     .lumos-transition-preset {
       padding: 12px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
     }
     .lumos-transition-preset:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       transform: scale(1.02);
     }
     .lumos-transition-preset-name {
       font-size: 12px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       margin-bottom: 4px;
     }
     .lumos-transition-preset-preview {
@@ -3828,8 +3829,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3840,20 +3841,20 @@
     }
     .lumos-object-fit-btn {
       padding: 16px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       cursor: pointer;
       text-align: center;
       font-size: 11px;
     }
     .lumos-object-fit-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-object-fit-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-object-fit-preview {
@@ -3871,8 +3872,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 420px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3883,18 +3884,18 @@
     }
     .lumos-clip-path-btn {
       padding: 16px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-clip-path-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-clip-path-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
     }
     .lumos-clip-path-shape {
       width: 40px;
@@ -3904,7 +3905,7 @@
     }
     .lumos-clip-path-label {
       font-size: 10px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-clip-path-btn.active .lumos-clip-path-label {
       color: white;
@@ -3917,8 +3918,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3931,21 +3932,21 @@
     }
     .lumos-blend-mode-btn {
       padding: 10px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-blend-mode-btn:hover {
-      background: #27272a;
-      color: #fafafa;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-blend-mode-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-blend-preview {
@@ -3974,8 +3975,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 320px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -3984,14 +3985,14 @@
       align-items: center;
       justify-content: space-between;
       padding: 12px 16px;
-      border-bottom: 1px solid #1f1f23;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-quick-control-row:last-child {
       border-bottom: none;
     }
     .lumos-quick-control-label {
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-quick-control-value {
       display: flex;
@@ -4000,7 +4001,7 @@
     .lumos-quick-toggle {
       width: 40px;
       height: 22px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border: none;
       border-radius: 11px;
       cursor: pointer;
@@ -4014,12 +4015,12 @@
       left: 2px;
       width: 18px;
       height: 18px;
-      background: #71717a;
+      background: var(--lumos-text-muted);
       border-radius: 50%;
       transition: transform 0.2s, background 0.2s;
     }
     .lumos-quick-toggle.active {
-      background: #8b5cf6;
+      background: var(--lumos-accent);
     }
     .lumos-quick-toggle.active::after {
       transform: translateX(18px);
@@ -4033,8 +4034,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -4043,7 +4044,7 @@
       align-items: center;
       gap: 12px;
       padding: 12px 0;
-      border-bottom: 1px solid #1f1f23;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-typo-row:last-child {
       border-bottom: none;
@@ -4051,16 +4052,16 @@
     .lumos-typo-row label {
       width: 100px;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-typo-row input[type="range"] {
       flex: 1;
-      accent-color: #8b5cf6;
+      accent-color: var(--lumos-accent);
     }
     .lumos-typo-row .lumos-typo-value {
       width: 50px;
       font-size: 11px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       text-align: right;
     }
 
@@ -4071,8 +4072,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 450px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -4080,7 +4081,7 @@
       display: grid;
       gap: 4px;
       padding: 16px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
       min-height: 120px;
     }
@@ -4102,15 +4103,15 @@
     }
     .lumos-grid-control label {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
     }
     .lumos-grid-control input {
       padding: 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 12px;
     }
 
@@ -4121,8 +4122,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 400px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -4143,16 +4144,16 @@
     .lumos-3d-row label {
       width: 100px;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-3d-row input[type="range"] {
       flex: 1;
-      accent-color: #8b5cf6;
+      accent-color: var(--lumos-accent);
     }
     .lumos-3d-row span {
       width: 60px;
       font-size: 11px;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       text-align: right;
     }
 
@@ -4163,8 +4164,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -4173,7 +4174,7 @@
     }
     .lumos-snap-section-label {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -4184,20 +4185,20 @@
     }
     .lumos-snap-btn {
       padding: 10px 8px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 6px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 10px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-snap-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-snap-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -4208,21 +4209,21 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
     .lumos-writing-preview {
       padding: 16px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
       margin-bottom: 16px;
       min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-size: 14px;
     }
 
@@ -4233,18 +4234,18 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
     .lumos-word-break-preview {
       padding: 12px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       border-radius: 8px;
       margin-bottom: 16px;
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       word-break: break-all;
     }
 
@@ -4255,8 +4256,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 300px;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 1000006;
     }
@@ -4267,20 +4268,20 @@
     }
     .lumos-resize-btn {
       padding: 16px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border);
       border-radius: 8px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 11px;
       cursor: pointer;
       text-align: center;
     }
     .lumos-resize-btn:hover {
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-resize-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-resize-icon {
@@ -4295,17 +4296,17 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-cv-header {
       padding: 12px 16px;
-      border-bottom: 1px solid #3f3f46;
+      border-bottom: 1px solid var(--lumos-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -4328,7 +4329,7 @@
     }
     .lumos-cv-label {
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -4340,28 +4341,28 @@
     }
     .lumos-cv-option {
       padding: 8px 12px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 6px;
       font-size: 12px;
       cursor: pointer;
       transition: all 0.15s;
     }
     .lumos-cv-option:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-cv-option.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-cv-info {
       margin-top: 12px;
       padding: 10px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 8px;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       line-height: 1.5;
     }
 
@@ -4372,13 +4373,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-ta-grid {
       display: grid;
@@ -4387,8 +4388,8 @@
     }
     .lumos-ta-btn {
       padding: 12px 8px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       font-size: 11px;
       cursor: pointer;
@@ -4396,11 +4397,11 @@
       text-align: center;
     }
     .lumos-ta-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-ta-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-ta-btn-icon {
@@ -4415,13 +4416,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 320px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-pe-grid {
       display: grid;
@@ -4430,19 +4431,19 @@
     }
     .lumos-pe-option {
       padding: 16px 12px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
       text-align: center;
     }
     .lumos-pe-option:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-pe-option.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-pe-icon {
@@ -4455,7 +4456,7 @@
     }
     .lumos-pe-desc {
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-top: 4px;
     }
     .lumos-pe-option.active .lumos-pe-desc {
@@ -4469,13 +4470,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-wc-presets {
       display: flex;
@@ -4485,19 +4486,19 @@
     }
     .lumos-wc-preset {
       padding: 8px 14px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 6px;
       font-size: 12px;
       cursor: pointer;
       transition: all 0.15s;
     }
     .lumos-wc-preset:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-wc-preset.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-wc-custom {
@@ -4507,20 +4508,20 @@
     .lumos-wc-input {
       flex: 1;
       padding: 10px 12px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
       font-size: 13px;
       font-family: monospace;
     }
     .lumos-wc-input:focus {
       outline: none;
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
     }
     .lumos-wc-apply {
       padding: 10px 16px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border: none;
       border-radius: 8px;
       color: white;
@@ -4545,13 +4546,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-contain-options {
       display: grid;
@@ -4562,23 +4563,23 @@
       align-items: center;
       gap: 12px;
       padding: 12px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
     }
     .lumos-contain-option:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-contain-option.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
     }
     .lumos-contain-checkbox {
       width: 18px;
       height: 18px;
-      border: 2px solid #52525b;
+      border: 2px solid var(--lumos-border);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -4590,7 +4591,7 @@
     }
     .lumos-contain-check {
       display: none;
-      color: #8b5cf6;
+      color: var(--lumos-accent);
     }
     .lumos-contain-option.active .lumos-contain-check {
       display: block;
@@ -4604,7 +4605,7 @@
     }
     .lumos-contain-desc {
       font-size: 11px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-top: 2px;
     }
     .lumos-contain-option.active .lumos-contain-desc {
@@ -4615,13 +4616,13 @@
       gap: 8px;
       margin-top: 12px;
       padding-top: 12px;
-      border-top: 1px solid #3f3f46;
+      border-top: 1px solid var(--lumos-border);
     }
     .lumos-contain-preset {
       flex: 1;
       padding: 10px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       font-size: 12px;
       cursor: pointer;
@@ -4629,7 +4630,7 @@
       transition: all 0.15s;
     }
     .lumos-contain-preset:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
 
     /* User Select Editor */
@@ -4639,13 +4640,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 320px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-us-grid {
       display: grid;
@@ -4654,19 +4655,19 @@
     }
     .lumos-us-option {
       padding: 14px 12px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
       text-align: center;
     }
     .lumos-us-option:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-us-option.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-us-icon {
@@ -4685,13 +4686,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 380px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-backdrop-preview {
       height: 100px;
@@ -4729,13 +4730,13 @@
     .lumos-backdrop-slider-label {
       width: 80px;
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-backdrop-slider {
       flex: 1;
       height: 6px;
       -webkit-appearance: none;
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
       border-radius: 3px;
       cursor: pointer;
     }
@@ -4743,7 +4744,7 @@
       -webkit-appearance: none;
       width: 16px;
       height: 16px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 50%;
       cursor: pointer;
     }
@@ -4752,7 +4753,7 @@
       text-align: right;
       font-size: 12px;
       font-family: monospace;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
 
     /* Gap Editor */
@@ -4762,26 +4763,26 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-gap-visual {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       padding: 20px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 8px;
       margin-bottom: 16px;
     }
     .lumos-gap-visual-item {
       height: 30px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 4px;
       opacity: 0.5;
     }
@@ -4795,7 +4796,7 @@
     }
     .lumos-gap-input-label {
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       margin-bottom: 6px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -4803,16 +4804,16 @@
     .lumos-gap-input {
       width: 100%;
       padding: 10px 12px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
       font-size: 13px;
       font-family: monospace;
     }
     .lumos-gap-input:focus {
       outline: none;
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
     }
 
     /* Accent Color Editor */
@@ -4822,20 +4823,20 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 320px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-accent-preview {
       display: flex;
       gap: 16px;
       justify-content: center;
       padding: 20px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 8px;
       margin-bottom: 16px;
     }
@@ -4875,26 +4876,26 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-columns-preview {
       display: flex;
       gap: 8px;
       padding: 20px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 8px;
       margin-bottom: 16px;
       min-height: 60px;
     }
     .lumos-columns-preview-col {
       flex: 1;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 4px;
       opacity: 0.5;
     }
@@ -4907,10 +4908,10 @@
     .lumos-columns-btn {
       width: 36px;
       height: 36px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
       font-size: 18px;
       cursor: pointer;
       display: flex;
@@ -4918,7 +4919,7 @@
       justify-content: center;
     }
     .lumos-columns-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-columns-count {
       flex: 1;
@@ -4934,13 +4935,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 340px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-overscroll-grid {
       display: grid;
@@ -4949,8 +4950,8 @@
     }
     .lumos-overscroll-btn {
       padding: 14px 8px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       font-size: 11px;
       cursor: pointer;
@@ -4958,11 +4959,11 @@
       text-align: center;
     }
     .lumos-overscroll-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-overscroll-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -4973,24 +4974,24 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-list-preview {
       padding: 16px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 8px;
       margin-bottom: 16px;
     }
     .lumos-list-preview ul, .lumos-list-preview ol {
       margin: 0;
       padding-left: 24px;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-list-types {
       display: grid;
@@ -4999,8 +5000,8 @@
     }
     .lumos-list-type-btn {
       padding: 10px 6px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 6px;
       font-size: 10px;
       cursor: pointer;
@@ -5008,11 +5009,11 @@
       text-align: center;
     }
     .lumos-list-type-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-list-type-btn.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
 
@@ -5023,13 +5024,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 320px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-isolation-options {
       display: grid;
@@ -5038,19 +5039,19 @@
     }
     .lumos-isolation-option {
       padding: 16px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
       text-align: center;
     }
     .lumos-isolation-option:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-isolation-option.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
       color: white;
     }
     .lumos-isolation-icon {
@@ -5070,13 +5071,13 @@
       transform: translate(-50%, -50%);
       width: 600px;
       max-width: 90vw;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-timeline-preview {
       height: 120px;
@@ -5098,7 +5099,7 @@
     }
     .lumos-timeline-track {
       height: 40px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 6px;
       margin-bottom: 12px;
       position: relative;
@@ -5108,14 +5109,14 @@
       display: flex;
       justify-content: space-between;
       font-size: 10px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       margin-bottom: 4px;
     }
     .lumos-timeline-keyframe {
       position: absolute;
       width: 12px;
       height: 12px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       border-radius: 2px;
       transform: rotate(45deg) translateY(-50%);
       top: 50%;
@@ -5140,10 +5141,10 @@
     }
     .lumos-timeline-btn {
       padding: 8px 16px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 6px;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
       font-size: 12px;
       cursor: pointer;
       display: flex;
@@ -5151,11 +5152,11 @@
       gap: 6px;
     }
     .lumos-timeline-btn:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-timeline-btn.primary {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
     }
     .lumos-timeline-properties {
       display: grid;
@@ -5169,7 +5170,7 @@
     }
     .lumos-timeline-prop-label {
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       text-transform: uppercase;
     }
     .lumos-easing-presets {
@@ -5179,18 +5180,18 @@
     }
     .lumos-easing-preset {
       padding: 6px 10px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 4px;
       font-size: 11px;
       cursor: pointer;
     }
     .lumos-easing-preset:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-easing-preset.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
     }
 
     /* Gradient Builder */
@@ -5200,13 +5201,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 420px;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
     }
     .lumos-gradient-preview {
       height: 100px;
@@ -5235,7 +5236,7 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .lumos-gradient-stop.active {
-      border-color: #8b5cf6;
+      border-color: var(--lumos-accent);
       z-index: 1;
     }
     .lumos-gradient-type-row {
@@ -5246,19 +5247,19 @@
     .lumos-gradient-type {
       flex: 1;
       padding: 10px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       text-align: center;
       cursor: pointer;
       font-size: 12px;
     }
     .lumos-gradient-type:hover {
-      background: #3f3f46;
+      background: var(--lumos-bg-hover);
     }
     .lumos-gradient-type.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
+      background: var(--lumos-accent);
+      border-color: var(--lumos-accent);
     }
     .lumos-gradient-angle-row {
       display: flex;
@@ -5273,7 +5274,7 @@
       border-radius: 50%;
       position: relative;
       cursor: pointer;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
     }
     .lumos-gradient-angle-needle {
       position: absolute;
@@ -5281,12 +5282,12 @@
       top: 4px;
       bottom: 50%;
       width: 2px;
-      background: #8b5cf6;
+      background: var(--lumos-accent);
       transform-origin: bottom center;
     }
     .lumos-gradient-stop-editor {
       padding: 12px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -5309,7 +5310,7 @@
       border-radius: 6px;
       font-family: monospace;
       font-size: 11px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       word-break: break-all;
     }
 
@@ -5321,13 +5322,13 @@
       transform: translate(-50%, -50%);
       width: 500px;
       max-height: 80vh;
-      background: #18181b;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-secondary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 12px;
       z-index: 2147483647;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
       font-family: system-ui, sans-serif;
-      color: #e4e4e7;
+      color: var(--lumos-text-primary);
       display: flex;
       flex-direction: column;
     }
@@ -5339,12 +5340,12 @@
     .lumos-tailwind-class {
       display: inline-block;
       padding: 4px 8px;
-      background: #27272a;
+      background: var(--lumos-bg-tertiary);
       border-radius: 4px;
       font-family: monospace;
       font-size: 12px;
       margin: 2px;
-      color: #a78bfa;
+      color: var(--lumos-accent);
     }
     .lumos-tailwind-code {
       margin-top: 12px;
@@ -5353,7 +5354,7 @@
       border-radius: 8px;
       font-family: monospace;
       font-size: 12px;
-      color: #22c55e;
+      color: var(--lumos-success);
       word-break: break-all;
     }
 
@@ -5462,12 +5463,12 @@
       background: transparent;
       border: 1px solid transparent;
       border-radius: 6px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
     }
     .lumos-rotate-btn:hover {
-      background: #27272a;
-      color: #e4e4e7;
+      background: var(--lumos-bg-tertiary);
+      color: var(--lumos-text-primary);
     }
     .lumos-rotate-btn svg {
       width: 14px;
@@ -5480,7 +5481,7 @@
       background: transparent;
       border: none;
       border-radius: 6px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
       cursor: pointer;
       margin-left: 4px;
     }
@@ -5494,7 +5495,7 @@
       position: fixed;
       inset: 0;
       z-index: 999980;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       display: flex;
       flex-direction: column;
     }
@@ -5503,12 +5504,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 12px 16px;
-      background: #0a0a0b;
-      border-bottom: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-viewport-size {
       font-size: 13px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-family: ui-monospace, monospace;
     }
     .lumos-viewport-frame {
@@ -5520,7 +5521,7 @@
       overflow: auto;
     }
     .lumos-viewport-frame iframe {
-      border: 1px solid #3f3f46;
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
       background: white;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -5568,8 +5569,8 @@
       width: 500px;
       max-width: 90vw;
       max-height: 80vh;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 999999;
       display: flex;
@@ -5581,12 +5582,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-improvement-header h3 {
       font-size: 16px;
       font-weight: 600;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       margin: 0;
     }
     .lumos-improvement-content {
@@ -5604,7 +5605,7 @@
       transition: background 0.15s;
     }
     .lumos-issue-item:hover {
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
     }
     .lumos-issue-icon {
       width: 32px;
@@ -5627,17 +5628,17 @@
     .lumos-issue-element {
       font-size: 13px;
       font-weight: 500;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       font-family: ui-monospace, monospace;
     }
     .lumos-issue-message {
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       margin-top: 4px;
     }
     .lumos-issue-fix {
       font-size: 11px;
-      color: #22c55e;
+      color: var(--lumos-success);
       margin-top: 4px;
     }
 
@@ -5650,8 +5651,8 @@
       width: 600px;
       max-width: 90vw;
       max-height: 80vh;
-      background: #0a0a0b;
-      border: 1px solid #27272a;
+      background: var(--lumos-bg-primary);
+      border: 1px solid var(--lumos-border);
       border-radius: 12px;
       z-index: 999999;
       display: flex;
@@ -5663,12 +5664,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px;
-      border-bottom: 1px solid #27272a;
+      border-bottom: 1px solid var(--lumos-border);
     }
     .lumos-changes-header h3 {
       font-size: 16px;
       font-weight: 600;
-      color: #fafafa;
+      color: var(--lumos-text-primary);
       margin: 0;
     }
     .lumos-changes-actions {
@@ -5683,7 +5684,7 @@
     .lumos-change-item {
       padding: 12px;
       border-radius: 8px;
-      background: #18181b;
+      background: var(--lumos-bg-secondary);
       margin-bottom: 8px;
     }
     .lumos-change-type {
@@ -5713,13 +5714,13 @@
     }
     .lumos-change-selector {
       font-size: 12px;
-      color: #a78bfa;
+      color: var(--lumos-accent);
       font-family: ui-monospace, monospace;
       margin-bottom: 4px;
     }
     .lumos-change-detail {
       font-size: 12px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
     }
     .lumos-change-values {
       display: flex;
@@ -5752,22 +5753,22 @@
     }
     .lumos-clear-btn {
       padding: 8px 16px;
-      background: #27272a;
-      border: 1px solid #3f3f46;
+      background: var(--lumos-bg-tertiary);
+      border: 1px solid var(--lumos-border-hover);
       border-radius: 8px;
-      color: #a1a1aa;
+      color: var(--lumos-text-secondary);
       font-size: 13px;
       cursor: pointer;
       transition: all 0.15s;
     }
     .lumos-clear-btn:hover {
-      background: #3f3f46;
-      color: #fafafa;
+      background: var(--lumos-bg-hover);
+      color: var(--lumos-text-primary);
     }
     .lumos-no-changes {
       text-align: center;
       padding: 40px;
-      color: #71717a;
+      color: var(--lumos-text-muted);
     }
     .lumos-no-changes svg {
       width: 48px;
@@ -6575,8 +6576,8 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #ef4444;
-      border: 2px solid #18181b;
+      background: var(--lumos-error);
+      border: 2px solid var(--lumos-bg-secondary);
     " title="Disconnected"></span>
   `;
   fab.onclick = togglePanel;
@@ -8871,7 +8872,7 @@
         position: fixed;
         width: 8px;
         height: 8px;
-        background: #8b5cf6;
+        background: var(--lumos-accent);
         border: 2px solid white;
         border-radius: 2px;
         z-index: 1000000;

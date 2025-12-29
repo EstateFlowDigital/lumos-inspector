@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- **Dark Mode Overlay Visibility**: Fixed icons and text being invisible on light-themed pages
+  - All hardcoded dark colors in lumos-connect.js CSS now use CSS variables
+  - Overlay inspector now properly adapts to light/dark theme based on page detection
+  - Fixed `background`, `color`, `border` properties across 100+ CSS rules
 - **Direct Connection Mode**: Fixed Socket.io client not loading due to incorrect path
   - Socket.io client was being loaded from `/socket.io/socket.io.js` instead of `/lumos-socket/socket.io.js`
   - This caused the "Waiting for Target App" state to never resolve
