@@ -52,7 +52,8 @@
     // Load Socket.io client if not already loaded
     if (typeof io === 'undefined') {
       const script = document.createElement('script');
-      script.src = studioUrl + '/socket.io/socket.io.js';
+      // Socket.io client is served from the custom path configured on server
+      script.src = studioUrl + '/lumos-socket/socket.io.js';
       script.onload = connectSocket;
       script.onerror = () => console.warn('[Lumos] Failed to load Socket.io client');
       document.head.appendChild(script);

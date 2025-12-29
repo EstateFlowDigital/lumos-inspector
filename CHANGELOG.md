@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- **Direct Connection Mode**: Fixed Socket.io client not loading due to incorrect path
+  - Socket.io client was being loaded from `/socket.io/socket.io.js` instead of `/lumos-socket/socket.io.js`
+  - This caused the "Waiting for Target App" state to never resolve
+
 ### Added
 - **AI Assistant Tool** - Claude-powered style analysis and suggestions
   - Analyze selected elements for CSS improvement opportunities
