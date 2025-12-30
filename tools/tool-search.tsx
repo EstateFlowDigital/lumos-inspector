@@ -39,7 +39,7 @@ export const categoryMeta: Record<ToolCategory, { label: string; color: string }
   debug: { label: "Debug", color: "bg-red-500" },
   accessibility: { label: "Accessibility", color: "bg-yellow-500" },
   performance: { label: "Performance", color: "bg-cyan-500" },
-  developer: { label: "Developer", color: "bg-gray-500" },
+  developer: { label: "Developer", color: "bg-muted-foreground" },
   design: { label: "Design", color: "bg-pink-500" },
 }
 

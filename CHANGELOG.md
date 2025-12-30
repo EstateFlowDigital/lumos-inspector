@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **Additional Design Token Fixes** - Deep audit style consistency pass
+  - `tool-search.tsx`: Changed developer category color from `bg-gray-500` to `bg-muted-foreground`
+  - `z-index-map.tsx`: Changed 0/auto z-index colors from `bg-gray-500`/`border-gray-500` to `bg-muted-foreground`/`border-muted-foreground`
+  - Note: Device frame colors in `responsive-preview.tsx` and `device-preview.tsx` remain intentionally hardcoded for realistic device simulation
+
 - **Design System Compliance**: Replaced hardcoded Tailwind gray colors with semantic design tokens
   - `mutation-observer-panel.tsx`: Changed fallback type color from `bg-gray-500` to `bg-muted`
   - `print-styles-preview.tsx`: Changed icon color from `text-gray-500` to `text-muted-foreground`

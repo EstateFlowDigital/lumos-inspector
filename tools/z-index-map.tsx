@@ -213,9 +213,9 @@ export function ZIndexMap() {
 
   // Get z-index color
   const getZIndexColor = (zIndex: number | "auto"): string => {
-    if (zIndex === "auto") return "bg-gray-500"
+    if (zIndex === "auto") return "bg-muted-foreground"
     if (zIndex < 0) return "bg-purple-500"
-    if (zIndex === 0) return "bg-gray-500"
+    if (zIndex === 0) return "bg-muted-foreground"
     if (zIndex < 10) return "bg-blue-500"
     if (zIndex < 100) return "bg-green-500"
     if (zIndex < 1000) return "bg-yellow-500"
@@ -264,7 +264,7 @@ export function ZIndexMap() {
               <span className="w-2 h-2 rounded bg-purple-500" /> &lt;0
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-gray-500" /> 0/auto
+              <span className="w-2 h-2 rounded bg-muted-foreground" /> 0/auto
             </span>
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded bg-blue-500" /> 1-9
@@ -346,7 +346,7 @@ export function ZIndexMap() {
               className={cn(
                 "absolute border-2 transition-opacity",
                 hoveredContext === ctx ? "opacity-100" : "opacity-50",
-                ctx.zIndex === "auto" ? "border-gray-500" :
+                ctx.zIndex === "auto" ? "border-muted-foreground" :
                   ctx.zIndex < 0 ? "border-purple-500" :
                     ctx.zIndex < 10 ? "border-blue-500" :
                       ctx.zIndex < 100 ? "border-green-500" :
