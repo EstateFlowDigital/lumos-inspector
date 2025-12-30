@@ -365,7 +365,7 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
         {/* Connection Status */}
         <div className="flex items-center gap-2 ml-4">
           {connectionMode === "direct" ? (
-            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg ${targetConnected ? "bg-green-500/10 text-green-600" : "bg-amber-500/10 text-amber-600"}`}>
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg ${targetConnected ? "bg-[--accent-green]/10 text-[--accent-green]" : "bg-[--accent-amber]/10 text-[--accent-amber]"}`}>
               {targetConnected ? <Wifi className="h-4 w-4" /> : <WifiOff className="h-4 w-4" />}
               <span className="text-sm font-medium">
                 {targetConnected ? "Target Connected" : "Waiting for target..."}
@@ -495,22 +495,22 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
               </div>
 
               {/* Connection Status */}
-              <div className={`p-4 rounded-lg mb-6 ${targetConnected ? "bg-green-500/10 border border-green-500/20" : "bg-amber-500/10 border border-amber-500/20"}`}>
+              <div className={`p-4 rounded-lg mb-6 ${targetConnected ? "bg-[--accent-green]/10 border border-[--accent-green]/20" : "bg-[--accent-amber]/10 border border-[--accent-amber]/20"}`}>
                 <div className="flex items-center gap-3">
                   {targetConnected ? (
                     <>
-                      <Wifi className="h-5 w-5 text-green-600" />
+                      <Wifi className="h-5 w-5 text-[--accent-green]" />
                       <div>
-                        <p className="font-medium text-green-600">Target App Connected</p>
-                        <p className="text-sm text-green-600/80">Click on elements in your app to select them</p>
+                        <p className="font-medium text-[--accent-green]">Target App Connected</p>
+                        <p className="text-sm text-[--accent-green]/80">Click on elements in your app to select them</p>
                       </div>
                     </>
                   ) : (
                     <>
-                      <WifiOff className="h-5 w-5 text-amber-600" />
+                      <WifiOff className="h-5 w-5 text-[--accent-amber]" />
                       <div>
-                        <p className="font-medium text-amber-600">Waiting for Target App</p>
-                        <p className="text-sm text-amber-600/80">Add the SDK script below to your app</p>
+                        <p className="font-medium text-[--accent-amber]">Waiting for Target App</p>
+                        <p className="text-sm text-[--accent-amber]/80">Add the SDK script below to your app</p>
                       </div>
                     </>
                   )}
@@ -529,7 +529,7 @@ export function EditorClient({ repo, deploymentUrl, accessToken }: EditorClientP
                     className="absolute top-2 right-2 p-2 rounded-lg bg-background border hover:bg-accent transition-colors"
                     title="Copy to clipboard"
                   >
-                    {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
+                    {copied ? <Check className="h-4 w-4 text-[--accent-green]" /> : <Copy className="h-4 w-4" />}
                   </button>
                 </div>
               </div>

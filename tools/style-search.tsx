@@ -116,7 +116,7 @@ export function StyleSearch() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <Search className="h-4 w-4 text-cyan-500" />
+          <Search className="h-4 w-4 text-[--accent-cyan]" />
           <span>Style Search</span>
           {results.length > 0 && (
             <Badge variant="secondary" className="text-[10px] px-1 h-4">

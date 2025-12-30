@@ -374,7 +374,7 @@ function SnapshotCard({
       className={cn(
         "p-3 border rounded-lg cursor-pointer transition-all",
         isSelected && "border-primary bg-primary/5",
-        isComparison && "border-orange-500 bg-orange-500/5",
+        isComparison && "border-[--accent-orange] bg-[--accent-orange]/5",
         !isSelected && !isComparison && "hover:border-muted-foreground/50"
       )}
       onClick={onSelect}
@@ -399,7 +399,7 @@ function SnapshotCard({
         </div>
         <div className="flex flex-col gap-1">
           {isSelected && <Check className="h-4 w-4 text-primary" />}
-          {isComparison && <ArrowLeftRight className="h-4 w-4 text-orange-500" />}
+          {isComparison && <ArrowLeftRight className="h-4 w-4 text-[--accent-orange]" />}
         </div>
       </div>
 
@@ -456,13 +456,13 @@ function DiffViewer({ diff, before, after }: DiffViewerProps) {
     <div className="space-y-4">
       {/* Summary */}
       <div className="flex items-center gap-4 p-3 bg-muted/30 rounded-lg">
-        <Badge variant="default" className="bg-green-500">
+        <Badge variant="default" className="bg-[--accent-green]">
           +{diff.added.length} added
         </Badge>
-        <Badge variant="default" className="bg-red-500">
+        <Badge variant="default" className="bg-[--destructive]">
           -{diff.removed.length} removed
         </Badge>
-        <Badge variant="default" className="bg-orange-500">
+        <Badge variant="default" className="bg-[--accent-orange]">
           ~{diff.modified.length} modified
         </Badge>
       </div>
@@ -472,7 +472,7 @@ function DiffViewer({ diff, before, after }: DiffViewerProps) {
         {diff.modified.length > 0 && (
           <div className="mb-4">
             <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-orange-500" />
+              <span className="w-2 h-2 rounded-full bg-[--accent-orange]" />
               Modified Elements
             </h4>
             <div className="space-y-2">
@@ -488,9 +488,9 @@ function DiffViewer({ diff, before, after }: DiffViewerProps) {
                         <span className="text-muted-foreground w-24 truncate">
                           {change.property}:
                         </span>
-                        <span className="text-red-500 line-through">{change.before}</span>
+                        <span className="text-[--destructive] line-through">{change.before}</span>
                         <ChevronRight className="h-3 w-3" />
-                        <span className="text-green-500">{change.after}</span>
+                        <span className="text-[--accent-green]">{change.after}</span>
                       </div>
                     ))}
                   </div>
@@ -504,12 +504,12 @@ function DiffViewer({ diff, before, after }: DiffViewerProps) {
         {diff.added.length > 0 && (
           <div className="mb-4">
             <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500" />
+              <span className="w-2 h-2 rounded-full bg-[--accent-green]" />
               Added Elements
             </h4>
             <div className="space-y-1">
               {diff.added.map((element) => (
-                <div key={element.selector} className="p-2 border rounded bg-green-500/5">
+                <div key={element.selector} className="p-2 border rounded bg-[--accent-green]/5">
                   <code className="text-xs">{element.selector}</code>
                 </div>
               ))}
@@ -521,12 +521,12 @@ function DiffViewer({ diff, before, after }: DiffViewerProps) {
         {diff.removed.length > 0 && (
           <div className="mb-4">
             <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-red-500" />
+              <span className="w-2 h-2 rounded-full bg-[--destructive]" />
               Removed Elements
             </h4>
             <div className="space-y-1">
               {diff.removed.map((element) => (
-                <div key={element.selector} className="p-2 border rounded bg-red-500/5">
+                <div key={element.selector} className="p-2 border rounded bg-[--destructive]/5">
                   <code className="text-xs line-through">{element.selector}</code>
                 </div>
               ))}
@@ -536,7 +536,7 @@ function DiffViewer({ diff, before, after }: DiffViewerProps) {
 
         {diff.added.length === 0 && diff.removed.length === 0 && diff.modified.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
-            <Check className="h-8 w-8 mx-auto mb-2 text-green-500" />
+            <Check className="h-8 w-8 mx-auto mb-2 text-[--accent-green]" />
             <p>No differences found</p>
           </div>
         )}
@@ -655,7 +655,7 @@ export function SnapshotsPanel({
 
       {/* Comparison mode */}
       {selectedSnapshot && comparisonSnapshot && (
-        <div className="p-3 border-b bg-orange-500/5">
+        <div className="p-3 border-b bg-[--accent-orange]/5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm">
               <span className="font-medium">{selectedSnapshot.name}</span>

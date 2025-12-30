@@ -21,15 +21,15 @@ export function ComputedTab() {
       {/* Box Model */}
       <Section title="Box Model" icon={Box} defaultOpen>
         <div className="space-y-2 text-xs">
-          <div className="p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg text-center">
-            <div className="text-[10px] text-orange-600 dark:text-orange-400 mb-1">margin</div>
-            <div className="flex justify-between px-2 text-orange-600 dark:text-orange-400">
+          <div className="p-3 bg-[--accent-orange]/10 border border-[--accent-orange]/30 rounded-lg text-center">
+            <div className="text-[10px] text-[--accent-orange] mb-1">margin</div>
+            <div className="flex justify-between px-2 text-[--accent-orange]">
               <span>{selectedElement.computedStyles.margin?.split(' ')[3] || '0'}</span>
               <span>{selectedElement.computedStyles.margin?.split(' ')[1] || '0'}</span>
             </div>
-            <div className="p-3 bg-green-500/10 border border-green-500/30 rounded my-1">
-              <div className="text-[10px] text-green-600 dark:text-green-400 mb-1">padding</div>
-              <div className="flex justify-between px-2 text-green-600 dark:text-green-400">
+            <div className="p-3 bg-[--accent-green]/10 border border-[--accent-green]/30 rounded my-1">
+              <div className="text-[10px] text-[--accent-green] mb-1">padding</div>
+              <div className="flex justify-between px-2 text-[--accent-green]">
                 <span>{selectedElement.computedStyles.padding?.split(' ')[3] || '0'}</span>
                 <span>{selectedElement.computedStyles.padding?.split(' ')[1] || '0'}</span>
               </div>
@@ -38,11 +38,11 @@ export function ComputedTab() {
                   {selectedElement.computedStyles.width} × {selectedElement.computedStyles.height}
                 </span>
               </div>
-              <div className="flex justify-between px-2 text-green-600 dark:text-green-400">
+              <div className="flex justify-between px-2 text-[--accent-green]">
                 <span>{selectedElement.computedStyles.padding?.split(' ')[2] || '0'}</span>
               </div>
             </div>
-            <div className="flex justify-between px-2 text-orange-600 dark:text-orange-400">
+            <div className="flex justify-between px-2 text-[--accent-orange]">
               <span>{selectedElement.computedStyles.margin?.split(' ')[2] || '0'}</span>
             </div>
           </div>

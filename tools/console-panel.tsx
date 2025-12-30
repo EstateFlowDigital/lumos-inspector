@@ -160,11 +160,11 @@ export function ConsolePanel() {
   const getLevelIcon = (level: LogLevel) => {
     switch (level) {
       case "error":
-        return <AlertCircle className="h-3 w-3 text-red-500" />
+        return <AlertCircle className="h-3 w-3 text-[--destructive]" />
       case "warn":
-        return <AlertTriangle className="h-3 w-3 text-yellow-500" />
+        return <AlertTriangle className="h-3 w-3 text-[--accent-amber]" />
       case "info":
-        return <Info className="h-3 w-3 text-blue-500" />
+        return <Info className="h-3 w-3 text-[--accent-blue]" />
       default:
         return <ChevronRight className="h-3 w-3 text-muted-foreground" />
     }
@@ -174,11 +174,11 @@ export function ConsolePanel() {
   const getLevelBg = (level: LogLevel) => {
     switch (level) {
       case "error":
-        return "bg-red-500/5 border-l-red-500"
+        return "bg-[--destructive]/5 border-l-[--destructive]"
       case "warn":
-        return "bg-yellow-500/5 border-l-yellow-500"
+        return "bg-[--accent-amber]/5 border-l-[--accent-amber]"
       case "info":
-        return "bg-blue-500/5 border-l-blue-500"
+        return "bg-[--accent-blue]/5 border-l-[--accent-blue]"
       default:
         return "bg-transparent border-l-transparent"
     }
@@ -201,12 +201,12 @@ export function ConsolePanel() {
           <Terminal className="h-4 w-4 text-chart-1" />
           <span>Console</span>
           {counts.error > 0 && (
-            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-red-500/10 text-red-500">
+            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-[--destructive]/10 text-[--destructive]">
               {counts.error}
             </Badge>
           )}
           {counts.warn > 0 && (
-            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-yellow-500/10 text-yellow-500">
+            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-[--accent-amber]/10 text-[--accent-amber]">
               {counts.warn}
             </Badge>
           )}
@@ -242,9 +242,9 @@ export function ConsolePanel() {
               size="sm"
               className={cn(
                 "h-6 text-[10px] px-2",
-                filter === level && level === "error" && "bg-red-500 hover:bg-red-600",
-                filter === level && level === "warn" && "bg-yellow-500 hover:bg-yellow-600",
-                filter === level && level === "info" && "bg-blue-500 hover:bg-blue-600"
+                filter === level && level === "error" && "bg-[--destructive] hover:bg-[--destructive]/90",
+                filter === level && level === "warn" && "bg-[--accent-amber] hover:bg-[--accent-amber]/90",
+                filter === level && level === "info" && "bg-[--accent-blue] hover:bg-[--accent-blue]/90"
               )}
               onClick={() => setFilter(level)}
             >

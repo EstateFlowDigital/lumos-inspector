@@ -205,7 +205,7 @@ export function DesignTokenValidator() {
         {/* Token count */}
         <div className="p-2 bg-muted/30 rounded text-[10px]">
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-3 w-3 text-green-500" />
+            <CheckCircle className="h-3 w-3 text-[--accent-green]" />
             Found {stats.tokens} CSS custom properties
           </div>
         </div>
@@ -247,7 +247,7 @@ export function DesignTokenValidator() {
               filteredIssues.map((issue, i) => (
                 <div
                   key={i}
-                  className="p-2 bg-yellow-500/10 border border-yellow-500/20 rounded cursor-pointer hover:bg-yellow-500/20"
+                  className="p-2 bg-[--accent-amber]/10 border border-[--accent-amber]/20 rounded cursor-pointer hover:bg-[--accent-amber]/20"
                   onClick={() => selectIssue(issue)}
                 >
                   <div className="flex items-center justify-between mb-1">
@@ -265,7 +265,7 @@ export function DesignTokenValidator() {
                     )}
                     <code className="text-muted-foreground">{issue.value}</code>
                   </div>
-                  <div className="text-[9px] text-yellow-600 dark:text-yellow-400 mt-1">
+                  <div className="text-[9px] text-[--accent-amber] mt-1">
                     <AlertTriangle className="h-3 w-3 inline mr-1" />
                     Consider using a design token
                   </div>

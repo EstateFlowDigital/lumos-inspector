@@ -357,7 +357,7 @@ function TutorialCard({
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center gap-2">
-          <Lightbulb className="h-5 w-5 text-yellow-500" />
+          <Lightbulb className="h-5 w-5 text-[--accent-amber]" />
           <span className="font-medium">{tutorialName}</span>
         </div>
         <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={onClose}>

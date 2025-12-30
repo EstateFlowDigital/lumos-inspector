@@ -8,6 +8,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **Comprehensive Design Token Migration** - Replaced all hardcoded Tailwind colors with CSS custom properties
+  - **Tools directory** (15 files):
+    - `z-index-map.tsx`: z-index colors → `--accent-purple`, `--accent-blue`, `--accent-green`, `--accent-amber`, `--accent-orange`, `--destructive`
+    - `console-panel.tsx`: log level colors → `--destructive`, `--accent-amber`, `--accent-blue`
+    - `animation-timeline.tsx`: animation type badges → `--accent-green`, `--accent-blue`
+    - `style-diff.tsx`: diff indicators → `--accent-amber`, `--accent-green`, `--destructive`
+    - `performance-hints.tsx`: severity indicators → `--destructive`, `--accent-amber`, `--accent-blue`, `--accent-green`
+    - `css-variables-explorer.tsx`: action icons → `--accent-green`, `--destructive`
+    - `element-states.tsx`: active state colors → `--accent-green`
+    - `specificity-analyzer.tsx`: conflict indicators → `--accent-amber`, `--destructive`
+    - `design-token-validator.tsx`: validation colors → `--accent-green`, `--accent-amber`
+    - `code-export.tsx`: copy success → `--accent-green`
+    - `scroll-animations-tool.tsx`: browser warning → `--accent-amber`, icon → `--accent-cyan`
+    - `object-fit-editor.tsx`: note color → `--accent-amber`
+    - `transition-builder.tsx`: icon → `--accent-cyan`
+    - `css-shapes-editor.tsx`: icon → `--accent-indigo`
+    - `writing-mode-editor.tsx`: icon → `--accent-blue`
+    - `logical-properties-editor.tsx`: icon and info box → `--accent-blue`
+    - `backdrop-filter-editor.tsx`: icon → `--accent-cyan`
+    - `style-search.tsx`: icon → `--accent-cyan`
+    - `pointer-events-editor.tsx`: icon → `--accent-pink`
+  - **Core directory** (13 files):
+    - `tutorial-system.tsx`: lightbulb icon → `--accent-amber`
+    - `rulers-overlay.tsx`: guide labels → `--accent-blue`
+    - `design-token-extractor.tsx`: copy success → `--accent-green`
+    - `component-prop-inspector.tsx`: value type colors → `--accent-green`, `--accent-blue`, `--accent-purple`, `--accent-amber`, `--accent-orange`, `--accent-cyan`, `--accent-pink`, `--destructive`
+    - `accessibility-audit.tsx`: severity and score colors → `--accent-orange`, `--accent-blue`, `--accent-green`
+    - `performance-dashboard.tsx`: rating and score colors → `--accent-green`, `--accent-orange`, `--accent-blue`
+    - `keyboard-shortcuts-panel.tsx`: category colors → design tokens for all 6 categories
+    - `style-snapshots.tsx`: diff indicators → `--accent-orange`, `--accent-green`, `--destructive`
+    - `panels/computed-tab/index.tsx`: box model colors → `--accent-orange` (margin), `--accent-green` (padding)
+    - `dev-tools-panel.tsx`: hover overlay → `--accent-blue`, spacing box → `--accent-orange`/`--accent-green`
+  - **Studio directory**:
+    - `editor-client.tsx`: connection status → `--accent-green`, `--accent-amber`
+
 - **Additional Design Token Fixes** - Deep audit style consistency pass
   - `tool-search.tsx`: Changed developer category color from `bg-gray-500` to `bg-muted-foreground`
   - `z-index-map.tsx`: Changed 0/auto z-index colors from `bg-gray-500`/`border-gray-500` to `bg-muted-foreground`/`border-muted-foreground`

@@ -941,7 +941,7 @@ export function DevToolsPanel({ isOpen, onClose }: DevToolsPanelProps) {
       {isInspecting && hoveredElement && (
         <div
           ref={overlayRef}
-          className="fixed pointer-events-none z-[9998] border-2 border-blue-500 bg-blue-500/10"
+          className="fixed pointer-events-none z-[9998] border-2 border-[--accent-blue] bg-[--accent-blue]/10"
           style={{
             top: hoveredElement.getBoundingClientRect().top,
             left: hoveredElement.getBoundingClientRect().left,
@@ -949,7 +949,7 @@ export function DevToolsPanel({ isOpen, onClose }: DevToolsPanelProps) {
             height: hoveredElement.getBoundingClientRect().height,
           }}
         >
-          <div className="absolute -top-7 left-0 bg-blue-600 text-white text-xs px-2 py-1 rounded-t whitespace-nowrap flex items-center gap-2 shadow-lg">
+          <div className="absolute -top-7 left-0 bg-[--accent-blue] text-white text-xs px-2 py-1 rounded-t whitespace-nowrap flex items-center gap-2 shadow-lg">
             <span className="font-semibold">{hoveredElement.tagName.toLowerCase()}</span>
             {hoveredElement.id && <span className="opacity-75">#{hoveredElement.id}</span>}
             {hoveredElement.classList.length > 0 && (
@@ -1711,11 +1711,11 @@ export function DevToolsPanel({ isOpen, onClose }: DevToolsPanelProps) {
                               {/* Legend */}
                               <div className="flex justify-center gap-6 text-[10px] uppercase tracking-wide">
                                 <span className="flex items-center gap-1.5">
-                                  <span className="w-3 h-3 rounded bg-orange-500/20 border border-dashed border-orange-500" />
+                                  <span className="w-3 h-3 rounded bg-[--accent-orange]/20 border border-dashed border-[--accent-orange]" />
                                   <span className="text-muted-foreground">Margin</span>
                                 </span>
                                 <span className="flex items-center gap-1.5">
-                                  <span className="w-3 h-3 rounded bg-green-500/20 border border-dashed border-green-500" />
+                                  <span className="w-3 h-3 rounded bg-[--accent-green]/20 border border-dashed border-[--accent-green]" />
                                   <span className="text-muted-foreground">Padding</span>
                                 </span>
                               </div>
@@ -1723,49 +1723,49 @@ export function DevToolsPanel({ isOpen, onClose }: DevToolsPanelProps) {
                               {/* Visual Spacing Box */}
                               <div className="relative">
                                 {/* Margin */}
-                                <div className="border-2 border-dashed border-orange-500/50 bg-orange-500/5 p-6 rounded-lg relative">
-                                  <span className="absolute top-1 left-2 text-[9px] font-semibold uppercase text-orange-500">Margin</span>
+                                <div className="border-2 border-dashed border-[--accent-orange]/50 bg-[--accent-orange]/5 p-6 rounded-lg relative">
+                                  <span className="absolute top-1 left-2 text-[9px] font-semibold uppercase text-[--accent-orange]">Margin</span>
                                   <Input
-                                    className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-orange-500/30"
+                                    className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-orange]/30"
                                     value={formatPixels(selectedElement.computedStyles.marginTop)}
                                     onChange={(e) => applyStyle("margin-top", e.target.value + "px")}
                                   />
                                   <Input
-                                    className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-orange-500/30"
+                                    className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-orange]/30"
                                     value={formatPixels(selectedElement.computedStyles.marginBottom)}
                                     onChange={(e) => applyStyle("margin-bottom", e.target.value + "px")}
                                   />
                                   <Input
-                                    className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-orange-500/30"
+                                    className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-orange]/30"
                                     value={formatPixels(selectedElement.computedStyles.marginLeft)}
                                     onChange={(e) => applyStyle("margin-left", e.target.value + "px")}
                                   />
                                   <Input
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-orange-500/30"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-orange]/30"
                                     value={formatPixels(selectedElement.computedStyles.marginRight)}
                                     onChange={(e) => applyStyle("margin-right", e.target.value + "px")}
                                   />
 
                                   {/* Padding */}
-                                  <div className="border-2 border-dashed border-green-500/50 bg-green-500/5 p-6 rounded-lg relative">
-                                    <span className="absolute top-1 left-2 text-[9px] font-semibold uppercase text-green-500">Padding</span>
+                                  <div className="border-2 border-dashed border-[--accent-green]/50 bg-[--accent-green]/5 p-6 rounded-lg relative">
+                                    <span className="absolute top-1 left-2 text-[9px] font-semibold uppercase text-[--accent-green]">Padding</span>
                                     <Input
-                                      className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-green-500/30"
+                                      className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-green]/30"
                                       value={formatPixels(selectedElement.computedStyles.paddingTop)}
                                       onChange={(e) => applyStyle("padding-top", e.target.value + "px")}
                                     />
                                     <Input
-                                      className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-green-500/30"
+                                      className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-green]/30"
                                       value={formatPixels(selectedElement.computedStyles.paddingBottom)}
                                       onChange={(e) => applyStyle("padding-bottom", e.target.value + "px")}
                                     />
                                     <Input
-                                      className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-green-500/30"
+                                      className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-green]/30"
                                       value={formatPixels(selectedElement.computedStyles.paddingLeft)}
                                       onChange={(e) => applyStyle("padding-left", e.target.value + "px")}
                                     />
                                     <Input
-                                      className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-green-500/30"
+                                      className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-6 text-[10px] text-center p-0 bg-background border-[--accent-green]/30"
                                       value={formatPixels(selectedElement.computedStyles.paddingRight)}
                                       onChange={(e) => applyStyle("padding-right", e.target.value + "px")}
                                     />

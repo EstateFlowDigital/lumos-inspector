@@ -19,12 +19,12 @@ import {
 
 // Category display names and icons
 const categoryInfo: Record<ShortcutCategory, { name: string; color: string }> = {
-  general: { name: "General", color: "bg-blue-500/10 text-blue-500" },
-  navigation: { name: "Navigation", color: "bg-green-500/10 text-green-500" },
-  editing: { name: "Editing", color: "bg-orange-500/10 text-orange-500" },
-  selection: { name: "Selection", color: "bg-purple-500/10 text-purple-500" },
-  tools: { name: "Tools", color: "bg-pink-500/10 text-pink-500" },
-  view: { name: "View", color: "bg-cyan-500/10 text-cyan-500" },
+  general: { name: "General", color: "bg-[--accent-blue]/10 text-[--accent-blue]" },
+  navigation: { name: "Navigation", color: "bg-[--accent-green]/10 text-[--accent-green]" },
+  editing: { name: "Editing", color: "bg-[--accent-orange]/10 text-[--accent-orange]" },
+  selection: { name: "Selection", color: "bg-[--accent-purple]/10 text-[--accent-purple]" },
+  tools: { name: "Tools", color: "bg-[--accent-pink]/10 text-[--accent-pink]" },
+  view: { name: "View", color: "bg-[--accent-cyan]/10 text-[--accent-cyan]" },
 }
 
 interface KeyboardShortcutsPanelProps {

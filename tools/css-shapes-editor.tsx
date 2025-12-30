@@ -133,7 +133,7 @@ clip-path: ${shapeValue};`
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <Shapes className="h-4 w-4 text-indigo-500" />
+          <Shapes className="h-4 w-4 text-[--accent-indigo]" />
           <span>CSS Shapes</span>
         </div>
         <ChevronDown className={cn("h-4 w-4 transition-transform", isExpanded && "rotate-180")} />

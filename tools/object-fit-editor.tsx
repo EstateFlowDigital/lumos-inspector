@@ -111,7 +111,7 @@ export function ObjectFitEditor() {
       <CollapsibleContent className="space-y-3 pt-2">
         {/* Info for non-media elements */}
         {!isMediaElement && selectedElement && (
-          <div className="text-[10px] text-yellow-600 dark:text-yellow-400 p-2 bg-yellow-500/10 rounded">
+          <div className="text-[10px] text-[--accent-amber] p-2 bg-[--accent-amber]/10 rounded">
             Note: object-fit works best on img and video elements
           </div>
         )}

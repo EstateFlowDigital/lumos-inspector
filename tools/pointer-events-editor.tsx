@@ -137,7 +137,7 @@ export function PointerEventsEditor() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <MousePointer className="h-4 w-4 text-pink-500" />
+          <MousePointer className="h-4 w-4 text-[--accent-pink]" />
           <span>Pointer Events</span>
         </div>
         <ChevronDown className={cn("h-4 w-4 transition-transform", isExpanded && "rotate-180")} />

@@ -430,7 +430,7 @@ export function CodeExport() {
                       onClick={copyToClipboard}
                     >
                       {copied ? (
-                        <Check className="h-3 w-3 text-green-500" />
+                        <Check className="h-3 w-3 text-[--accent-green]" />
                       ) : (
                         <Copy className="h-3 w-3" />
                       )}

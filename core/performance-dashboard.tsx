@@ -381,8 +381,8 @@ function MetricCard({ name, value, unit, rating, description }: MetricCardProps)
           <Badge
             variant="outline"
             className={cn(
-              rating === "good" && "border-green-500 text-green-500",
-              rating === "needs-improvement" && "border-orange-500 text-orange-500",
+              rating === "good" && "border-[--accent-green] text-[--accent-green]",
+              rating === "needs-improvement" && "border-[--accent-orange] text-[--accent-orange]",
               rating === "poor" && "border-destructive text-destructive"
             )}
           >
@@ -480,8 +480,8 @@ interface HintCardProps {
 function HintCard({ hint }: HintCardProps) {
   const severityColors = {
     critical: "border-l-destructive bg-destructive/5",
-    warning: "border-l-orange-500 bg-orange-500/5",
-    info: "border-l-blue-500 bg-blue-500/5",
+    warning: "border-l-[--accent-orange] bg-[--accent-orange]/5",
+    info: "border-l-[--accent-blue] bg-[--accent-blue]/5",
   }
 
   return (
@@ -490,14 +490,14 @@ function HintCard({ hint }: HintCardProps) {
         <AlertTriangle className={cn(
           "h-4 w-4 mt-0.5",
           hint.severity === "critical" && "text-destructive",
-          hint.severity === "warning" && "text-orange-500",
-          hint.severity === "info" && "text-blue-500"
+          hint.severity === "warning" && "text-[--accent-orange]",
+          hint.severity === "info" && "text-[--accent-blue]"
         )} />
         <div className="flex-1">
           <div className="font-medium text-sm">{hint.title}</div>
           <p className="text-xs text-muted-foreground mt-1">{hint.description}</p>
-          <p className="text-xs text-orange-600 mt-1">{hint.impact}</p>
-          <p className="text-xs text-green-600 mt-1 flex items-start gap-1">
+          <p className="text-xs text-[--accent-orange] mt-1">{hint.impact}</p>
+          <p className="text-xs text-[--accent-green] mt-1 flex items-start gap-1">
             <Check className="h-3 w-3 mt-0.5 flex-shrink-0" />
             {hint.recommendation}
           </p>
@@ -550,8 +550,8 @@ export function PerformanceDashboard({ className }: PerformanceDashboardProps) {
               <div
                 className={cn(
                   "text-5xl font-bold",
-                  report.score >= 80 && "text-green-500",
-                  report.score >= 50 && report.score < 80 && "text-orange-500",
+                  report.score >= 80 && "text-[--accent-green]",
+                  report.score >= 50 && report.score < 80 && "text-[--accent-orange]",
                   report.score < 50 && "text-destructive"
                 )}
               >
@@ -562,8 +562,8 @@ export function PerformanceDashboard({ className }: PerformanceDashboardProps) {
                 value={report.score}
                 className={cn(
                   "h-2 mt-3",
-                  report.score >= 80 && "[&>div]:bg-green-500",
-                  report.score >= 50 && report.score < 80 && "[&>div]:bg-orange-500",
+                  report.score >= 80 && "[&>div]:bg-[--accent-green]",
+                  report.score >= 50 && report.score < 80 && "[&>div]:bg-[--accent-orange]",
                   report.score < 50 && "[&>div]:bg-destructive"
                 )}
               />

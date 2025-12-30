@@ -247,7 +247,7 @@ export function RulersOverlay() {
               {/* Guide label */}
               <div
                 className={cn(
-                  "absolute bg-blue-500 text-white text-[9px] px-1 rounded",
+                  "absolute bg-[--accent-blue] text-white text-[9px] px-1 rounded",
                   guide.orientation === "horizontal"
                     ? "left-8 top-0 -translate-y-1/2"
                     : "top-8 left-0 -translate-x-1/2"

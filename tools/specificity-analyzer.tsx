@@ -180,8 +180,8 @@ export function SpecificityAnalyzer() {
           <>
             {/* Conflicts warning */}
             {conflicts.length > 0 && (
-              <div className="p-2 bg-yellow-500/10 rounded-md border border-yellow-500/20">
-                <div className="flex items-center gap-2 text-xs text-yellow-600 dark:text-yellow-400">
+              <div className="p-2 bg-[--accent-amber]/10 rounded-md border border-[--accent-amber]/20">
+                <div className="flex items-center gap-2 text-xs text-[--accent-amber]">
                   <AlertTriangle className="h-3 w-3" />
                   <span>{conflicts.length} properties with multiple rules</span>
                 </div>
@@ -201,7 +201,7 @@ export function SpecificityAnalyzer() {
                       key={`${rule.selector}-${index}`}
                       className={cn(
                         "rounded-md border transition-colors",
-                        isConflicting && "border-yellow-500/50",
+                        isConflicting && "border-[--accent-amber]/50",
                         expandedRule === rule.selector ? "bg-muted/50" : "hover:bg-muted/30"
                       )}
                     >
@@ -220,10 +220,10 @@ export function SpecificityAnalyzer() {
                                   variant="outline"
                                   className={cn(
                                     "text-[9px] h-4 px-1 font-mono",
-                                    rule.specificity[0] > 0 && "bg-red-500/10 text-red-500",
+                                    rule.specificity[0] > 0 && "bg-[--destructive]/10 text-[--destructive]",
                                     rule.specificity[0] === 0 &&
                                       rule.specificity[1] > 3 &&
-                                      "bg-yellow-500/10 text-yellow-500"
+                                      "bg-[--accent-amber]/10 text-[--accent-amber]"
                                   )}
                                 >
                                   {formatSpecificity(rule.specificity)}

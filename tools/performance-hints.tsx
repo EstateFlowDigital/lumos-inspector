@@ -308,11 +308,11 @@ export function PerformanceHints() {
   const getSeverityIcon = (severity: HintSeverity) => {
     switch (severity) {
       case "error":
-        return <AlertCircle className="h-3 w-3 text-red-500" />
+        return <AlertCircle className="h-3 w-3 text-[--destructive]" />
       case "warning":
-        return <AlertTriangle className="h-3 w-3 text-yellow-500" />
+        return <AlertTriangle className="h-3 w-3 text-[--accent-amber]" />
       case "info":
-        return <Info className="h-3 w-3 text-blue-500" />
+        return <Info className="h-3 w-3 text-[--accent-blue]" />
     }
   }
 
@@ -329,7 +329,7 @@ export function PerformanceHints() {
               variant="secondary"
               className={cn(
                 "text-[10px] px-1 h-4",
-                hints.some((h) => h.severity === "error") && "bg-red-500/10 text-red-500"
+                hints.some((h) => h.severity === "error") && "bg-[--destructive]/10 text-[--destructive]"
               )}
             >
               {hints.length}
@@ -348,9 +348,9 @@ export function PerformanceHints() {
               <span
                 className={cn(
                   "font-medium",
-                  score >= 80 && "text-green-500",
-                  score >= 50 && score < 80 && "text-yellow-500",
-                  score < 50 && "text-red-500"
+                  score >= 80 && "text-[--accent-green]",
+                  score >= 50 && score < 80 && "text-[--accent-amber]",
+                  score < 50 && "text-[--destructive]"
                 )}
               >
                 {score}/100
@@ -360,9 +360,9 @@ export function PerformanceHints() {
               value={score}
               className={cn(
                 "h-2",
-                score >= 80 && "[&>div]:bg-green-500",
-                score >= 50 && score < 80 && "[&>div]:bg-yellow-500",
-                score < 50 && "[&>div]:bg-red-500"
+                score >= 80 && "[&>div]:bg-[--accent-green]",
+                score >= 50 && score < 80 && "[&>div]:bg-[--accent-amber]",
+                score < 50 && "[&>div]:bg-[--destructive]"
               )}
             />
           </div>
@@ -393,9 +393,9 @@ export function PerformanceHints() {
                   key={hint.id}
                   className={cn(
                     "p-2 rounded-md border-l-2 cursor-pointer hover:bg-muted/50",
-                    hint.severity === "error" && "border-l-red-500 bg-red-500/5",
-                    hint.severity === "warning" && "border-l-yellow-500 bg-yellow-500/5",
-                    hint.severity === "info" && "border-l-blue-500 bg-blue-500/5"
+                    hint.severity === "error" && "border-l-[--destructive] bg-[--destructive]/5",
+                    hint.severity === "warning" && "border-l-[--accent-amber] bg-[--accent-amber]/5",
+                    hint.severity === "info" && "border-l-[--accent-blue] bg-[--accent-blue]/5"
                   )}
                   onClick={() => selectHint(hint)}
                 >
@@ -424,7 +424,7 @@ export function PerformanceHints() {
 
         {hints.length === 0 && lastScan && (
           <div className="text-center py-4">
-            <CheckCircle className="h-8 w-8 text-green-500 mx-auto mb-2" />
+            <CheckCircle className="h-8 w-8 text-[--accent-green] mx-auto mb-2" />
             <p className="text-sm font-medium">Great performance!</p>
             <p className="text-xs text-muted-foreground">No issues detected</p>
           </div>

@@ -309,16 +309,16 @@ function ValueRenderer({ value, depth = 0, maxDepth = 3, expanded = false }: Val
   const type = getValueType(value)
 
   const typeColors: Record<PropValueType, string> = {
-    string: "text-green-500",
-    number: "text-blue-500",
-    boolean: "text-purple-500",
+    string: "text-[--accent-green]",
+    number: "text-[--accent-blue]",
+    boolean: "text-[--accent-purple]",
     null: "text-muted-foreground",
     undefined: "text-muted-foreground",
-    function: "text-yellow-500",
-    array: "text-orange-500",
-    object: "text-cyan-500",
-    element: "text-pink-500",
-    symbol: "text-red-500",
+    function: "text-[--accent-amber]",
+    array: "text-[--accent-orange]",
+    object: "text-[--accent-cyan]",
+    element: "text-[--accent-pink]",
+    symbol: "text-[--destructive]",
   }
 
   if (type === "null") return <span className={typeColors.null}>null</span>
@@ -471,11 +471,11 @@ function ComponentCard({ component, isSelected, onSelect, depth = 0 }: Component
   const [copied, setCopied] = useState(false)
 
   const typeColors: Record<ComponentInfo["type"], string> = {
-    function: "bg-blue-500/10 text-blue-500",
-    class: "bg-purple-500/10 text-purple-500",
-    forwardRef: "bg-green-500/10 text-green-500",
-    memo: "bg-orange-500/10 text-orange-500",
-    context: "bg-pink-500/10 text-pink-500",
+    function: "bg-[--accent-blue]/10 text-[--accent-blue]",
+    class: "bg-[--accent-purple]/10 text-[--accent-purple]",
+    forwardRef: "bg-[--accent-green]/10 text-[--accent-green]",
+    memo: "bg-[--accent-orange]/10 text-[--accent-orange]",
+    context: "bg-[--accent-pink]/10 text-[--accent-pink]",
     host: "bg-muted text-muted-foreground",
   }
 
@@ -519,7 +519,7 @@ function ComponentCard({ component, isSelected, onSelect, depth = 0 }: Component
               copyProps()
             }}
           >
-            {copied ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
+            {copied ? <Check className="h-3 w-3 text-[--accent-green]" /> : <Copy className="h-3 w-3" />}
           </Button>
         </div>
       </div>

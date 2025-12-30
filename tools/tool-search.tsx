@@ -32,15 +32,15 @@ export type ToolCategory =
 
 // Category metadata
 export const categoryMeta: Record<ToolCategory, { label: string; color: string }> = {
-  layout: { label: "Layout", color: "bg-blue-500" },
-  visual: { label: "Visual", color: "bg-purple-500" },
-  typography: { label: "Typography", color: "bg-green-500" },
-  animation: { label: "Animation", color: "bg-orange-500" },
-  debug: { label: "Debug", color: "bg-red-500" },
-  accessibility: { label: "Accessibility", color: "bg-yellow-500" },
-  performance: { label: "Performance", color: "bg-cyan-500" },
+  layout: { label: "Layout", color: "bg-[--accent-blue]" },
+  visual: { label: "Visual", color: "bg-[--accent-purple]" },
+  typography: { label: "Typography", color: "bg-[--accent-green]" },
+  animation: { label: "Animation", color: "bg-[--accent-orange]" },
+  debug: { label: "Debug", color: "bg-[--destructive]" },
+  accessibility: { label: "Accessibility", color: "bg-[--accent-amber]" },
+  performance: { label: "Performance", color: "bg-[--accent-cyan]" },
   developer: { label: "Developer", color: "bg-muted-foreground" },
-  design: { label: "Design", color: "bg-pink-500" },
+  design: { label: "Design", color: "bg-[--accent-pink]" },
 }
 
 // All tool definitions
@@ -339,7 +339,7 @@ export function ToolSearch({ onToolSelect, collapsedTools = new Set(), onToggleT
                             }}
                           >
                             {favorites.has(tool.id) ? (
-                              <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                              <Star className="h-3 w-3 text-[--accent-amber] fill-[--accent-amber]" />
                             ) : (
                               <StarOff className="h-3 w-3" />
                             )}
@@ -372,7 +372,7 @@ export function ToolSearch({ onToolSelect, collapsedTools = new Set(), onToggleT
                   }}
                 >
                   {favorites.has(tool.id) ? (
-                    <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                    <Star className="h-3 w-3 text-[--accent-amber] fill-[--accent-amber]" />
                   ) : (
                     <StarOff className="h-3 w-3" />
                   )}

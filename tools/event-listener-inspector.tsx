@@ -132,14 +132,14 @@ export function EventListenerInspector() {
     for (const cat of commonEventTypes) {
       if (cat.events.includes(eventType)) {
         const colors: Record<string, string> = {
-          Mouse: "bg-blue-500",
-          Keyboard: "bg-purple-500",
-          Focus: "bg-yellow-500",
-          Form: "bg-green-500",
-          Touch: "bg-pink-500",
-          Pointer: "bg-cyan-500",
-          Drag: "bg-orange-500",
-          Animation: "bg-red-500",
+          Mouse: "bg-[--accent-blue]",
+          Keyboard: "bg-[--accent-purple]",
+          Focus: "bg-[--accent-amber]",
+          Form: "bg-[--accent-green]",
+          Touch: "bg-[--accent-pink]",
+          Pointer: "bg-[--accent-cyan]",
+          Drag: "bg-[--accent-orange]",
+          Animation: "bg-[--destructive]",
         }
         return colors[cat.category] || "bg-muted"
       }
@@ -153,7 +153,7 @@ export function EventListenerInspector() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <Zap className="h-4 w-4 text-yellow-500" />
+          <Zap className="h-4 w-4 text-[--accent-amber]" />
           <span>Event Listeners</span>
           {listeners.length > 0 && (
             <Badge variant="secondary" className="text-[10px] px-1 h-4">

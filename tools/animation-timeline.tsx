@@ -171,7 +171,7 @@ export function AnimationTimeline() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <Play className="h-4 w-4 text-green-500" />
+          <Play className="h-4 w-4 text-[--accent-green]" />
           <span>Animation Timeline</span>
           {animations.length > 0 && (
             <Badge variant="secondary" className="text-[10px] px-1 h-4">
@@ -268,7 +268,7 @@ export function AnimationTimeline() {
                 {animations.map((anim, i) => (
                   <div key={i} className="p-2 bg-card border rounded-md">
                     <div className="flex items-center justify-between mb-2">
-                      <Badge className="text-[9px] h-4 px-1 bg-green-500">
+                      <Badge className="text-[9px] h-4 px-1 bg-[--accent-green]">
                         @keyframes
                       </Badge>
                       <span className="text-xs font-mono">{anim.name}</span>
@@ -277,7 +277,7 @@ export function AnimationTimeline() {
                     {/* Timeline bar */}
                     <div className="h-2 bg-muted rounded-full overflow-hidden mb-2">
                       <div
-                        className="h-full bg-green-500 rounded-full animate-pulse"
+                        className="h-full bg-[--accent-green] rounded-full animate-pulse"
                         style={{
                           width: isPaused ? "50%" : "100%",
                           animationDuration: anim.duration,
@@ -298,7 +298,7 @@ export function AnimationTimeline() {
                 {transitions.map((trans, i) => (
                   <div key={`t-${i}`} className="p-2 bg-card border rounded-md">
                     <div className="flex items-center justify-between mb-2">
-                      <Badge className="text-[9px] h-4 px-1 bg-blue-500">
+                      <Badge className="text-[9px] h-4 px-1 bg-[--accent-blue]">
                         transition
                       </Badge>
                       <span className="text-xs font-mono">{trans.property}</span>

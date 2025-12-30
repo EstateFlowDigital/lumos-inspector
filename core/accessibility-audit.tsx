@@ -102,8 +102,8 @@ const categoryInfo: Record<IssueCategory, { name: string; icon: React.ReactNode 
 // Severity icons
 const severityIcons: Record<IssueSeverity, React.ReactNode> = {
   error: <AlertCircle className="h-4 w-4 text-destructive" />,
-  warning: <AlertTriangle className="h-4 w-4 text-orange-500" />,
-  notice: <Info className="h-4 w-4 text-blue-500" />,
+  warning: <AlertTriangle className="h-4 w-4 text-[--accent-orange]" />,
+  notice: <Info className="h-4 w-4 text-[--accent-blue]" />,
 }
 
 // Generate unique ID
@@ -572,8 +572,8 @@ function IssueCard({ issue, onHighlight }: IssueCardProps) {
       className={cn(
         "p-3 border-l-4 rounded-r-lg bg-card",
         issue.severity === "error" && "border-l-destructive bg-destructive/5",
-        issue.severity === "warning" && "border-l-orange-500 bg-orange-500/5",
-        issue.severity === "notice" && "border-l-blue-500 bg-blue-500/5"
+        issue.severity === "warning" && "border-l-[--accent-orange] bg-[--accent-orange]/5",
+        issue.severity === "notice" && "border-l-[--accent-blue] bg-[--accent-blue]/5"
       )}
     >
       <div className="flex items-start gap-2">
@@ -590,7 +590,7 @@ function IssueCard({ issue, onHighlight }: IssueCardProps) {
           <code className="text-xs bg-muted px-1 py-0.5 rounded mt-2 block truncate">
             {issue.selector}
           </code>
-          <p className="text-xs text-green-700 dark:text-green-400 mt-2 flex items-start gap-1">
+          <p className="text-xs text-[--accent-green] mt-2 flex items-start gap-1">
             <Check className="h-3 w-3 mt-0.5 flex-shrink-0" aria-hidden="true" />
             <span className="sr-only">Recommendation: </span>
             {issue.recommendation}
@@ -640,10 +640,10 @@ function CategorySection({ category, issues, onHighlight }: CategorySectionProps
             <Badge variant="destructive">{errorCount}</Badge>
           )}
           {warningCount > 0 && (
-            <Badge className="bg-orange-600 hover:bg-orange-700">{warningCount}</Badge>
+            <Badge className="bg-[--accent-orange] hover:bg-[--accent-orange]/90">{warningCount}</Badge>
           )}
           {issues.length === 0 && (
-            <Check className="h-4 w-4 text-green-500" />
+            <Check className="h-4 w-4 text-[--accent-green]" />
           )}
         </div>
       </CollapsibleTrigger>
@@ -778,8 +778,8 @@ export function AccessibilityAuditPanel({
               <div
                 className={cn(
                   "text-3xl font-bold",
-                  result.score >= 80 && "text-green-500",
-                  result.score >= 50 && result.score < 80 && "text-orange-500",
+                  result.score >= 80 && "text-[--accent-green]",
+                  result.score >= 50 && result.score < 80 && "text-[--accent-orange]",
                   result.score < 50 && "text-destructive"
                 )}
               >
@@ -790,8 +790,8 @@ export function AccessibilityAuditPanel({
                   value={result.score}
                   className={cn(
                     "h-2",
-                    result.score >= 80 && "[&>div]:bg-green-500",
-                    result.score >= 50 && result.score < 80 && "[&>div]:bg-orange-500",
+                    result.score >= 80 && "[&>div]:bg-[--accent-green]",
+                    result.score >= 50 && result.score < 80 && "[&>div]:bg-[--accent-orange]",
                     result.score < 50 && "[&>div]:bg-destructive"
                   )}
                 />
@@ -803,11 +803,11 @@ export function AccessibilityAuditPanel({
                 {result.summary.errors} errors
               </span>
               <span className="flex items-center gap-1">
-                <AlertTriangle className="h-4 w-4 text-orange-500" />
+                <AlertTriangle className="h-4 w-4 text-[--accent-orange]" />
                 {result.summary.warnings} warnings
               </span>
               <span className="flex items-center gap-1">
-                <Check className="h-4 w-4 text-green-500" />
+                <Check className="h-4 w-4 text-[--accent-green]" />
                 {result.summary.passed} passed
               </span>
             </div>

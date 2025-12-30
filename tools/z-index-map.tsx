@@ -214,13 +214,13 @@ export function ZIndexMap() {
   // Get z-index color
   const getZIndexColor = (zIndex: number | "auto"): string => {
     if (zIndex === "auto") return "bg-muted-foreground"
-    if (zIndex < 0) return "bg-purple-500"
+    if (zIndex < 0) return "bg-[--accent-purple]"
     if (zIndex === 0) return "bg-muted-foreground"
-    if (zIndex < 10) return "bg-blue-500"
-    if (zIndex < 100) return "bg-green-500"
-    if (zIndex < 1000) return "bg-yellow-500"
-    if (zIndex < 10000) return "bg-orange-500"
-    return "bg-red-500"
+    if (zIndex < 10) return "bg-[--accent-blue]"
+    if (zIndex < 100) return "bg-[--accent-green]"
+    if (zIndex < 1000) return "bg-[--accent-amber]"
+    if (zIndex < 10000) return "bg-[--accent-orange]"
+    return "bg-[--destructive]"
   }
 
   if (!isOpen) return null
@@ -261,25 +261,25 @@ export function ZIndexMap() {
           {/* Legend */}
           <div className="flex flex-wrap gap-1 text-[9px]">
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-purple-500" /> &lt;0
+              <span className="w-2 h-2 rounded bg-[--accent-purple]" /> &lt;0
             </span>
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded bg-muted-foreground" /> 0/auto
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-blue-500" /> 1-9
+              <span className="w-2 h-2 rounded bg-[--accent-blue]" /> 1-9
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-green-500" /> 10-99
+              <span className="w-2 h-2 rounded bg-[--accent-green]" /> 10-99
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-yellow-500" /> 100-999
+              <span className="w-2 h-2 rounded bg-[--accent-amber]" /> 100-999
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-orange-500" /> 1k-10k
+              <span className="w-2 h-2 rounded bg-[--accent-orange]" /> 1k-10k
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded bg-red-500" /> &gt;10k
+              <span className="w-2 h-2 rounded bg-[--destructive]" /> &gt;10k
             </span>
           </div>
 
@@ -347,11 +347,11 @@ export function ZIndexMap() {
                 "absolute border-2 transition-opacity",
                 hoveredContext === ctx ? "opacity-100" : "opacity-50",
                 ctx.zIndex === "auto" ? "border-muted-foreground" :
-                  ctx.zIndex < 0 ? "border-purple-500" :
-                    ctx.zIndex < 10 ? "border-blue-500" :
-                      ctx.zIndex < 100 ? "border-green-500" :
-                        ctx.zIndex < 1000 ? "border-yellow-500" :
-                          "border-red-500"
+                  ctx.zIndex < 0 ? "border-[--accent-purple]" :
+                    ctx.zIndex < 10 ? "border-[--accent-blue]" :
+                      ctx.zIndex < 100 ? "border-[--accent-green]" :
+                        ctx.zIndex < 1000 ? "border-[--accent-amber]" :
+                          "border-[--destructive]"
               )}
               style={{
                 left: ctx.rect.left,

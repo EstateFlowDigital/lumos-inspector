@@ -150,7 +150,7 @@ export function ScrollAnimationsTool() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <ScrollText className="h-4 w-4 text-cyan-500" />
+          <ScrollText className="h-4 w-4 text-[--accent-cyan]" />
           <span>Scroll Animations</span>
           <Badge variant="outline" className="text-[9px] h-4 px-1">New</Badge>
         </div>
@@ -160,7 +160,7 @@ export function ScrollAnimationsTool() {
       <CollapsibleContent className="space-y-3 pt-2">
         {/* Browser support warning */}
         {!isSupported && (
-          <div className="p-2 bg-amber-500/10 border border-amber-500/20 rounded text-[10px] text-amber-600">
+          <div className="p-2 bg-[--accent-amber]/10 border border-[--accent-amber]/20 rounded text-[10px] text-[--accent-amber]">
             Scroll-driven animations may not be supported in this browser.
           </div>
         )}

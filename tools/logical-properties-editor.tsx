@@ -167,7 +167,7 @@ export function LogicalPropertiesEditor() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <ArrowLeftRight className="h-4 w-4 text-blue-500" />
+          <ArrowLeftRight className="h-4 w-4 text-[--accent-blue]" />
           <span>Logical Properties</span>
           <Badge variant="outline" className="text-[9px] h-4 px-1">RTL/LTR</Badge>
         </div>
@@ -176,7 +176,7 @@ export function LogicalPropertiesEditor() {
 
       <CollapsibleContent className="space-y-3 pt-2">
         {/* Info */}
-        <div className="p-2 bg-blue-500/10 border border-blue-500/20 rounded text-[10px]">
+        <div className="p-2 bg-[--accent-blue]/10 border border-[--accent-blue]/20 rounded text-[10px]">
           Logical properties work with any writing direction (LTR, RTL, vertical).
         </div>
 

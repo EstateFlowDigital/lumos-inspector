@@ -228,7 +228,7 @@ export function ElementStates() {
           <MousePointer className="h-4 w-4 text-chart-2" />
           <span>Element States</span>
           {activeStates.size > 0 && (
-            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-green-500/10 text-green-500">
+            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-[--accent-green]/10 text-[--accent-green]">
               {activeStates.size} active
             </Badge>
           )}
@@ -253,7 +253,7 @@ export function ElementStates() {
                       size="sm"
                       className={cn(
                         "h-10 flex-col gap-0.5 px-1",
-                        activeStates.has(state) && "bg-green-500 hover:bg-green-600"
+                        activeStates.has(state) && "bg-[--accent-green] hover:bg-[--accent-green]/90"
                       )}
                       onClick={() => toggleState(state)}
                     >

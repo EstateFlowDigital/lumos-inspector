@@ -382,7 +382,7 @@ export function CSSVariablesExplorer({ onApplyVariable }: CSSVariablesExplorerPr
                               className="h-6 w-6 p-0"
                               onClick={saveEdit}
                             >
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-3 w-3 text-[--accent-green]" />
                             </Button>
                             <Button
                               variant="ghost"
@@ -390,7 +390,7 @@ export function CSSVariablesExplorer({ onApplyVariable }: CSSVariablesExplorerPr
                               className="h-6 w-6 p-0"
                               onClick={cancelEdit}
                             >
-                              <X className="h-3 w-3 text-red-500" />
+                              <X className="h-3 w-3 text-[--destructive]" />
                             </Button>
                           </div>
                         ) : (

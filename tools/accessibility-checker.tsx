@@ -371,13 +371,13 @@ function getIssueTypeIcon(type: string) {
 function getSeverityInfo(severity: Severity) {
   switch (severity) {
     case "error":
-      return { color: "text-red-500", bgColor: "bg-red-500/10", icon: AlertCircle }
+      return { color: "text-[--destructive]", bgColor: "bg-[--destructive]/10", icon: AlertCircle }
     case "warning":
-      return { color: "text-yellow-500", bgColor: "bg-yellow-500/10", icon: AlertTriangle }
+      return { color: "text-[--accent-amber]", bgColor: "bg-[--accent-amber]/10", icon: AlertTriangle }
     case "info":
-      return { color: "text-blue-500", bgColor: "bg-blue-500/10", icon: Info }
+      return { color: "text-[--accent-blue]", bgColor: "bg-[--accent-blue]/10", icon: Info }
     case "pass":
-      return { color: "text-green-500", bgColor: "bg-green-500/10", icon: CheckCircle }
+      return { color: "text-[--accent-green]", bgColor: "bg-[--accent-green]/10", icon: CheckCircle }
   }
 }
 
@@ -478,7 +478,7 @@ export function AccessibilityChecker() {
               variant="secondary"
               className={cn(
                 "text-[10px] px-1 h-4",
-                issues.some((i) => i.severity === "error") && "bg-red-500/10 text-red-500"
+                issues.some((i) => i.severity === "error") && "bg-[--destructive]/10 text-[--destructive]"
               )}
             >
               {issues.length}
@@ -497,9 +497,9 @@ export function AccessibilityChecker() {
               <span
                 className={cn(
                   "font-medium",
-                  score >= 80 && "text-green-500",
-                  score >= 50 && score < 80 && "text-yellow-500",
-                  score < 50 && "text-red-500"
+                  score >= 80 && "text-[--accent-green]",
+                  score >= 50 && score < 80 && "text-[--accent-amber]",
+                  score < 50 && "text-[--destructive]"
                 )}
               >
                 {score}/100
@@ -509,9 +509,9 @@ export function AccessibilityChecker() {
               value={score}
               className={cn(
                 "h-2",
-                score >= 80 && "[&>div]:bg-green-500",
-                score >= 50 && score < 80 && "[&>div]:bg-yellow-500",
-                score < 50 && "[&>div]:bg-red-500"
+                score >= 80 && "[&>div]:bg-[--accent-green]",
+                score >= 50 && score < 80 && "[&>div]:bg-[--accent-amber]",
+                score < 50 && "[&>div]:bg-[--destructive]"
               )}
             />
           </div>
@@ -608,7 +608,7 @@ export function AccessibilityChecker() {
 
         {issues.length === 0 && lastChecked && (
           <div className="text-center py-4">
-            <CheckCircle className="h-8 w-8 text-green-500 mx-auto mb-2" />
+            <CheckCircle className="h-8 w-8 text-[--accent-green] mx-auto mb-2" />
             <p className="text-sm font-medium">All checks passed!</p>
             <p className="text-xs text-muted-foreground">No accessibility issues detected</p>
           </div>

@@ -184,7 +184,7 @@ export function TransitionBuilder() {
     <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
       <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-medium hover:bg-muted/50 px-2 rounded">
         <div className="flex items-center gap-2">
-          <Timer className="h-4 w-4 text-cyan-500" />
+          <Timer className="h-4 w-4 text-[--accent-cyan]" />
           <span>Transition Builder</span>
         </div>
         <ChevronDown className={cn("h-4 w-4 transition-transform", isExpanded && "rotate-180")} />

@@ -194,7 +194,7 @@ export function StyleDiff() {
           <Diff className="h-4 w-4 text-chart-2" />
           <span>Style Diff</span>
           {stats.modified > 0 && (
-            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-yellow-500/10 text-yellow-500">
+            <Badge variant="secondary" className="text-[10px] px-1 h-4 bg-[--accent-amber]/10 text-[--accent-amber]">
               {stats.modified} changed
             </Badge>
           )}
@@ -262,24 +262,24 @@ export function StyleDiff() {
               <div
                 className={cn(
                   "flex items-center gap-1 p-2 rounded cursor-pointer",
-                  showFilter === "modified" ? "bg-yellow-500/20" : "bg-yellow-500/10",
-                  "hover:bg-yellow-500/20"
+                  showFilter === "modified" ? "bg-[--accent-amber]/20" : "bg-[--accent-amber]/10",
+                  "hover:bg-[--accent-amber]/20"
                 )}
                 onClick={() => setShowFilter("modified")}
               >
-                <Minus className="h-3 w-3 text-yellow-500" />
+                <Minus className="h-3 w-3 text-[--accent-amber]" />
                 <span className="text-xs font-medium">{stats.modified}</span>
                 <span className="text-[10px] text-muted-foreground">Modified</span>
               </div>
               <div
                 className={cn(
                   "flex items-center gap-1 p-2 rounded cursor-pointer",
-                  showFilter === "added" ? "bg-green-500/20" : "bg-green-500/10",
-                  "hover:bg-green-500/20"
+                  showFilter === "added" ? "bg-[--accent-green]/20" : "bg-[--accent-green]/10",
+                  "hover:bg-[--accent-green]/20"
                 )}
                 onClick={() => setShowFilter("added")}
               >
-                <Plus className="h-3 w-3 text-green-500" />
+                <Plus className="h-3 w-3 text-[--accent-green]" />
                 <span className="text-xs font-medium">{stats.added}</span>
                 <span className="text-[10px] text-muted-foreground">Custom</span>
               </div>
@@ -312,8 +312,8 @@ export function StyleDiff() {
                       key={change.property}
                       className={cn(
                         "p-2 rounded-md border-l-2",
-                        change.type === "modified" && "border-l-yellow-500 bg-yellow-500/5",
-                        change.type === "added" && "border-l-green-500 bg-green-500/5",
+                        change.type === "modified" && "border-l-[--accent-amber] bg-[--accent-amber]/5",
+                        change.type === "added" && "border-l-[--accent-green] bg-[--accent-green]/5",
                         change.type === "unchanged" && "border-l-transparent"
                       )}
                     >
@@ -322,10 +322,10 @@ export function StyleDiff() {
                         {change.type === "modified" && (
                           <>
                             <div className="flex-1 min-w-0">
-                              <div className="text-[10px] text-red-400 font-mono truncate line-through">
+                              <div className="text-[10px] text-[--destructive] font-mono truncate line-through">
                                 {change.originalValue || "(none)"}
                               </div>
-                              <div className="text-[10px] text-green-400 font-mono truncate">
+                              <div className="text-[10px] text-[--accent-green] font-mono truncate">
                                 {change.currentValue || "(none)"}
                               </div>
                             </div>
