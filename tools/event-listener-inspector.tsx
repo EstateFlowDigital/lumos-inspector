@@ -141,10 +141,10 @@ export function EventListenerInspector() {
           Drag: "bg-orange-500",
           Animation: "bg-red-500",
         }
-        return colors[cat.category] || "bg-gray-500"
+        return colors[cat.category] || "bg-muted"
       }
     }
-    return "bg-gray-500"
+    return "bg-muted"
   }
 
   if (!isOpen) return null

@@ -141,7 +141,7 @@ export function MutationObserverPanel() {
       case "childList": return "bg-blue-500"
       case "attributes": return "bg-purple-500"
       case "characterData": return "bg-green-500"
-      default: return "bg-gray-500"
+      default: return "bg-muted"
     }
   }
 

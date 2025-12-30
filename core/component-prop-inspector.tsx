@@ -312,8 +312,8 @@ function ValueRenderer({ value, depth = 0, maxDepth = 3, expanded = false }: Val
     string: "text-green-500",
     number: "text-blue-500",
     boolean: "text-purple-500",
-    null: "text-gray-500",
-    undefined: "text-gray-500",
+    null: "text-muted-foreground",
+    undefined: "text-muted-foreground",
     function: "text-yellow-500",
     array: "text-orange-500",
     object: "text-cyan-500",
@@ -476,7 +476,7 @@ function ComponentCard({ component, isSelected, onSelect, depth = 0 }: Component
     forwardRef: "bg-green-500/10 text-green-500",
     memo: "bg-orange-500/10 text-orange-500",
     context: "bg-pink-500/10 text-pink-500",
-    host: "bg-gray-500/10 text-gray-500",
+    host: "bg-muted text-muted-foreground",
   }
 
   const copyProps = useCallback(() => {

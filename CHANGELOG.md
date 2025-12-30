@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Design System Compliance**: Replaced hardcoded Tailwind gray colors with semantic design tokens
+  - `mutation-observer-panel.tsx`: Changed fallback type color from `bg-gray-500` to `bg-muted`
+  - `print-styles-preview.tsx`: Changed icon color from `text-gray-500` to `text-muted-foreground`
+  - `event-listener-inspector.tsx`: Changed fallback category colors from `bg-gray-500` to `bg-muted`
+  - `component-prop-inspector.tsx`: Changed null/undefined value colors from `text-gray-500` to `text-muted-foreground`, host type badge from `bg-gray-500/10 text-gray-500` to `bg-muted text-muted-foreground`
+  - Note: Device frame grays in `responsive-preview.tsx` and `device-preview.tsx` kept intentionally for realistic device simulation
+
 ### Fixed
 - **Dark Mode Overlay Visibility**: Fixed icons and text being invisible on light-themed pages
   - All hardcoded dark colors in lumos-connect.js CSS now use CSS variables
